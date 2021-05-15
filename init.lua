@@ -98,7 +98,7 @@ packer.startup(function(use)
 end)
 
 
-local path_files = function (path, pattern)
+_G.filter_files = function (path, pattern)
     local files = vim.fn.split(vim.fn.globpath(path, pattern), '\n')
     local index = 0
     local count = #files
@@ -110,6 +110,6 @@ local path_files = function (path, pattern)
     end
 end
 
-for f in path_files(vim.g.config_root .. '/config', '*.lua') do
+for f in filter_files(vim.g.config_root .. '/config', '*.lua') do
     vim.cmd('luafile ' .. f)
 end
