@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 --[[
 " <leader>
 let g:mapleader=" "
