@@ -1,3 +1,14 @@
+vim.g.config_root = vim.fn.stdpath('config')
+vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
+vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
+vim.g.bootstrap   = vim.fn.exists('$NVIM_BOOTSTRAP')
+
+-- let g:nvim_preset  = exists('$NVIM_PRESET') ? $NVIM_PRESET: 'core'
+-- let g:bootstrap    = exists('$NVIM_BOOTSTRAP')
+-- let g:config_root  = expand('<sfile>:p:h')
+-- let &rtp          .= ',' . g:config_root
+-- let &packpath     .= ',' .. g:config_root
+
 vim.cmd [[packadd packer.nvim]]
 
 local packer = require 'packer'
