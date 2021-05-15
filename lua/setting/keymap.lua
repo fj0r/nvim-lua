@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 --插入模式下 jk/kj 映射为 ESC，两次按键间隔不能超过 150毫秒
-if vim.fn.exists('$VIM_DUAL_ESC') then
+if os.getenv('VIM_DUAL_ESC') == '1' then
     vim.api.nvim_set_keymap('i', 'kj', '<ESC>', {noremap = true})
     vim.api.nvim_command('autocmd InsertEnter * set timeoutlen=150')
     vim.api.nvim_command('autocmd InsertLeave * set timeoutlen=1000')

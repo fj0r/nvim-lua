@@ -1,7 +1,7 @@
 vim.g.config_root = vim.fn.stdpath('config')
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
-vim.g.bootstrap   = vim.fn.exists('$NVIM_BOOTSTRAP')
+vim.g.bootstrap   = os.getenv('NVIM_BOOTSTRAP') == '1'
 
 -- let g:nvim_preset  = exists('$NVIM_PRESET') ? $NVIM_PRESET: 'core'
 -- let g:bootstrap    = exists('$NVIM_BOOTSTRAP')
@@ -123,7 +123,7 @@ _G.filter_files = function (path, pattern)
     end
 end
 
-if vim.g.bootstrap == 0 then
+if not vim.g.bootstrap then
     for f in filter_files(vim.g.config_root .. '/config', '*.lua') do
         vim.cmd('luafile ' .. f)
     end
