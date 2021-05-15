@@ -59,6 +59,8 @@ m('c', '<M-b>', '<C-Left>', opt)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', '<cmd>nohls<CR>', {noremap=true, silent=true})
+-- command history
+m('n', '<leader>;', ':<C-f>', {noremap=true, silent=true})
 -- NOTE:
 m('n', '<leader>p', '<cmd>set paste!<CR>', {noremap=true, silent=true})
 
