@@ -2,6 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 local packer = require 'packer'
 
+
 packer.init {
     package_root = vim.g.config_root .. '/pack'
 }
@@ -9,6 +10,7 @@ packer.init {
 packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
     use 'norcalli/nvim.lua'
     use 'norcalli/nvim-base16.lua'
     --use 'rktjmp/lush.nvim'
@@ -110,6 +112,8 @@ _G.filter_files = function (path, pattern)
     end
 end
 
-for f in filter_files(vim.g.config_root .. '/config', '*.lua') do
-    vim.cmd('luafile ' .. f)
+if vim.g.bootstrap == 0 then
+    for f in filter_files(vim.g.config_root .. '/config', '*.lua') do
+        vim.cmd('luafile ' .. f)
+    end
 end
