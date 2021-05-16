@@ -1,4 +1,5 @@
-vim.g.config_root = vim.fn.stdpath('config')
+vim.g.config_root = debug.getinfo(1,'S').source:match("^@(.+)/.+$")
+--vim.g.config_root = vim.fn.stdpath('config')
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap   = os.getenv('NVIM_BOOTSTRAP') == '1'
