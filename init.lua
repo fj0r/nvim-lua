@@ -9,7 +9,11 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require 'packer'
 
 packer.init {
-    package_root = vim.g.config_root .. '/pack'
+    package_root = vim.g.config_root .. '/pack',
+    profile = {
+        enable = true,
+        threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
+    }
 }
 
 packer.startup(function(use)

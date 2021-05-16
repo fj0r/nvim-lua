@@ -2,8 +2,8 @@ local keymaps = {
     ['<leader>f'] = "<cmd>lua require('telescope.builtin').find_files()<cr>",
     ['<leader>g'] = "<cmd>lua require('telescope.builtin').git_files()<cr>",
     ['<leader>r'] = "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-    --['<leader>b'] = "<cmd>lua require('telescope.builtin').buffers()<cr>",
-    ['<leader>b'] = "<cmd>lua require('telescope').extensions.tele_tabby.list()<cr>",
+    ['<leader>b'] = "<cmd>lua require('telescope.builtin').buffers()<cr>",
+    ['<leader>l'] = "<cmd>lua require('telescope').extensions.tele_tabby.list()<cr>",
     ['<leader>h'] = "<cmd>lua require('telescope.builtin').help_tags()<cr>",
     ['<leader>t'] = "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>",
 }
