@@ -3,16 +3,10 @@ vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap   = os.getenv('NVIM_BOOTSTRAP') == '1'
 
--- let g:nvim_preset  = exists('$NVIM_PRESET') ? $NVIM_PRESET: 'core'
--- let g:bootstrap    = exists('$NVIM_BOOTSTRAP')
--- let g:config_root  = expand('<sfile>:p:h')
--- let &rtp          .= ',' . g:config_root
--- let &packpath     .= ',' .. g:config_root
 
 vim.cmd [[packadd packer.nvim]]
 
 local packer = require 'packer'
-
 
 packer.init {
     package_root = vim.g.config_root .. '/pack'
@@ -22,8 +16,7 @@ packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use 'norcalli/nvim.lua'
-    use 'norcalli/nvim-base16.lua'
+    use {'norcalli/nvim-base16.lua', requires = {'norcalli/nvim.lua'} }
     --use 'rktjmp/lush.nvim'
     use 'norcalli/nvim-colorizer.lua'
 
@@ -32,8 +25,7 @@ packer.startup(function(use)
     --use 'ompugao/vim-airline-datetime'
     --use 'itchyny/lightline.vim'
     --use 'niklaas/lightline-gitdiff'
-    use 'kyazdani42/nvim-web-devicons'
-    use {'glepnir/galaxyline.nvim' , branch = 'main'}
+    use {'glepnir/galaxyline.nvim' , branch = 'main', requires = {'kyazdani42/nvim-web-devicons'} }
     use 't9md/vim-choosewin'
 
     use 'skywind3000/asyncrun.vim'
@@ -95,9 +87,8 @@ packer.startup(function(use)
     --use 'thaerkh/vim-workspace'
 
     --use 'puremourning/vimspector'
-    use 'mfussenegger/nvim-dap'
-    use 'rcarriga/nvim-dap-ui'
-    use 'theHamsta/nvim-dap-virtual-text'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use {'theHamsta/nvim-dap-virtual-text', requires = {"mfussenegger/nvim-dap"} }
 
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'

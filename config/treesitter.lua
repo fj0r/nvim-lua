@@ -1,13 +1,26 @@
 if vim.g.nvim_preset ~= 'core' then
+    vim.o.foldmethod = 'expr'
+    vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
     local lans = {
         'bash', 'cpp', 'css', 'go', 'gomod', 'graphql',
         'html', 'java', 'javascript', 'jsdoc', 'json', 'jsonc', 'julia',
         'lua', 'php', 'python', 'regex', 'rust',
         'toml', 'tsx', 'typescript', 'vue', 'yaml'
     }
-    local ts = require 'nvim-treesitter.configs'
-    ts.setup {
+    require'nvim-treesitter.configs'.setup {
         ensure_installed = lans,
+        indent = {
+            enable = true
+        },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "gnn",
+                node_incremental = "grn",
+                scope_incremental = "grc",
+                node_decremental = "grm",
+            },
+        },
         highlight = {
             enable = true,
             use_languagetree = true
