@@ -10,6 +10,12 @@ neogit.setup {
         item = { "├─", "│ " },
         hunk = { "", "" },
     },
+    mappings = {
+        status = {
+            ['i'] = 'PullPopup',
+            ['o'] = 'PushPopup',
+        },
+    },
 }
 
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
