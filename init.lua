@@ -3,7 +3,7 @@ vim.g.config_root = debug.getinfo(1,'S').source:match("^@(.+)/.+$")
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap   = os.getenv('NVIM_BOOTSTRAP') == '1'
-
+vim.g.BASE16_THEME = os.getenv('NVIM_THEME') or 'gruvbox-dark-hard'
 
 vim.cmd [[packadd packer.nvim]]
 
@@ -21,7 +21,14 @@ packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use {'norcalli/nvim-base16.lua', requires = {'norcalli/nvim.lua'} }
+    use {
+        'norcalli/nvim-base16.lua',
+        requires = {'norcalli/nvim.lua'},
+        setup = function ()
+            local base16 = require 'base16'
+            base16(base16.themes[vim.g.BASE16_THEME], true)
+        end
+    }
     --use 'rktjmp/lush.nvim'
     use 'norcalli/nvim-colorizer.lua'
 
@@ -30,7 +37,12 @@ packer.startup(function(use)
     --use 'ompugao/vim-airline-datetime'
     --use 'itchyny/lightline.vim'
     --use 'niklaas/lightline-gitdiff'
-    use {'glepnir/galaxyline.nvim' , branch = 'main', requires = {'kyazdani42/nvim-web-devicons'} }
+    use {
+        'glepnir/galaxyline.nvim',
+        branch = 'main',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = require'addons.galaxyline'
+    }
     use {
         't9md/vim-choosewin',
         setup = function ()
@@ -46,14 +58,17 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
-        setup = 'require"addons.toggleterm"',
+        setup = require'addons.toggleterm',
         opt = true,
     }
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
 
     --use 't9md/vim-smalls'
-    use 'justinmk/vim-sneak'
+    use {
+        'justinmk/vim-sneak',
+        setup = require'addons.sneak'
+    }
     use {
         'chaoren/vim-wordmotion',
         setup = function ()
@@ -78,7 +93,10 @@ packer.startup(function(use)
             vim.api.nvim_set_keymap('n', '<F2>', '<cmd>Autoformat<cr>', {noremap = true})
         end
     }
-    use 'junegunn/rainbow_parentheses.vim'
+    use {
+        'junegunn/rainbow_parentheses.vim',
+        config = require'addons.rainbow'
+    }
     use 'tpope/vim-commentary'
 
     --use 'matze/vim-move'
@@ -89,7 +107,7 @@ packer.startup(function(use)
 
     use {
         'hrsh7th/nvim-compe',
-        config = 'require"addons.compe"'
+        config = require'addons.compe'
     }
     --use 'norcalli/snippets.nvim'
     use 'hrsh7th/vim-vsnip'
@@ -99,7 +117,7 @@ packer.startup(function(use)
     --use 'tpope/vim-fugitive'
     use {
         'TimUntersberger/neogit',
-        config = 'require"addons.neogit"'
+        config = require'addons.neogit',
     }
     --use 'mbbill/undotree'
     use {
@@ -116,17 +134,20 @@ packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        config = 'require"addons.telescope"'
+        config = require'addons.telescope'
     }
     use 'TC72/telescope-tele-tabby.nvim'
 
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = 'require"lang.treesitter"'
+        config = function () require 'lang.treesitter' end
     }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'kyazdani42/nvim-tree.lua'
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = require'addons.tree',
+    }
     use {
         'neovim/nvim-lspconfig',
         config = function ()
@@ -140,7 +161,10 @@ packer.startup(function(use)
     --use 'nvim-lua/lsp-status.nvim'
     --use 'nvim-lua/lsp_extensions.nvim'
 
-    use 'rmagatti/auto-session'
+    use {
+        'rmagatti/auto-session',
+        config = require'addons.auto-session'
+    }
     --use 'thaerkh/vim-workspace'
 
     --use 'puremourning/vimspector'
