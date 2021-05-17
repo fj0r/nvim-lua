@@ -79,8 +79,13 @@ packer.startup(function(use)
     use 'nvim-telescope/telescope.nvim'
     use 'TC72/telescope-tele-tabby.nvim'
 
-
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function ()
+            require'lang.treesitter'
+        end
+    }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'kyazdani42/nvim-tree.lua'
     use 'neovim/nvim-lspconfig'
