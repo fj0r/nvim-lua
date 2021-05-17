@@ -24,7 +24,7 @@ packer.startup(function(use)
     use {
         'norcalli/nvim-base16.lua',
         requires = {'norcalli/nvim.lua'},
-        setup = function ()
+        config = function ()
             local base16 = require 'base16'
             base16(base16.themes[vim.g.BASE16_THEME], true)
         end
@@ -45,7 +45,7 @@ packer.startup(function(use)
     }
     use {
         't9md/vim-choosewin',
-        setup = function ()
+        config = function ()
             vim.api.nvim_set_keymap('n', '-', '<Plug>(choosewin)', {})
             vim.g.choosewin_overlay_enable = 0
             vim.g.choosewin_label          = "ASDFQWERZXCV"
@@ -58,7 +58,7 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
-        setup = "require'addons.toggleterm'",
+        config = "require'addons.toggleterm'",
     }
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
@@ -66,11 +66,11 @@ packer.startup(function(use)
     --use 't9md/vim-smalls'
     use {
         'justinmk/vim-sneak',
-        setup = "require'addons.sneak'"
+        config = "require'addons.sneak'"
     }
     use {
         'chaoren/vim-wordmotion',
-        setup = function ()
+        config = function ()
             vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
         end
     }
@@ -81,14 +81,14 @@ packer.startup(function(use)
     use 'windwp/nvim-autopairs'
     use {
         'junegunn/vim-easy-align',
-        setup = function ()
+        config = function ()
             vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
             vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
         end
     }
     use {
         'Chiel92/vim-autoformat',
-        setup = function ()
+        config = function ()
             vim.api.nvim_set_keymap('n', '<F2>', '<cmd>Autoformat<cr>', {noremap = true})
         end
     }
@@ -121,7 +121,7 @@ packer.startup(function(use)
     --use 'mbbill/undotree'
     use {
         'simnalamburt/vim-mundo',
-        setup = function ()
+        config = function ()
             vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
         end
     }
@@ -182,7 +182,7 @@ packer.startup(function(use)
     --use 'keith/swift.vim'
     use {
         'ojroques/vim-oscyank',
-        setup = function ()
+        config = function ()
             vim.g.oscyank_max_length = 1000000
             vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
         end
