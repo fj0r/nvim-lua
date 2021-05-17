@@ -41,7 +41,7 @@ packer.startup(function(use)
         'glepnir/galaxyline.nvim',
         branch = 'main',
         requires = {'kyazdani42/nvim-web-devicons'},
-        config = require'addons.galaxyline'
+        config = "require'addons.galaxyline'"
     }
     use {
         't9md/vim-choosewin',
@@ -58,7 +58,7 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
-        setup = require'addons.toggleterm',
+        setup = "require'addons.toggleterm'",
         opt = true,
     }
     --use 'skywind3000/vim-terminal-help'
@@ -67,7 +67,7 @@ packer.startup(function(use)
     --use 't9md/vim-smalls'
     use {
         'justinmk/vim-sneak',
-        setup = require'addons.sneak'
+        setup = "require'addons.sneak'"
     }
     use {
         'chaoren/vim-wordmotion',
@@ -95,7 +95,7 @@ packer.startup(function(use)
     }
     use {
         'junegunn/rainbow_parentheses.vim',
-        config = require'addons.rainbow'
+        config = "require'addons.rainbow'"
     }
     use 'tpope/vim-commentary'
 
@@ -107,7 +107,7 @@ packer.startup(function(use)
 
     use {
         'hrsh7th/nvim-compe',
-        config = require'addons.compe'
+        config = "require'addons.compe'"
     }
     --use 'norcalli/snippets.nvim'
     use 'hrsh7th/vim-vsnip'
@@ -117,7 +117,7 @@ packer.startup(function(use)
     --use 'tpope/vim-fugitive'
     use {
         'TimUntersberger/neogit',
-        config = require'addons.neogit',
+        config = "require'addons.neogit'",
     }
     --use 'mbbill/undotree'
     use {
@@ -134,7 +134,7 @@ packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        config = require'addons.telescope'
+        config = "require'addons.telescope'"
     }
     use 'TC72/telescope-tele-tabby.nvim'
 
@@ -146,7 +146,7 @@ packer.startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use {
         'kyazdani42/nvim-tree.lua',
-        config = require'addons.tree',
+        config = "require'addons.tree'",
     }
     use {
         'neovim/nvim-lspconfig',
@@ -163,7 +163,7 @@ packer.startup(function(use)
 
     use {
         'rmagatti/auto-session',
-        config = require'addons.auto-session'
+        config = "require'addons.auto-session'"
     }
     --use 'thaerkh/vim-workspace'
 
