@@ -1,7 +1,7 @@
 vim.o.hidden = true
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-N>", {noremap = true, silent = true})
 
-require("toggleterm").setup{
+require'toggleterm'.setup{
     size = 20,
     open_mapping = [[<c-t>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
@@ -12,7 +12,7 @@ require("toggleterm").setup{
     persist_size = true,
     -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
     direction = 'horizontal',
-    close_on_exit = false, -- close the terminal window when the process exits
+    close_on_exit = true, -- close the terminal window when the process exits
     shell = vim.o.shell, -- change the default shell
     -- This field is only relevant if direction is set to 'float'
     float_opts = {
@@ -30,11 +30,17 @@ require("toggleterm").setup{
             background = "Normal",
         }
     },
-    on_open = function (term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
-    end,
     on_close = function(term)
         vim.cmd("Closing terminal")
     end,
 }
+
+
+local Terminal = require'toggleterm.terminal'.Terminal
+local ipython = Terminal:new {
+    cmd = 'ipython3',
+    direction = 'float',
+}
+function _ipython() ipython:toggle() end
+vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>lua _ipython()<CR>", {noremap = true, silent = true})
 
