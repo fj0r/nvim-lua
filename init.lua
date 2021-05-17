@@ -44,7 +44,11 @@ packer.startup(function(use)
     use 'skywind3000/asynctasks.vim'
     use 'GustavoKatel/telescope-asynctasks.nvim'
 
-    use 'akinsho/nvim-toggleterm.lua'
+    use {
+        'akinsho/nvim-toggleterm.lua',
+        setup = 'require"addons.toggleterm"',
+        opt = true,
+    }
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
 
@@ -83,14 +87,20 @@ packer.startup(function(use)
     use 'tpope/vim-surround'
     use 'machakann/vim-swap'
 
-    use 'hrsh7th/nvim-compe'
+    use {
+        'hrsh7th/nvim-compe',
+        config = 'require"addons.compe"'
+    }
     --use 'norcalli/snippets.nvim'
     use 'hrsh7th/vim-vsnip'
     --use 'hrsh7th/vim-vsnip-integ'
     --use 'SirVer/ultisnips'
 
     --use 'tpope/vim-fugitive'
-    use 'TimUntersberger/neogit'
+    use {
+        'TimUntersberger/neogit',
+        config = 'require"addons.neogit"'
+    }
     --use 'mbbill/undotree'
     use {
         'simnalamburt/vim-mundo',
@@ -104,7 +114,10 @@ packer.startup(function(use)
 
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        config = 'require"addons.telescope"'
+    }
     use 'TC72/telescope-tele-tabby.nvim'
 
     use {
