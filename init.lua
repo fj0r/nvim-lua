@@ -59,7 +59,6 @@ packer.startup(function(use)
     use {
         'akinsho/nvim-toggleterm.lua',
         setup = "require'addons.toggleterm'",
-        opt = true,
     }
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
