@@ -31,7 +31,14 @@ packer.startup(function(use)
     --use 'itchyny/lightline.vim'
     --use 'niklaas/lightline-gitdiff'
     use {'glepnir/galaxyline.nvim' , branch = 'main', requires = {'kyazdani42/nvim-web-devicons'} }
-    use 't9md/vim-choosewin'
+    use {
+        't9md/vim-choosewin',
+        setup = function ()
+            vim.api.nvim_set_keymap('n', '-', '<Plug>(choosewin)', {})
+            vim.g.choosewin_overlay_enable = 0
+            vim.g.choosewin_label          = "ASDFQWERZXCV"
+        end
+    }
 
     use 'skywind3000/asyncrun.vim'
     use 'skywind3000/asynctasks.vim'
@@ -43,14 +50,30 @@ packer.startup(function(use)
 
     --use 't9md/vim-smalls'
     use 'justinmk/vim-sneak'
-    use 'chaoren/vim-wordmotion'
+    use {
+        'chaoren/vim-wordmotion',
+        setup = function ()
+            vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
+        end
+    }
     --use 'easymotion/vim-easymotion'
     use 'mg979/vim-visual-multi'
 
     --use 'jiangmiao/auto-pairs'
     use 'windwp/nvim-autopairs'
-    use 'junegunn/vim-easy-align'
-    use 'Chiel92/vim-autoformat'
+    use {
+        'junegunn/vim-easy-align',
+        setup = function ()
+            vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
+            vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
+        end
+    }
+    use {
+        'Chiel92/vim-autoformat',
+        setup = function ()
+            vim.api.nvim_set_keymap('n', '<F2>', '<cmd>Autoformat<cr>', {noremap = true})
+        end
+    }
     use 'junegunn/rainbow_parentheses.vim'
     use 'tpope/vim-commentary'
 
@@ -69,7 +92,12 @@ packer.startup(function(use)
     --use 'tpope/vim-fugitive'
     use 'TimUntersberger/neogit'
     --use 'mbbill/undotree'
-    use 'simnalamburt/vim-mundo'
+    use {
+        'simnalamburt/vim-mundo',
+        setup = function ()
+            vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
+        end
+    }
     --use 'jceb/vim-orgmode'
     --use 'tpope/vim-speeddating'
     use 'jbyuki/instant.nvim'
@@ -82,9 +110,7 @@ packer.startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function ()
-            require'lang.treesitter'
-        end
+        config = 'require"lang.treesitter"'
     }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'kyazdani42/nvim-tree.lua'
@@ -103,7 +129,13 @@ packer.startup(function(use)
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
-    use 'ojroques/vim-oscyank'
+    use {
+        'ojroques/vim-oscyank',
+        setup = function ()
+            vim.g.oscyank_max_length = 1000000
+            vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
+        end
+    }
 
     if vim.g.nvim_preset ~= 'core' then
         use 'rafcamlet/nvim-luapad'
