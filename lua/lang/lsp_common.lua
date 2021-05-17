@@ -9,5 +9,5 @@ ipairs { "hls"
        , "gopls"
        , "jdtls"
        , "intelephense"
-       } do config[lsp].setup{} end
+       } do config[lsp].setup {} end
 

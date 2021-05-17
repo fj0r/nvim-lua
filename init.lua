@@ -114,7 +114,15 @@ packer.startup(function(use)
     }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'kyazdani42/nvim-tree.lua'
-    use 'neovim/nvim-lspconfig'
+    use {
+        'neovim/nvim-lspconfig',
+        config = function ()
+            require 'lang.lsp'
+            require 'lang.lsp_common'
+            require 'lang.lua'
+            require 'lang.yamlls'
+        end
+    }
     --use 'kabouzeid/nvim-lspinstall'
     --use 'nvim-lua/lsp-status.nvim'
     --use 'nvim-lua/lsp_extensions.nvim'
@@ -123,6 +131,13 @@ packer.startup(function(use)
     --use 'thaerkh/vim-workspace'
 
     --use 'puremourning/vimspector'
+    use {
+        "mfussenegger/nvim-dap",
+        config = function ()
+            require 'lang.dap'
+            require 'lang.dap_common'
+        end
+    }
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
     use {'theHamsta/nvim-dap-virtual-text', requires = {"mfussenegger/nvim-dap"} }
 
