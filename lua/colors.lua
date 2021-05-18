@@ -1,8 +1,7 @@
 local M = {}
 
 function M.from_base16(name)
-    local base64 = require('base16')
-    local theme = base64.themes[name]
+    local theme = require'base16-colorscheme'.colorschemes[name]
     local base_indexes = {
         bg = 0x02,
         fg = 0x07,
@@ -18,7 +17,7 @@ function M.from_base16(name)
     }
     local colors = {}
     for key, index in pairs(base_indexes) do
-        colors[key] = '#'.. theme['base' .. string.format('%02X', index)]
+        colors[key] = theme['base' .. string.format('%02X', index)]
     end
     return colors
 end
