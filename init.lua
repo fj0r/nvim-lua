@@ -125,6 +125,14 @@ packer.startup(function(use)
             vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
         end
     }
+    use 'tversteeg/registers.nvim'
+    use {
+        'ojroques/vim-oscyank',
+        config = function ()
+            vim.g.oscyank_max_length = 1000
+            vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
+        end
+    }
     --use 'jceb/vim-orgmode'
     --use 'tpope/vim-speeddating'
     use 'jbyuki/instant.nvim'
@@ -180,13 +188,6 @@ packer.startup(function(use)
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
-    use {
-        'ojroques/vim-oscyank',
-        config = function ()
-            vim.g.oscyank_max_length = 1000000
-            vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
-        end
-    }
 
     if vim.g.nvim_preset ~= 'core' then
         use 'rafcamlet/nvim-luapad'
