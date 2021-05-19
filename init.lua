@@ -68,6 +68,7 @@ packer.startup(function(use)
         'justinmk/vim-sneak',
         config = "require'addons.sneak'"
     }
+    use 'kevinhwang91/nvim-hlslens'
     use {
         'chaoren/vim-wordmotion',
         config = function ()

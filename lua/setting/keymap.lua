@@ -64,11 +64,11 @@ m('c', '<M-f>', '<C-Right>', opt)
 m('c', '<M-b>', '<C-Left>', opt)
 
 -- 去掉搜索高亮
-m('n', '<leader>/', '<cmd>nohls<CR>', {noremap=true, silent=true})
+m('n', '<leader>/', ':nohls<CR>', opt)
 -- command history
-m('n', '<leader>;', ':<C-f>', {noremap=true, silent=true})
+m('n', '<leader>;', ':<C-f>', opt)
 -- NOTE: not need
-m('n', '<leader>p', '<cmd>set paste!<CR>', {noremap=true, silent=true})
+m('n', '<leader>p', '<cmd>set paste!<CR>', opt)
 
 m('n', 'M', '<cmd>marks<CR>', opt)
 -- Quickly close the current window
@@ -92,7 +92,7 @@ m('x', '<', '<gv', opt)
 m('x', '>', '>gv', opt)
 
 -- toggle number
-m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', {noremap=true, silent=true})
+m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', opt)
 
 -- Y yank until the end of line
 m('n', 'Y', 'y$', opt)
