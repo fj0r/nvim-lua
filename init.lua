@@ -133,18 +133,23 @@ packer.startup(function(use)
             vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
         end
     }
-    --use 'jceb/vim-orgmode'
     use {
         'vhyrro/neorg',
         config = function()
-            require('neorg').setup {}
-        end
-	}
+            require('neorg').setup {
+                load = {
+                    ["core.org.headings"] = {},
+                    ['core.defaults'] = {} -- Load all the default modules
+                },
+            }
+        end,
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
     --use 'tpope/vim-speeddating'
     use 'jbyuki/instant.nvim'
 
     use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
+    -- use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
         config = "require'addons.telescope'"
