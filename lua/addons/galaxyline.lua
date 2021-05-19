@@ -99,9 +99,19 @@ gls.left = {
                 highlight('GalaxyViModeInv', modehl, cl.bg, 'bold')
                 highlight('GalaxyViModeMid', cl.gradient, cl.bg, 'bold')
                 highlight('GalaxyViModeMidInv', modehl, cl.gradient, 'bold')
+                highlight('GalaxyViModeInvMid', cl.gradient, modehl, 'bold')
                 return string.format('  %s ', mode_label())
             end,
+            separator = sep.left,
+            separator_highlight = 'GalaxyViMode',
+        },
+    }, {
+        Paste = {
+            provider = function()
+                return vim.o.paste and ' paste ' or ''
+            end,
             separator = sep.left_filled,
+            highlight = 'GalaxyViMode',
             separator_highlight = 'GalaxyViModeMidInv',
         },
     }, {

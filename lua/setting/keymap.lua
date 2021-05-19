@@ -62,7 +62,7 @@ m('n', '<leader>/', '<cmd>nohls<CR>', {noremap=true, silent=true})
 -- command history
 m('n', '<leader>;', ':<C-f>', {noremap=true, silent=true})
 -- NOTE: not need
---m('n', '<leader>p', '<cmd>set paste!<CR>', {noremap=true, silent=true})
+m('n', '<leader>p', '<cmd>set paste!<CR>', {noremap=true, silent=true})
 
 m('n', 'M', '<cmd>marks<CR>', opt)
 -- Quickly close the current window
