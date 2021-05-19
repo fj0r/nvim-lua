@@ -50,16 +50,13 @@ o.copyindent     = true
 o.preserveindent = true
 
 ------ visual
-vim.api.nvim_exec([[
-set guicursor+=a:blinkon0
-"set cursorline
-"set cursorcolumn
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
+o.cursorline     = true
+vim.cmd 'autocmd InsertLeave,WinEnter * set cursorline'
+vim.cmd 'autocmd InsertEnter,WinLeave * set nocursorline'
+o.cursorcolumn   = false
+o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
+o.guicursor      = o.guicursor .. ',a:blinkon0'
 
-set lazyredraw "Don’t update screen during macro and script execution.
-
-" 高亮冗余空格 :NOTE:
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-]], false)
+-- 高亮冗余空格 :NOTE:
+vim.cmd [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+vim.cmd [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
