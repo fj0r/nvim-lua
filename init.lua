@@ -22,10 +22,11 @@ packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'RRethy/nvim-base16',
+        'norcalli/nvim-base16.lua',
+        requires = {'norcalli/nvim.lua'},
         config = function ()
-            local colorscheme = require('base16-colorscheme')
-            colorscheme.setup(vim.g.BASE16_THEME)
+            local base16 = require 'base16'
+            base16(base16.themes[vim.g.BASE16_THEME], true)
         end
     }
     --use 'rktjmp/lush.nvim'
