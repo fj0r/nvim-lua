@@ -1,15 +1,23 @@
-vim.g.mapleader = " "
+local m   = vim.api.nvim_set_keymap
+local c   = vim.api.nvim_command
+local g   = vim.g
+local ex  = vim.api.nvim_exec
+local opt = { noremap = true, silent = true }
+
+m('', '<Space>', '<Nop>', opt)
+g.mapleader = " "
+g.maplocalleader = " "
 
 --插入模式下 jk/kj 映射为 ESC，两次按键间隔不能超过 150毫秒
 if os.getenv('VIM_DUAL_ESC') == '1' then
-    vim.api.nvim_set_keymap('i', 'kj', '<ESC>', {noremap = true})
-    vim.api.nvim_command('autocmd InsertEnter * set timeoutlen=150')
-    vim.api.nvim_command('autocmd InsertLeave * set timeoutlen=1000')
+    m('i', 'kj', '<ESC>', opt)
+    c('autocmd InsertEnter * set timeoutlen=150')
+    c('autocmd InsertLeave * set timeoutlen=1000')
 end
 
-local m = vim.api.nvim_set_keymap
-local c = vim.api.nvim_command
-local opt = { noremap = true }
+--Remap for dealing with word wrap
+m('n', 'k', "v:count == 0 ? 'gk' : 'k'", {noremap=true, expr=true, silent=true})
+m('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap=true, expr=true, silent=true})
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
 m('i', '<C-e>', '<C-o>A', opt)
@@ -55,8 +63,6 @@ m('c', '<C-e>', '<End>', opt)
 m('c', '<M-f>', '<C-Right>', opt)
 m('c', '<M-b>', '<C-Left>', opt)
 
-
-
 -- 去掉搜索高亮
 m('n', '<leader>/', '<cmd>nohls<CR>', {noremap=true, silent=true})
 -- command history
@@ -74,7 +80,7 @@ c('command! -nargs=0  W :wall')
 c('command! -nargs=0  E :e!')
 
 
-vim.api.nvim_exec([[
+ex([[
 nnoremap <expr><silent><Esc> len(filter(range(1, winnr('$')), 'getwinvar(v:val, "&ft") == "qf"')) ? ":ccl<CR>" : "\<Esc>"
 "快速编辑自定义宏
 nnoremap <leader>xm  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
@@ -85,4 +91,8 @@ nnoremap <leader>xm  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(
 m('x', '<', '<gv', opt)
 m('x', '>', '>gv', opt)
 
+-- toggle number
 m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', {noremap=true, silent=true})
+
+-- Y yank until the end of line
+m('n', 'Y', 'y$', opt)

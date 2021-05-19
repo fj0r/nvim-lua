@@ -1,4 +1,7 @@
 local o          = vim.o
+local g          = vim.g
+local c          = vim.api.nvim_command
+local ex         = vim.api.nvim_exec
 
 o.compatible     = false
 o.shortmess      = 'atI'
@@ -16,7 +19,7 @@ o.ruler          = true
 o.showmatch      = true -- 显示匹配的括号
 o.showcmd        = true -- 输入命令回显
 
-vim.cmd 'syntax on' -- 自动语法高亮
+c 'syntax on' -- 自动语法高亮
 
 o.display        = o.display .. ',lastline' -- Always try to show a paragraph’s last line.
 o.linebreak      = true -- Avoid wrapping a line in the middle of a word.
@@ -48,15 +51,27 @@ o.softtabstop    = -1
 o.autoindent     = true
 o.copyindent     = true
 o.preserveindent = true
+o.breakindent    = true
 
 ------ visual
 o.cursorline     = true
-vim.cmd 'autocmd InsertLeave,WinEnter * set cursorline'
-vim.cmd 'autocmd InsertEnter,WinLeave * set nocursorline'
+c 'autocmd InsertLeave,WinEnter * set cursorline'
+c 'autocmd InsertEnter,WinLeave * set nocursorline'
 o.cursorcolumn   = false
 o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
 o.guicursor      = o.guicursor .. ',a:blinkon0'
 
 -- 高亮冗余空格 :NOTE:
-vim.cmd [[highlight ExtraWhitespace ctermbg=red guibg=red]]
-vim.cmd [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
+c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
+
+-- Change preview window location
+g.splitbelow = true
+
+-- Highlight on yank
+ex([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]], false)
