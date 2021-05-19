@@ -134,6 +134,12 @@ packer.startup(function(use)
         end
     }
     --use 'jceb/vim-orgmode'
+    use {
+        'vhyrro/neorg',
+        config = function()
+            require('neorg').setup {}
+        end
+	}
     --use 'tpope/vim-speeddating'
     use 'jbyuki/instant.nvim'
 
