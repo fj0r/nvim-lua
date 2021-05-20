@@ -178,8 +178,9 @@ packer.startup(function(use)
     }
     use {
         'ray-x/navigator.lua',
+        disable = true,
         requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-	config = [[require'lang.navigator']],
+        config = [[require'lang.navigator']],
     }
     use {
         'neovim/nvim-lspconfig',
