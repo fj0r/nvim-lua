@@ -1,5 +1,9 @@
+function _dap_stop()
+    require'dap'.stop()
+    require'dapui'.close()
+end
+
 local keymaps = {
-    ['[p'] = "<cmd>lua require'dap'.stop()<cr>",
     ['[b'] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
     ['[c'] = "<cmd>lua require'dap'.continue()<cr>",
     ['[s'] = "<cmd>lua require'dap'.step_over()<cr>",
@@ -11,6 +15,7 @@ local keymaps = {
     ['[B'] = "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
     ['[L'] = "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
     ['[C'] = "<cmd>lua require'dap'.run_last()<CR>",
+    ['[p'] = "<cmd>lua _dap_stop()<cr>",
 }
 
 for k, v in pairs(keymaps) do
