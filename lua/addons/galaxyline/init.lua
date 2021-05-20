@@ -1,13 +1,12 @@
 local gl = require 'galaxyline'
+local gls = gl.section
 local fileinfo = require 'galaxyline.provider_fileinfo'
 local vcs = require'galaxyline.provider_vcs'
 local lspclient = require('galaxyline.provider_lsp')
 local condition = require('galaxyline.condition')
-local utils = require 'addons.galaxyline.utils'
+local u = require 'addons.galaxyline.utils'.u
 local cl = require 'addons.galaxyline.colors16'.from_base16(vim.g.BASE16_THEME)
 
-local gls = gl.section
-local u = utils.u
 
 local mode_map = {
     ['n'] = {'NORMAL', cl.normal},

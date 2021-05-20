@@ -1,4 +1,4 @@
-vim.g.config_root = debug.getinfo(1,'S').source:match("^@(.+)/.+$")
+vim.g.config_root = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
 --vim.g.config_root = vim.fn.stdpath('config')
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
@@ -37,8 +37,6 @@ packer.startup(function(use)
         end
     }
     --use 'rktjmp/lush.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-
     --use 'vim-airline/vim-airline'
     --use 'vim-airline/vim-airline-themes'
     --use 'ompugao/vim-airline-datetime'
@@ -48,14 +46,18 @@ packer.startup(function(use)
         'glepnir/galaxyline.nvim',
         branch = 'main',
         requires = {'kyazdani42/nvim-web-devicons'},
-        config = "require'addons.galaxyline'"
+        config = function ()
+            vim.cmd [[autocmd ColorScheme * ++once :lua require'addons.galaxyline']]
+        end
     }
+    use 'norcalli/nvim-colorizer.lua'
+
     use {
         't9md/vim-choosewin',
         config = function ()
             vim.api.nvim_set_keymap('n', '-', '<Plug>(choosewin)', {})
             vim.g.choosewin_overlay_enable = 0
-            vim.g.choosewin_label          = "ASDFQWERZXCV"
+            vim.g.choosewin_label          = 'ASDFQWERZXCV'
         end
     }
 
@@ -65,7 +67,7 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
-        config = "require'addons.toggleterm'",
+        config = [[require'addons.toggleterm']],
     }
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
@@ -73,7 +75,7 @@ packer.startup(function(use)
     --use 't9md/vim-smalls'
     use {
         'justinmk/vim-sneak',
-        config = "require'addons.sneak'"
+        config = [[require'addons.sneak']]
     }
     use 'kevinhwang91/nvim-hlslens'
     use {
@@ -102,7 +104,7 @@ packer.startup(function(use)
     }
     use {
         'junegunn/rainbow_parentheses.vim',
-        config = "require'addons.rainbow'"
+        config = [[require'addons.rainbow']]
     }
     use 'tpope/vim-commentary'
 
@@ -114,7 +116,7 @@ packer.startup(function(use)
 
     use {
         'hrsh7th/nvim-compe',
-        config = "require'addons.compe'"
+        config = [[require'addons.compe']]
     }
     --use 'norcalli/snippets.nvim'
     use 'hrsh7th/vim-vsnip'
@@ -124,7 +126,7 @@ packer.startup(function(use)
     --use 'tpope/vim-fugitive'
     use {
         'TimUntersberger/neogit',
-        config = "require'addons.neogit'",
+        config = [[require'addons.neogit']],
     }
     --use 'mbbill/undotree'
     use {
@@ -138,7 +140,7 @@ packer.startup(function(use)
         'ojroques/vim-oscyank',
         config = function ()
             vim.g.oscyank_max_length = 1000
-            vim.api.nvim_command("autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif")
+            vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
         end
     }
     use {
@@ -146,7 +148,7 @@ packer.startup(function(use)
         config = function()
             require('neorg').setup {
                 load = {
-                    ["core.org.headings"] = {},
+                    ['core.org.headings'] = {},
                     ['core.defaults'] = {} -- Load all the default modules
                 },
             }
@@ -160,7 +162,7 @@ packer.startup(function(use)
     -- use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        config = "require'addons.telescope'"
+        config = [[require'addons.telescope']]
     }
     use 'TC72/telescope-tele-tabby.nvim'
 
@@ -172,7 +174,7 @@ packer.startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use {
         'kyazdani42/nvim-tree.lua',
-        config = "require'addons.tree'",
+        config = [[require'addons.tree']],
     }
     use {
         'neovim/nvim-lspconfig',
@@ -189,20 +191,20 @@ packer.startup(function(use)
 
     use {
         'rmagatti/auto-session',
-        config = "require'addons.auto-session'"
+        config = [[require'addons.auto-session']]
     }
     --use 'thaerkh/vim-workspace'
 
     --use 'puremourning/vimspector'
     use {
-        "mfussenegger/nvim-dap",
+        'mfussenegger/nvim-dap',
         config = function ()
             require 'lang.dap'
             require 'lang.dap_common'
         end
     }
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-    use {'theHamsta/nvim-dap-virtual-text', requires = {"mfussenegger/nvim-dap"} }
+    use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+    use {'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'} }
 
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'
@@ -232,3 +234,4 @@ if not vim.g.bootstrap then
         vim.cmd('luafile ' .. f)
     end
 end
+
