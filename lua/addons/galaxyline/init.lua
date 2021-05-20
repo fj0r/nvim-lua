@@ -99,8 +99,8 @@ gls.left = {
                 highlight('GalaxyGB', cl.gradient, cl.bg, 'bold')
                 highlight('GalaxyMG', modehl, cl.gradient, 'bold')
                 highlight('GalaxyLB', cl.lsp_active, cl.bg)
-                highlight('GalaxyW_B', cl.warn, cl.bg)
-                highlight('GalaxyE_B', cl.error, cl.bg)
+                highlight('GalaxyWB', cl.warn, cl.bg)
+                highlight('GalaxyEB', cl.error, cl.bg)
                 return string.format('  %s ', mode_label())
             end,
             separator = sep.left,
@@ -163,7 +163,7 @@ gls.right = {
                 if n == 0 then return '' end
                 return string.format(' %s %d ', icons.lsp_warn, n)
             end,
-            highlight = 'GalaxyW_B',
+            highlight = 'GalaxyWB',
         },
         DiagnosticError = {
             provider = function()
@@ -171,7 +171,7 @@ gls.right = {
                 if n == 0 then return '' end
                 return string.format(' %s %d ', icons.lsp_error, n)
             end,
-            highlight = 'GalaxyE_B',
+            highlight = 'GalaxyEB',
         },
     }, {
         FileType = {
