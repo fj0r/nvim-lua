@@ -3,7 +3,7 @@ vim.g.config_root = debug.getinfo(1,'S').source:match("^@(.+)/.+$")
 vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap   = os.getenv('NVIM_BOOTSTRAP') == '1'
-vim.g.BASE16_THEME = os.getenv('NVIM_THEME') or 'gruvbox-dark-hard'
+vim.g.BASE16_THEME = os.getenv('NVIM_THEME') or 'base16-gruvbox-dark-hard'
 
 vim.cmd [[packadd packer.nvim]]
 
@@ -22,8 +22,15 @@ packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
+        'RRethy/nvim-base16',
+        config = function ()
+            vim.cmd('colorscheme '..vim.g.BASE16_THEME)
+        end
+    }
+    use {
         'norcalli/nvim-base16.lua',
         requires = {'norcalli/nvim.lua'},
+        disable = true,
         config = function ()
             local base16 = require 'base16'
             base16(base16.themes[vim.g.BASE16_THEME], true)
