@@ -177,13 +177,13 @@ packer.startup(function(use)
         config = [[require'addons.tree']],
     }
     use {
+        'ray-x/navigator.lua',
+        requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+	config = [[require'lang.navigator']],
+    }
+    use {
         'neovim/nvim-lspconfig',
-        config = function ()
-            require 'lang.lsp'
-            require 'lang.lsp_common'
-            require 'lang.lua'
-            require 'lang.yamlls'
-        end
+        config = [[require'lang.lsp']],
     }
     --use 'kabouzeid/nvim-lspinstall'
     --use 'nvim-lua/lsp-status.nvim'
@@ -198,14 +198,12 @@ packer.startup(function(use)
     --use 'puremourning/vimspector'
     use {
         'mfussenegger/nvim-dap',
-        config = function ()
-            require 'lang.dap'
-            require 'lang.dap_common'
-        end
+        config = [[require 'lang.dap']],
     }
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use {'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'} }
 
+    use 'tami5/sql.nvim'
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
