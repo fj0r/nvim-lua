@@ -94,15 +94,18 @@ gls.left = {
         ViMode = {
             provider = function()
                 local modehl = mode_hl()
-                highlight('GalaxyViMode', cl.bg, modehl, 'bold')
-                highlight('GalaxyViModeInv', modehl, cl.bg, 'bold')
-                highlight('GalaxyViModeMid', cl.gradient, cl.bg, 'bold')
-                highlight('GalaxyViModeMidInv', modehl, cl.gradient, 'bold')
-                highlight('GalaxyViModeInvMid', cl.gradient, modehl, 'bold')
+                highlight('GalaxyBM', cl.bg, modehl, 'bold')
+                highlight('GalaxyMB', modehl, cl.bg, 'bold')
+                highlight('GalaxyGB', cl.gradient, cl.bg, 'bold')
+                highlight('GalaxyMG', modehl, cl.gradient, 'bold')
+                highlight('GalaxyLB', cl.lsp_active, cl.bg)
+                highlight('GalaxyW_B', cl.warn, cl.bg)
+                highlight('GalaxyE_B', cl.error, cl.bg)
                 return string.format('  %s ', mode_label())
             end,
             separator = sep.left,
-            separator_highlight = 'GalaxyViMode',
+            highlight = "GalaxyBM",
+            separator_highlight = 'GalaxyBM',
         },
     }, {
         Paste = {
@@ -110,8 +113,8 @@ gls.left = {
                 return vim.o.paste and ' paste ' or ''
             end,
             separator = sep.left_filled,
-            highlight = 'GalaxyViMode',
-            separator_highlight = 'GalaxyViModeMidInv',
+            highlight = 'GalaxyBM',
+            separator_highlight = 'GalaxyMG',
         },
     }, {
         GitBranch = {
@@ -120,15 +123,15 @@ gls.left = {
                 return branch and "  " .. vcs.get_git_branch() .. " " or ""
             end,
             separator = sep.left_filled,
-            highlight = 'GalaxyViModeMidInv',
-            separator_highlight = 'GalaxyViModeMid',
+            highlight = 'GalaxyMG',
+            separator_highlight = 'GalaxyGB',
         },
     }, {
         FileName = {
             provider = file_name,
-            highlight = {cl.fg, cl.bg},
+            highlight = 'GalaxyMB',
             separator = sep.left,
-            separator_highlight = 'GalaxyViModeInv',
+            separator_highlight = 'GalaxyMB',
         },
     },
 }
@@ -149,9 +152,9 @@ gls.right = {
                     return ''
                 end
             end,
-            highlight = {cl.lsp_active, cl.bg},
+            highlight = 'GalaxyLB',
             separator = sep.right,
-            separator_highlight = 'GalaxyViModeInv',
+            separator_highlight = 'GalaxyMB',
         },
     }, {
         DiagnosticWarn = {
@@ -160,7 +163,7 @@ gls.right = {
                 if n == 0 then return '' end
                 return string.format(' %s %d ', icons.lsp_warn, n)
             end,
-            highlight = {'yellow', cl.bg},
+            highlight = 'GalaxyW_B',
         },
         DiagnosticError = {
             provider = function()
@@ -168,7 +171,7 @@ gls.right = {
                 if n == 0 then return '' end
                 return string.format(' %s %d ', icons.lsp_error, n)
             end,
-            highlight = {'red', cl.bg},
+            highlight = 'GalaxyE_B',
         },
     }, {
         FileType = {
@@ -179,8 +182,8 @@ gls.right = {
             end,
             condition = buffer_not_empty,
             separator = sep.right_filled,
-            highlight = 'GalaxyViModeMidInv',
-            separator_highlight = 'GalaxyViModeMid',
+            highlight = 'GalaxyMG',
+            separator_highlight = 'GalaxyGB',
         },
     }, {
         FileFormat = {
@@ -191,16 +194,16 @@ gls.right = {
             end,
             condition = buffer_not_empty,
             separator = sep.right,
-            highlight = 'GalaxyViModeMidInv',
-            separator_highlight = 'GalaxyViModeMidInv',
+            highlight = 'GalaxyMG',
+            separator_highlight = 'GalaxyMG',
         },
     }, {
         PercentInfo = {
             provider = fileinfo.current_line_percent,
-            highlight = 'GalaxyViMode',
+            highlight = 'GalaxyBM',
             condition = buffer_not_empty,
             separator = sep.right_filled,
-            separator_highlight = 'GalaxyViModeMidInv',
+            separator_highlight = 'GalaxyMG',
         },
     }, {
         PositionInfo = {
@@ -211,20 +214,20 @@ gls.right = {
                     )
                 end,
             },
-            highlight = 'GalaxyViMode',
+            highlight = 'GalaxyBM',
             condition = buffer_not_empty,
             separator = sep.right,
-            separator_highlight = 'GalaxyViMode',
+            separator_highlight = 'GalaxyBM',
         },
     },
 }
 
-table.insert(gls.short_line_right, {
+gls.short_line_right[0] = {
     FileName = {
         provider = file_name,
         highlight = {cl.fg, cl.bg},
         separator = sep.right,
         separator_highlight = {cl.fg, cl.bg},
     },
-})
+}
 

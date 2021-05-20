@@ -12,6 +12,8 @@ function M.from_base16(name)
         command = 0x09,
         terminal = 0x0C,
         gradient = 0x03,
+        error = 0x08,
+        warn = 0x09,
         lsp_active = 0x0B,
         lsp_inactive = 0x08,
     }

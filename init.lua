@@ -47,7 +47,7 @@ packer.startup(function(use)
         branch = 'main',
         requires = {'kyazdani42/nvim-web-devicons'},
         config = function ()
-            vim.cmd [[autocmd ColorScheme * ++once :lua require'addons.galaxyline']]
+            vim.cmd([[autocmd ColorScheme * :execute 'luafile' ']] .. vim.g.config_root .. [[/lua/addons/galaxyline/init.lua']])
         end
     }
     use 'norcalli/nvim-colorizer.lua'
