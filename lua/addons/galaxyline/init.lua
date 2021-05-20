@@ -3,8 +3,8 @@ local fileinfo = require 'galaxyline.provider_fileinfo'
 local vcs = require'galaxyline.provider_vcs'
 local lspclient = require('galaxyline.provider_lsp')
 local condition = require('galaxyline.condition')
-local utils = require 'utils'
-local cl = require 'colors'.from_base16(vim.g.BASE16_THEME)
+local utils = require 'addons.galaxyline.utils'
+local cl = require 'addons.galaxyline.colors16'.from_base16(vim.g.BASE16_THEME)
 
 local gls = gl.section
 local u = utils.u
