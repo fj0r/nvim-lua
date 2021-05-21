@@ -2,7 +2,7 @@ local g = vim.g
 --vim.g.nvim_tree_side = 'right' --left by default
 --vim.g.nvim_tree_width = 40 --30 by default
 g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } -- empty by default
-g.nvim_tree_gitignore = 1 -- 0 by default
+g.nvim_tree_gitignore = 0 -- 0 by default
 g.nvim_tree_auto_open = 1 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
 g.nvim_tree_auto_close = 1 -- 0 by default, closes the tree when it's the last window
 g.nvim_tree_auto_ignore_ft = { 'startify', 'dashboard' } -- empty by default, don't auto open tree on specific filetypes.
@@ -78,10 +78,14 @@ g.nvim_tree_bindings = {
     ["q"]              = tree_cb("close"),
 }
 
-local map = function (k, v)
+local m = function (k, v)
     vim.api.nvim_set_keymap('n', k, v, {noremap=true, silent=true})
 end
 
-map('<leader>e', ':NvimTreeToggle<CR>')
-map('<leader>xr', ':NvimTreeRefresh<CR>')
-map('<leader>xf', ':NvimTreeFindFile<CR>')
+m('<leader>e', ':NvimTreeToggle<CR>')
+m('<leader>xr', ':NvimTreeRefresh<CR>')
+m('<leader>xf', ':NvimTreeFindFile<CR>')
+
+local wo = require'nvim-tree.view'.View.winopts
+wo.relativenumber = false
+wo.signcolumn = 'no'
