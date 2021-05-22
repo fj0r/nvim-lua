@@ -112,6 +112,7 @@ dap.configurations.javascript = {
 }
 
 ------ go
+--go get -u github.com/go-delve/delve/cmd/dlv
 dap.adapters.go = function(callback, config)
     local handle
     local pid_or_err
@@ -148,6 +149,13 @@ dap.configurations.go = {
 }
 
 ------ php
+--[[
+zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.remote_handler=dbgp
+xdebug.discover_client_host=true
+xdebug.remote_port=9000
+--]]
 -- curl 'http://localhost/?XDEBUG_SESSION_START=xdebug'
 dap.adapters.php = {
     type = 'executable',
