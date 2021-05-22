@@ -1,31 +1,27 @@
--- 确保目录存在
-vim.api.nvim_exec([[
-let b:filesdir = $HOME . '/.vim.files'
-if !isdirectory(b:filesdir) && exists('*mkdir')
-  call mkdir(b:filesdir)
-endif
+local base    = os.getenv('HOME') .. '/.vim.files'
+local dirs    = { 'backup', 'swap', 'undo', 'info', 'sessions'}
 
-if exists('*mkdir')
-  for dir in ['backup', 'swap', 'undo', 'info']
-    let b:d = b:filesdir . '/' . dir
-    if !isdirectory(b:d)
-      call mkdir(b:d)
-    endif
-  endfor
-endif
-]], false)
+if vim.fn.isdirectory(base) == 0 then
+    os.execute('mkdir -p ' .. base)
+    for _, v in pairs(dirs) do
+        local d = base..'/'..v
+        if vim.fn.isdirectory(d) == 0 then
+            os.execute('mkdir -p ' .. d)
+        end
+    end
+end
+
 
 local o       = vim.o
 o.backup      = true
-o.backupdir   = vim.fn.getenv('HOME')..'/.vim.files/backup/'
+o.backupdir   = base..'/backup/'
 o.backupext   = '-vimbackup'
 o.backupskip  = ''
 
-o.directory   = vim.fn.getenv('HOME')..'/.vim.files/swap//'
+o.directory   = base..'/swap//'
 o.updatecount = 100
 
 o.undofile    = true
-o.undodir     = vim.fn.getenv('HOME').. '/.vim.files/undo/'
-
+o.undodir     = base..'/undo/'
 
 o.viminfo     = "'1000,n$HOME/.vim.files/info/viminfo"
