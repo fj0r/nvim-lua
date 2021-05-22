@@ -3,6 +3,7 @@ local c   = vim.api.nvim_command
 local g   = vim.g
 local ex  = vim.api.nvim_exec
 local opt = { noremap = true, silent = true }
+local ept = { noremap = true, expr = true, silent = true }
 
 m('', '<Space>', '<Nop>', opt)
 g.mapleader = " "
@@ -16,8 +17,10 @@ if os.getenv('VIM_DUAL_ESC') == '1' then
 end
 
 --Remap for dealing with word wrap
-m('n', 'k', "v:count == 0 ? 'gk' : 'k'", {noremap=true, expr=true, silent=true})
-m('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap=true, expr=true, silent=true})
+m('n', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
+m('n', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
+m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
+m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
 m('i', '<C-e>', '<C-o>A', opt)
