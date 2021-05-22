@@ -1,7 +1,7 @@
 require 'utils'
 require 'setting.base'
 require 'setting.keymap'
-require 'setting.files'
+require 'setting.data'
 require 'setting.completion'
 
 local themes = {
