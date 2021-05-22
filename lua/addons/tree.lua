@@ -32,8 +32,8 @@ g.nvim_tree_icons = {
     symlink= '@',
     git= {
         unstaged= "*",
-        staged= "=",
-        unmerged= "~",
+        staged= "~",
+        unmerged= "_",
         renamed= "^",
         untracked= "!"
     },

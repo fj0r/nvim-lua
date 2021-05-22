@@ -1,10 +1,18 @@
+local schema_path = 'file://' .. vim.g.config_root .. '/JSONSchema'
+
 require'lspconfig'.jsonls.setup {
+    settings = {
+        ['json.colorDecorators.enable'] = true,
+        ['json.format.enable'] = true,
+        ['json.schemaDownload.enable'] = true,
+        ['json.trace.server'] = 'verbose'
+    }
 }
 
 require'lspconfig'.yamlls.setup {
     settings = {
         ['yaml.schemas'] = {
-            [vim.g.config_root .. '/JSONSchema/compose-spec.json'] = {"/docker-compose.yml"} ,
+            [schema_path..'/mutagen.json'] = {"/mutagen.yml"} ,
             kubernetes =  { "/*" }
         },
         ['yaml.completion'] = true,
