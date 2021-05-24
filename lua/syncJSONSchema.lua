@@ -41,7 +41,10 @@ M.syncSchemas = function (self)
 end
 
 M.config = function (self)
-    local c = {}
+    local c = {
+        ['file://'..s..'/jsonSCHEMA.json'] = { s..'/*' },
+        ['file://'..s..'/mutagen.yaml'] = { '/mutagen.yml' },
+    }
     for _, v in pairs(self.loadCatalog()) do
         local name = self.enabled[v.name]
         if name then
