@@ -50,16 +50,17 @@ M.config = function (self)
             c[s..'/'..name..'.json'] = v.fileMatch
         end
     end
+    --{{{ kubernetes
     local k8sconfig = s..'/kubernetes/all.json'
-    if vim.fn.filereadable(k8sconfig) ~= 0 then
-        c[k8sconfig] = { '/*' }
-    else
-        c['kubernetes'] = {'/*'}
-    end
+    local endpoint = os.getenv('KUBERNETES_JSONSCHEMA_ENDPOINT')
+    local key = endpoint and endpoint
+             or vim.fn.filereadable(k8sconfig) ~= 0 and k8sconfig
+             or 'kubernetes'
+    c[key] = { '/*' }
+    --}}}
     return c
 end
 
-M.kubernetes = {}
 --M:syncSchemas()
 
 return M
