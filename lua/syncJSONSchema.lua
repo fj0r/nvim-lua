@@ -41,25 +41,21 @@ M.syncSchemas = function (self)
 end
 
 M.config = function (self)
-    local c = {
-        -- [s..'/schema.json'] = {s..'/*.yaml'},
-    }
+    local c = {}
     for _, v in pairs(self.loadCatalog()) do
         local name = self.enabled[v.name]
         if name then
             c[s..'/'..name..'.json'] = v.fileMatch
         end
     end
-    local k8sconfig = s..'/kubernetes/all.json'
-    local endpoint = os.getenv('KUBERNETES_JSONSCHEMA_ENDPOINT')
-    local key = endpoint and endpoint
-             or vim.fn.filereadable(k8sconfig) ~= 0 and k8sconfig
-             or 'kubernetes'
-    c[key] = { '/*' }
+    --[[
+    sudo sed -i "s/\(exports.KUBERNETES_SCHEMA_URL = \)\(.*\)/\1process.env['KUBERNETES_SCHEMA_URL'] || \2/" \
+        $(dirname $(which yaml-language-server))/../lib/node_modules/yaml-language-server/out/server/src/languageservice/utils/schemaUrls.js
+    --]]
+    c.kubernetes = { '/*' }
     return c
 end
 
-M.kubernetes = {}
 --M:syncSchemas()
 
 return M
