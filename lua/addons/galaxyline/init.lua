@@ -103,17 +103,8 @@ gls.left = {
                 highlight('GalaxyEB', cl.error, cl.bg)
                 return string.format('  %s ', mode_label())
             end,
-            separator = sep.left,
-            highlight = "GalaxyBM",
-            separator_highlight = 'GalaxyBM',
-        },
-    }, {
-        Paste = {
-            provider = function()
-                return vim.o.paste and ' paste ' or ''
-            end,
             separator = sep.left_filled,
-            highlight = 'GalaxyBM',
+            highlight = "GalaxyBM",
             separator_highlight = 'GalaxyMG',
         },
     }, {
