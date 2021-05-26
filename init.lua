@@ -203,7 +203,7 @@ packer.startup(function(use)
         config = [[require 'lang.dap']],
     }
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-    use {'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'} }
+    use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
     use 'tami5/sql.nvim'
     use 'nanotee/sqls.nvim'
