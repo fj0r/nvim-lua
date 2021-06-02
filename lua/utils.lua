@@ -1,15 +1,31 @@
-function _G.dump_all(...)
+local M = {}
+
+function M.which (name)
+    local f = io.popen('which '..name)
+    local r = (f:read())
+    f:close()
+    return r or vim.o.shell
+end
+
+function M.dump(...)
+    local args = {...}
+    if #args == 1 then
+        print(vim.inspect(args[1]))
+    else
+        print(vim.inspect(args))
+    end
+end
+
+function M.dump_all(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
 end
 
-function _G.map(mode, lhs, rhs, opts)
+function M.map(mode, lhs, rhs, opts)
   local options = {noremap = true, silent = true }
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
-local M = {}
 
 local function printf(...) print(string.format(...)) end
 local sprintf = string.format
@@ -67,14 +83,6 @@ function M.format_formatprg()
     return false
 end
 
-function _G.dump(...)
-    local args = {...}
-    if #args == 1 then
-        print(vim.inspect(args[1]))
-    else
-        print(vim.inspect(args))
-    end
-end
 
 function M.load(path)
     local ok, mod = pcall(require, path)
