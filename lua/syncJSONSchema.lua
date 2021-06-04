@@ -3,6 +3,7 @@ local M = {}
 local s = vim.g.config_root .. '/JSONSchema'
 
 M.enabled = {
+    ['Argo Workflows']       = 'argo-workflows',
     ['docker-compose.yml']   = 'docker-compose',
     ['drone.json']           = 'drone',
     ['gitlab-ci']            = 'gitlab-ci',
@@ -17,6 +18,7 @@ M.enabled = {
 }
 
 M.fetchJson = function (file, url)
+    print('fetch '..file..' ['..url..']')
     local cmd = {'curl -sSL', url, '>', s..'/'..file..'.json' }
     local out = io.popen(table.concat(cmd, ' '))
     out:close()
@@ -60,7 +62,9 @@ M.config = function (self)
     return c
 end
 
---M:syncSchemas()
+if os.getenv'NVIM_SYNC_JSONSCHEMAS' then
+    M:syncSchemas()
+end
 
 return M
 --vim.api.nvim_set_var('VimspectorConfigurationSets', M:get_lang_list())
