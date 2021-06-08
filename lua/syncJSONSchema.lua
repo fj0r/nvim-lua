@@ -50,7 +50,7 @@ M.config = function (self)
     for _, v in pairs(self.loadCatalog()) do
         local name = self.enabled[v.name]
         if name then
-            c[s..'/'..name..'.json'] = v.fileMatch
+            c['file://'..s..'/'..name..'.json'] = v.fileMatch
         end
     end
     --[[
