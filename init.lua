@@ -4,7 +4,7 @@ vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap     = os.getenv('NVIM_BOOTSTRAP') == '1'
-vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or 'gruvbox-dark-soft'
+vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or 'gruvbox-dark-hard'
 
 vim.cmd [[packadd packer.nvim]]
 
