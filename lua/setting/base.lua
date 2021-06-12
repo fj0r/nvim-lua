@@ -12,6 +12,7 @@ o.laststatus     = 2
 o.wildmenu       = true
 
 o.confirm        = true
+o.foldlevel      = 2
 
 o.number         = true
 o.relativenumber = true
