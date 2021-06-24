@@ -125,9 +125,11 @@ packer.startup(function(use)
     --use 'SirVer/ultisnips'
 
     --use 'tpope/vim-fugitive'
+    --use 'nvim-lua/plenary.nvim'
     use {
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
+        requires = { 'nvim-lua/plenary.nvim' },
     }
     --use 'mbbill/undotree'
     use {
@@ -146,6 +148,7 @@ packer.startup(function(use)
     }
     use {
         'vhyrro/neorg',
+        disable = true,
         config = function()
             require('neorg').setup {
                 load = {
@@ -160,7 +163,6 @@ packer.startup(function(use)
     use 'jbyuki/instant.nvim'
 
     use 'nvim-lua/popup.nvim'
-    -- use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
         config = [[require'addons.telescope']]
