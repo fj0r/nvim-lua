@@ -1,4 +1,5 @@
 local style = {
+    midnight = 'grayscale-dark',
     night = 'gruvbox-dark-hard',
     twilight = 'gruvbox-light-medium',
     midday = 'github',
@@ -6,6 +7,7 @@ local style = {
 }
 
 local morning = {
+    {4  , 'midnight'},
     {6  , 'night'},
     {9  , 'twilight'},
     {11 , 'day'},
@@ -16,7 +18,8 @@ local morning = {
 }
 
 local night = {
-    --{1  , 'twilight'},
+    {2  , 'night'},
+    {6  , 'midnight'},
     {8  , 'night'},
     {9  , 'twilight'},
     {11 , 'day'},
