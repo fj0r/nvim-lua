@@ -4,7 +4,9 @@ vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.bootstrap     = os.getenv('NVIM_BOOTSTRAP') == '1'
-vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or 'gruvbox-dark-hard'
+local U             = require 'utils'
+
+require 'period'
 
 vim.cmd [[packadd packer.nvim]]
 
@@ -219,20 +221,9 @@ packer.startup(function(use)
 end)
 
 
-_G.filter_files = function (path, pattern)
-    local files = vim.fn.split(vim.fn.globpath(path, pattern), '\n')
-    local index = 0
-    local count = #files
-    return function ()
-        index = index + 1
-        if index <= count then
-            return files[index]
-        end
-    end
-end
 
 if not vim.g.bootstrap then
-    for f in filter_files(vim.g.config_root .. '/config', '*.lua') do
+    for f in U.filter_files(vim.g.config_root .. '/config', '*.lua') do
         vim.cmd('luafile ' .. f)
     end
 end

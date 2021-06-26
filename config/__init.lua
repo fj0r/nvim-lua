@@ -1,4 +1,3 @@
-require 'utils'
 require 'setting.base'
 require 'setting.keymap'
 require 'setting.data'
