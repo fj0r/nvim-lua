@@ -7,31 +7,32 @@ local style = {
 }
 
 local morning = {
-    {4  , 'midnight'},
-    {6  , 'night'},
-    {9  , 'twilight'},
-    {11 , 'day'},
-    {15 , 'midday'},
-    {19 , 'day'},
-    {22 , 'twilight'},
-    {24 , 'night'},
+    {0  , 'midnight'},
+    {4  , 'night'},
+    {6  , 'twilight'},
+    {9  , 'day'},
+    {11 , 'midday'},
+    {15 , 'day'},
+    {19 , 'twilight'},
+    {22 , 'night'},
 }
 
 local night = {
-    {2  , 'night'},
-    {6  , 'midnight'},
-    {8  , 'night'},
-    {9  , 'twilight'},
-    {11 , 'day'},
-    {15 , 'midday'},
-    {19 , 'day'},
-    {24 , 'twilight'},
+    {0  , 'night'},
+    {2  , 'midnight'},
+    {6  , 'night'},
+    {8  , 'twilight'},
+    {9  , 'day'},
+    {11 , 'midday'},
+    {15 , 'day'},
+    {19 , 'twilight'},
 }
 
 local get_theme = function(h, schedule)
     local theme
-    for _, p in ipairs(schedule) do
-        if h < p[1] then
+    for i = #schedule, 1, -1 do
+        local p = schedule[i]
+        if h >= p[1] then
             theme = style[p[2]]
             break
         end
