@@ -15,18 +15,18 @@ require'compe'.setup {
     documentation    = true;
 
     source = {
+        nvim_lsp              = {priority = 9999, sort = true},
         path                  = true,
         buffer                = true,
         calc                  = true,
         vsnip                 = true,
-        nvim_lsp              = true,
         nvim_lua              = false,
-        spell                 = true,
         tags                  = false,
         vim_dadbod_completion = true,
         -- snippets_nvim = {kind = "  "},
         -- ultisnips = {kind = "  "},
         -- treesitter = {kind = "  "},
+        spell                 = {priority = 1},
         emoji = {filetypes={"markdown", "text"}}
     };
 }
