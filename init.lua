@@ -171,7 +171,10 @@ packer.startup(function(use)
     }
     use 'TC72/telescope-tele-tabby.nvim'
 
-    use 'liuchengxu/vista.vim'
+    use {
+        'liuchengxu/vista.vim',
+        config = [[require'addons.vista']]
+    }
     use {
         'liuchengxu/vim-clap',
         disable = true,
