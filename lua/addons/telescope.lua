@@ -1,5 +1,7 @@
 local keymaps = {
-    ['<leader><space>'] = "<cmd>lua require('telescope.builtin').buffers()<cr>",
+    ['<leader><space>'] = "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
+    ['<leader>m'] = "<cmd>lua require('telescope.builtin').marks()<cr>",
+    ['<leader>o'] = "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
     ['<leader>f'] = "<cmd>lua require('telescope.builtin').find_files()<cr>",
     ['<leader>g'] = "<cmd>lua require('telescope.builtin').git_files()<cr>",
     ['<leader>r'] = "<cmd>lua require('telescope.builtin').live_grep()<cr>",
@@ -10,6 +12,8 @@ local keymaps = {
     ['<leader>b'] = "<cmd>lua require('telescope.builtin').git_branches()<cr>",
     --['<leader>s'] = "<cmd>lua require('telescope.builtin').git_status()<cr>",
     --['<leader>p'] = "<cmd>lua require('telescope.builtin').git_bcommits()<cr>",
+    --['<leader><space>'] = "<cmd>lua require('telescope.builtin').buffers()<cr>",
+    ['<leader>]'] = "<cmd>lua require('telescope.builtin').builtin()<cr>",
 }
 
 for k, v in pairs(keymaps) do
