@@ -48,7 +48,7 @@ packer.startup(function(use)
     use {
         'glepnir/galaxyline.nvim',
         branch = 'main',
-        requires = {'kyazdani42/nvim-web-devicons'},
+        -- requires = {'kyazdani42/nvim-web-devicons'},
         config = function ()
             vim.cmd([[autocmd ColorScheme * :execute 'luafile' ']] .. vim.g.config_root .. [[/lua/addons/galaxyline/init.lua']])
         end
