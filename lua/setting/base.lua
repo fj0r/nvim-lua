@@ -20,7 +20,7 @@ o.ruler          = true
 o.showmatch      = true -- 显示匹配的括号
 o.showcmd        = true -- 输入命令回显
 
-c 'syntax on' -- 自动语法高亮
+-- c 'syntax on' -- 自动语法高亮
 
 o.display        = o.display .. ',lastline' -- Always try to show a paragraph’s last line.
 o.linebreak      = true -- Avoid wrapping a line in the middle of a word.
