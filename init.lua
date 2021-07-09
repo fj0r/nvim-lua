@@ -195,7 +195,12 @@ packer.startup(function(use)
     use 'TC72/telescope-tele-tabby.nvim'
 
     use {
+        'simrat39/symbols-outline.nvim',
+        config = [[require'addons.outline']]
+    }
+    use {
         'liuchengxu/vista.vim',
+        disable = true,
         config = [[require'addons.vista']]
     }
     use {
