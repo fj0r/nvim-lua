@@ -14,8 +14,8 @@ o.wildmenu       = true
 o.confirm        = true
 o.foldlevel      = 9
 
-o.number         = true
-o.relativenumber = true
+o.number         = false
+o.relativenumber = false
 o.ruler          = true
 o.showmatch      = true -- 显示匹配的括号
 o.showcmd        = true -- 输入命令回显

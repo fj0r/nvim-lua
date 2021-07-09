@@ -76,8 +76,6 @@ m('n', '<leader>;', ':<C-f>', opt)
 m('n', 'M', '<cmd>marks<CR>', opt)
 -- Quickly close the current window
 m('n', '<leader>q', '<cmd>q<CR>', opt)
--- Quickly save the current file
-m('n', '<leader>w', '<cmd>w<CR>', opt)
 c('command! -nargs=0  W :wall')
 -- reload file
 c('command! -nargs=0  E :e!')

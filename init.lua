@@ -77,7 +77,12 @@ packer.startup(function(use)
 
     use {
         use 'ggandor/lightspeed.nvim',
+        disable = true,
         config = [[require'addons.lightspeed']],
+    }
+    use {
+        'phaazon/hop.nvim',
+        config = [[require'addons.hop']],
     }
     use 'kevinhwang91/nvim-hlslens'
     use {
@@ -222,6 +227,7 @@ packer.startup(function(use)
         'mfussenegger/nvim-dap',
         config = [[require 'lang.dap']],
     }
+
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
