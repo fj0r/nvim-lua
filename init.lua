@@ -180,6 +180,11 @@ packer.startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' }
     }
     --use 'tpope/vim-speeddating'
+    use {
+        'monaqa/dial.nvim',
+        config = [[require'addons.dial']]
+    }
+
     use 'jbyuki/instant.nvim'
 
     use 'nvim-lua/popup.nvim'
@@ -230,10 +235,9 @@ packer.startup(function(use)
     }
     --use 'thaerkh/vim-workspace'
 
-    --use 'puremourning/vimspector'
     use {
         'mfussenegger/nvim-dap',
-        config = [[require 'lang.dap']],
+        config = [[require'lang.dap']],
     }
 
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
@@ -246,9 +250,7 @@ packer.startup(function(use)
     use {
         'NTBBloodbath/rest.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('rest-nvim').setup()
-        end
+        config = [[require'addons.rest']],
     }
 
     if vim.g.nvim_preset ~= 'core' then
