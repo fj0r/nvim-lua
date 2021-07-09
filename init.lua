@@ -75,10 +75,9 @@ packer.startup(function(use)
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
 
-    --use 't9md/vim-smalls'
     use {
-        'justinmk/vim-sneak',
-        config = [[require'addons.sneak']]
+        use 'ggandor/lightspeed.nvim',
+        config = [[require'addons.lightspeed']],
     }
     use 'kevinhwang91/nvim-hlslens'
     use {
