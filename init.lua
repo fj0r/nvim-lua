@@ -90,8 +90,10 @@ packer.startup(function(use)
     --use 'easymotion/vim-easymotion'
     use 'mg979/vim-visual-multi'
 
-    --use 'jiangmiao/auto-pairs'
-    use 'windwp/nvim-autopairs'
+    use {
+        'windwp/nvim-autopairs',
+        config = [[require'addons.autopairs']]
+    }
     use {
         'junegunn/vim-easy-align',
         config = function ()
@@ -114,7 +116,11 @@ packer.startup(function(use)
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
     --use 'machakann/vim-sandwich'
-    use 'tpope/vim-surround'
+    --use 'tpope/vim-surround'
+    use {
+        'blackCauldron7/surround.nvim',
+        config = [[require'addons.surround']]
+    }
     use 'machakann/vim-swap'
 
     use {
