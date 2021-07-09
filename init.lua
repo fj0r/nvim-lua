@@ -112,6 +112,11 @@ packer.startup(function(use)
         end
     }
     use {
+        'lukas-reineke/format.nvim',
+        disable = true,
+        config = [[require'addons.format']]
+    }
+    use {
         'junegunn/rainbow_parentheses.vim',
         config = [[require'addons.rainbow']]
     }
@@ -125,7 +130,10 @@ packer.startup(function(use)
         'blackCauldron7/surround.nvim',
         config = [[require'addons.surround']]
     }
-    use 'machakann/vim-swap'
+    use {
+        'mizlan/iswap.nvim',
+        config = [[require'addons.swap']]
+    }
 
     use {
         'hrsh7th/nvim-compe',
@@ -235,6 +243,13 @@ packer.startup(function(use)
     use 'nanotee/sqls.nvim'
     use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
+    use {
+        'NTBBloodbath/rest.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('rest-nvim').setup()
+        end
+    }
 
     if vim.g.nvim_preset ~= 'core' then
         use 'rafcamlet/nvim-luapad'
