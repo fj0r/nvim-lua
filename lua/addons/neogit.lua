@@ -18,6 +18,5 @@ neogit.setup {
     },
 }
 
-vim.api.nvim_set_keymap('n', '<Leader>g', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gg', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>v', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
 
