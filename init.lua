@@ -39,15 +39,9 @@ packer.startup(function(use)
         end
     }
     --use 'rktjmp/lush.nvim'
-    --use 'vim-airline/vim-airline'
-    --use 'vim-airline/vim-airline-themes'
-    --use 'ompugao/vim-airline-datetime'
-    --use 'itchyny/lightline.vim'
-    --use 'niklaas/lightline-gitdiff'
     use {
         'glepnir/galaxyline.nvim',
         branch = 'main',
-        -- requires = {'kyazdani42/nvim-web-devicons'},
         config = function ()
             vim.cmd([[autocmd ColorScheme * :execute 'luafile' ']] .. vim.g.config_root .. [[/lua/addons/galaxyline/init.lua']])
         end
@@ -98,7 +92,6 @@ packer.startup(function(use)
             vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
         end
     }
-    --use 'easymotion/vim-easymotion'
     use 'mg979/vim-visual-multi'
 
     use {
@@ -151,8 +144,6 @@ packer.startup(function(use)
     --use 'hrsh7th/vim-vsnip-integ'
     --use 'SirVer/ultisnips'
 
-    --use 'tpope/vim-fugitive'
-    --use 'nvim-lua/plenary.nvim'
     use {
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
@@ -206,11 +197,6 @@ packer.startup(function(use)
         config = [[require'addons.outline']]
     }
     use {
-        'liuchengxu/vista.vim',
-        disable = true,
-        config = [[require'addons.vista']]
-    }
-    use {
         'liuchengxu/vim-clap',
         disable = true,
         run = ':Clap install-binary!',
@@ -226,12 +212,6 @@ packer.startup(function(use)
     use {
         'kyazdani42/nvim-tree.lua',
         config = [[require'addons.tree']],
-    }
-    use {
-        'ray-x/navigator.lua',
-        disable = true,
-        requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-        config = [[require'lang.navigator']],
     }
     use {
         'neovim/nvim-lspconfig',
