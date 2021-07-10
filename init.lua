@@ -3,9 +3,8 @@ vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
 --vim.g.config_root = vim.fn.stdpath('config')
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
-vim.g.bootstrap     = os.getenv('NVIM_BOOTSTRAP') == '1'
-local U             = require 'utils'
 
+require 'settings'
 require 'period'
 
 vim.cmd [[packadd packer.nvim]]
@@ -53,7 +52,10 @@ packer.startup(function(use)
             vim.cmd([[autocmd ColorScheme * :execute 'luafile' ']] .. vim.g.config_root .. [[/lua/addons/galaxyline/init.lua']])
         end
     }
-    use 'norcalli/nvim-colorizer.lua'
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = [[require'addons.colorizer']]
+    }
 
     use {
         't9md/vim-choosewin',
@@ -65,7 +67,12 @@ packer.startup(function(use)
     }
 
     use 'skywind3000/asyncrun.vim'
-    use 'skywind3000/asynctasks.vim'
+    use {
+        'skywind3000/asynctasks.vim',
+        config = function ()
+            vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
+        end
+    }
     use 'GustavoKatel/telescope-asynctasks.nvim'
 
     use {
@@ -187,10 +194,10 @@ packer.startup(function(use)
 
     use 'jbyuki/instant.nvim'
 
-    use 'nvim-lua/popup.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        config = [[require'addons.telescope']]
+        config = [[require'addons.telescope']],
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'TC72/telescope-tele-tabby.nvim'
 
@@ -263,12 +270,4 @@ packer.startup(function(use)
     end
     --use 'johngrib/vim-game-snake'
 end)
-
-
-
-if not vim.g.bootstrap then
-    for f in U.filter_files(vim.g.config_root .. '/config', '*.lua') do
-        vim.cmd('luafile ' .. f)
-    end
-end
 
