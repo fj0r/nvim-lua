@@ -1,4 +1,5 @@
 vim.o.completeopt = "menuone,noselect"
+local has_plugin = require'packer_helper'.has_plugin
 
 require'compe'.setup {
     enabled          = true;
@@ -27,7 +28,8 @@ require'compe'.setup {
         -- ultisnips = {kind = "  "},
         -- treesitter = {kind = "  "},
         spell                 = {priority = 1},
-        emoji = {filetypes={"markdown", "text"}}
+        org                   = has_plugin'orgmode.nvim',
+        emoji                 = {filetypes={"markdown", "text"}}
     };
 }
 
@@ -74,10 +76,18 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true})
+
+require'packer_helper'.config_with_plugin {
+    ['nvim-autopairs'] = function ()
+        vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm(luaeval(\"require 'nvim-autopairs'.autopairs_cr()\"))", {expr = true})
+    end,
+    ['_'] = function ()
+        vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true})
+    end
+}
+
 
 vim.api.nvim_set_keymap("i", "<S-Space>", "compe#complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<C-c>", "compe#close('<C-c>')", {expr = true})
 vim.api.nvim_set_keymap("i", "<C-j>", "compe#scroll({ 'delta': +4 })", {expr = true})
 vim.api.nvim_set_keymap("i", "<C-k>", "compe#scroll({ 'delta': -4 })", {expr = true})
-

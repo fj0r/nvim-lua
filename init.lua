@@ -16,7 +16,10 @@ packer.init {
     profile = {
         enable = true,
         threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
-    }
+    },
+    display = {
+        open_fn = require('packer.util').float,
+    },
 }
 
 packer.startup(function(use)
@@ -165,17 +168,8 @@ packer.startup(function(use)
         end
     }
     use {
-        'vhyrro/neorg',
-        disable = true,
-        config = function()
-            require('neorg').setup {
-                load = {
-                    ['core.org.headings'] = {},
-                    ['core.defaults'] = {} -- Load all the default modules
-                },
-            }
-        end,
-        requires = { 'nvim-lua/plenary.nvim' }
+        'kristijanhusak/orgmode.nvim',
+        config = [[require'addons.orgmode']],
     }
     --use 'tpope/vim-speeddating'
     use {
@@ -208,7 +202,10 @@ packer.startup(function(use)
         run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        requires = {'nvim-treesitter/nvim-treesitter'}
+    }
     use {
         'kyazdani42/nvim-tree.lua',
         config = [[require'addons.tree']],
@@ -245,9 +242,10 @@ packer.startup(function(use)
         config = [[require'addons.rest']],
     }
 
-    if vim.g.nvim_preset ~= 'core' then
-        use 'rafcamlet/nvim-luapad'
-    end
+    use {
+        'rafcamlet/nvim-luapad',
+        disable = vim.g.nvim_preset == 'core',
+    }
     --use 'johngrib/vim-game-snake'
 end)
 
