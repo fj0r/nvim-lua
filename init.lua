@@ -20,6 +20,9 @@ packer.init {
     display = {
         open_fn = require('packer.util').float,
     },
+    git = {
+        clone_timeout = 600,
+    },
 }
 
 packer.startup(function(use)
@@ -135,6 +138,7 @@ packer.startup(function(use)
     }
     use {
         'mizlan/iswap.nvim',
+        after = {'nvim-treesitter'},
         config = [[require'addons.swap']]
     }
 
@@ -204,6 +208,7 @@ packer.startup(function(use)
     }
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        after = {'nvim-treesitter'},
         requires = {'nvim-treesitter/nvim-treesitter'}
     }
     use {
