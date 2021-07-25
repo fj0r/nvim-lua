@@ -1,5 +1,7 @@
 local config = require'syncJSONSchema':config()
 
+vim.cmd [[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>]]
+
 require'lspconfig'.jsonls.setup {
     settings = {
         ['json.colorDecorators.enable'] = true,
