@@ -28,6 +28,7 @@ packer.init {
 packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+    use 'nvim-lua/plenary.nvim'
 
     use {
         'RRethy/nvim-base16',
@@ -101,10 +102,6 @@ packer.startup(function(use)
     use 'mg979/vim-visual-multi'
 
     use {
-        'windwp/nvim-autopairs',
-        config = [[require'addons.autopairs']]
-    }
-    use {
         'junegunn/vim-easy-align',
         config = function ()
             vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
@@ -135,11 +132,6 @@ packer.startup(function(use)
     use {
         'blackCauldron7/surround.nvim',
         config = [[require'addons.surround']]
-    }
-    use {
-        'mizlan/iswap.nvim',
-        after = {'nvim-treesitter'},
-        config = [[require'addons.swap']]
     }
 
     use {
@@ -202,14 +194,27 @@ packer.startup(function(use)
     }
 
     use {
+        'windwp/nvim-autopairs',
+        --disable = vim.g.nvim_preset == 'core',
+        config = [[require'addons.autopairs']]
+    }
+    use {
         'nvim-treesitter/nvim-treesitter',
+        --disable = vim.g.nvim_preset == 'core',
         run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        --disable = vim.g.nvim_preset == 'core',
         after = {'nvim-treesitter'},
         requires = {'nvim-treesitter/nvim-treesitter'}
+    }
+    use {
+        'mizlan/iswap.nvim',
+        --disable = vim.g.nvim_preset == 'core',
+        after = {'nvim-treesitter'},
+        config = [[require'addons.swap']]
     }
     use {
         'kyazdani42/nvim-tree.lua',
