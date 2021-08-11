@@ -85,10 +85,10 @@ dap.configurations.haskell = {
         stopOnEntry = true,
         logFile = vim.fn.stdpath('data') .. '/haskell-dap.log',
         logLevel = 'WARNING',
-        ghciEnv = vim.empty_dict(),
-        ghciPrompt = "λ: ",
+        ghciEnv = { wtf = "a lua dict" },
+        ghciPrompt = "=| ",
         -- Adjust the prompt to the prompt you see when you invoke the stack ghci command below
-        ghciInitialPrompt = "λ: ",
+        ghciInitialPrompt = "=| ",
         ghciCmd= "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
     },
 }
