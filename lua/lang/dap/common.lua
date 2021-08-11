@@ -38,14 +38,7 @@ dap.configurations.python = {
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 dap.adapters.rust = {
     type = 'executable',
-    attach = {
-        pidProperty = "pid",
-        pidSelect = "ask"
-    },
     command = 'lldb-vscode-11', -- my binary was called 'lldb-vscode-11'
-    env = {
-        LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
-    },
     name = "lldb"
 }
 
@@ -65,7 +58,11 @@ dap.configurations.rust = {
             local name = handle:read("*l")
             handle:close()
             return cwd .. "/target/debug/" .. name
-        end
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
     }
 }
 ------ hs
