@@ -6,6 +6,8 @@ vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET')
 
 require 'settings'
 require 'period'
+require 'hotfix'
+
 
 vim.cmd [[packadd packer.nvim]]
 
