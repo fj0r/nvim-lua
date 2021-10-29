@@ -54,13 +54,10 @@ g.nvim_tree_icons = {
         symlink= "@"
     }
 }
-g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } -- empty by default
 g.nvim_tree_special_files = { 'README.md', 'Makefile', 'MAKEFILE' } -- List of filenames that gets highlighted with NvimTreeSpecialFile
 g.nvim_tree_quit_on_open = 1 -- --0 by default, closes the tree when you open a file
 g.nvim_tree_auto_ignore_ft = { 'startify', 'dashboard' } -- empty by default, don't auto open tree on specific filetypes.
-g.nvim_tree_gitignore = false -- 0 by default
 g.nvim_tree_indent_markers = 1 --0 by default, this option shows indent markers when folders are open
-g.nvim_tree_hide_dotfiles = 1 --0 by default, this option hides files and folders starting with a dot `.`
 g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
 g.nvim_tree_highlight_opened_files = 1 --0 by default, will enable folder and file icon highlight for opened files/directories.
 g.nvim_tree_root_folder_modifier = ':~' --This is the default. See :help filename-modifiers for more options
@@ -77,6 +74,9 @@ require'nvim-tree'.setup {
     follow = 1, --0 by default, this option allows the cursor to be updated when entering a buffer
     -- lsp_diagnostics = 1, --0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
     view = { mappings = { list = keybindings } },
+    hide_dotfiles = false,
+    ignore = { '.git', 'node_modules', '.cache' },
+    gitignore = false, -- 0 by default
 }
 
 

@@ -6,7 +6,6 @@ vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET')
 
 require 'settings'
 require 'period'
-require 'hotfix'
 
 
 vim.cmd [[packadd packer.nvim]]
@@ -146,6 +145,7 @@ packer.startup(function(use)
     --use 'SirVer/ultisnips'
 
     use {
+        disable = true,
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
@@ -166,6 +166,7 @@ packer.startup(function(use)
         end
     }
     use {
+        disable = true,
         'kristijanhusak/orgmode.nvim',
         config = [[require'addons.orgmode']],
     }
