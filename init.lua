@@ -145,7 +145,6 @@ packer.startup(function(use)
     --use 'SirVer/ultisnips'
 
     use {
-        disable = true,
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
