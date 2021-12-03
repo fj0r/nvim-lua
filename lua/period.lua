@@ -1,9 +1,28 @@
+-- apprentice
+-- chalk
+-- darcula
+-- espresso
+-- horizon-dark
+-- ia-dark
+-- nord
+-- woodland
+-- ocean
+-- nebula
+-- pasque
+-- railscasts
+-- tomorrow-night
+-- twilight
+-- gruvbox-dark-hard
+-- gruvbox-light-medium
+-- black-metal-immortal
+-- grayscale-dark
+
 local style = {
     midnight = 'grayscale-dark',
-    night = 'gruvbox-dark-hard',
-    twilight = 'gruvbox-light-medium',
-    midday = 'github',
-    day = 'tomorrow',
+    night = 'chalk',
+    twilight = 'twilight',
+    midday = 'material-darker',
+    day = 'gruvbox-dark-hard',
 }
 
 local morning = {
