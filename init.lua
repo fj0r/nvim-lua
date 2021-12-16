@@ -254,10 +254,6 @@ packer.startup(function(use)
         config = [[require'addons.rest']],
     }
 
-    use {
-        'rafcamlet/nvim-luapad',
-        disable = vim.g.nvim_preset == 'core',
-    }
     --use 'johngrib/vim-game-snake'
 end)
 

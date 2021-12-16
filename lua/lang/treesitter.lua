@@ -1,10 +1,11 @@
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 local lans = {
-    'bash', 'cpp', 'css', 'go', 'gomod', 'graphql',
-    'html', 'java', 'javascript', 'jsdoc', 'json', 'jsonc', 'julia',
+    -- 'tsx', 'julia', 'cpp',
+    'bash', 'css', 'go', 'gomod', 'graphql',
+    'html', 'java', 'javascript', 'jsdoc', 'json', 'jsonc',
     'lua', 'php', 'python', 'regex', 'rust',
-    'toml', 'tsx', 'typescript', 'vue', 'yaml'
+    'toml', 'typescript', 'vue', 'yaml'
 }
 require'nvim-treesitter.configs'.setup {
     ensure_installed = lans,
