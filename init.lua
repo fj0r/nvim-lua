@@ -116,11 +116,6 @@ packer.startup(function(use)
         end
     }
     use {
-        'lukas-reineke/format.nvim',
-        disable = true,
-        config = [[require'addons.format']]
-    }
-    use {
         'junegunn/rainbow_parentheses.vim',
         config = [[require'addons.rainbow']]
     }
