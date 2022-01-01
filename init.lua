@@ -48,13 +48,6 @@ packer.startup(function(use)
     }
     --use 'rktjmp/lush.nvim'
     use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
-        config = function ()
-            vim.cmd([[autocmd ColorScheme * :execute 'luafile' ']] .. vim.g.config_root .. [[/lua/addons/galaxyline/init.lua']])
-        end
-    }
-    use {
         'norcalli/nvim-colorizer.lua',
         config = [[require'addons.colorizer']]
     }
@@ -120,6 +113,7 @@ packer.startup(function(use)
         config = [[require'addons.rainbow']]
     }
     use 'tpope/vim-commentary'
+    use 'jiangmiao/auto-pairs'
 
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
@@ -199,11 +193,6 @@ packer.startup(function(use)
         config = [[require'addons.clap']],
     }
 
-    use {
-        'windwp/nvim-autopairs',
-        --disable = vim.g.nvim_preset == 'core',
-        config = [[require'addons.autopairs']]
-    }
     use {
         'nvim-treesitter/nvim-treesitter',
         --disable = vim.g.nvim_preset == 'core',
