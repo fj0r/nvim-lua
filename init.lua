@@ -140,6 +140,15 @@ packer.startup(function(use)
     --use 'SirVer/ultisnips'
 
     use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        -- tag = 'release' -- To use the latest release
+        config = [[require'addons.gitsigns']]
+    }
+
+    use {
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
