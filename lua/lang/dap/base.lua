@@ -1,11 +1,16 @@
 function _dap_stop()
-    require'dap'.stop()
+    require'dap'.close()
     require'dapui'.close()
+end
+
+function _dap_continue()
+    require'dapui'.open()
+    require'dap'.continue()
 end
 
 local keymaps = {
     ['[b'] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
-    ['[c'] = "<cmd>lua require'dap'.continue()<cr>",
+    ['[c'] = "<cmd>lua _dap_continue()<cr>",
     ['[s'] = "<cmd>lua require'dap'.step_over()<cr>",
     ['[i'] = "<cmd>lua require'dap'.step_into()<cr>",
     ['[o'] = "<cmd>lua require'dap'.step_out()<cr>",
