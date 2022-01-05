@@ -19,10 +19,10 @@ local on_attach = function (client, bufnr)
     buf_set_keymap('n', '[r', '<cmd>lua vim.lsp.buf.rename()<CR>')
     buf_set_keymap('n', '[a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-    buf_set_keymap('n', '[q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+    --buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    buf_set_keymap('n', '[q', '<cmd>lua vim.diagnostic.set_loclist()<CR>')
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -43,7 +43,7 @@ local on_attach = function (client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
-        ]], false)
+            ]], false)
     end
 end
 
@@ -60,9 +60,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 local lspconfig = require'lspconfig'
 lspconfig.util.default_config = vim.tbl_extend( "force",
-lspconfig.util.default_config,
-{
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
+    lspconfig.util.default_config,
+    {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
 
