@@ -8,7 +8,7 @@ o.shortmess      = 'atI'
 o.errorbells     = false
 o.visualbell     = false
 o.termguicolors  = true
-o.laststatus     = 1
+o.laststatus     = 2
 o.wildmenu       = true
 
 o.confirm        = true

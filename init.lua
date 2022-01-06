@@ -46,6 +46,11 @@ packer.startup(function(use)
             base16(base16.themes[vim.g.BASE16_THEME], true)
         end
     }
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = [[require'addons.lualine']],
+        --requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
     --use 'rktjmp/lush.nvim'
     use {
         'norcalli/nvim-colorizer.lua',
