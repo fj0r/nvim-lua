@@ -242,8 +242,9 @@ packer.startup(function(use)
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
-    use 'tami5/sql.nvim'
-    use 'nanotee/sqls.nvim'
+    use {
+        'nanotee/sqls.nvim'
+    }
     use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
     use {

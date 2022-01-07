@@ -17,7 +17,13 @@ require('lualine').setup {
                 symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
             }
         },
-        lualine_c = {'filename'},
+        lualine_c = {
+            {
+                'filename',
+                file_status = true,
+                path = 1,
+            }
+        },
         lualine_x = {
             'encoding',
             {
