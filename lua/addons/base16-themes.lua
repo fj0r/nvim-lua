@@ -59,12 +59,23 @@ local get_theme = function(h, schedule)
     return theme
 end
 
+local get_week_theme = function ()
+    local weekends = {
+        [5] = true,
+        [6] = true,
+    }
+    local is_weekend = weekends[tonumber(os.date("%w"))]
+    local hour = tonumber(os.date("%H"))
+    return get_theme(hour, is_weekend and night or morning )
+end
+
+-- test
 if os.getenv('SHOW_SCHEDULE') then
     for i = 0, 23 do
         print(i .. ' ' .. get_theme(i, morning))
     end
 end
 
-vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or get_theme(tonumber(os.date("%H")), morning)
+vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or get_week_theme()
 
 vim.cmd('colorscheme base16-' .. vim.g.BASE16_THEME)
