@@ -5,7 +5,6 @@ vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 
 require 'settings'
-require 'period'
 
 
 vim.cmd [[packadd packer.nvim]]
@@ -33,18 +32,7 @@ packer.startup(function(use)
 
     use {
         'RRethy/nvim-base16',
-        config = function ()
-            vim.cmd('colorscheme base16-' .. vim.g.BASE16_THEME)
-        end
-    }
-    use {
-        disable = true,
-        'norcalli/nvim-base16.lua',
-        requires = {'norcalli/nvim.lua'},
-        config = function ()
-            local base16 = require 'base16'
-            base16(base16.themes[vim.g.BASE16_THEME], true)
-        end
+        config = [[require'addons.base16-themes']]
     }
     use {
         'nvim-lualine/lualine.nvim',

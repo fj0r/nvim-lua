@@ -67,3 +67,4 @@ end
 
 vim.g.BASE16_THEME  = os.getenv('NVIM_THEME') or get_theme(tonumber(os.date("%H")), morning)
 
+vim.cmd('colorscheme base16-' .. vim.g.BASE16_THEME)
