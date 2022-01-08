@@ -66,14 +66,14 @@ packer.startup(function(use)
         end
     }
 
-    use 'skywind3000/asyncrun.vim'
-    use {
-        'skywind3000/asynctasks.vim',
-        config = function ()
-            vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
-        end
-    }
-    use 'GustavoKatel/telescope-asynctasks.nvim'
+    --use 'skywind3000/asyncrun.vim'
+    --use {
+    --    'skywind3000/asynctasks.vim',
+    --    config = function ()
+    --        vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
+    --    end
+    --}
+    --use 'GustavoKatel/telescope-asynctasks.nvim'
 
     use {
         'akinsho/nvim-toggleterm.lua',
