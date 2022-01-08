@@ -21,9 +21,10 @@ for k, v in pairs(keymaps) do
 end
 
 
+local telescope = require('telescope')
 local actions = require('telescope.actions')
 --local themes = require('telescope.themes')
-require('telescope').setup{
+telescope.setup{
     defaults = {
         mappings = {
             i = {
@@ -46,4 +47,6 @@ require('telescope').setup{
     }
 }
 
-require("telescope").load_extension("emoji")
+telescope.load_extension("emoji")
+telescope.load_extension('env')
+

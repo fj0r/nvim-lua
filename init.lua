@@ -175,6 +175,7 @@ packer.startup(function(use)
     }
     use 'TC72/telescope-tele-tabby.nvim'
     use 'xiyaowong/telescope-emoji.nvim'
+    use "LinArcX/telescope-env.nvim"
 
     use {
         'simrat39/symbols-outline.nvim',
