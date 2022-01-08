@@ -78,7 +78,7 @@ packer.startup(function(use)
     use {
         use 'ggandor/lightspeed.nvim',
         config = [[require'addons.lightspeed']],
-        requires = { 'tpope/vim-repeat' },
+        -- requires = { 'tpope/vim-repeat' },
     }
     use {
         'phaazon/hop.nvim',
