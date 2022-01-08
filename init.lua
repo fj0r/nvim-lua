@@ -75,11 +75,11 @@ packer.startup(function(use)
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
 
-    -- use {
-    --     use 'ggandor/lightspeed.nvim',
-    --     disable = true,
-    --     config = [[require'addons.lightspeed']],
-    -- }
+    use {
+        use 'ggandor/lightspeed.nvim',
+        config = [[require'addons.lightspeed']],
+        requires = { 'tpope/vim-repeat' },
+    }
     use {
         'phaazon/hop.nvim',
         config = [[require'addons.hop']],
