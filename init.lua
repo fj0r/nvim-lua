@@ -54,6 +54,11 @@ packer.startup(function(use)
         end
     }
 
+    use {
+        'pianocomposer321/yabs.nvim',
+        config = [[require'addons.yabs']],
+        requires = { 'nvim-lua/plenary.nvim' },
+    }
     --use 'skywind3000/asyncrun.vim'
     --use {
     --    'skywind3000/asynctasks.vim',

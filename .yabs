@@ -1,0 +1,8 @@
+return {
+  tasks = {
+    reset_packer = {
+      command = 'just reset-packer',
+      output = 'quickfix',
+    },
+  }
+}
