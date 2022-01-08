@@ -174,6 +174,7 @@ packer.startup(function(use)
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'TC72/telescope-tele-tabby.nvim'
+    use 'xiyaowong/telescope-emoji.nvim'
 
     use {
         'simrat39/symbols-outline.nvim',

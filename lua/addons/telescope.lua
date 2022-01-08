@@ -5,7 +5,7 @@ local keymaps = {
     ['<leader>f']         = "<cmd>lua require('telescope.builtin').find_files()<cr>",
     ['<leader>r']         = "<cmd>lua require('telescope.builtin').live_grep()<cr>",
     ['<leader>b']         = "<cmd>lua require('telescope').extensions.tele_tabby.list()<cr>",
-    ['<leader>t']         = "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>",
+    --['<leader>t']         = "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>",
     ['<leader>gf']        = "<cmd>lua require('telescope.builtin').git_files()<cr>",
     ['<leader>gc']        = "<cmd>lua require('telescope.builtin').git_commits()<cr>",
     ['<leader>gb']        = "<cmd>lua require('telescope.builtin').git_branches()<cr>",
@@ -46,3 +46,4 @@ require('telescope').setup{
     }
 }
 
+require("telescope").load_extension("emoji")
