@@ -160,11 +160,7 @@ packer.startup(function(use)
             vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
         end
     }
-    use {
-        disable = true,
-        'kristijanhusak/orgmode.nvim',
-        config = [[require'addons.orgmode']],
-    }
+
     --use 'tpope/vim-speeddating'
     use {
         'monaqa/dial.nvim',
@@ -185,12 +181,6 @@ packer.startup(function(use)
     use {
         'simrat39/symbols-outline.nvim',
         config = [[require'addons.outline']]
-    }
-    use {
-        'liuchengxu/vim-clap',
-        disable = true,
-        run = ':Clap install-binary!',
-        config = [[require'addons.clap']],
     }
 
     use {
