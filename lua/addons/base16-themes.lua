@@ -83,7 +83,7 @@ local get_week_theme = function ()
     return get_theme(hour, is_weekend and night or morning )
 end
 
-local time_theme = function ()
+local update_theme = function ()
     local timer = vim.loop.new_timer()
     local interval
     if os.getenv('SHOW_SCHEDULE') then
@@ -101,6 +101,7 @@ local env_theme = os.getenv('NVIM_THEME')
 if env_theme then
     set_theme(env_theme)
 else
-    time_theme()
+    set_theme(get_week_theme())
+    update_theme()
 end
 
