@@ -76,7 +76,7 @@ packer.startup(function(use)
     --use 'kassio/neoterm'
 
     use {
-        use 'ggandor/lightspeed.nvim',
+        'ggandor/lightspeed.nvim',
         config = [[require'addons.lightspeed']],
         -- requires = { 'tpope/vim-repeat' },
     }
