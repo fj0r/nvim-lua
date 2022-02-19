@@ -116,11 +116,11 @@ packer.startup(function(use)
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
     --use 'machakann/vim-sandwich'
-    --use 'tpope/vim-surround'
-    use {
-        'blackCauldron7/surround.nvim',
-        config = [[require'addons.surround']]
-    }
+    use 'tpope/vim-surround'
+    --use {
+    --    'blackCauldron7/surround.nvim',
+    --    config = [[require'addons.surround']]
+    --}
 
     use {
         'hrsh7th/nvim-compe',
