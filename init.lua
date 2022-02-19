@@ -153,13 +153,13 @@ packer.startup(function(use)
         end
     }
     use 'tversteeg/registers.nvim'
-    use {
-        'ojroques/vim-oscyank',
-        config = function ()
-            vim.g.oscyank_max_length = 1000
-            vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
-        end
-    }
+    -- use {
+    --     'ojroques/vim-oscyank',
+    --     config = function ()
+    --         vim.g.oscyank_max_length = 1000
+    --         vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
+    --     end
+    -- }
 
     --use 'tpope/vim-speeddating'
     use {
