@@ -75,11 +75,11 @@ packer.startup(function(use)
     --use 'skywind3000/vim-terminal-help'
     --use 'kassio/neoterm'
 
-    use {
-        'ggandor/lightspeed.nvim',
-        config = [[require'addons.lightspeed']],
-        -- requires = { 'tpope/vim-repeat' },
-    }
+    --use {
+    --    'ggandor/lightspeed.nvim',
+    --    config = [[require'addons.lightspeed']],
+    --    -- requires = { 'tpope/vim-repeat' },
+    --}
     use {
         'phaazon/hop.nvim',
         config = [[require'addons.hop']],
@@ -162,10 +162,10 @@ packer.startup(function(use)
     -- }
 
     --use 'tpope/vim-speeddating'
-    use {
-        'monaqa/dial.nvim',
-        config = [[require'addons.dial']]
-    }
+    --use {
+    --    'monaqa/dial.nvim',
+    --    config = [[require'addons.dial']]
+    --}
 
     use 'jbyuki/instant.nvim'
 
@@ -227,10 +227,10 @@ packer.startup(function(use)
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
-    use {
-        'nanotee/sqls.nvim'
-    }
-    use 'chr4/nginx.vim'
+    --use {
+    --    'nanotee/sqls.nvim'
+    --}
+    --use 'chr4/nginx.vim'
     --use 'keith/swift.vim'
     use {
         'NTBBloodbath/rest.nvim',
