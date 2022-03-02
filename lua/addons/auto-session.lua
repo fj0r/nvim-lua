@@ -1,5 +1,5 @@
 local opts = {
-    log_level = 'info',
+    log_level = 'error',
     auto_session_enable_last_session = false,
     auto_session_root_dir = vim.g.data_root.."/sessions/",
     auto_session_enabled = true,
