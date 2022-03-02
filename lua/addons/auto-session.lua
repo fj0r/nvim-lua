@@ -5,7 +5,9 @@ local opts = {
     auto_session_enabled = true,
     auto_save_enabled = nil,
     auto_restore_enabled = nil,
-    auto_session_suppress_dirs = nil
+    auto_session_suppress_dirs = nil,
+    pre_save_cmds = {"NvimTreeClose"},
+    post_restore_cmds = {"NvimTreeRefresh"}
 }
 
 require('auto-session').setup(opts)
