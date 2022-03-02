@@ -23,9 +23,14 @@ m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
 m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
+m('i', '<C-l>', '<C-o>A', opt)
+m('i', '<C-a>', '<C-o>I', opt)
 m('i', '<C-e>', '<C-o>A', opt)
 m('i', '<C-f>', '<C-o>a', opt)
 m('i', '<C-b>', '<C-o>h', opt)
+m('i', '<M-f>', '<C-o>w', opt)
+m('i', '<M-b>', '<C-o>b', opt)
+m('i', '<C-w>', '<C-o>db', opt)
 
 m('n', '<C-j>', '<C-W>j', opt)
 m('n', '<C-k>', '<C-W>k', opt)
