@@ -189,12 +189,12 @@ packer.startup(function(use)
         run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
-    -- use {
-    --     'nvim-treesitter/nvim-treesitter-textobjects',
-    --     --disable = vim.g.nvim_preset == 'core',
-    --     after = {'nvim-treesitter'},
-    --     requires = {'nvim-treesitter/nvim-treesitter'}
-    -- }
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        --disable = vim.g.nvim_preset == 'core',
+        after = {'nvim-treesitter'},
+        requires = {'nvim-treesitter/nvim-treesitter'}
+    }
     use {
         'mizlan/iswap.nvim',
         --disable = vim.g.nvim_preset == 'core',
