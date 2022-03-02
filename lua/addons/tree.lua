@@ -76,6 +76,24 @@ require'nvim-tree'.setup {
     hide_dotfiles = false,
     ignore = { '.git', 'node_modules', '.cache' },
     gitignore = false, -- 0 by default
+    actions = {
+        change_dir = {
+            enable = true,
+            global = false,
+        },
+        open_file = {
+            quit_on_open = true,
+            resize_window = false,
+            window_picker = {
+                enable = true,
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                exclude = {
+                    filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
+                    buftype  = { "nofile", "terminal", "help", },
+                }
+            }
+        }
+    }
 }
 
 
