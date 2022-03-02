@@ -10,7 +10,7 @@ local lans = {
 require'nvim-treesitter.configs'.setup {
     ensure_installed = lans,
     indent = {
-        enable = true
+        enable = false
     },
     incremental_selection = {
         enable = true,
