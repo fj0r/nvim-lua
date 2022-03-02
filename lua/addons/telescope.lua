@@ -13,8 +13,8 @@ local keymaps = {
     ['<leader>gs']        = "<cmd>lua require('telescope.builtin').git_status()<cr>",
     ['<leader>go']        = "<cmd>lua require('telescope.builtin').git_bcommits()<cr>",
     --['<leader><space>'] = "<cmd>lua require('telescope.builtin').buffers()<cr>",
-    ['<leader>[']         = "<cmd>lua require('telescope.builtin').help_tags()<cr>",
-    ['<leader>]']         = "<cmd>lua require('telescope.builtin').builtin()<cr>",
+    ['<leader>[']         = "<cmd>lua require('telescope.builtin').builtin()<cr>",
+    ['<leader>]']         = "<cmd>lua require('telescope.builtin').help_tags()<cr>",
 }
 
 for k, v in pairs(keymaps) do
