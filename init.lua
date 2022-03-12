@@ -103,7 +103,7 @@ packer.startup(function(use)
     use {
         'Chiel92/vim-autoformat',
         config = function ()
-            vim.api.nvim_set_keymap('n', '<F2>', '<cmd>Autoformat<cr>', {noremap = true})
+            vim.api.nvim_set_keymap('n', '[f', '<cmd>Autoformat<cr>', {noremap = true})
         end
     }
     use {
