@@ -1,7 +1,6 @@
 local keymaps = {
     ['<leader>s']         = "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
     ['<leader>m']         = "<cmd>lua require('telescope.builtin').marks()<cr>",
-    ['<leader>o']         = "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
     ['<leader>d']         = "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
     ['<leader>f']         = "<cmd>lua require('telescope.builtin').find_files()<cr>",
     ['<leader>r']         = "<cmd>lua require('telescope.builtin').live_grep()<cr>",

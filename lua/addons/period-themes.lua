@@ -1,28 +1,26 @@
--- apprentice
--- chalk
--- darcula
--- espresso
--- horizon-dark
--- ia-dark
--- nord
--- woodland
--- ocean
--- nebula
--- pasque
--- railscasts
--- tomorrow-night
--- twilight
--- gruvbox-dark-hard
--- gruvbox-light-medium
--- black-metal-immortal
--- grayscale-dark
+local style_base16 = {
+    midnight = 'base16-grayscale-dark',
+    night = 'base16-chalk',
+    twilight = 'base16-twilight',
+    midday = 'base16-material-darker',
+    day = 'base16-gruvbox-dark-hard',
+}
 
+local style_normal = {
+    midnight = 'nightfox',
+    night = 'nordfox',
+    twilight = 'duskfox',
+    midday = 'dawnfox',
+    day = 'dayfox',
+}
+
+-- dark
 local style = {
-    midnight = 'grayscale-dark',
-    night = 'chalk',
-    twilight = 'twilight',
-    midday = 'material-darker',
-    day = 'gruvbox-dark-hard',
+    midnight = 'nightfox',
+    night = 'nordfox',
+    twilight = 'nightfox',
+    midday = 'duskfox',
+    day = 'nordfox',
 }
 
 local morning = {
@@ -60,11 +58,11 @@ local get_theme = function(h, schedule)
 end
 
 local set_theme = function (theme)
-    if theme == vim.g.BASE16_THEME then
+    if theme == vim.g.THEME then
         return
     end
-    vim.g.BASE16_THEME = theme
-    vim.cmd('colorscheme base16-' .. vim.g.BASE16_THEME)
+    vim.g.THEME = theme
+    vim.cmd('colorscheme ' .. vim.g.THEME)
 end
 
 local get_week_theme = function ()
@@ -73,13 +71,13 @@ local get_week_theme = function ()
         [6] = true,
     }
     local is_weekend = weekends[tonumber(os.date("%w"))]
-    local hour
     if os.getenv('SHOW_SCHEDULE') then
-        hour = tonumber(os.date("%s")%24)
-        print(os.date("%s")%24)
-    else
-        hour = tonumber(os.date("%H"))
+        local hour = tonumber(os.date("%s")%24)
+        local theme = get_theme(hour, is_weekend and night or morning )
+        print(os.date("%s")%24 .. ' -> ' .. theme)
+        return theme
     end
+    local hour = tonumber(os.date("%H"))
     return get_theme(hour, is_weekend and night or morning )
 end
 
