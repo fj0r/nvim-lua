@@ -36,9 +36,9 @@ vim.g.dap_virtual_text = true
 
 require("dapui").setup({
     icons = {
-        expanded = "⯆",
-        collapsed = "⯈",
-        circular = "↺"
+        expanded = "-",
+        collapsed = "+",
+        circular = "="
     },
     mappings = {
         expand = "<CR>",
