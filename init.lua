@@ -30,9 +30,9 @@ packer.startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
 
+    use 'savq/melange'
     use {
-        --'RRethy/nvim-base16',
-        'EdenEast/nightfox.nvim',
+        'sainnhe/gruvbox-material',
         config = [[require'addons.period-themes']]
     }
     use {

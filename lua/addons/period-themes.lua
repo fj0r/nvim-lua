@@ -15,12 +15,13 @@ local style_normal = {
 }
 
 -- dark
+local t = 'gruvbox-material'
 local style = {
-    midnight = 'nightfox',
-    night = 'nordfox',
-    twilight = 'nightfox',
-    midday = 'duskfox',
-    day = 'nordfox',
+    midnight = t,
+    night = t,
+    twilight = t,
+    midday = t,
+    day = t,
 }
 
 local morning = {
