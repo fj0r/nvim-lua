@@ -31,8 +31,9 @@ packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
 
     use {
-        'RRethy/nvim-base16',
-        config = [[require'addons.base16-themes']]
+        --'RRethy/nvim-base16',
+        'EdenEast/nightfox.nvim',
+        config = [[require'addons.period-themes']]
     }
     use {
         'nvim-lualine/lualine.nvim',
