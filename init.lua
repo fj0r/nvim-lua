@@ -1,6 +1,6 @@
+--vim.g.config_root = vim.fn.stdpath('config')
 vim.g.config_root   = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
 vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
---vim.g.config_root = vim.fn.stdpath('config')
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 
@@ -33,7 +33,8 @@ packer.startup(function(use)
     use 'savq/melange'
     use {
         'sainnhe/gruvbox-material',
-        config = [[require'addons.period-themes']]
+        config = [[vim.cmd'colorscheme gruvbox-material']]
+        --config = [[require'addons.period-themes']]
     }
     use {
         'nvim-lualine/lualine.nvim',

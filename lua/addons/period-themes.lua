@@ -6,7 +6,7 @@ local style_base16 = {
     day = 'base16-gruvbox-dark-hard',
 }
 
-local style_normal = {
+local style = {
     midnight = 'nightfox',
     night = 'nordfox',
     twilight = 'duskfox',
@@ -14,15 +14,6 @@ local style_normal = {
     day = 'dayfox',
 }
 
--- dark
-local t = 'gruvbox-material'
-local style = {
-    midnight = t,
-    night = t,
-    twilight = t,
-    midday = t,
-    day = t,
-}
 
 local morning = {
     {0  , 'midnight'},
