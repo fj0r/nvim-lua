@@ -30,18 +30,24 @@ packer.startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
 
-    use 'savq/melange'
+    use {
+        'overcache/NeoSolarized',
+        config = [[vim.cmd'colorscheme NeoSolarized|set background=light']]
+    }
     use {
         'sainnhe/gruvbox-material',
-        config = [[vim.cmd'colorscheme gruvbox-material']]
+        --config = [[vim.cmd'colorscheme gruvbox-material']]
         --config = [[require'addons.period-themes']]
+    }
+    use {
+        'rktjmp/lush.nvim',
+        config = [[require'addons.lush']]
     }
     use {
         'nvim-lualine/lualine.nvim',
         config = [[require'addons.lualine']],
         --requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    --use 'rktjmp/lush.nvim'
     use {
         'norcalli/nvim-colorizer.lua',
         config = [[require'addons.colorizer']]
