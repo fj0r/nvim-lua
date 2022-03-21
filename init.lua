@@ -32,11 +32,11 @@ packer.startup(function(use)
 
     use {
         'overcache/NeoSolarized',
-        config = [[vim.cmd'colorscheme NeoSolarized|set background=light']]
+        --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
     use {
         'sainnhe/gruvbox-material',
-        --config = [[vim.cmd'colorscheme gruvbox-material']]
+        config = [[vim.cmd'colorscheme gruvbox-material | set background=light']]
         --config = [[require'addons.period-themes']]
     }
     use {
