@@ -35,13 +35,14 @@ packer.startup(function(use)
         --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
     use {
-        'sainnhe/gruvbox-material',
-        config = [[vim.cmd'colorscheme gruvbox-material | set background=light']]
+        --'ellisonleao/gruvbox.nvim',
+        'fj0r/gruvbox.nvim',
+        config = [[require'addons.theme']]
         --config = [[require'addons.period-themes']]
     }
     use {
         'rktjmp/lush.nvim',
-        config = [[require'addons.lush']]
+        --config = [[require'addons.lush']]
     }
     use {
         'nvim-lualine/lualine.nvim',
