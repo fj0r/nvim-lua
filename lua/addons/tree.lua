@@ -66,7 +66,6 @@ g.nvim_tree_group_empty = 1 -- 0 by default, compact folders that only contain a
 
 require'nvim-tree'.setup {
     auto_open = true, -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
-    auto_close = true, -- 0 by default, closes the tree when it's the last window
     disable_netrw = false, --1 by default, disables netrw
     hijack_netrw = false, --1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
     tab_open = 0, --0 by default, will open the tree when entering a new tab and the tree was previously open
