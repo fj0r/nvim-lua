@@ -7,6 +7,11 @@ local on_attach = function (client, bufnr)
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
+    buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.open_float()<CR>')
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+    buf_set_keymap('n', '[q', '<cmd>lua vim.diagnostic.set_loclist()<CR>')
+
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
@@ -19,10 +24,6 @@ local on_attach = function (client, bufnr)
     buf_set_keymap('n', '[r', '<cmd>lua vim.lsp.buf.rename()<CR>')
     buf_set_keymap('n', '[a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    --buf_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-    buf_set_keymap('n', '[q', '<cmd>lua vim.diagnostic.set_loclist()<CR>')
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -64,5 +65,8 @@ lspconfig.util.default_config = vim.tbl_extend( "force",
     {
         on_attach = on_attach,
         capabilities = capabilities,
+        flags = {
+            debounce_text_changes = 150
+        }
     })
 
