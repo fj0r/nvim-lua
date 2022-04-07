@@ -68,27 +68,31 @@ packer.startup(function(use)
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
-    --use 'skywind3000/asyncrun.vim'
-    --use {
-    --    'skywind3000/asynctasks.vim',
-    --    config = function ()
-    --        vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
-    --    end
-    --}
-    --use 'GustavoKatel/telescope-asynctasks.nvim'
+    --[[
+    use 'skywind3000/asyncrun.vim'
+    use {
+        'skywind3000/asynctasks.vim',
+        config = function ()
+            vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
+        end
+    }
+    use 'GustavoKatel/telescope-asynctasks.nvim'
+    --]]
 
     use {
         'akinsho/nvim-toggleterm.lua',
         config = [[require'addons.toggleterm']],
     }
-    --use 'skywind3000/vim-terminal-help'
-    --use 'kassio/neoterm'
+    --[===[
+    use 'skywind3000/vim-terminal-help'
+    use 'kassio/neoterm'
 
-    --use {
-    --    'ggandor/lightspeed.nvim',
-    --    config = [[require'addons.lightspeed']],
-    --    -- requires = { 'tpope/vim-repeat' },
-    --}
+    use {
+        'ggandor/lightspeed.nvim',
+        config = [[require'addons.lightspeed']],
+        -- requires = { 'tpope/vim-repeat' },
+    }
+    --]===]
     use {
         'phaazon/hop.nvim',
         config = [[require'addons.hop']],
@@ -126,19 +130,35 @@ packer.startup(function(use)
     use 'wellle/targets.vim'
     --use 'machakann/vim-sandwich'
     use 'tpope/vim-surround'
-    --use {
-    --    'blackCauldron7/surround.nvim',
-    --    config = [[require'addons.surround']]
-    --}
+    --[===[
+    use {
+        'blackCauldron7/surround.nvim',
+        config = [[require'addons.surround']]
+    }
+    --]===]
 
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+            'L3MON4D3/LuaSnip' -- Snippets plugin
+        },
+        config = [[require'addons.nvim-cmp']]
+    }
+    --[===[
     use {
         'hrsh7th/nvim-compe',
         config = [[require'addons.compe']]
     }
-    --use 'norcalli/snippets.nvim'
+    use 'norcalli/snippets.nvim'
     use 'hrsh7th/vim-vsnip'
-    --use 'hrsh7th/vim-vsnip-integ'
-    --use 'SirVer/ultisnips'
+    use 'hrsh7th/vim-vsnip-integ'
+    use 'SirVer/ultisnips'
+    --]===]
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -162,19 +182,21 @@ packer.startup(function(use)
         end
     }
     use 'tversteeg/registers.nvim'
-    -- use {
-    --     'ojroques/vim-oscyank',
-    --     config = function ()
-    --         vim.g.oscyank_max_length = 1000
-    --         vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
-    --     end
-    -- }
+    --[===[
+    use {
+        'ojroques/vim-oscyank',
+        config = function ()
+            vim.g.oscyank_max_length = 1000
+            vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
+        end
+    }
 
-    --use 'tpope/vim-speeddating'
-    --use {
-    --    'monaqa/dial.nvim',
-    --    config = [[require'addons.dial']]
-    --}
+    use 'tpope/vim-speeddating'
+    use {
+        'monaqa/dial.nvim',
+        config = [[require'addons.dial']]
+    }
+    --]===]
 
     use 'jbyuki/instant.nvim'
 
@@ -218,9 +240,11 @@ packer.startup(function(use)
         'neovim/nvim-lspconfig',
         config = [[require'lang.lsp']],
     }
-    --use 'kabouzeid/nvim-lspinstall'
-    --use 'nvim-lua/lsp-status.nvim'
-    --use 'nvim-lua/lsp_extensions.nvim'
+    --[[
+    use 'kabouzeid/nvim-lspinstall'
+    use 'nvim-lua/lsp-status.nvim'
+    use 'nvim-lua/lsp_extensions.nvim'
+    --]]
 
     use {
         'rmagatti/auto-session',
@@ -236,11 +260,13 @@ packer.startup(function(use)
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
-    --use {
-    --    'nanotee/sqls.nvim'
-    --}
-    --use 'chr4/nginx.vim'
-    --use 'keith/swift.vim'
+    --[[
+    use {
+        'nanotee/sqls.nvim'
+    }
+    use 'chr4/nginx.vim'
+    use 'keith/swift.vim'
+    --]]
     use {
         'NTBBloodbath/rest.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
