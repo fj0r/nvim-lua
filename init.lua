@@ -180,6 +180,7 @@ packer.startup(function(use)
 
     use {
         'TimUntersberger/neogit',
+        disable = vim.g.nvim_preset == 'core',
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
