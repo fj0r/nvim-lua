@@ -1,8 +1,13 @@
---vim.g.config_root = vim.fn.stdpath('config')
 vim.g.config_root   = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
 vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
+--[[
+vim.g.packer_path   = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+--]]
 
 require 'settings'
 
@@ -32,6 +37,7 @@ packer.startup(function(use)
 
     use {
         'overcache/NeoSolarized',
+        disable = vim.g.nvim_preset == 'core',
         --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
     use {
@@ -65,6 +71,7 @@ packer.startup(function(use)
 
     use {
         'pianocomposer321/yabs.nvim',
+        disable = vim.g.nvim_preset == 'core',
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
@@ -162,6 +169,7 @@ packer.startup(function(use)
 
     use {
         'lewis6991/gitsigns.nvim',
+        disable = vim.g.nvim_preset == 'core',
         requires = {
             'nvim-lua/plenary.nvim'
         },
@@ -198,7 +206,10 @@ packer.startup(function(use)
     }
     --]===]
 
-    use 'jbyuki/instant.nvim'
+    use {
+        'jbyuki/instant.nvim',
+        disable = vim.g.nvim_preset == 'core',
+    }
 
     use {
         'nvim-telescope/telescope.nvim',
@@ -211,24 +222,25 @@ packer.startup(function(use)
 
     use {
         'simrat39/symbols-outline.nvim',
+        disable = vim.g.nvim_preset == 'core',
         config = [[require'addons.outline']]
     }
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        --disable = vim.g.nvim_preset == 'core',
+        disable = vim.g.nvim_preset == 'core',
         run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        --disable = vim.g.nvim_preset == 'core',
+        disable = vim.g.nvim_preset == 'core',
         after = {'nvim-treesitter'},
         requires = {'nvim-treesitter/nvim-treesitter'}
     }
     use {
         'mizlan/iswap.nvim',
-        --disable = vim.g.nvim_preset == 'core',
+        disable = vim.g.nvim_preset == 'core',
         after = {'nvim-treesitter'},
         config = [[require'addons.swap']]
     }
@@ -258,7 +270,7 @@ packer.startup(function(use)
     }
 
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-    use {'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
+    use { 'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
 
     --[[
     use {
@@ -269,6 +281,7 @@ packer.startup(function(use)
     --]]
     use {
         'NTBBloodbath/rest.nvim',
+        disable = vim.g.nvim_preset == 'core',
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[require'addons.rest']],
     }
