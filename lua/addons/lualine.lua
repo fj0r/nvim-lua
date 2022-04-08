@@ -3,7 +3,7 @@ local diag = {
     symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
 }
 local lualine_b
-if vim.fn.executable('git') then
+if vim.fn.executable('git') > 0 then
     lualine_b = {'branch', 'diff', diag}
 else
     lualine_b = {diag}
