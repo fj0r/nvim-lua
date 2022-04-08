@@ -1,3 +1,14 @@
+local diag = {
+    'diagnostics',
+    symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
+}
+local lualine_b
+if vim.fn.executable('git') then
+    lualine_b = {'branch', 'diff', diag}
+else
+    lualine_b = {diag}
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -9,14 +20,7 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {
-            'branch',
-            'diff',
-            {
-                'diagnostics',
-                symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
-            }
-        },
+        lualine_b = lualine_b,
         lualine_c = {
             {
                 'filename',
