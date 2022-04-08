@@ -1,12 +1,10 @@
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.g.treesitter_lang = {
-    -- 'tsx', 'julia', 'cpp',
-    'bash', 'css', 'go', 'gomod', 'graphql',
-    'html', 'java', 'javascript', 'jsdoc', 'json', 'jsonc',
-    'lua', 'php', 'python', 'regex', 'rust',
-    'toml', 'typescript', 'vue', 'yaml'
-}
+
+local lang = vim.g.config_root .. '/lua/lang/treesitter_lang.json'
+if vim.fn.filereadable(lang) ~= 0 then
+    vim.g.treesitter_lang = vim.fn.json_decode(vim.fn.readfile(lang))
+end
 require'nvim-treesitter.configs'.setup {
     ensure_installed = vim.g.treesitter_lang,
     indent = {

@@ -34,6 +34,7 @@ packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
+    -- use_rocks 'lua-yaml'
 
     use {
         'overcache/NeoSolarized',
