@@ -5,7 +5,7 @@ vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET')
 --[[
 vim.g.packer_path   = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 --]]
 
@@ -254,17 +254,21 @@ packer.startup(function(use)
         'neovim/nvim-lspconfig',
         config = [[require'lang.lsp']],
     }
-    --[[
+    --[===[
     use 'kabouzeid/nvim-lspinstall'
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/lsp_extensions.nvim'
-    --]]
 
     use {
         'rmagatti/auto-session',
         config = [[require'addons.auto-session']]
     }
-    --use 'thaerkh/vim-workspace'
+    --]===]
+
+    use{
+        "olimorris/persisted.nvim",
+        config = [[require'addons.persisted']],
+    }
 
     use {
         'mfussenegger/nvim-dap',
