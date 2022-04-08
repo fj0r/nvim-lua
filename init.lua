@@ -229,7 +229,7 @@ packer.startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         disable = vim.g.nvim_preset == 'core',
-        run = ':TSUpdate',
+        --run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
     use {

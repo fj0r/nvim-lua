@@ -1,6 +1,6 @@
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-local lans = {
+vim.g.treesitter_lang = {
     -- 'tsx', 'julia', 'cpp',
     'bash', 'css', 'go', 'gomod', 'graphql',
     'html', 'java', 'javascript', 'jsdoc', 'json', 'jsonc',
@@ -8,7 +8,7 @@ local lans = {
     'toml', 'typescript', 'vue', 'yaml'
 }
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = lans,
+    ensure_installed = vim.g.treesitter_lang,
     indent = {
         enable = false
     },
