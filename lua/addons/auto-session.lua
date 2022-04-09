@@ -15,3 +15,8 @@ require('auto-session').setup(opts)
 
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
+local has_plugin = require'packer_helper'.has_plugin
+if has_plugin'session-lens' and has_plugin'telescope' then
+    require'telescope'.load_extension("session-lens")
+    vim.api.nvim_set_keymap('n', '<leader>o', "<cmd>lua require('session-lens').search_session()<cr>", { noremap = true })
+end

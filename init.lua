@@ -41,7 +41,7 @@ packer.startup(function(use)
         disable = vim.g.nvim_preset == 'core',
         --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
-    --[===[
+    --[=[
     use {
         --'ellisonleao/gruvbox.nvim',
         'fj0r/gruvbox.nvim',
@@ -52,7 +52,7 @@ packer.startup(function(use)
         'rktjmp/lush.nvim',
         --config = [[require'addons.lush']]
     }
-    --]===]
+    --]=]
     use {
         "ellisonleao/gruvbox.nvim",
         config = [[vim.cmd'set background=light|colorscheme gruvbox']]
@@ -69,6 +69,15 @@ packer.startup(function(use)
     }
 
     use {
+        'nvim-telescope/telescope.nvim',
+        config = [[require'addons.telescope']],
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
+    use 'TC72/telescope-tele-tabby.nvim'
+    use 'xiyaowong/telescope-emoji.nvim'
+    use "LinArcX/telescope-env.nvim"
+
+    use {
         't9md/vim-choosewin',
         config = function ()
             vim.api.nvim_set_keymap('n', '-', '<Plug>(choosewin)', {})
@@ -77,27 +86,24 @@ packer.startup(function(use)
         end
     }
 
+    --[=[
     use {
         'pianocomposer321/yabs.nvim',
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
-    --[[
-    use 'skywind3000/asyncrun.vim'
+    --]=]
     use {
-        'skywind3000/asynctasks.vim',
-        config = function ()
-            vim.cmd('so ' .. vim.g.config_root .. '/config/asynctasks.vim')
-        end
+        'skywind3000/asyncrun.vim',
+        config = [[require'addons.asyncrun']],
+        requires = {'skywind3000/asynctasks.vim', 'nvim-telescope/telescope.nvim', 'GustavoKatel/telescope-asynctasks.nvim'}
     }
-    use 'GustavoKatel/telescope-asynctasks.nvim'
-    --]]
 
     use {
         'akinsho/nvim-toggleterm.lua',
         config = [[require'addons.toggleterm']],
     }
-    --[===[
+    --[=[
     use 'skywind3000/vim-terminal-help'
     use 'kassio/neoterm'
 
@@ -106,7 +112,7 @@ packer.startup(function(use)
         config = [[require'addons.lightspeed']],
         -- requires = { 'tpope/vim-repeat' },
     }
-    --]===]
+    --]=]
     use {
         'phaazon/hop.nvim',
         config = [[require'addons.hop']],
@@ -149,12 +155,12 @@ packer.startup(function(use)
     use 'wellle/targets.vim'
     --use 'machakann/vim-sandwich'
     use 'tpope/vim-surround'
-    --[===[
+    --[=[
     use {
         'blackCauldron7/surround.nvim',
         config = [[require'addons.surround']]
     }
-    --]===]
+    --]=]
 
     use {
         'hrsh7th/nvim-cmp',
@@ -168,7 +174,7 @@ packer.startup(function(use)
         },
         config = [[require'addons.nvim-cmp']]
     }
-    --[===[
+    --[=[
     use {
         'hrsh7th/nvim-compe',
         config = [[require'addons.compe']]
@@ -177,7 +183,7 @@ packer.startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
     use 'SirVer/ultisnips'
-    --]===]
+    --]=]
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -203,7 +209,7 @@ packer.startup(function(use)
         end
     }
     use 'tversteeg/registers.nvim'
-    --[===[
+    --[=[
     use {
         'ojroques/vim-oscyank',
         config = function ()
@@ -217,21 +223,12 @@ packer.startup(function(use)
         'monaqa/dial.nvim',
         config = [[require'addons.dial']]
     }
-    --]===]
+    --]=]
 
     use {
         'jbyuki/instant.nvim',
         disable = vim.g.nvim_preset == 'core',
     }
-
-    use {
-        'nvim-telescope/telescope.nvim',
-        config = [[require'addons.telescope']],
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
-    use 'TC72/telescope-tele-tabby.nvim'
-    use 'xiyaowong/telescope-emoji.nvim'
-    use "LinArcX/telescope-env.nvim"
 
     use {
         'simrat39/symbols-outline.nvim',
@@ -265,7 +262,7 @@ packer.startup(function(use)
         'neovim/nvim-lspconfig',
         config = [[require'lang.lsp']],
     }
-    --[===[
+    --[=[
     use 'kabouzeid/nvim-lspinstall'
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/lsp_extensions.nvim'
@@ -274,7 +271,7 @@ packer.startup(function(use)
         "olimorris/persisted.nvim",
         config = [[require'addons.persisted']],
     }
-    --]===]
+    --]=]
 
     use {
         'rmagatti/auto-session',
