@@ -302,6 +302,10 @@ packer.startup(function(use)
         config = [[require'addons.rest']],
     }
 
+    use {
+        "aserowy/tmux.nvim",
+        config = [[require'addons.tmux']],
+    }
     --use 'johngrib/vim-game-snake'
 end)
 
