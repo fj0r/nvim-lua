@@ -1,10 +1,51 @@
+local output = 'buffer'
 require('yabs'):setup({
     languages = { -- List of languages in vim's `filetype` format
+        rust = {
+            tasks = {
+                run = {
+                    command = 'cargo run',
+                    output = output,
+                },
+                build = {
+                    command = 'cargo build --release',
+                    output = output,
+                },
+            }
+        },
+        haskell = {
+            tasks = {
+                run = {
+                    command = 'stack run',
+                    output = output,
+                },
+                build = {
+                    command = 'stack build',
+                    output = output,
+                },
+            }
+        },
+        javascript = {
+            tasks = {
+                start = {
+                    command = 'npm run start',
+                    output = output,
+                },
+                dev = {
+                    command = 'npm run dev',
+                    output = output,
+                },
+                build = {
+                    command = 'npm run build',
+                    output = output,
+                },
+            }
+        },
         python = {
             tasks = {
                 run = {
                     command = 'python %',
-                    output = 'quickfix',
+                    output = output,
                 },
             },
         },
@@ -24,7 +65,7 @@ require('yabs'):setup({
             tasks = {
                 build = {
                     command = 'gcc main.c -o main',
-                    output = 'quickfix', -- Where to show output of the
+                    output = output, -- Where to show output of the
                     -- command. Can be `buffer`,
                     -- `consolation`, `echo`,
                     -- `quickfix`, `terminal`, or `none`

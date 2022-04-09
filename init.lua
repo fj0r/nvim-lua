@@ -79,7 +79,6 @@ packer.startup(function(use)
 
     use {
         'pianocomposer321/yabs.nvim',
-        disable = vim.g.nvim_preset == 'core',
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
@@ -313,6 +312,22 @@ packer.startup(function(use)
         disable = vim.g.nvim_preset == 'core',
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[require'addons.rest']],
+    }
+
+    use {
+        "nvim-neorg/neorg",
+        -- tag = "latest",
+        ft = "norg",
+        after = "nvim-treesitter", -- You may want to specify Telescope here as well
+        requires = "nvim-neorg/neorg-telescope",
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ["core.defaults"] = {}, -- Load all the defaults
+                    ["core.integrations.telescope"] = {}, -- Enable the telescope module
+                },
+            }
+        end
     }
 
     use {
