@@ -41,6 +41,7 @@ packer.startup(function(use)
         disable = vim.g.nvim_preset == 'core',
         --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
+    --[===[
     use {
         --'ellisonleao/gruvbox.nvim',
         'fj0r/gruvbox.nvim',
@@ -51,6 +52,12 @@ packer.startup(function(use)
         'rktjmp/lush.nvim',
         --config = [[require'addons.lush']]
     }
+    --]===]
+    use {
+        "ellisonleao/gruvbox.nvim",
+        config = [[vim.cmd'set background=light|colorscheme gruvbox']]
+    }
+
     use {
         'nvim-lualine/lualine.nvim',
         config = [[require'addons.lualine']],
@@ -136,7 +143,7 @@ packer.startup(function(use)
     use {
         'windwp/nvim-autopairs',
         config = [[require'addons.autopairs']]
-    } 
+    }
 
 
     --use 'matze/vim-move'
