@@ -272,13 +272,19 @@ packer.startup(function(use)
 
     use {
         'rmagatti/auto-session',
-    }
-
-    use {
-        'rmagatti/session-lens',
-        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
         config = [[require'addons.auto-session']]
     }
+
+    --[[
+    use {
+        'rmagatti/session-lens',
+        disable = vim.g.nvim_preset == 'core',
+        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = function()
+            require('session-lens').setup({ })
+        end
+    }
+    --]]
 
     use {
         'mfussenegger/nvim-dap',
