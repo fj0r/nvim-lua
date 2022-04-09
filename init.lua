@@ -132,7 +132,12 @@ packer.startup(function(use)
         config = [[require'addons.rainbow']]
     }
     use 'tpope/vim-commentary'
-    use 'jiangmiao/auto-pairs'
+    -- use 'jiangmiao/auto-pairs'
+    use {
+        'windwp/nvim-autopairs',
+        config = [[require'addons.autopairs']]
+    } 
+
 
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
@@ -259,15 +264,20 @@ packer.startup(function(use)
     use 'nvim-lua/lsp-status.nvim'
     use 'nvim-lua/lsp_extensions.nvim'
 
-    use {
-        'rmagatti/auto-session',
-        config = [[require'addons.auto-session']]
-    }
-    --]===]
-
     use{
         "olimorris/persisted.nvim",
         config = [[require'addons.persisted']],
+    }
+    --]===]
+
+    use {
+        'rmagatti/auto-session',
+    }
+
+    use {
+        'rmagatti/session-lens',
+        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = [[require'addons.auto-session']]
     }
 
     use {

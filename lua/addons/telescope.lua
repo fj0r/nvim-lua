@@ -50,3 +50,8 @@ telescope.setup{
 telescope.load_extension("emoji")
 telescope.load_extension('env')
 
+local has_plugin = require'packer_helper'.has_plugin
+if has_plugin'session-lens' then
+    telescope.load_extension("session-lens")
+    vim.api.nvim_set_keymap('n', '<leader>o', "<cmd>lua require('session-lens').search_session()<cr>", { noremap = true })
+end
