@@ -26,6 +26,7 @@ if has_plugin'nvim-treesitter' then
         java = false,-- don't check treesitter on java
     }
     npairs.setup(cfg)
+
     local ts_conds = require('nvim-autopairs.ts-conds')
     -- press % => %% only while inside a comment or string
     npairs.add_rules({
@@ -39,19 +40,16 @@ if has_plugin'nvim-treesitter' then
             enable = true
         }
     }
+
+    local endwise = require('nvim-autopairs.ts-rule').endwise
+    npairs.add_rules({
+        -- 'then$' is a lua regex
+        -- 'end' is a match pair
+        -- 'lua' is a filetype
+        -- 'if_statement' is a treesitter name. set it = nil to skip check with treesitter
+        endwise('then$', 'end', 'lua', 'if_statement')
+    })
 else
     npairs.setup(cfg)
 end
-
-
-
-local endwise = require('nvim-autopairs.ts-rule').endwise
-
-npairs.add_rules({
-    -- 'then$' is a lua regex
-    -- 'end' is a match pair
-    -- 'lua' is a filetype
-    -- 'if_statement' is a treesitter name. set it = nil to skip check with treesitter
-    endwise('then$', 'end', 'lua', 'if_statement')
-})
 
