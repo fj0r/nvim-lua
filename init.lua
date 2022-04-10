@@ -86,18 +86,18 @@ packer.startup(function(use)
         end
     }
 
-    --[=[
     use {
         'pianocomposer321/yabs.nvim',
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
-    --]=]
+    --[=[
     use {
         'skywind3000/asyncrun.vim',
         config = [[require'addons.asyncrun']],
         requires = {'skywind3000/asynctasks.vim', 'nvim-telescope/telescope.nvim', 'GustavoKatel/telescope-asynctasks.nvim'}
     }
+    --]=]
 
     use {
         'akinsho/nvim-toggleterm.lua',

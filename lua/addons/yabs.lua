@@ -136,8 +136,6 @@ require('yabs'):setup({
     },
 })
 
-local has_plugin = require'packer_helper'.has_plugin
-if has_plugin'telescope' then
-    local telescope = require('telescope')
-    telescope.load_extension('yabs')
-end
+local telescope = require('telescope')
+telescope.load_extension('yabs')
+vim.api.nvim_set_keymap('n', '<leader>t', ":Telescope yabs tasks<cr>", { noremap = true })
