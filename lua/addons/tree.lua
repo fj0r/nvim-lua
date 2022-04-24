@@ -64,19 +64,23 @@ g.nvim_tree_add_trailing = 1 --0 by default, append a trailing slash to folder n
 g.nvim_tree_group_empty = 1 -- 0 by default, compact folders that only contain a single folder into one node in the file tree
 
 require'nvim-tree'.setup {
-    auto_open = true, -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
+    hijack_directories = {
+        auto_open = true,
+    },
     disable_netrw = false, --1 by default, disables netrw
     hijack_netrw = false, --1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
-    tab_open = 0, --0 by default, will open the tree when entering a new tab and the tree was previously open
-    follow = 1, --0 by default, this option allows the cursor to be updated when entering a buffer
+    open_on_tab = false,
     -- lsp_diagnostics = 1, --0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
     update_cwd = true,
     view = { mappings = { list = keybindings } },
-    hide_dotfiles = false,
-    ignore = { '.git', 'node_modules', '.cache' },
-    gitignore = false, -- 0 by default
-    render = {
+    renderer = {
         indent_markers = { enable = true }
+    },
+    filters = {
+        dotfiles = false,
+    },
+    git = {
+        ignore = false,
     },
     actions = {
         change_dir = {
