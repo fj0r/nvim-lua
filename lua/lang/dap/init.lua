@@ -1,2 +1,7 @@
 require'lang.dap.base'
-require'lang.dap.common'
+require'lang.dap.rust'
+require'lang.dap.haskell'
+require'lang.dap.python'
+require'lang.dap.node'
+require'lang.dap.go'
+require'lang.dap.php'
