@@ -36,9 +36,17 @@ dap.configurations.python = {
 
 ------ rust
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
+local lldb_vscode_bin
+for k, v in ipairs{14, 11} do
+    lldb_vscode_bin = 'lldb-vscode-' .. v
+    print(lldb_vscode_bin)
+    if vim.fn.executable(lldb_vscode_bin) == 1 then
+        break
+    end
+end
 dap.adapters.rust = {
     type = 'executable',
-    command = 'lldb-vscode-11', -- my binary was called 'lldb-vscode-11'
+    command = lldb_vscode_bin,
     name = "lldb"
 }
 
@@ -70,7 +78,7 @@ dap.configurations.rust = {
 dap.adapters.haskell = {
     type = 'executable';
     command = 'haskell-debug-adapter';
-    args = {'--hackage-version=0.0.34.0'};
+    args = {'--hackage-version=0.0.35.0'};
 }
 dap.configurations.haskell = {
     {
