@@ -9,7 +9,7 @@ for k, v in ipairs{14, 11} do
         break
     end
 end
-dap.adapters.rust = {
+dap.adapters.lldb = {
     type = 'executable',
     command = lldb_vscode_bin,
     name = "lldb"
@@ -18,12 +18,12 @@ dap.adapters.rust = {
 dap.configurations.rust = {
     {
         name = "Launch",
-        type = "rust",
+        type = "lldb",
         request = 'launch',
         -- program = "${workspaceFolder}/target/debug/${file}"
         program = function ()
-            local r = io.popen("cargo run --quiet")
-            r:read("*a")
+            local r = io.popen("cargo build --quiet 2>/dev/null")
+            local _ = r:read("*a")
             r:close()
             --local cwd = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
             local cwd = lspconfig.util.root_pattern('Cargo.toml')(vim.fn.getcwd())
@@ -36,5 +36,6 @@ dap.configurations.rust = {
         stopOnEntry = false,
         args = {},
         runInTerminal = false,
+        --postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
     }
 }
