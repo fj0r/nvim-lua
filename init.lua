@@ -315,6 +315,7 @@ packer.startup(function(use)
         "nvim-neorg/neorg",
         -- tag = "latest",
         ft = "norg",
+        disable = true,
         after = "nvim-treesitter", -- You may want to specify Telescope here as well
         requires = "nvim-neorg/neorg-telescope",
         config = function()
