@@ -108,8 +108,7 @@ local m = function (k, v)
 end
 
 m('<leader>e', ':NvimTreeToggle<CR>')
-m('<leader>xr', ':NvimTreeRefresh<CR>')
-m('<leader>xf', ':NvimTreeFindFile<CR>')
+m('<leader>z', ':NvimTreeFindFile<CR>')
 
 local wo = require'nvim-tree.view'.View.winopts
 wo.relativenumber = false
