@@ -78,12 +78,16 @@ packer.startup(function(use)
     use "LinArcX/telescope-env.nvim"
 
     use {
-        't9md/vim-choosewin',
-        config = function ()
-            vim.api.nvim_set_keymap('n', '-', '<Plug>(choosewin)', {})
-            vim.g.choosewin_overlay_enable = 0
-            vim.g.choosewin_label          = 'ASDFQWERZXCV'
-        end
+        'https://gitlab.com/yorickpeterse/nvim-window.git',
+        config = [[require'addons.window']],
+    }
+    use {
+        'sindrets/winshift.nvim',
+        config = [[require'addons.winshift']],
+    }
+    use {
+	    "luukvbaal/stabilize.nvim",
+	    config = [[require'stabilize'.setup()]],
     }
 
     use {
