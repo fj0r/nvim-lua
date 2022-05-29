@@ -1,6 +1,8 @@
 vim.o.hidden = true
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-N>", {noremap = true, silent = true})
 
+local wh = require'utils'.which
+
 require'toggleterm'.setup{
     size = function(term)
         if term.direction == "horizontal" then
@@ -19,7 +21,7 @@ require'toggleterm'.setup{
     -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
     direction = 'horizontal',
     close_on_exit = true, -- close the terminal window when the process exits
-    shell = require'utils'.which'zsh', -- change the default shell
+    shell = wh'nu' or wh'zsh' or wh'bash', -- change the default shell
     -- This field is only relevant if direction is set to 'float'
     float_opts = {
         -- The border key is *almost* the same as 'nvim_win_open'

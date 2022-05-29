@@ -16,7 +16,7 @@ function M.which (name)
     local f = io.popen('which '..name)
     local r = (f:read())
     f:close()
-    return r or vim.o.shell
+    return r
 end
 
 function M.dump(...)
