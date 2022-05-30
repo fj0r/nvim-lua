@@ -124,7 +124,18 @@ require'nvim-tree'.setup {
                 }
             }
         },
-        special_files = { "justfile", "Cargo.toml", "Makefile", "README.md", "readme.md" },
+        special_files = {
+            "justfile", "Makefile", ".tasks", ".yabs", "mutagen.yml",
+            ".dockerignore", "Dockerfile", "docker-compose.yml",
+            ".git", ".gitignore", ".gitmodules",
+            ".github", ".gitlab-ci.yml",
+            "Cargo.toml", "Cargo.lock",
+            "stack.yml", "package.yaml", "*.cabal",
+            "requirements.txt",
+            "package.json", "package-lock.json", "tsconfig.json", "tslint.json",
+            "go.mod", "go.sum",
+            "README.md", "readme.md", "ChangeLog.md", "LICENSE"
+        },
     },
     hijack_directories = {
         enable = true,
