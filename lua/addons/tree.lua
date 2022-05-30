@@ -84,7 +84,7 @@ require'nvim-tree'.setup {
             icons = {
                 corner = "│ ",
                 edge = "│ ",
-                none = "  ",
+                none = "│ ",
             },
         },
         icons = {
@@ -100,22 +100,27 @@ require'nvim-tree'.setup {
             },
             ----
             glyphs = {
-                default= '',
+                default= '┊',
                 symlink= '@',
                 git= {
-                    unstaged= "*",
-                    staged= "~",
+                    unstaged= "+",
+                    staged= "-",
                     unmerged= "=",
-                    renamed= "^",
-                    untracked= "!",
+                    renamed= "%",
+                    untracked= "*",
+                    deleted = "x",
+                    ignored = "!",
                 },
-                -- ┼╞├┆│└
+                -- ┼╞├┝┆┊╎│└
                 folder= {
+                    arrow_closed = " ",
+                    arrow_open = " ",
                     default= "┼",
                     open= "├",
-                    symlink= "┆",
                     empty = "╞",
                     empty_open = "╞",
+                    symlink= "┊",
+                    symlink_open= "┆",
                 }
             }
         },
