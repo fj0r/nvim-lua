@@ -101,7 +101,7 @@ require'nvim-tree'.setup {
             ----
             glyphs = {
                 default= '┊',
-                symlink= '@',
+                symlink= '┊',
                 git= {
                     unstaged= "+",
                     staged= "-",
