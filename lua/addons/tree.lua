@@ -44,7 +44,7 @@ local keybindings = {
     { key = ".",                            action = "run_file_command" }
 }
 
-require'nvim-tree'.setup {
+local default = {
     auto_reload_on_write = true,
     create_in_closed_folder = false,
     disable_netrw = false,
@@ -60,6 +60,7 @@ require'nvim-tree'.setup {
     reload_on_bufenter = false,
     respect_buf_cwd = false,
     view = {
+        adaptive_size = false,
         width = 30,
         height = 30,
         hide_root_folder = false,
@@ -67,10 +68,11 @@ require'nvim-tree'.setup {
         preserve_window_proportions = false,
         number = false,
         relativenumber = false,
-        signcolumn = "no",
+        signcolumn = "yes",
         mappings = {
             custom_only = false,
-            list = keybindings, ----
+            list = {
+            },
         },
     },
     renderer = {
@@ -80,11 +82,11 @@ require'nvim-tree'.setup {
         highlight_opened_files = "none",
         root_folder_modifier = ":~",
         indent_markers = {
-            enable = true, ----
+            enable = false,
             icons = {
-                corner = "│ ",
+                corner = "└ ",
                 edge = "│ ",
-                none = "│ ",
+                none = "  ",
             },
         },
         icons = {
@@ -98,44 +100,31 @@ require'nvim-tree'.setup {
                 folder_arrow = true,
                 git = true,
             },
-            ----
             glyphs = {
-                default= '┊',
-                symlink= '┊',
-                git= {
-                    unstaged= "+",
-                    staged= "-",
-                    unmerged= "=",
-                    renamed= "%",
-                    untracked= "*",
-                    deleted = "x",
-                    ignored = "!",
+                default = "",
+                symlink = "",
+                folder = {
+                    arrow_closed = "",
+                    arrow_open = "",
+                    default = "",
+                    open = "",
+                    empty = "",
+                    empty_open = "",
+                    symlink = "",
+                    symlink_open = "",
                 },
-                -- ┼╞├┝┆┊╎│└
-                folder= {
-                    arrow_closed = " ",
-                    arrow_open = " ",
-                    default= "┼",
-                    open= "├",
-                    empty = "╞",
-                    empty_open = "╞",
-                    symlink= "┊",
-                    symlink_open= "┆",
-                }
-            }
+                git = {
+                    unstaged = "✗",
+                    staged = "✓",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "★",
+                    deleted = "",
+                    ignored = "◌",
+                },
+            },
         },
-        special_files = {
-            "justfile", "Makefile", ".tasks", ".yabs", "mutagen.yml",
-            ".dockerignore", "Dockerfile", "docker-compose.yml",
-            ".git", ".gitignore", ".gitmodules",
-            ".github", ".gitlab-ci.yml",
-            "Cargo.toml", "Cargo.lock",
-            "stack.yml", "package.yaml", "*.cabal",
-            "requirements.txt",
-            "package.json", "package-lock.json", "tsconfig.json", "tslint.json",
-            "go.mod", "go.sum",
-            "README.md", "readme.md", "ChangeLog.md", "LICENSE"
-        },
+        special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
     },
     hijack_directories = {
         enable = true,
@@ -178,8 +167,11 @@ require'nvim-tree'.setup {
             global = false,
             restrict_above_cwd = false,
         },
+        expand_all = {
+            max_folder_discovery = 300,
+        },
         open_file = {
-            quit_on_open = true, ----
+            quit_on_open = false,
             resize_window = true,
             window_picker = {
                 enable = true,
@@ -189,6 +181,9 @@ require'nvim-tree'.setup {
                     buftype = { "nofile", "terminal", "help" },
                 },
             },
+        },
+        remove_file = {
+            close_window = true,
         },
     },
     trash = {
@@ -212,3 +207,108 @@ require'nvim-tree'.setup {
         },
     },
 }
+
+local common = {
+    view = {
+        signcolumn = "no",
+        mappings = {
+            list = keybindings,
+        },
+    },
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
+    },
+}
+
+local special_files = {
+    renderer = {
+        special_files = {
+            "justfile", "Makefile", ".tasks", ".yabs", "mutagen.yml",
+            ".dockerignore", "Dockerfile", "docker-compose.yml",
+            ".git", ".gitignore", ".gitmodules",
+            ".github", ".gitlab-ci.yml",
+            "Cargo.toml", "Cargo.lock",
+            "stack.yml", "package.yaml", "*.cabal",
+            "requirements.txt",
+            "package.json", "package-lock.json", "tsconfig.json", "tslint.json",
+            "go.mod", "go.sum",
+            "README.md", "readme.md", "ChangeLog.md", "LICENSE"
+        },
+    }
+}
+
+local tree_orthodox = {
+    renderer = {
+        indent_markers = {
+            enable = true,
+            icons = {
+                corner = "│ ",
+                edge = "│ ",
+                none = "│ ",
+            },
+        },
+        icons = {
+            glyphs = {
+                default= '┊',
+                symlink= '┊',
+                git= {
+                    unstaged= "+",
+                    staged= "-",
+                    unmerged= "=",
+                    renamed= "%",
+                    untracked= "*",
+                    deleted = "x",
+                    ignored = "!",
+                },
+                -- ┼╞├┝┆┊╎│└
+                folder= {
+                    arrow_closed = " ",
+                    arrow_open = " ",
+                    default= "┼",
+                    open= "├",
+                    empty = "╞",
+                    empty_open = "╞",
+                    symlink= "┊",
+                    symlink_open= "┆",
+                }
+            }
+        },
+    },
+}
+
+local tree_modern = {
+    renderer = {
+        indent_markers = {
+            enable = true,
+            icons = {
+                corner = "└ ",
+                edge = "│ ",
+                none = "  ",
+            },
+        },
+        icons = {
+            glyphs = {
+                default = " ",
+                symlink = " ",
+                git= {
+                    unmerged= "=",
+                    deleted = "x",
+                },
+                -- ┼╞├┝┆┊╎│└
+                folder= {
+                    arrow_closed = " ",
+                    arrow_open = " ",
+                    default= "+",
+                    open= "-",
+                    empty = " ",
+                    empty_open = " ",
+                    symlink= "┊",
+                    symlink_open= "┆",
+                }
+            }
+        },
+    },
+}
+require'nvim-tree'.setup(vim.tbl_deep_extend('force', default, common, special_files, tree_modern))
