@@ -14,7 +14,7 @@ end
 
 function M.which (name)
     local f = io.popen('which '..name)
-    local r = (f:read())
+    local r = f:read()
     f:close()
     return r
 end
