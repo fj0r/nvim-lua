@@ -336,6 +336,7 @@ packer.startup(function(use)
         "aserowy/tmux.nvim",
         config = [[require'addons.tmux']],
     }
-    --use 'johngrib/vim-game-snake'
+    use 'seandewar/nvimesweeper'
+
 end)
 
