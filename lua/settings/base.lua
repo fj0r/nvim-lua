@@ -75,3 +75,9 @@ ex([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]], false)
+
+-- cmdheight
+local v = vim.version()
+if v.major >= 0 and v.minor >= 8 then
+    o.cmdheight = 0
+end
