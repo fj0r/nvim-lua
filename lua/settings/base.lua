@@ -80,5 +80,5 @@ ex([[
 -- cmdheight
 local v = vim.version()
 if v.major >= 0 and v.minor >= 8 then
-    o.cmdheight = 0
+    o.cmdheight = 1
 end
