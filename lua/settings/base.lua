@@ -4,7 +4,8 @@ local c          = vim.api.nvim_command
 local ex         = vim.api.nvim_exec
 
 o.compatible     = false
-o.shortmess      = 'atI'
+o.shortmess      = 'aoOtTWAIcqF'
+
 o.errorbells     = false
 o.visualbell     = false
 o.laststatus     = 2
@@ -78,9 +79,7 @@ ex([[
 ]], false)
 
 -- cmdheight
-if os.getenv('VIM_MAX_UI') == '1' then
-    local v = vim.version()
-    if v.major >= 0 and v.minor >= 8 then
-        o.cmdheight = 0
-    end
+local v = vim.version()
+if v.major >= 0 and v.minor >= 8 then
+    o.cmdheight = 0
 end
