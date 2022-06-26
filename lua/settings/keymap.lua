@@ -16,11 +16,12 @@ if os.getenv('VIM_DUAL_ESC') == '1' then
     c('autocmd InsertLeave * set timeoutlen=1000')
 end
 
---Remap for dealing with word wrap
-m('n', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
-m('n', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
-m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
-m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
+if os.getenv('VIM_JK_WRAP') == '1' then
+    m('n', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
+    m('n', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
+    m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
+    m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
+end
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
 m('i', '<C-l>', '<C-o>A', opt)

@@ -78,7 +78,9 @@ ex([[
 ]], false)
 
 -- cmdheight
-local v = vim.version()
-if v.major >= 0 and v.minor >= 8 then
-    o.cmdheight = 1
+if os.getenv('VIM_MAX_UI') == '1' then
+    local v = vim.version()
+    if v.major >= 0 and v.minor >= 8 then
+        o.cmdheight = 0
+    end
 end
