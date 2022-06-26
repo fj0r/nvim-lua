@@ -36,12 +36,12 @@ packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
     -- use_rocks 'lua-yaml'
 
+    --[=[
     use {
         'overcache/NeoSolarized',
         disable = vim.g.nvim_preset == 'core',
         --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
     }
-    --[=[
     use {
         --'ellisonleao/gruvbox.nvim',
         'fj0r/gruvbox.nvim',
