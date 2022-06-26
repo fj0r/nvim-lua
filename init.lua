@@ -191,7 +191,6 @@ packer.startup(function(use)
 
     use {
         'lewis6991/gitsigns.nvim',
-        disable = vim.g.nvim_preset == 'core',
         requires = {
             'nvim-lua/plenary.nvim'
         },
@@ -201,7 +200,6 @@ packer.startup(function(use)
 
     use {
         'TimUntersberger/neogit',
-        disable = vim.g.nvim_preset == 'core',
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
