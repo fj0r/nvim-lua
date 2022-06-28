@@ -35,6 +35,7 @@ o.backspace      = '2' -- 解决 backspace 按键删除的问题 http://cenalulu
 o.encoding       = 'utf-8'
 o.fileencoding   = 'utf-8'
 o.fileformat     = 'unix'
+o.fixendofline   = false
 
 o.hlsearch       = true -- 搜索时高亮显示被找到的文本
 o.ignorecase     = true -- 搜索时忽略大小写，
