@@ -124,6 +124,7 @@ packer.startup(function(use)
     use 'kevinhwang91/nvim-hlslens'
     use {
         'chaoren/vim-wordmotion',
+        disable = true,
         config = function ()
             vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
         end
