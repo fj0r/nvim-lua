@@ -25,6 +25,7 @@ local actions = require('telescope.actions')
 --local themes = require('telescope.themes')
 telescope.setup{
     defaults = {
+        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
         mappings = {
             i = {
                 ["<c-x>"] = false,
