@@ -307,6 +307,14 @@ packer.startup(function(use)
     use 'chr4/nginx.vim'
     use 'keith/swift.vim'
     --]]
+
+    use {
+        'LhKipp/nvim-nu',
+        disable = vim.g.nvim_preset == 'core',
+        run = ':TSInstall nu',
+        config = [[require'nu'.setup{}]]
+    }
+
     use {
         'NTBBloodbath/rest.nvim',
         disable = vim.g.nvim_preset == 'core',
