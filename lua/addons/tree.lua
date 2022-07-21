@@ -283,9 +283,9 @@ local tree_modern = {
         indent_markers = {
             enable = true,
             icons = {
-                corner = "└ ",
-                edge = "│ ",
-                none = "  ",
+                corner = "└",
+                edge = "│",
+                none = " ",
             },
         },
         icons = {
