@@ -242,10 +242,11 @@ local special_files = {
 local tree_orthodox = {
     renderer = {
         indent_markers = {
-            enable = true,
+            enable = false,
             icons = {
                 corner = "│ ",
                 edge = "│ ",
+                item = "│ ",
                 none = "│ ",
             },
         },
@@ -281,10 +282,11 @@ local tree_orthodox = {
 local tree_modern = {
     renderer = {
         indent_markers = {
-            enable = true,
+            enable = false,
             icons = {
                 corner = "└",
                 edge = "│",
+                item = "│",
                 none = " ",
             },
         },
@@ -311,4 +313,4 @@ local tree_modern = {
         },
     },
 }
-require'nvim-tree'.setup(vim.tbl_deep_extend('force', default, common, special_files, tree_modern))
+require'nvim-tree'.setup(vim.tbl_deep_extend('force', default, common, special_files))
