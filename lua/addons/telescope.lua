@@ -1,4 +1,5 @@
 local keymaps = {
+    ['<leader>o']         = "<cmd>lua require('telescope.builtin').pickers()<cr>",
     ['<leader>s']         = "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
     ['<leader>m']         = "<cmd>lua require('telescope.builtin').marks()<cr>",
     ['<leader>d']         = "<cmd>lua require('telescope.builtin').oldfiles()<cr>",
@@ -26,6 +27,9 @@ local actions = require('telescope.actions')
 telescope.setup{
     defaults = {
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        cache_picker = {
+            num_pickers = 100,
+        },
         mappings = {
             i = {
                 ["<c-x>"] = false,
