@@ -159,13 +159,11 @@ packer.startup(function(use)
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
     --use 'machakann/vim-sandwich'
-    use 'tpope/vim-surround'
-    --[=[
+    --use 'tpope/vim-surround'
     use {
-        'blackCauldron7/surround.nvim',
+        "kylechui/nvim-surround",
         config = [[require'addons.surround']]
     }
-    --]=]
 
     use {
         'hrsh7th/nvim-cmp',
@@ -310,7 +308,8 @@ packer.startup(function(use)
 
     use {
         'LhKipp/nvim-nu',
-        disable = vim.g.nvim_preset == 'core',
+        --disable = vim.g.nvim_preset == 'core',
+        disable = true,
         run = ':TSInstall nu',
         config = [[require'nu'.setup{}]]
     }
