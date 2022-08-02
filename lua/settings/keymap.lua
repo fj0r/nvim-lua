@@ -2,8 +2,9 @@ local m   = vim.api.nvim_set_keymap
 local c   = vim.api.nvim_command
 local g   = vim.g
 local ex  = vim.api.nvim_exec
+local opn = { noremap = true }
 local opt = { noremap = true, silent = true }
-local ept = { noremap = true, expr = true, silent = true }
+local ope = { noremap = true, expr = true, silent = true }
 
 m('', '<Space>', '<Nop>', opt)
 g.mapleader = " "
@@ -17,21 +18,29 @@ if os.getenv('VIM_DUAL_ESC') == '1' then
 end
 
 if os.getenv('VIM_JK_WRAP') == '1' then
-    m('n', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
-    m('n', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
-    m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ept)
-    m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ept)
+    m('n', 'k', "v:count == 0 ? 'gk' : 'k'", ope)
+    m('n', 'j', "v:count == 0 ? 'gj' : 'j'", ope)
+    m('v', 'k', "v:count == 0 ? 'gk' : 'k'", ope)
+    m('v', 'j', "v:count == 0 ? 'gj' : 'j'", ope)
 end
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
 m('i', '<C-l>', '<C-o>A', opt)
-m('i', '<C-a>', '<C-o>I', opt)
-m('i', '<C-e>', '<C-o>A', opt)
-m('i', '<C-f>', '<C-o>a', opt)
+m('i', '<C-a>', '<C-o>^', opt)
+m('i', '<C-e>', '<C-o>$', opt)
+m('i', '<C-f>', '<C-o>l', opt)
 m('i', '<C-b>', '<C-o>h', opt)
 m('i', '<M-f>', '<C-o>w', opt)
 m('i', '<M-b>', '<C-o>b', opt)
 m('i', '<C-w>', '<C-o>db', opt)
+
+m('c', '<C-a>', '<Home>', opn)
+m('c', '<C-e>', '<End>', opn)
+m('c', '<C-f>', '<Right>', opn)
+m('c', '<C-b>', '<Left>', opn)
+m('c', '<M-f>', '<S-Right>', opn)
+m('c', '<M-b>', '<S-Left>', opn)
+m('c', '<C-d>', '<Delete>', opn)
 
 m('n', '<C-j>', '<C-W>j', opt)
 m('n', '<C-k>', '<C-W>k', opt)
@@ -66,11 +75,6 @@ m('n', 'L', '$', opt)
 -- visual selection excluding newline & space
 m('x', 'H', '^', opt)
 m('x', 'L', 'g_', opt)
-
-m('c', '<C-a>', '<Home>', opt)
-m('c', '<C-e>', '<End>', opt)
-m('c', '<M-f>', '<C-Right>', opt)
-m('c', '<M-b>', '<C-Left>', opt)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', opt)
