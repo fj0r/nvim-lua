@@ -35,6 +35,7 @@ m('i', '<M-b>', '<C-o>b', opt)
 m('i', '<C-w>', '<C-o>db', opt)
 
 m('c', '<M-o>', '<C-f>', opn)
+m('c', '<C-o>', '<C-f>', opn)
 m('c', '<C-a>', '<Home>', opn)
 m('c', '<C-e>', '<End>', opn)
 m('c', '<C-f>', '<Right>', opn)
@@ -89,6 +90,7 @@ m('n', 'M', '<cmd>marks<CR>', opt)
 m('n', '<leader>q', '<cmd>q<CR>', opt)
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wqall')
+c('command! -nargs=0  WQ :wqall')
 -- reload file
 c('command! -nargs=0  E :e!')
 
