@@ -86,6 +86,11 @@ packer.startup(function(use)
         config = [[require'addons.winshift']],
     }
     use {
+        'notomo/cmdbuf.nvim',
+        disable = true,
+        config = [[require'addons.cmdbuf']],
+    }
+    use {
 	    "luukvbaal/stabilize.nvim",
 	    config = [[require'stabilize'.setup()]],
     }

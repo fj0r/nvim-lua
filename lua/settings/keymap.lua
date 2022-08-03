@@ -34,6 +34,7 @@ m('i', '<M-f>', '<C-o>w', opt)
 m('i', '<M-b>', '<C-o>b', opt)
 m('i', '<C-w>', '<C-o>db', opt)
 
+m('c', '<M-o>', '<C-f>', opn)
 m('c', '<C-a>', '<Home>', opn)
 m('c', '<C-e>', '<End>', opn)
 m('c', '<C-f>', '<Right>', opn)
