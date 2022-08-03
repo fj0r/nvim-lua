@@ -125,6 +125,7 @@ packer.startup(function(use)
     --]=]
     use {
         'phaazon/hop.nvim',
+        branch = 'v2',
         config = [[require'addons.hop']],
     }
     use 'kevinhwang91/nvim-hlslens'
