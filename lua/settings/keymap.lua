@@ -25,6 +25,7 @@ if os.getenv('VIM_JK_WRAP') == '1' then
 end
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
+--[[ provided by vim-rsi
 m('i', '<C-l>', '<C-o>A', opt)
 m('i', '<C-a>', '<C-o>^', opt)
 m('i', '<C-e>', '<C-o>$', opt)
@@ -34,7 +35,6 @@ m('i', '<M-f>', '<C-o>w', opt)
 m('i', '<M-b>', '<C-o>b', opt)
 m('i', '<C-w>', '<C-o>db', opt)
 
-m('c', '<M-o>', '<C-f>', opn)
 m('c', '<C-o>', '<C-f>', opn)
 m('c', '<C-a>', '<Home>', opn)
 m('c', '<C-e>', '<End>', opn)
@@ -43,6 +43,8 @@ m('c', '<C-b>', '<Left>', opn)
 m('c', '<M-f>', '<S-Right>', opn)
 m('c', '<M-b>', '<S-Left>', opn)
 m('c', '<C-d>', '<Delete>', opn)
+--]]
+m('c', '<M-o>', '<C-f>', opn)
 
 m('n', '<C-j>', '<C-W>j', opt)
 m('n', '<C-k>', '<C-W>k', opt)

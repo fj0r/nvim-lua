@@ -90,6 +90,7 @@ packer.startup(function(use)
         disable = true,
         config = [[require'addons.cmdbuf']],
     }
+    use 'tpope/vim-rsi'
     use {
 	    "luukvbaal/stabilize.nvim",
 	    config = [[require'stabilize'.setup()]],
