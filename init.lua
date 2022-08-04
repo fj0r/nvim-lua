@@ -348,6 +348,7 @@ packer.startup(function(use)
 
     use {
         "aserowy/tmux.nvim",
+        disable = true,
         config = [[require'addons.tmux']],
     }
     use 'seandewar/nvimesweeper'
