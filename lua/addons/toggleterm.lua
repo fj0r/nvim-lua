@@ -8,7 +8,8 @@ require'toggleterm'.setup{
         if term.direction == "horizontal" then
             return 20
         elseif term.direction == "vertical" then
-            return vim.o.columns * 0.4
+            local c = vim.o.columns * 0.4
+            return c > 80 and c or 80
         end
     end,
     open_mapping = [[<c-t>]],
@@ -29,7 +30,7 @@ require'toggleterm'.setup{
         -- the 'curved' border is a custom border type
         -- not natively supported but implemented in this plugin.
         -- border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-        border = 'curved',
+        border = 'single',
         width = 80,
         height = 40,
         winblend = 3,
@@ -43,6 +44,8 @@ require'toggleterm'.setup{
     end,
 }
 
+
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>exe v:count1 \"ToggleTerm direction=vertical\"<CR>", {noremap = true, silent = true})
 
 local Terminal = require'toggleterm.terminal'.Terminal
 local ipython = Terminal:new {

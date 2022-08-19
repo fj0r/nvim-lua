@@ -112,6 +112,7 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
+        tag = 'v2.*',
         config = [[require'addons.toggleterm']],
     }
     --[=[
