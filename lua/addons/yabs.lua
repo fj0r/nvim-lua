@@ -112,9 +112,9 @@ require('yabs'):setup({
             command = 'echo building project...',
             output = 'quickfix',
         },
-        run = {
+        running = {
             command = 'echo running project...',
-            output = 'echo',
+            output = 'consolation',
         },
         optional = {
             command = 'echo runs on condition',

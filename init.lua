@@ -97,23 +97,23 @@ packer.startup(function(use)
     }
 
     use {
-        'pianocomposer321/yabs.nvim',
-        config = [[require'addons.yabs']],
-        requires = { 'nvim-lua/plenary.nvim' },
-    }
-    --[=[
-    use {
-        'skywind3000/asyncrun.vim',
-        config = [[require'addons.asyncrun']],
-        requires = {'skywind3000/asynctasks.vim', 'nvim-telescope/telescope.nvim', 'GustavoKatel/telescope-asynctasks.nvim'}
-    }
-    --]=]
-
-    use {
         'akinsho/nvim-toggleterm.lua',
         tag = 'v2.*',
         config = [[require'addons.toggleterm']],
     }
+
+    use {
+        'jedrzejboczar/toggletasks.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'akinsho/nvim-toggleterm.lua',
+            'nvim-telescope/telescope.nvim',
+        },
+        config = [[require'addons.toggletasks']],
+        -- To enable YAML config support
+        -- rocks = 'lyaml',
+    }
+
     --[=[
     use 'skywind3000/vim-terminal-help'
     use 'kassio/neoterm'
