@@ -98,7 +98,6 @@ packer.startup(function(use)
 
     use {
         'pianocomposer321/yabs.nvim',
-        disable = true,
         config = [[require'addons.yabs']],
         requires = { 'nvim-lua/plenary.nvim' },
     }

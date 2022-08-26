@@ -138,4 +138,4 @@ require('yabs'):setup({
 
 local telescope = require('telescope')
 telescope.load_extension('yabs')
-vim.api.nvim_set_keymap('n', '<leader>t', ":Telescope yabs tasks<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>y', ":Telescope yabs tasks<cr>", { noremap = true })
