@@ -110,7 +110,7 @@ require('yabs'):setup({
     tasks = { -- Same values as `language.tasks`, but global
         build = {
             command = 'echo building project...',
-            output = 'consolation',
+            output = 'quickfix',
         },
         run = {
             command = 'echo running project...',
