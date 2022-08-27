@@ -54,3 +54,4 @@ telescope.setup{
 telescope.load_extension("emoji")
 telescope.load_extension('env')
 
+

@@ -54,4 +54,3 @@ local ipython = Terminal:new {
 }
 function _ipython() ipython:toggle() end
 vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua _ipython()<CR>", {noremap = true, silent = true})
-

@@ -103,16 +103,25 @@ packer.startup(function(use)
     }
 
     use {
-        'jedrzejboczar/toggletasks.nvim',
+        'pianocomposer321/yabs.nvim',
+        tag = "main",
         requires = {
             'nvim-lua/plenary.nvim',
-            'akinsho/nvim-toggleterm.lua',
             'nvim-telescope/telescope.nvim',
         },
-        config = [[require'addons.toggletasks']],
-        -- To enable YAML config support
-        -- rocks = 'lyaml',
+        config = [[require'addons.yabs']],
     }
+    -- use {
+    --     'jedrzejboczar/toggletasks.nvim',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'akinsho/nvim-toggleterm.lua',
+    --         'nvim-telescope/telescope.nvim',
+    --     },
+    --     config = [[require'addons.toggletasks']],
+    --     -- To enable YAML config support
+    --     -- rocks = 'lyaml',
+    -- }
 
     --[=[
     use 'skywind3000/vim-terminal-help'
