@@ -30,7 +30,7 @@ require('toggletasks').setup {
     telescope = {
         spawn = {
             open_single = true,  -- auto-open terminal window when spawning a single task
-            show_running = false, -- include already running tasks in picker candidates
+            show_running = true, -- include already running tasks in picker candidates
             -- Replaces default select_* actions to spawn task (and change toggleterm
             -- direction for select horiz/vert/tab)
             mappings = {
@@ -61,4 +61,5 @@ require('toggletasks').setup {
 
 require('telescope').load_extension('toggletasks')
 
-vim.keymap.set('n', '<space>y', require('telescope').extensions.toggletasks.spawn, { desc = 'toggletasks: spawn' })
+vim.keymap.set('n', '<leader>j', require('telescope').extensions.toggletasks.spawn, { desc = 'toggletasks: spawn' })
+vim.keymap.set('n', '<leader>k', require('telescope').extensions.toggletasks.select, { desc = 'toggletasks: select' })
