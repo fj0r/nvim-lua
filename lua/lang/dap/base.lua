@@ -49,10 +49,10 @@ require("dapui").setup({
         {
             elements = {
                 -- Elements can be strings or table with id and size keys.
-                { id = "scopes", size = 0.25 },
-                "breakpoints",
+                { id = "watches", size = 12 },
+                "console",
                 "stacks",
-                "watches",
+                "breakpoints",
             },
             size = 40,
             position = "left",
@@ -60,15 +60,15 @@ require("dapui").setup({
         {
             elements = {
                 "repl",
-                "console",
+                { id = "scopes", size = 0.7 },
             },
-            size = 10,
+            size = 12,
             position = "bottom",
         },
     },
     floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil   -- Floats will be treated as percentage of your screen.
-    }
+    },
 })
 
