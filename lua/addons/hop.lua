@@ -10,5 +10,9 @@ for _, o in ipairs({'n', 'v', 'x'}) do
     --m(o, '<leader>p', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
 end
 
-require'hop'.setup {}
+require'hop'.setup {
+ -- keys = 'asdghklqwertyuiopzxcvbnmfj'
+ -- keys = 'asdfjkl;qweruiopzxcv'
+    keys = 'ajskdlf;quwieorpzxcv'
+}
 
