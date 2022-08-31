@@ -227,15 +227,12 @@ packer.startup(function(use)
         end
     }
     use 'tversteeg/registers.nvim'
-    --[=[
     use {
-        'ojroques/vim-oscyank',
-        config = function ()
-            vim.g.oscyank_max_length = 1000
-            vim.cmd [[autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif]]
-        end
+        'ojroques/nvim-osc52',
+        config = [[require'addons.osc52']],
     }
 
+    --[=[
     use 'tpope/vim-speeddating'
     use {
         'monaqa/dial.nvim',
