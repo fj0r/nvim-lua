@@ -1,5 +1,5 @@
 require('possession').setup {
-    session_dir = vim.g.data_root.."/sessions/",
+    session_dir = vim.g.data_root.."/possession/",
     -- session_dir = (Path:new(vim.fn.stdpath('data')) / 'possession'):absolute(),
     silent = true,
     load_silent = true,
@@ -52,4 +52,4 @@ require('possession').setup {
 }
 
 require('telescope').load_extension('possession')
-vim.keymap.set('n', '<leader>y', require('telescope').extensions.possession.list, { desc = 'session: list' })
+vim.keymap.set('n', '<leader>s', require('telescope').extensions.possession.list, { desc = 'session: list' })
