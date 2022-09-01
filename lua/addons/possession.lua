@@ -13,13 +13,14 @@ require('possession').setup {
         on_quit = true,
     },
     commands = {
-        save = 'PossessionSave',
-        load = 'PossessionLoad',
-        close = 'PossessionClose',
-        delete = 'PossessionDelete',
-        show = 'PossessionShow',
-        list = 'PossessionList',
-        migrate = 'PossessionMigrate',
+        -- 'PossessionXxx',
+        save = 'Ssave',
+        load = 'Sload',
+        close = 'Sclose',
+        delete = 'Sdelete',
+        show = 'Sshow',
+        list = 'Slist',
+        migrate = 'Smigrate',
     },
     hooks = {
         before_save = function(name) return {} end,
@@ -50,6 +51,13 @@ require('possession').setup {
         delete_buffers = false,
     },
 }
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    pattern = "*",
+    callback = function()
+        -- TODO:
+    end
+})
 
 require('telescope').load_extension('possession')
 vim.keymap.set('n', '<leader>s', require('telescope').extensions.possession.list, { desc = 'session: list' })
