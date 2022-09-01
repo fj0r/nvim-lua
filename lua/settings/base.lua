@@ -77,7 +77,10 @@ a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 })
 
 -- 高亮冗余空格
-c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+a.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    command = [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+})
 c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
 
 -- Change preview window location
@@ -96,16 +99,6 @@ if false then
         command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
     })
 end
-
--- windows to close with "q"
-a.nvim_create_autocmd("FileType", {
-    pattern = { "help", "startuptime", "qf", "lspinfo" },
-    command = [[nnoremap <buffer><silent> q :close<CR>]]
-})
-a.nvim_create_autocmd("FileType", {
-    pattern = "man",
-    command = [[nnoremap <buffer><silent> q :quit<CR>]]
-})
 
 -- cmdheight
 local v = vim.version()

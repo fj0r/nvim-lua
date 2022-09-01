@@ -1,3 +1,4 @@
+local a   = vim.api
 local m   = vim.api.nvim_set_keymap
 local c   = vim.api.nvim_command
 local g   = vim.g
@@ -113,3 +114,14 @@ m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', opt)
 
 -- Y yank until the end of line
 m('n', 'Y', 'y$', opt)
+
+
+-- windows to close with "q"
+a.nvim_create_autocmd("FileType", {
+    pattern = { "help", "startuptime", "qf", "lspinfo" },
+    command = [[nnoremap <buffer><silent> q :close<CR>]]
+})
+a.nvim_create_autocmd("FileType", {
+    pattern = "man",
+    command = [[nnoremap <buffer><silent> q :quit<CR>]]
+})
