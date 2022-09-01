@@ -289,11 +289,17 @@ packer.startup(function(use)
     --]=]
 
     use {
+        'jedrzejboczar/possession.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = [[require'addons.possession']]
+    }
+    --[=[
+    use {
         'rmagatti/auto-session',
+        disable = true,
         config = [[require'addons.auto-session']]
     }
 
-    --[[
     use {
         'rmagatti/session-lens',
         disable = vim.g.nvim_preset == 'core',
@@ -302,7 +308,7 @@ packer.startup(function(use)
             require('session-lens').setup({ })
         end
     }
-    --]]
+    --]=]
 
     use {
         'mfussenegger/nvim-dap',
