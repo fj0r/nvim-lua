@@ -1,5 +1,6 @@
 local o          = vim.o
 local g          = vim.g
+local a          = vim.api
 local c          = vim.api.nvim_command
 local ex         = vim.api.nvim_exec
 
@@ -58,13 +59,24 @@ o.breakindent    = true
 
 ------ visual
 o.cursorline     = true
-c 'autocmd InsertLeave,WinEnter * set cursorline'
-c 'autocmd InsertEnter,WinLeave * set nocursorline'
+
 o.cursorcolumn   = false
 o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
 o.guicursor      = o.guicursor .. ',a:blinkon0'
 
--- 高亮冗余空格 :NOTE:
+local cursorGrp = a.nvim_create_augroup("CursorLine", { clear = true })
+a.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+    pattern = "*",
+    command = "set cursorline",
+    group = cursorGrp
+})
+a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+    pattern = "*",
+    command = "set nocursorline",
+    group = cursorGrp
+})
+
+-- 高亮冗余空格
 c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
 c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
 
@@ -72,12 +84,28 @@ c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
 g.splitbelow = true
 
 -- Highlight on yank
-ex([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]], false)
+local yankGrp = a.nvim_create_augroup("YankHighlight", { clear = true })
+a.nvim_create_autocmd("TextYankPost", {
+    command = "silent! lua vim.highlight.on_yank()",
+    group = yankGrp,
+})
+
+ -- go to last loc when opening a buffer
+if false then
+    a.nvim_create_autocmd("BufReadPost", {
+        command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
+    })
+end
+
+-- windows to close with "q"
+a.nvim_create_autocmd("FileType", {
+    pattern = { "help", "startuptime", "qf", "lspinfo" },
+    command = [[nnoremap <buffer><silent> q :close<CR>]]
+})
+a.nvim_create_autocmd("FileType", {
+    pattern = "man",
+    command = [[nnoremap <buffer><silent> q :quit<CR>]]
+})
 
 -- cmdheight
 local v = vim.version()
