@@ -94,11 +94,9 @@ a.nvim_create_autocmd("TextYankPost", {
 })
 
  -- go to last loc when opening a buffer
-if false then
-    a.nvim_create_autocmd("BufReadPost", {
-        command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
-    })
-end
+a.nvim_create_autocmd("BufReadPost", {
+    command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
+})
 
 -- cmdheight
 local v = vim.version()

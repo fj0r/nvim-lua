@@ -1,5 +1,5 @@
 require('possession').setup {
-    session_dir = vim.g.data_root.."/possession/",
+    session_dir = vim.g.data_root.."/possession",
     -- session_dir = (Path:new(vim.fn.stdpath('data')) / 'possession'):absolute(),
     silent = true,
     load_silent = true,
