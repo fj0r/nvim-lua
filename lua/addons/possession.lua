@@ -52,10 +52,30 @@ require('possession').setup {
     },
 }
 
+local session_excluded = function()
+    -- exclude by filetype
+    local ft = { gitcommit = true }
+    if ft[vim.bo.filetype] then return true end
+    -- exclude vimdiff
+    if vim.fn.bufnr("$") > 2 then return true end
+end
+
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
+    nested = true,
     callback = function()
-        -- TODO:
+        if session_excluded() then return end
+
+        if vim.fn.isdirectory('.git') ~= 0 then
+            local session = require('possession.session')
+            local name = vim.fn.substitute(vim.fn.getcwd(), '/', '%', 'g')
+            local path = vim.g.data_root.."/possession/"..name..".json"
+            if vim.fn.empty(vim.fn.glob(path)) == 0 then
+                session.load(name)
+            else
+                session.save(name)
+            end
+        end
     end
 })
 

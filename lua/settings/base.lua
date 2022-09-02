@@ -79,6 +79,7 @@ a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 -- 高亮冗余空格
 a.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
+    nested = true,
     command = [[highlight ExtraWhitespace ctermbg=red guibg=red]]
 })
 c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
