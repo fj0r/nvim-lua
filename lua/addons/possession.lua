@@ -66,9 +66,30 @@ vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         if session_excluded() then return end
 
-        if vim.fn.isdirectory('.git') ~= 0 then
+        local cwd = vim.fn.getcwd()
+        local all_paths = { cwd }
+        for dir in vim.fs.parents(cwd) do
+            table.insert(all_paths, dir)
+        end
+        print(vim.inspect(all_paths))
+
+        local root_dir
+        local HOME = vim.fn.getenv("HOME")
+
+        for _, dir in ipairs(all_paths) do
+            print(dir)
+            if not root_dir and vim.fn.isdirectory(dir .. "/.git") == 1 then
+              root_dir = dir
+            end
+            if root_dir and HOME == dir then
+                root_dir = string.sub(root_dir, #HOME + 2, -1)
+            end
+        end
+
+        vim.g.session_root_dir = root_dir
+        if root_dir then
             local session = require('possession.session')
-            local name = vim.fn.substitute(vim.fn.getcwd(), '/', '%', 'g')
+            local name = vim.fn.substitute(root_dir, '/', ':', 'g')
             local path = vim.g.data_root.."/possession/"..name..".json"
             if vim.fn.empty(vim.fn.glob(path)) == 0 then
                 session.load(name)
