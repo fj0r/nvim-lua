@@ -89,8 +89,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.g.session_root_dir = root_dir
         if root_dir then
             local session = require('possession.session')
+            local config = require('possession.config')
             local name = vim.fn.substitute(root_dir, '/', ':', 'g')
-            local path = vim.g.data_root.."/possession/"..name..".json"
+            local path = config.session_dir.."/"..name..".json"
             if vim.fn.empty(vim.fn.glob(path)) == 0 then
                 session.load(name)
             else
