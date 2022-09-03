@@ -64,20 +64,23 @@ vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     nested = true,
     callback = function()
-        if session_excluded() then return end
+        -- vim.api.nvim_command('set cmdheight=1')
+        -- ignore: file gitcommit vimdiff ...
+        if vim.api.nvim_buf_get_name(0) ~= '' then
+            return
+        end
+        -- if session_excluded() then return end
 
         local cwd = vim.fn.getcwd()
         local all_paths = { cwd }
         for dir in vim.fs.parents(cwd) do
             table.insert(all_paths, dir)
         end
-        print(vim.inspect(all_paths))
 
         local root_dir
         local HOME = vim.fn.getenv("HOME")
 
         for _, dir in ipairs(all_paths) do
-            print(dir)
             if not root_dir and vim.fn.isdirectory(dir .. "/.git") == 1 then
               root_dir = dir
             end
@@ -90,7 +93,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         if root_dir then
             local session = require('possession.session')
             local config = require('possession.config')
-            local name = vim.fn.substitute(root_dir, '/', ':', 'g')
+            local name = vim.fn.substitute(root_dir, '/', '::', 'g')
             local path = config.session_dir.."/"..name..".json"
             if vim.fn.empty(vim.fn.glob(path)) == 0 then
                 session.load(name)
