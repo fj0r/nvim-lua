@@ -94,7 +94,7 @@ a.nvim_create_autocmd("TextYankPost", {
     group = yankGrp,
 })
 
- -- go to last loc when opening a buffer
+-- go to last loc when opening a buffer
 a.nvim_create_autocmd("BufReadPost", {
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
 })
