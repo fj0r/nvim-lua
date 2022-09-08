@@ -55,7 +55,7 @@ packer.startup(function(use)
     --]=]
     use {
         "ellisonleao/gruvbox.nvim",
-        config = [[vim.cmd'set background=light|colorscheme gruvbox']]
+        config = [[vim.cmd'set background=dark|colorscheme gruvbox']]
     }
 
     use {
