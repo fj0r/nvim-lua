@@ -77,10 +77,18 @@ packer.startup(function(use)
     use 'xiyaowong/telescope-emoji.nvim'
     use "LinArcX/telescope-env.nvim"
 
+    --[=[
     use {
         'https://gitlab.com/yorickpeterse/nvim-window.git',
         config = [[require'addons.window']],
     }
+    --]=]
+    use {
+        's1n7ax/nvim-window-picker',
+        tag = 'v1.*',
+        config = [[require'addons.window-picker']],
+    }
+
     use {
         'sindrets/winshift.nvim',
         config = [[require'addons.winshift']],
@@ -269,10 +277,13 @@ packer.startup(function(use)
         after = {'nvim-treesitter'},
         config = [[require'addons.swap']]
     }
+    --[=[
     use {
         'kyazdani42/nvim-tree.lua',
         config = [[require'addons.tree']],
     }
+    --]=]
+
     use {
         'neovim/nvim-lspconfig',
         config = [[require'lang.lsp']],
