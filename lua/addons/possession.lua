@@ -37,6 +37,7 @@ require('possession').setup {
                 buftype = {},
                 filetype = {
                     'neo-tree',
+                    'neo-tree-popup',
                 },
                 custom = false,  -- or fun(win): boolean
             },
