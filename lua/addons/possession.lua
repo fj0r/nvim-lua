@@ -35,7 +35,9 @@ require('possession').setup {
             match = {
                 floating = true,
                 buftype = {},
-                filetype = {},
+                filetype = {
+                    'neo-tree',
+                },
                 custom = false,  -- or fun(win): boolean
             },
         },

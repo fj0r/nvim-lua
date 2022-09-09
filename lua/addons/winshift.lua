@@ -20,6 +20,8 @@ require("winshift").setup({
                 floats = true,
                 filetype = {
                     "NvimTree",
+                    "neo-tree",
+                    "neo-tree-popup",
                 },
                 buftype = {
                     "terminal",
