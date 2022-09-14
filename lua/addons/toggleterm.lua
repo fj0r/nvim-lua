@@ -45,12 +45,20 @@ require'toggleterm'.setup{
 }
 
 
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>exe v:count1 \"ToggleTerm direction=vertical\"<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>exe v:count1 \"ToggleTerm\"<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>xv", "<cmd>exe v:count1 \"ToggleTerm direction=vertical\"<CR>", {noremap = true, silent = true})
+
 
 local Terminal = require'toggleterm.terminal'.Terminal
 local ipython = Terminal:new {
     cmd = 'ipython3',
     direction = 'float',
 }
-function _ipython() ipython:toggle() end
-vim.api.nvim_set_keymap("n", "<leader>p", "<cmd>lua _ipython()<CR>", {noremap = true, silent = true})
+
+vim.api.nvim_set_keymap("n", "<leader>xp", "", {
+    noremap = true,
+    silent = true,
+    callback = function()
+        ipython:toggle()
+    end,
+})

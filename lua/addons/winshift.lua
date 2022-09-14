@@ -35,5 +35,5 @@ require("winshift").setup({
     end,
 })
 
-vim.api.nvim_set_keymap('n', '<leader>xp', '<cmd>WinShift swap<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>WinShift<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>xs', '<cmd>WinShift swap<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>WinShift<cr>', { noremap = true})

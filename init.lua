@@ -223,6 +223,7 @@ packer.startup(function(use)
     }
     use {
         'sindrets/diffview.nvim',
+        config = [[require'addons.diffview']]
     }
     use {
         'TimUntersberger/neogit',
