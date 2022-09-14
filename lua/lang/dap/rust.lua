@@ -27,7 +27,7 @@ dap.configurations.rust = {
             r:close()
             --local cwd = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
             local cwd = lspconfig.util.root_pattern('Cargo.toml')(vim.fn.getcwd())
-            local handle = io.popen("cat "..cwd.."/Cargo.toml | rq -t | jq -r '.package.name'")
+            local handle = io.popen("cargo metadata --format-version=1 | jq -r '.packages[0].name'")
             local name = handle:read("*l")
             handle:close()
             return cwd .. "/target/debug/" .. name
