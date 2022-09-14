@@ -31,13 +31,15 @@ require('possession').setup {
     plugins = {
         close_windows = {
             hooks = {'before_save', 'before_load'},
-            preserve_layout = true,  -- or fun(win): boolean
+            preserve_layout = false,  -- or fun(win): boolean
             match = {
                 floating = true,
                 buftype = {},
                 filetype = {
                     'neo-tree',
                     'neo-tree-popup',
+                    'NeogitCommitMessage',
+                    'NeogitStatus',
                 },
                 custom = false,  -- or fun(win): boolean
             },
