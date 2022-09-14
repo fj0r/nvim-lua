@@ -40,6 +40,8 @@ require('possession').setup {
                     'neo-tree-popup',
                     'NeogitCommitMessage',
                     'NeogitStatus',
+                    'DiffviewFilePanel',
+                    'DiffviewFileHistoryPanel',
                 },
                 custom = false,  -- or fun(win): boolean
             },
