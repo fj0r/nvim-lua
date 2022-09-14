@@ -221,7 +221,9 @@ packer.startup(function(use)
         -- tag = 'release' -- To use the latest release
         config = [[require'addons.gitsigns']]
     }
-
+    use {
+        'sindrets/diffview.nvim',
+    }
     use {
         'TimUntersberger/neogit',
         config = [[require'addons.neogit']],
