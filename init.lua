@@ -46,17 +46,6 @@ packer.startup(function(use)
 
     --[=[
     use {
-        'overcache/NeoSolarized',
-        disable = vim.g.nvim_preset == 'core',
-        --config = [[vim.cmd'colorscheme NeoSolarized | set background=light']]
-    }
-    use {
-        --'ellisonleao/gruvbox.nvim',
-        'fj0r/gruvbox.nvim',
-        config = [[require'addons.theme']]
-        --config = [[require'addons.period-themes']]
-    }
-    use {
         'rktjmp/lush.nvim',
         --config = [[require'addons.lush']]
     }
@@ -64,6 +53,7 @@ packer.startup(function(use)
     use {
         "ellisonleao/gruvbox.nvim",
         config = [[vim.cmd'set background=dark|colorscheme gruvbox']]
+        --config = [[require'addons.period-themes']]
     }
 
     use {
@@ -85,12 +75,6 @@ packer.startup(function(use)
     use 'xiyaowong/telescope-emoji.nvim'
     use "LinArcX/telescope-env.nvim"
 
-    --[=[
-    use {
-        'https://gitlab.com/yorickpeterse/nvim-window.git',
-        config = [[require'addons.window']],
-    }
-    --]=]
     use {
         's1n7ax/nvim-window-picker',
         tag = 'v1.*',
@@ -131,22 +115,8 @@ packer.startup(function(use)
         },
         config = [[require'addons.yabs']],
     }
-    -- use {
-    --     'jedrzejboczar/toggletasks.nvim',
-    --     requires = {
-    --         'nvim-lua/plenary.nvim',
-    --         'akinsho/nvim-toggleterm.lua',
-    --         'nvim-telescope/telescope.nvim',
-    --     },
-    --     config = [[require'addons.toggletasks']],
-    --     -- To enable YAML config support
-    --     -- rocks = 'lyaml',
-    -- }
 
     --[=[
-    use 'skywind3000/vim-terminal-help'
-    use 'kassio/neoterm'
-
     use {
         'ggandor/lightspeed.nvim',
         config = [[require'addons.lightspeed']],
@@ -186,7 +156,6 @@ packer.startup(function(use)
         config = [[require'addons.rainbow']]
     }
     use 'tpope/vim-commentary'
-    -- use 'jiangmiao/auto-pairs'
     use {
         'windwp/nvim-autopairs',
         config = [[require'addons.autopairs']]
@@ -195,8 +164,6 @@ packer.startup(function(use)
 
     --use 'matze/vim-move'
     use 'wellle/targets.vim'
-    --use 'machakann/vim-sandwich'
-    --use 'tpope/vim-surround'
     use {
         "kylechui/nvim-surround",
         config = [[require'addons.surround']]
@@ -214,16 +181,6 @@ packer.startup(function(use)
         },
         config = [[require'addons.nvim-cmp']]
     }
-    --[=[
-    use {
-        'hrsh7th/nvim-compe',
-        config = [[require'addons.compe']]
-    }
-    use 'norcalli/snippets.nvim'
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
-    use 'SirVer/ultisnips'
-    --]=]
 
     -- vcs
     use {
@@ -336,22 +293,6 @@ packer.startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[require'addons.possession']]
     }
-    --[=[
-    use {
-        'rmagatti/auto-session',
-        disable = true,
-        config = [[require'addons.auto-session']]
-    }
-
-    use {
-        'rmagatti/session-lens',
-        disable = vim.g.nvim_preset == 'core',
-        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
-        config = function()
-            require('session-lens').setup({ })
-        end
-    }
-    --]=]
 
     use {
         'mfussenegger/nvim-dap',
@@ -360,14 +301,6 @@ packer.startup(function(use)
 
     use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
     use { 'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
-
-    --[[
-    use {
-        'nanotee/sqls.nvim'
-    }
-    use 'chr4/nginx.vim'
-    use 'keith/swift.vim'
-    --]]
 
     use {
         'LhKipp/nvim-nu',
