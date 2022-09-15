@@ -1,5 +1,5 @@
 vim.o.hidden = true
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-N>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-N>', {noremap = true, silent = true})
 
 local wh = require'utils'.which
 
@@ -45,8 +45,11 @@ require'toggleterm'.setup{
 }
 
 
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>exe v:count \"ToggleTerm\"<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>xv", "<cmd>exe v:count \"ToggleTerm direction=vertical\"<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>exe v:count "ToggleTerm"<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>xv', '<cmd>exe v:count "ToggleTerm direction=vertical"<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>xl', '<cmd>exe "ToggleTermSendVisualLines" v:count<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>exe "ToggleTermSendCurrentLine" v:count<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>xk', '<cmd>exe "ToggleTermSendVisualSelection" v:count<CR>', {noremap = true, silent = true})
 
 
 local Terminal = require'toggleterm.terminal'.Terminal
@@ -55,7 +58,7 @@ local ipython = Terminal:new {
     direction = 'float',
 }
 
-vim.api.nvim_set_keymap("n", "<leader>xp", "", {
+vim.api.nvim_set_keymap('n', '<leader>xp', '', {
     noremap = true,
     silent = true,
     callback = function()
