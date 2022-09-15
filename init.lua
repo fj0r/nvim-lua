@@ -348,4 +348,3 @@ packer.startup(function(use)
     use 'seandewar/nvimesweeper'
 
 end)
-

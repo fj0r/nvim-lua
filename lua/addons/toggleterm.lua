@@ -12,7 +12,7 @@ require'toggleterm'.setup{
             return c > 80 and c or 80
         end
     end,
-    open_mapping = [[<leader>xx]],
+    --open_mapping = [[<c-t><c-x>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     shade_terminals = true,
@@ -45,6 +45,7 @@ require'toggleterm'.setup{
 }
 
 
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>exe v:count \"ToggleTerm\"<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>xv", "<cmd>exe v:count \"ToggleTerm direction=vertical\"<CR>", {noremap = true, silent = true})
 
 
