@@ -2,15 +2,23 @@ vim.g.config_root   = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
 vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
---[[
-vim.g.packer_path   = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
---]]
 
 require 'settings'
 
+--[=[
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+--]=]
 
 vim.cmd [[packadd packer.nvim]]
 
