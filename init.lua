@@ -111,6 +111,10 @@ packer.startup(function(use)
     }
 
     use {
+        "folke/which-key.nvim",
+        config = [[require'addons.whichkey']],
+    }
+    use {
         'pianocomposer321/yabs.nvim',
         tag = "main",
         requires = {
@@ -213,6 +217,7 @@ packer.startup(function(use)
     use 'SirVer/ultisnips'
     --]=]
 
+    -- vcs
     use {
         'lewis6991/gitsigns.nvim',
         requires = {
@@ -230,6 +235,7 @@ packer.startup(function(use)
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
+
     --use 'mbbill/undotree'
     use {
         'simnalamburt/vim-mundo',
