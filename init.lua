@@ -76,6 +76,12 @@ packer.startup(function(use)
     use "LinArcX/telescope-env.nvim"
 
     use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = [[require'addons.trouble']]
+    }
+
+    use {
         's1n7ax/nvim-window-picker',
         tag = 'v1.*',
         config = [[require'addons.window-picker']],
