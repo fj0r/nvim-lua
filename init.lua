@@ -324,20 +324,8 @@ packer.startup(function(use)
     }
 
     use {
-        "nvim-neorg/neorg",
-        -- tag = "latest",
-        ft = "norg",
-        disable = true,
-        after = "nvim-treesitter", -- You may want to specify Telescope here as well
-        requires = "nvim-neorg/neorg-telescope",
-        config = function()
-            require('neorg').setup {
-                load = {
-                    ["core.defaults"] = {}, -- Load all the defaults
-                    ["core.integrations.telescope"] = {}, -- Enable the telescope module
-                },
-            }
-        end
+        'nvim-orgmode/orgmode',
+        config = [[require'addons.orgmode']],
     }
 
     use {

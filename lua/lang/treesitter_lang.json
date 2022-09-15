@@ -17,5 +17,6 @@
     "toml",
     "typescript",
     "vue",
-    "yaml"
+    "yaml",
+    "org"
 ]
