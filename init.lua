@@ -325,7 +325,6 @@ packer.startup(function(use)
 
     use {
         'NTBBloodbath/rest.nvim',
-        disable = vim.g.nvim_preset == 'core',
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[require'addons.rest']],
     }
