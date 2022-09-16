@@ -301,6 +301,7 @@ packer.startup(function(use)
         'neovim/nvim-lspconfig',
         config = [[require'lang.lsp']],
     }
+    use 'b0o/schemastore.nvim'
     --[=[
     use 'kabouzeid/nvim-lspinstall'
     use 'nvim-lua/lsp-status.nvim'
