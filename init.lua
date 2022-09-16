@@ -42,6 +42,7 @@ packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
+    use 'rcarriga/nvim-notify'
     -- use_rocks 'lua-yaml'
 
     --[=[
@@ -100,6 +101,16 @@ packer.startup(function(use)
     use {
 	    "luukvbaal/stabilize.nvim",
 	    config = [[require'stabilize'.setup()]],
+    }
+    use {
+        'karb94/neoscroll.nvim',
+        disable = true,
+	    config = [[require'neoscroll'.setup()]],
+    }
+    use {
+        'windwp/nvim-spectre',
+        disable = true,
+        config = [[require'addons.spectre']],
     }
 
     use {
