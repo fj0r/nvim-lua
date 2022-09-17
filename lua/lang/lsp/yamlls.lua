@@ -1,9 +1,46 @@
 vim.g.json_schemas = require('schemastore').json.schemas {
     select = {
-        'VSCode Code Snippets',
+        'appsettings.json',
+        'AsyncAPI',
+        'bucklescript',
         'cspell',
-        'Deno',
+        'Cargo Config Schema',
+        'Cargo Make',
+        'Chrome Extension',
+        'composer.json',
+        'component.json',
+        'config.json',
+        'cspell',
         'dockerd.json',
+        'Deno',
+        '.esmrc.json',
+        'GitHub Workflow Template Properties',
+        'httparchive',
+        'jsdoc',
+        'JSON-API',
+        'JSON Schema Draft 4',
+        'JSON Schema Draft 7',
+        'JSON Schema Draft 8',
+        'JSON Schema Draft 2020-12',
+        'JSONPatch',
+        'mimetypes.json',
+        'openapi.json',
+        'openrpc.json',
+        'package.json',
+        'prometheus.rules.json',
+        'Solidarity',
+        'Source Maps v3',
+        'swcrc',
+        'tsconfig.json',
+        'tsd.json',
+        'tsdrc.json',
+        'tslint.json',
+        'typedoc.json',
+        'typings.json',
+        'typingsrc.json',
+        'vim-addon-info',
+        'V2Ray',
+        'VSCode Code Snippets',
     },
     replace = {
         ['package.json'] = {
@@ -29,16 +66,35 @@ require'lspconfig'.jsonls.setup {
 
 local yaml_json_schemas = require('schemastore').json.schemas {
     select = {
-        'Helm Chart.yaml',
+        'Argo Events',
+        'Argo Workflows',
+        'AsyncAPI',
+        'docker-compose.yml',
+        'func.yaml',
         'GitHub Action',
         'GitHub Workflow',
         'gitlab-ci',
+        'JSON-API',
+        'JSON Schema Draft 4',
+        'JSON Schema Draft 7',
+        'JSON Schema Draft 8',
+        'JSON Schema Draft 2020-12',
+        'kustomization.yaml',
+        'Helm Chart.yaml',
+        'openapi.json',
+        'openrpc.json',
+        'prometheus.json',
+        'Traefik v2',
     }
 }
-local remote_schemas = {}
-vim.tbl_map(function(schema) remote_schemas[schema.url] = schema.fileMatch end, yaml_json_schemas)
-local local_schemas = require'syncJSONSchema':config()
-vim.g.yaml_schemas = vim.tbl_extend('force', remote_schemas, local_schemas)
+local yaml_schemas = {}
+vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, yaml_json_schemas)
+-- local local_schemas = require'syncJSONSchema':config()
+vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
+    { url = './.config.schema.yml', fileMatch = { '/conf*y*ml*', '/cfg*y*ml*' } },
+    { url = 'kubernetes', fileMatch = { '/*' } }
+})
+vim.g.yaml_schemas = yaml_schemas
 require'lspconfig'.yamlls.setup {
     settings = {
         yaml = {
