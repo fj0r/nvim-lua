@@ -7,14 +7,14 @@ require 'settings'
 
 --[=[
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+    local fn = vim.fn
+    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -78,18 +78,31 @@ packer.startup(function(use)
 
     use {
         "folke/trouble.nvim",
+        keys = {
+            {'n', '<leader>gt', 'TroubleToggle'},
+            {'n', '<leader>gw', 'TroubleToggle workspace_diagnostics'},
+            {'n', '<leader>ga', 'TroubleToggle document_diagnostics'},
+            {'n', '<leader>gl', 'TroubleToggle loclist'},
+            {'n', '<leader>gq', 'TroubleToggle quickfix'},
+            {'n', '<leader>gr', 'TroubleToggle lsp_references'},
+        },
         requires = "kyazdani42/nvim-web-devicons",
         config = [[require'addons.trouble']]
     }
 
     use {
         's1n7ax/nvim-window-picker',
+        -- keys = {{'n', '<leader>w', 'window picker'}},
         tag = 'v1.*',
         config = [[require'addons.window-picker']],
     }
 
     use {
         'sindrets/winshift.nvim',
+        keys = {
+            {'n', '<leader>xw', 'winshift'},
+            {'n', '<leader>xs', 'winswap'},
+        },
         config = [[require'addons.winshift']],
     }
     use {
@@ -99,13 +112,13 @@ packer.startup(function(use)
     }
     use 'tpope/vim-rsi'
     use {
-	    "luukvbaal/stabilize.nvim",
-	    config = [[require'stabilize'.setup()]],
+        "luukvbaal/stabilize.nvim",
+        config = [[require'stabilize'.setup()]],
     }
     use {
         'karb94/neoscroll.nvim',
         disable = true,
-	    config = [[require'neoscroll'.setup()]],
+        config = [[require'neoscroll'.setup()]],
     }
     use {
         'windwp/nvim-spectre',
@@ -115,6 +128,11 @@ packer.startup(function(use)
 
     use {
         'akinsho/nvim-toggleterm.lua',
+        keys = {
+            {'n', '<leader>xx', 'toggleterm'},
+            {'n', '<leader>xv', 'vtoggleterm'},
+            {'n', '<leader>xp', 'toggleterm ipython'},
+        },
         tag = 'v2.*',
         config = [[require'addons.toggleterm']],
     }
@@ -125,6 +143,7 @@ packer.startup(function(use)
     }
     use {
         'pianocomposer321/yabs.nvim',
+        keys = {{'n', '<leader>j', 'yabs'}},
         tag = "main",
         requires = {
             'nvim-lua/plenary.nvim',
@@ -143,6 +162,11 @@ packer.startup(function(use)
     use {
         'phaazon/hop.nvim',
         branch = 'v2',
+        keys = {
+            {'n', '<leader><leader>', 'hop hint_words'},
+            {'n', '<leader>c', 'hop hint_char1'},
+            {'n', '<leader>l', 'hop hint_lines_skip_whitespace'},
+        },
         config = [[require'addons.hop']],
     }
     use 'kevinhwang91/nvim-hlslens'
@@ -157,6 +181,10 @@ packer.startup(function(use)
 
     use {
         'junegunn/vim-easy-align',
+        keys = {
+            {'x', 'ga', 'EasyAlign'},
+            {'n', 'ga', 'EasyAlign'},
+        },
         config = function ()
             vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
             vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
@@ -164,6 +192,9 @@ packer.startup(function(use)
     }
     use {
         'Chiel92/vim-autoformat',
+        keys = {
+            {'n', '[f', 'Autoformat'},
+        },
         config = function ()
             vim.api.nvim_set_keymap('n', '[f', '<cmd>Autoformat<cr>', {noremap = true})
         end
@@ -217,10 +248,16 @@ packer.startup(function(use)
     }
     use {
         'sindrets/diffview.nvim',
+        keys = {
+            {'n', '<leader>gd', 'diffview open'},
+            {'n', '<leader>gf', 'diffview file history'},
+            {'n', '<leader>gh', 'diffview history'},
+        },
         config = [[require'addons.diffview']]
     }
     use {
         'TimUntersberger/neogit',
+        keys = {{'n', '<leader>gg', 'neogit'}},
         config = [[require'addons.neogit']],
         requires = { 'nvim-lua/plenary.nvim' },
     }
@@ -228,6 +265,7 @@ packer.startup(function(use)
     --use 'mbbill/undotree'
     use {
         'simnalamburt/vim-mundo',
+        keys = {{'n', '<leader>u', 'mundo'}},
         config = function ()
             vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
         end
@@ -248,6 +286,7 @@ packer.startup(function(use)
 
     use {
         'jbyuki/instant.nvim',
+        cmd = {'InstantStartSingle', 'InstantStartSession', 'InstantStartServer'}
         --disable = vim.g.nvim_preset == 'core',
     }
 
@@ -282,7 +321,7 @@ packer.startup(function(use)
     }
     --]=]
     use {
-        "nvim-neo-tree/neo-tree.nvim",
+        'nvim-neo-tree/neo-tree.nvim',
         branch = "v2.x",
         requires = {
             "nvim-lua/plenary.nvim",
@@ -294,7 +333,8 @@ packer.startup(function(use)
                 tag = "v1.*",
             }
         },
-        config = [[require'addons.neotree']]
+        keys = {{'n', '<leader>e', 'Neotree'}},
+        config = [[require'addons.neotree']],
     }
 
     use {
@@ -321,11 +361,23 @@ packer.startup(function(use)
 
     use {
         'mfussenegger/nvim-dap',
+        keys = {
+            {'n', '[b', 'toggle breakpoint'},
+            {'n', '[l', 'list breakpoints'},
+            {'n', '[B', 'condition breakpoint'},
+            {'n', '[L', 'log breakpoint'},
+        },
         config = [[require'lang.dap']],
     }
-
-    use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
-    use { 'theHamsta/nvim-dap-virtual-text', disable = true, requires = {'mfussenegger/nvim-dap'} }
+    use {
+        'rcarriga/nvim-dap-ui',
+        requires = {'mfussenegger/nvim-dap'}
+    }
+    use {
+        'theHamsta/nvim-dap-virtual-text',
+        disable = true,
+        requires = {'mfussenegger/nvim-dap'}
+    }
 
     use {
         'LhKipp/nvim-nu',
@@ -337,12 +389,18 @@ packer.startup(function(use)
 
     use {
         'NTBBloodbath/rest.nvim',
+        keys = {{'n', '<leader>h', 'rest'}},
         requires = { 'nvim-lua/plenary.nvim' },
         config = [[require'addons.rest']],
     }
 
     use {
         'nvim-orgmode/orgmode',
+        keys = {
+            {'n', '<leader>oa', 'orgmode agenda'},
+            {'n', '<leader>oc', 'orgmode capture'},
+        },
+        ft = {'org'},
         config = [[require'addons.orgmode']],
     }
 
