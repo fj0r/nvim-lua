@@ -92,7 +92,8 @@ packer.startup(function(use)
 
     use {
         's1n7ax/nvim-window-picker',
-        -- keys = {{'n', '<leader>w', 'window picker'}},
+        keys = {{'n', '<leader>w', 'window picker'}},
+        module = { 'neo-tree' },
         tag = 'v1.*',
         config = [[require'addons.window-picker']],
     }
