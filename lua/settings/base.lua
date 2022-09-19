@@ -5,7 +5,7 @@ local c          = vim.api.nvim_command
 local ex         = vim.api.nvim_exec
 
 o.compatible     = false
-o.shortmess      = 'aoOtTWAIcqF'
+o.shortmess      = 'aoOtTWAIcF'
 
 o.errorbells     = false
 o.visualbell     = false
