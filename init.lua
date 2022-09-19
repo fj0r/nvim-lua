@@ -362,6 +362,11 @@ packer.startup(function(use)
 
     use {
         'mfussenegger/nvim-dap',
+        module = {'dapui'},
+        opt = true,
+    }
+    use {
+        'rcarriga/nvim-dap-ui',
         keys = {
             {'n', '[b', 'toggle breakpoint'},
             {'n', '[l', 'list breakpoints'},
@@ -369,9 +374,6 @@ packer.startup(function(use)
             {'n', '[L', 'log breakpoint'},
         },
         config = [[require'lang.dap']],
-    }
-    use {
-        'rcarriga/nvim-dap-ui',
         requires = {'mfussenegger/nvim-dap'}
     }
     use {
