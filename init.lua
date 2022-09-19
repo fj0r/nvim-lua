@@ -354,3 +354,8 @@ packer.startup(function(use)
     use 'seandewar/nvimesweeper'
 
 end)
+
+local user_config = os.getenv("HOME") .. '/.nvim.lua'
+if vim.fn.empty(vim.fn.glob(user_config)) == 0 then
+    vim.cmd('luafile '..user_config)
+end
