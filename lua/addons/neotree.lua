@@ -102,6 +102,8 @@ require("neo-tree").setup({
             -- ["v"] = "open_vsplit",
             ["s"] = "split_with_window_picker",
             ["v"] = "vsplit_with_window_picker",
+            ["<C-s>"] = "split_with_window_picker",
+            ["<C-v>"] = "vsplit_with_window_picker",
             ["t"] = "open_tabnew",
             ["l"] = "open_with_window_picker",
             --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
