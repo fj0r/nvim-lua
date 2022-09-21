@@ -71,7 +71,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     nested = true,
     callback = function()
-        -- vim.api.nvim_command('set cmdheight=1')
         -- ignore: file gitcommit vimdiff ...
         if vim.api.nvim_buf_get_name(0) ~= '' then
             return
