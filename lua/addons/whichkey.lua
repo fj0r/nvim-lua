@@ -3,6 +3,6 @@ require("which-key").setup {
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     window = {
-        padding = { 1, 1, 1, 1 },
+        padding = { 0, 0, 0, 0 },
     }
 }
