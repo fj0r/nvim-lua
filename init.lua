@@ -226,7 +226,9 @@ packer.startup(function(use)
         config = [[require'addons.luasnip']],
     }
     use {
-        'hrsh7th/nvim-cmp',
+        -- 'hrsh7th/nvim-cmp',
+        'Shougo/nvim-cmp',
+        branch = 'cmdheight',
         requires = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
