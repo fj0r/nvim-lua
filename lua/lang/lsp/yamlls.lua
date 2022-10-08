@@ -1,3 +1,20 @@
+vim.g.schemas_cache = vim.g.config_root .. '/schemas_store'
+
+local sync = function (url)
+    local uri = vim.fn.substitute(url, 'https\\?://', '', '')
+    local name = vim.fn.substitute(uri, '/', ':', 'g')
+    local file = vim.g.schemas_cache..'/'..name
+    if vim.fn.empty(vim.fn.glob(file)) == 1 then
+        vim.o.cmdheight = 1
+        print('sync'..' ['..url..']'..file)
+        local cmd = {'curl -sSL', url, '>', file }
+        local out = io.popen(table.concat(cmd, ' '))
+        out:close()
+        vim.o.cmdheight = 0
+    end
+    return file
+end
+
 vim.g.json_schemas = require('schemastore').json.schemas {
     select = {
         'appsettings.json',
@@ -88,7 +105,7 @@ local yaml_json_schemas = require('schemastore').json.schemas {
     }
 }
 local yaml_schemas = {}
-vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, yaml_json_schemas)
+vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_json_schemas)
 vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
     -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
     { url = os.getenv('KUBERNETES_SCHEMA_URL') or 'kubernetes', fileMatch = { '/*' } }
