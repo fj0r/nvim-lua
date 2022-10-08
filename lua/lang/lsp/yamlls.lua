@@ -89,10 +89,9 @@ local yaml_json_schemas = require('schemastore').json.schemas {
 }
 local yaml_schemas = {}
 vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, yaml_json_schemas)
--- local local_schemas = require'syncJSONSchema':config()
 vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
-    { url = './.config.schema.yml', fileMatch = { '/conf*y*ml*', '/cfg*y*ml*' } },
-    { url = 'kubernetes', fileMatch = { '/*' } }
+    -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
+    { url = os.getenv('KUBERNETES_SCHEMA_URL') or 'kubernetes', fileMatch = { '/*' } }
 })
 vim.g.yaml_schemas = yaml_schemas
 require'lspconfig'.yamlls.setup {
