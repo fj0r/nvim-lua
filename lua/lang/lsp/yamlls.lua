@@ -108,7 +108,10 @@ local yaml_schemas = {}
 vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_json_schemas)
 vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
     -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
-    { url = os.getenv('KUBERNETES_SCHEMA_URL') or 'kubernetes', fileMatch = { '/*' } }
+
+    -- yaml-language-server/out/server/src/languageservice/utils/schemaUrls.js
+    -- https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json
+    { url = vim.g.schemas_cache .. '/kubernetes.json' or 'kubernetes', fileMatch = { '/*' } }
 })
 vim.g.yaml_schemas = yaml_schemas
 require'lspconfig'.yamlls.setup {
