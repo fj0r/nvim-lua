@@ -1,9 +1,9 @@
-vim.g.schemas_cache = vim.g.config_root .. '/schemas_store'
+vim.g.local_schemas_store = vim.g.config_root .. '/schemas_store'
 
 local sync = function (url)
     local uri = vim.fn.substitute(url, 'https\\?://', '', '')
     local name = vim.fn.substitute(uri, '/', ':', 'g')
-    local file = vim.g.schemas_cache..'/'..name
+    local file = vim.g.local_schemas_store..'/'..name
     if vim.fn.empty(vim.fn.glob(file)) == 1 then
         vim.o.cmdheight = 1
         print('sync'..' ['..url..']'..file)
@@ -15,7 +15,7 @@ local sync = function (url)
     return file
 end
 
-vim.g.json_schemas = require('schemastore').json.schemas {
+local json_origin = require('schemastore').json.schemas {
     select = {
         'appsettings.json',
         'AsyncAPI',
@@ -59,15 +59,26 @@ vim.g.json_schemas = require('schemastore').json.schemas {
         'V2Ray',
         'VSCode Code Snippets',
     },
+    --[[
     replace = {
         ['package.json'] = {
             description = 'package.json overriden',
             fileMatch = { 'package.json' },
             name = 'package.json',
-            url = 'https://example.com/package.json',
+            url = ''
         },
     }
+    --]]
 }
+local json_schemas = {}
+local replace_url = function(schema)
+    if schema.url then
+        schema.url = sync(schema.url)
+        table.insert(json_schemas, schema)
+    end
+end
+vim.tbl_map(replace_url, json_origin)
+vim.g.json_schemas = json_schemas
 require'lspconfig'.jsonls.setup {
     settings = {
         json = {
@@ -81,7 +92,7 @@ require'lspconfig'.jsonls.setup {
     }
 }
 
-local yaml_json_schemas = require('schemastore').json.schemas {
+local yaml_origin = require('schemastore').json.schemas {
     select = {
         'Argo Events',
         'Argo Workflows',
@@ -105,13 +116,13 @@ local yaml_json_schemas = require('schemastore').json.schemas {
     }
 }
 local yaml_schemas = {}
-vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_json_schemas)
+vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_origin)
 vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
     -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 
     -- yaml-language-server/out/server/src/languageservice/utils/schemaUrls.js
     -- https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json
-    { url = vim.g.schemas_cache .. '/kubernetes.json' or 'kubernetes', fileMatch = { '/*' } }
+    { url = vim.g.local_schemas_store .. '/kubernetes.json' or 'kubernetes', fileMatch = { '/*' } }
 })
 vim.g.yaml_schemas = yaml_schemas
 require'lspconfig'.yamlls.setup {
