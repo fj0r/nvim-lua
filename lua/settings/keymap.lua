@@ -70,6 +70,17 @@ m('n', '<leader>8', '8gt', op2)
 m('n', '<leader>9', '9gt', op2)
 m('n', '<leader>0', '<cmd>tablast<cr>', op2)
 
+m('n', '<M-1>', '1gt', op2)
+m('n', '<M-2>', '2gt', op2)
+m('n', '<M-3>', '3gt', op2)
+m('n', '<M-4>', '4gt', op2)
+m('n', '<M-5>', '5gt', op2)
+m('n', '<M-6>', '6gt', op2)
+m('n', '<M-7>', '7gt', op2)
+m('n', '<M-8>', '8gt', op2)
+m('n', '<M-9>', '9gt', op2)
+m('n', '<M-0>', '<cmd>tablast<cr>', op2)
+
 c('command! -complete=file -nargs=? T :tabnew <args>')
 
 m('t', '<Esc>', '<C-\\><C-N>', op2)
