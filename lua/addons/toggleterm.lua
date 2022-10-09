@@ -1,5 +1,4 @@
 vim.o.hidden = true
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-N>', {noremap = true, silent = true})
 
 local wh = require'utils'.which
 
