@@ -12,7 +12,7 @@ local sync = function (url)
         out:close()
         vim.o.cmdheight = 0
     end
-    return file
+    return 'file://'..file
 end
 
 local json_origin = require('schemastore').json.schemas {
@@ -116,24 +116,22 @@ local yaml_origin = require('schemastore').json.schemas {
 }
 local yaml_schemas = {}
 vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_origin)
-vim.tbl_map(function(schema) yaml_schemas[schema.url] = schema.fileMatch end, {
-    -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
+-- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 
-    -- yaml-language-server/out/server/src/languageservice/utils/schemaUrls.js
-    -- https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json
-    { url = vim.g.local_schemas_store .. '/kubernetes.json' or 'kubernetes', fileMatch = { '/*' } }
-})
+-- https://github.com/yannh/kubernetes-json-schema/tree/master/v1.25.2-local
+yaml_schemas['file://'..(vim.g.local_schemas_store..'/kubernetes/all.json' or 'kubernetes')] = { '/*' }
 vim.g.yaml_schemas = yaml_schemas
 require'lspconfig'.yamlls.setup {
     settings = {
         yaml = {
             completion = true,
-            schemaStore = { enable = true },
+            --schemaStore = { enable = true },
             format = { singleQuote = true },
             hover = true,
             validate = true,
             trace = { server = 'verbose' },
             schemas = vim.g.yaml_schemas
+            --schemas = yaml_origin
         }
     }
 }
