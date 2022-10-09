@@ -408,12 +408,12 @@ packer.startup(function(use)
         config = [[require'addons.orgmode']],
     }
 
-    use {
-        "aserowy/tmux.nvim",
-        disable = true,
-        config = [[require'addons.tmux']],
-    }
     use 'seandewar/nvimesweeper'
+
+    use {
+        "hkupty/nvimux",
+        config = [[require'addons.nvimux']],
+    }
 
 end)
 
