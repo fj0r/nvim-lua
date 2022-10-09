@@ -20,7 +20,6 @@ local json_origin = require('schemastore').json.schemas {
         'appsettings.json',
         'AsyncAPI',
         'bucklescript',
-        'cspell',
         'Cargo Config Schema',
         'Cargo Make',
         'Chrome Extension',
