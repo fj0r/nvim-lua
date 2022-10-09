@@ -10,6 +10,8 @@ o.shortmess      = 'aoOtTWAIcF'
 o.errorbells     = false
 o.visualbell     = false
 o.laststatus     = 2
+o.showtabline    = 1
+o.cmdheight      = 0
 o.wildmenu       = true
 
 o.confirm        = true
@@ -98,9 +100,3 @@ a.nvim_create_autocmd("TextYankPost", {
 a.nvim_create_autocmd("BufReadPost", {
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
 })
-
--- cmdheight
-local v = vim.version()
-if v.major >= 0 and v.minor >= 8 then
-    o.cmdheight = 0
-end
