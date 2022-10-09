@@ -125,13 +125,12 @@ require'lspconfig'.yamlls.setup {
     settings = {
         yaml = {
             completion = true,
-            --schemaStore = { enable = true },
+            --schemaStore = { enable = false },
             format = { singleQuote = true },
             hover = true,
             validate = true,
             trace = { server = 'verbose' },
             schemas = vim.g.yaml_schemas
-            --schemas = yaml_origin
         }
     }
 }
