@@ -78,11 +78,13 @@ a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     group = cursorGrp
 })
 
--- 高亮冗余空格
+-- Highlight redundant space
 a.nvim_create_autocmd("ColorScheme", {
     pattern = "*",
     nested = true,
-    command = [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+    callback = function ()
+        c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
+    end
 })
 c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
 
