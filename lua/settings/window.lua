@@ -57,4 +57,5 @@ m('t', '<M-8>', '<cmd>tabn 8<cr>', op2)
 m('t', '<M-9>', '<cmd>tabn 9<cr>', op2)
 m('t', '<M-0>', '<cmd>tablast<cr>', op2)
 
+-- TODO: rename tab
 -- c('command! -complete=file -nargs=? T :tabnew <args>')
