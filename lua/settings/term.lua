@@ -1,19 +1,32 @@
-local opt = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], opt)
-vim.api.nvim_set_keymap('n', '<leader>xc', '<cmd>new|terminal<cr>', opt)
-vim.api.nvim_set_keymap('n', '<leader>xv', '<cmd>vnew|terminal<cr>', opt)
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>tabnew|terminal<cr>', opt)
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
 
-vim.api.nvim_create_user_command('T',
-    function (x)
-        local b = vim.api.nvim_create_buf('', 'terminal')
-        vim.api.nvim_set_current_buf(b)
-        local t = vim.api.nvim_open_term(b, {})
-        --x.args
-        vim.api.nvim_chan_send(t, x.args)
-    end,
-    { nargs = '?' }
-)
+local new_term = function (action)
+    return function (x)
+        vim.cmd(action)
+        local win = vim.api.nvim_get_current_win()
+        local buf = vim.api.nvim_create_buf(true, true)
+        vim.api.nvim_win_set_buf(win, buf)
+        vim.cmd('terminal')
+        local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
+        if x then
+            vim.api.nvim_chan_send(chan, x.args)
+        else
+            vim.api.nvim_chan_send(chan, '')
+        end
+    end
+end
+
+local cnew = new_term('new')
+local vnew = new_term('vnew')
+local xnew = new_term('tabnew')
+
+vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew, noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = vnew, noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xx', '', { callback = xnew, noremap = true, silent = true })
+
+vim.api.nvim_create_user_command('X', xnew, { nargs = '?' })
+vim.api.nvim_create_user_command('V', vnew, { nargs = '?' })
+vim.api.nvim_create_user_command('C', cnew, { nargs = '?' })
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
@@ -33,7 +46,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("TermClose", {
     pattern = 'term://*',
     callback = function (info)
-        vim.cmd'quit'
+        -- vim.cmd'quit'
     end
 })
 
