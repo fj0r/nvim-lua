@@ -128,6 +128,7 @@ packer.startup(function(use)
         config = [[require'addons.spectre']],
     }
 
+    --[=[
     use {
         'akinsho/nvim-toggleterm.lua',
         keys = {
@@ -138,6 +139,7 @@ packer.startup(function(use)
         tag = 'v2.*',
         config = [[require'addons.toggleterm']],
     }
+    --]=]
 
     use {
         "folke/which-key.nvim",

@@ -66,7 +66,7 @@ m('n', 'M', '<cmd>marks<CR>', op2)
 -- Quickly close the current window
 m('n', '<leader>q', '<cmd>q<CR>', op2)
 c('command! -nargs=0  W :wall')
-c('command! -nargs=0  Wq :wqall')
+c('command! -nargs=0  Wq :wall|tabclose')
 c('command! -nargs=0  WQ :wqall')
 -- reload file
 c('command! -nargs=0  E :e!')
