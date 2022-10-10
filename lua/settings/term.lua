@@ -1,12 +1,12 @@
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
 
-local new_term = function (action)
+local new_term = function (action, shell)
     return function (x)
         vim.cmd(action)
         local win = vim.api.nvim_get_current_win()
         local buf = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_win_set_buf(win, buf)
-        vim.cmd('terminal')
+        vim.cmd('terminal '..shell)
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
         if x then
             vim.api.nvim_chan_send(chan, x.args)
@@ -16,9 +16,9 @@ local new_term = function (action)
     end
 end
 
-local cnew = new_term('new')
-local vnew = new_term('vnew')
-local xnew = new_term('tabnew')
+local cnew = new_term('new', '')
+local vnew = new_term('vnew', '')
+local xnew = new_term('tabnew', '')
 
 vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew, noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = vnew, noremap = true, silent = true })
