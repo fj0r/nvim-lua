@@ -410,10 +410,10 @@ packer.startup(function(use)
 
     use 'seandewar/nvimesweeper'
 
-    use {
-        "hkupty/nvimux",
-        config = [[require'addons.nvimux']],
-    }
+    -- use {
+    --     "hkupty/nvimux",
+    --     config = [[require'addons.nvimux']],
+    -- }
 
 end)
 
