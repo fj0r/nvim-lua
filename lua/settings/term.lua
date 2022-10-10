@@ -36,3 +36,7 @@ vim.api.nvim_create_autocmd("TermClose", {
         vim.cmd'quit'
     end
 })
+
+--[[ nvim remote-send
+nvim --headless --noplugin --server $NVIM --remote-send '<cmd>tabnew ./init.lua<cr>'
+--]]
