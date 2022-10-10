@@ -4,6 +4,17 @@ vim.api.nvim_set_keymap('n', '<leader>xc', '<cmd>new|terminal<cr>', opt)
 vim.api.nvim_set_keymap('n', '<leader>xv', '<cmd>vnew|terminal<cr>', opt)
 vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>tabnew|terminal<cr>', opt)
 
+vim.api.nvim_create_user_command('T',
+    function (x)
+        local b = vim.api.nvim_create_buf('', 'terminal')
+        vim.api.nvim_set_current_buf(b)
+        local t = vim.api.nvim_open_term(b, {})
+        --x.args
+        vim.api.nvim_chan_send(t, x.args)
+    end,
+    { nargs = '?' }
+)
+
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
     callback = function (info)
