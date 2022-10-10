@@ -22,10 +22,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
         local w = vim.wo[vim.api.nvim_get_current_win()]
         w.number = false
         w.relativenumber = false
-        if b.buftype == 'terminal' then
-            vim.cmd'startinsert'
-        end
+        vim.cmd 'startinsert'
     end
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = 'term://*',
+    command = 'startinsert'
 })
 
 vim.api.nvim_create_autocmd("TermClose", {

@@ -7,6 +7,11 @@ m('n', '<C-k>', '<C-W>k', op2)
 m('n', '<C-h>', '<C-W>h', op2)
 m('n', '<C-l>', '<C-W>l', op2)
 
+m('t', '<C-j>', '<cmd>wincmd j<cr>', op2)
+m('t', '<C-k>', '<cmd>wincmd k<cr>', op2)
+m('t', '<C-h>', '<cmd>wincmd h<cr>', op2)
+m('t', '<C-l>', '<cmd>wincmd l<cr>', op2)
+
 m('n', '<C-S-j>', '<C-W><S-j>', op2)
 m('n', '<C-S-k>', '<C-W><S-k>', op2)
 m('n', '<C-S-h>', '<C-W><S-h>', op2)
