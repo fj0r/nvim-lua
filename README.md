@@ -15,6 +15,7 @@
         - [-] nushell
     - [ ] description
     - [x] close window when term exit
+    - [ ] possession adapt
  - [x] open file in cli
     - [x] open file not in cwd
  - [ ] rename tab

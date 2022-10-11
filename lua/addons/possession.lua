@@ -34,7 +34,9 @@ require('possession').setup {
             preserve_layout = false,  -- or fun(win): boolean
             match = {
                 floating = true,
-                buftype = {},
+                buftype = {
+                    'terminal',
+                },
                 filetype = {
                     'neo-tree',
                     'neo-tree-popup',
