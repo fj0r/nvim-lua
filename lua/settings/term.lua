@@ -2,13 +2,14 @@ vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent =
 -- Pasting in terminal mode
 vim.cmd [[tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
 
-local new_term = function (action, shell)
+local new_term = function (action, cmd)
     return function (x)
-        vim.cmd(action)
+        vim.api.nvim_command(action)
+        --vim.api.nvim_win_set_height(0, 10) -- set the window height
         local win = vim.api.nvim_get_current_win()
         local buf = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_win_set_buf(win, buf)
-        vim.cmd('terminal '..shell)
+        vim.cmd('terminal '..cmd)
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
         if x then
             vim.api.nvim_chan_send(chan, x.args)
@@ -18,8 +19,8 @@ local new_term = function (action, shell)
     end
 end
 
-local cnew = new_term('new', '')
-local vnew = new_term('vnew', '')
+local cnew = new_term('botright new', '')
+local vnew = new_term('botright vnew', '')
 local xnew = new_term('tabnew', '')
 
 vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew, noremap = true, silent = true })
