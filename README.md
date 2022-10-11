@@ -15,6 +15,7 @@
     - [x] close window when term exit
     - [ ] possession adapt
  - [x] rename tab (lualine)
+    - [x] beautify path
  - [ ] nushell
     - [ ] send '\n'
     - [x] auto tcd

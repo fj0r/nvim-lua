@@ -86,8 +86,11 @@ end, { nargs = '?' })
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function (info)
-        vim.g.aaa = info
-        vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', info.file)
+        vim.api.nvim_tabpage_set_var(
+            vim.api.nvim_get_current_tabpage(),
+            'tabname',
+            vim.fn.substitute(info.file, os.getenv('HOME'), '~', '')
+        )
     end
 })
 
