@@ -1,4 +1,5 @@
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<C-r>', [["]], { noremap = true, silent = true })
 
 local new_term = function (action, shell)
     return function (x)
@@ -35,6 +36,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
         local w = vim.wo[vim.api.nvim_get_current_win()]
         w.number = false
         w.relativenumber = false
+        w.spell = false
         vim.cmd 'startinsert'
     end
 })

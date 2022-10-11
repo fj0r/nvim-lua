@@ -274,7 +274,9 @@ packer.startup(function(use)
             vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
         end
     }
+    --[=[ provided by whichkey
     use 'tversteeg/registers.nvim'
+    --]=]
     use {
         'ojroques/nvim-osc52',
         config = [[require'addons.osc52']],
