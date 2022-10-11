@@ -70,5 +70,24 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    extensions = {'neo-tree'}
+    extensions = {
+        'neo-tree',
+        'mundo',
+        'nvim-dap-ui',
+        'symbols-outline',
+        'quickfix',
+    }
 }
+
+vim.api.nvim_create_user_command('TabRename', function (info)
+    vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', info.args)
+end, { nargs = '?' })
+
+vim.api.nvim_create_autocmd("DirChanged", {
+    pattern = 'tabpage',
+    callback = function (info)
+        vim.g.aaa = info
+        vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', info.file)
+    end
+})
+
