@@ -9,7 +9,7 @@ local new_term = function (action, cmd)
         local win = vim.api.nvim_get_current_win()
         local buf = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_win_set_buf(win, buf)
-        vim.cmd('terminal '..cmd)
+        vim.api.nvim_command('terminal '..cmd)
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
         if x then
             vim.api.nvim_chan_send(chan, x.args..'\n')
@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
         w.number = false
         w.relativenumber = false
         w.spell = false
-        vim.cmd 'startinsert'
+        vim.api.nvim_command('startinsert')
     end
 })
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("TermClose", {
     pattern = 'term://*',
     callback = function (info)
-        -- vim.cmd'quit'
+        vim.api.nvim_input('<cr>')
     end
 })
 
