@@ -11,11 +11,13 @@
  - [x] `new_term`
     - [x] specify shell
     - [x] open term with cmd :X echo hello word
-    - [x] send '\n'
-        - [-] nushell
     - [ ] description
     - [x] close window when term exit
     - [ ] possession adapt
- - [x] open file in cli
-    - [x] open file not in cwd
  - [ ] rename tab
+ - [ ] nushell
+    - [ ] send '\n'
+    - [x] auto tcd
+        - [ ] do not `tcd` when multiple term in current tab
+    - [x] open file in cli
+       - [x] open file not in cwd
