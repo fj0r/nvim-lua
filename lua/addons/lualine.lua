@@ -6,16 +6,8 @@ local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), 
     },
 })
 
-local diag = {
-    'diagnostics',
-    symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
-}
-local lualine_b
-if vim.fn.executable('git') > 0 then
-    lualine_b = {'branch', 'diff', diag}
-else
-    lualine_b = {diag}
-end
+local diag = { 'diagnostics', symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'} }
+local lualine_b = vim.fn.executable('git') > 0 and { 'branch', 'diff', diag } or { diag }
 
 require('lualine').setup {
     options = {
