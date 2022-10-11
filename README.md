@@ -5,8 +5,9 @@
  - [x] M-# (switch tab)
 
  - [x] stdout > output to buffer
- - [ ] bind `<C-r>` to tmode
-    - [x] C-s for `history_menu`
+ - [x] bind `<C-r>` to terminal mode
+    - [ ] lua
+    - [x] shell: C-s for `history_menu`
  - [x] `new_term`
     - [x] specify shell
     - [x] open term with cmd :X echo hello word
