@@ -19,8 +19,10 @@ local new_term = function (action, cmd)
     end
 end
 
-local cnew = new_term('botright new', '')
-local vnew = new_term('botright vnew', '')
+-- botright (full width or height)
+-- rightbelow
+local cnew = new_term('rightbelow new', '')
+local vnew = new_term('rightbelow vnew', '')
 local xnew = new_term('tabnew', '')
 
 vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew, noremap = true, silent = true })

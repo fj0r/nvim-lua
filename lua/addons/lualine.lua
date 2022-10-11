@@ -66,9 +66,9 @@ require('lualine').setup {
         lualine_a = { { 'tabs', mode = 2 } },
         lualine_b = {},
         lualine_c = {},
-        lualine_x = {'buffers'},
+        lualine_x = {},
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {'windows'}
     },
     extensions = {
         'neo-tree',
