@@ -12,7 +12,7 @@ local new_term = function (action, cmd)
         vim.cmd('terminal '..cmd)
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
         if x then
-            vim.api.nvim_chan_send(chan, x.args)
+            vim.api.nvim_chan_send(chan, x.args..'\n')
         else
             vim.api.nvim_chan_send(chan, '')
         end

@@ -11,7 +11,8 @@
  - [x] `new_term`
     - [x] specify shell
     - [x] open term with cmd :X echo hello word
-    - [ ] send '\n'
+    - [x] send '\n'
+        - [ ] nushell
     - [ ] description
  - [x] open file in cli
     - [x] open file not in cwd
