@@ -40,19 +40,20 @@ require('lualine').setup {
         lualine_z = {'location'}
     },
     inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
+        lualine_a = {
             {
                 'filename',
                 file_status = true,
                 path = 1,
                 shorting_target = 40,
-            }
+            },
+            diag
         },
-        lualine_x = {'location'},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {'progress', 'location'}
     },
     tabline = {
         lualine_a = { { 'tabs', mode = 2 } },
