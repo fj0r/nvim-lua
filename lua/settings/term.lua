@@ -20,19 +20,23 @@ local new_term = function (action, cmd)
     end
 end
 
--- botright (full width or height)
--- rightbelow
-local cnew = new_term('rightbelow new', '')
-local vnew = new_term('rightbelow vnew', '')
-local xnew = new_term('tabnew', '')
+local xnew  = new_term('tabnew', '')
+local vnew  = new_term('rightbelow vnew', '')
+local vxnew = new_term('botright vnew', '')
+local cnew  = new_term('rightbelow new', '')
+local cxnew = new_term('botright new', '')
 
-vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew, noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = vnew, noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>xx', '', { callback = xnew, noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xx', '', { callback = xnew,  noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = vnew,  noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xV', '', { callback = vxnew, noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew,  noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xC', '', { callback = cxnew, noremap = true, silent = true })
 
-vim.api.nvim_create_user_command('X', xnew, { nargs = '?' })
-vim.api.nvim_create_user_command('V', vnew, { nargs = '?' })
-vim.api.nvim_create_user_command('C', cnew, { nargs = '?' })
+vim.api.nvim_create_user_command('X',  xnew,  { nargs = '?' })
+vim.api.nvim_create_user_command('V',  vnew,  { nargs = '?' })
+vim.api.nvim_create_user_command('VX', vxnew, { nargs = '?' })
+vim.api.nvim_create_user_command('C',  cnew,  { nargs = '?' })
+vim.api.nvim_create_user_command('CX', cxnew, { nargs = '?' })
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
