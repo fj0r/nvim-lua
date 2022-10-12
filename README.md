@@ -22,3 +22,5 @@
         - [ ] do not `tcd` when multiple term in current tab
     - [x] open file in cli
        - [x] open file not in cwd
+ - [ ] feed
+ - [ ] email

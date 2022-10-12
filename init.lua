@@ -389,7 +389,6 @@ packer.startup(function(use)
 
     use {
         'LhKipp/nvim-nu',
-        --disable = vim.g.nvim_preset == 'core',
         disable = true,
         run = ':TSInstall nu',
         config = [[require'nu'.setup{}]]
@@ -414,10 +413,24 @@ packer.startup(function(use)
 
     use 'seandewar/nvimesweeper'
 
-    -- use {
-    --     "hkupty/nvimux",
-    --     config = [[require'addons.nvimux']],
-    -- }
+    use {
+        "empat94/nvim-rss",
+        disable = vim.g.nvim_preset == 'core',
+        requires = { "tami5/sqlite.lua" },
+        rocks = { "luaexpat" },
+        config = [[require'addons.nvim-rss']],
+        cmd = {
+            'OpenRssView',
+            'FetchFeed',
+            'FetchAllFeeds',
+            'FetchFeedsByCategory',
+            'FetchSelectedFeeds',
+            'ViewFeed',
+            'CleanFeed',
+            'ResetDB',
+            'ImportOpml',
+        },
+    }
 
 end)
 
