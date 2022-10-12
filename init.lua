@@ -145,6 +145,27 @@ packer.startup(function(use)
         "folke/which-key.nvim",
         config = [[require'addons.whichkey']],
     }
+
+    use {
+        'stevearc/overseer.nvim',
+        keys = {
+            {'n', '<leader>ot', 'overseer toggle'},
+            {'n', '<leader>oo', 'overseer open'},
+            {'n', '<leader>or', 'overseer run'},
+        },
+        cmd = {
+            'OverseerRun',
+            'OverseerOpen',
+            'OverseerBuild',
+            'OverseerToggle',
+            'OverseerRunCmd',
+            'OverseerQuickAction',
+            'OverseerTaskAction'
+        },
+        config = [[require'addons.overseer']],
+    }
+
+    --[=[
     use {
         'pianocomposer321/yabs.nvim',
         keys = {{'n', '<leader>j', 'yabs'}},
@@ -156,7 +177,6 @@ packer.startup(function(use)
         config = [[require'addons.yabs']],
     }
 
-    --[=[
     use {
         'ggandor/lightspeed.nvim',
         config = [[require'addons.lightspeed']],

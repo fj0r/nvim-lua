@@ -59,7 +59,7 @@ require('lualine').setup {
         lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 } },
         lualine_b = {},
         lualine_c = {},
-        lualine_x = {},
+        lualine_x = {'overseer'},
         lualine_y = {},
         lualine_z = {'windows'}
     },
@@ -69,6 +69,7 @@ require('lualine').setup {
         'nvim-dap-ui',
         'symbols-outline',
         'quickfix',
+        'overseer',
     }
 }
 
