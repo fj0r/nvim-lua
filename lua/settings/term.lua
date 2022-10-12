@@ -10,6 +10,7 @@ local new_term = function (action, cmd)
         local buf = vim.api.nvim_create_buf(true, true)
         vim.api.nvim_win_set_buf(win, buf)
         vim.api.nvim_command('terminal '..cmd)
+        vim.api.nvim_command('silent tcd! .')
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
         if x then
             vim.api.nvim_chan_send(chan, x.args..'\n')
