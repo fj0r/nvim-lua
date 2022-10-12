@@ -41,13 +41,14 @@ require('lualine').setup {
     },
     inactive_sections = {
         lualine_a = {
+            'diff',
+            diag,
             {
                 'filename',
                 file_status = true,
                 path = 1,
                 shorting_target = 40,
             },
-            diag
         },
         lualine_b = {},
         lualine_c = {},
