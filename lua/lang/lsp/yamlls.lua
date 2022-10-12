@@ -97,7 +97,6 @@ local yaml_origin = require('schemastore').json.schemas {
         'Argo Workflows',
         'AsyncAPI',
         'docker-compose.yml',
-        'func.yaml',
         'GitHub Action',
         'GitHub Workflow',
         'gitlab-ci',
