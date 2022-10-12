@@ -56,7 +56,7 @@ require('lualine').setup {
         lualine_z = {'progress', 'location'}
     },
     tabline = {
-        lualine_a = { { 'tabs', mode = 2 } },
+        lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 } },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
