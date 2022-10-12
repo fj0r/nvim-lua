@@ -324,19 +324,16 @@ packer.startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        --disable = vim.g.nvim_preset == 'core',
         --run = ':TSUpdate',
         config = function () require 'lang.treesitter' end
     }
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        --disable = vim.g.nvim_preset == 'core',
         after = {'nvim-treesitter'},
         requires = {'nvim-treesitter/nvim-treesitter'}
     }
     use {
         'mizlan/iswap.nvim',
-        --disable = vim.g.nvim_preset == 'core',
         after = {'nvim-treesitter'},
         config = [[require'addons.swap']]
     }
@@ -433,6 +430,7 @@ packer.startup(function(use)
 
     use 'seandewar/nvimesweeper'
 
+    --[=[
     use {
         "empat94/nvim-rss",
         disable = vim.g.nvim_preset == 'core',
@@ -451,6 +449,7 @@ packer.startup(function(use)
             'ImportOpml',
         },
     }
+    --]=]
 
 end)
 
