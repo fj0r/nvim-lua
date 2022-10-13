@@ -91,8 +91,7 @@ packer.startup(function(use)
     }
 
     use {
-        -- :%s/fj0r/s1n7ax
-        'fj0r/nvim-window-picker',
+        's1n7ax/nvim-window-picker',
         keys = {{'n', '<leader>w', 'window picker'}},
         module = { 'neo-tree' },
         tag = 'v1.*',
@@ -355,7 +354,7 @@ packer.startup(function(use)
             "MunifTanjim/nui.nvim",
             {
                 -- only needed if you want to use the commands with "_with_window_picker" suffix
-                'fj0r/nvim-window-picker',
+                's1n7ax/nvim-window-picker',
                 tag = "v1.*",
             }
         },
