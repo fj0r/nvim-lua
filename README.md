@@ -17,10 +17,18 @@
  - [x] rename tab (lualine)
     - [x] beautify path
  - [ ] nushell
-    - [ ] send '\n'
+    - [x] send '\n'
     - [x] auto tcd
         - [ ] do not `tcd` when multiple term in current tab
     - [x] open file in cli
        - [x] open file not in cwd
+ - [x] disable redundant plugins
+    - [x] osc52
+    - [x] registres.nvim
+    - [x] yabs -> overseer
+    - [x] nvim-goggleterm.lua
+
+# extension
  - [ ] feed
  - [ ] email
+ - [x] neovide
