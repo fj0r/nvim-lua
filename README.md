@@ -16,6 +16,7 @@
     - [ ] possession adapt
  - [x] rename tab (lualine)
     - [x] beautify path
+    - [x] keybindings (M-r)
  - [ ] nushell
     - [x] send '\n'
     - [x] auto tcd
