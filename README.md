@@ -29,6 +29,8 @@
     - [x] nvim-goggleterm.lua
 
 # extension
+ - [ ] packer lazy load by key, desc for which-key
+    https://github.com/wbthomason/packer.nvim/issues/925
  - [ ] feed
  - [ ] email
  - [x] neovide

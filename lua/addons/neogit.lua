@@ -27,4 +27,5 @@ vim.api.nvim_set_keymap('n', '<Leader>gg', '', {
     callback = function()
         require'neogit'.open({kind='split'})
     end,
+    desc = 'neogit'
 })
