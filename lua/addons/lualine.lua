@@ -74,11 +74,12 @@ require('lualine').setup {
     }
 }
 
+local pin = '#'
 local kb_prompt_rename_tab = {
     noremap = true, silent = true, desc = 'rename tab',
     callback = function ()
         local x = vim.fn.input('rename tab: ', '')
-        vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', x)
+        vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', pin..x)
     end
 }
 
@@ -87,13 +88,18 @@ vim.api.nvim_set_keymap('i', '<M-r>', '', kb_prompt_rename_tab)
 vim.api.nvim_set_keymap('t', '<M-r>', '', kb_prompt_rename_tab)
 
 vim.api.nvim_create_user_command('TabRename', function (info)
-    vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', info.args)
+    vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', pin..info.args)
 end, { nargs = '?' })
 
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function (info)
-        vim.api.nvim_tabpage_set_var(vim.api.nvim_get_current_tabpage(), 'tabname', vim.fn.substitute(info.file, os.getenv('HOME'), '~', ''))
+        local tab = vim.api.nvim_get_current_tabpage()
+        local tn = vim.t.tabname -- and vim.api.nvim_tabpage_get_var(tab, 'tabname')
+        if tn and string.sub(tn, 1, 1) == pin then return end
+
+        local pn = vim.fn.substitute(info.file, os.getenv('HOME'), '~', '')
+        vim.api.nvim_tabpage_set_var(tab, 'tabname', pn)
     end
 })
 

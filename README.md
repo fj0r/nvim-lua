@@ -20,7 +20,8 @@
  - [ ] nushell
     - [x] send '\n'
     - [x] auto tcd
-        - [ ] do not `tcd` when multiple term in current tab
+       - [-] do not `tcd` when multiple term in one tab
+       - [x] pin tabname manually
     - [x] open file in cli
        - [x] open file not in cwd
  - [x] disable redundant plugins
