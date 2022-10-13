@@ -61,6 +61,29 @@ vim.api.nvim_create_autocmd("TermClose", {
     end
 })
 
---[[ nvim remote-send
+
+-- let b:pwd='($PWD)'
+function OppositePwd()
+    local tab = vim.api.nvim_get_current_tabpage()
+    local wins = vim.api.nvim_tabpage_list_wins(tab)
+    local cwin = vim.api.nvim_tabpage_get_win(tab)
+
+    for _, w in ipairs(wins) do
+        if cwin ~= w then
+            local b = vim.api.nvim_win_get_buf(w)
+            local pwd = vim.b[b].pwd
+            if pwd then return pwd end
+            print(pwd)
+        end
+    end
+end
+
+--[[
+-- nvim remote-send
 nvim --headless --noplugin --server $NVIM --remote-send '<cmd>tabnew ./init.lua<cr>'
+
+-- tcd hook
+if 'NVIM' in (env).name {
+    nvim --headless --noplugin --server $env.NVIM --remote-send $"<cmd>silent tcd! ($after)|let b:pwd='($after)'<cr>"
+}
 --]]
