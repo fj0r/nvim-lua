@@ -432,6 +432,11 @@ packer.startup(function(use)
 
     use 'seandewar/nvimesweeper'
 
+    use {
+        'rafcamlet/nvim-luapad',
+        disable = vim.g.nvim_preset == 'core',
+        cmd = { 'Luapad', 'LuaRun' },
+    }
     --[=[
     use {
         "empat94/nvim-rss",
