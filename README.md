@@ -27,6 +27,7 @@
     - [x] registres.nvim
     - [x] yabs -> overseer
     - [x] nvim-goggleterm.lua
+ - [x] default [No Name] buffer -> terminal (possession.lua)
 
 # extension
  - [ ] packer lazy load by key, desc for which-key

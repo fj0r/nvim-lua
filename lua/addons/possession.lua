@@ -108,6 +108,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
             else
                 session.save(name)
             end
+        else
+            vim.api.nvim_command('terminal')
         end
     end
 })
