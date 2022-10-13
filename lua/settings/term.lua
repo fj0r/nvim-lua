@@ -73,7 +73,6 @@ function OppositePwd()
             local b = vim.api.nvim_win_get_buf(w)
             local pwd = vim.b[b].pwd
             if pwd then return pwd end
-            print(pwd)
         end
     end
 end

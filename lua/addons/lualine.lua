@@ -94,12 +94,12 @@ end, { nargs = '?' })
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function (info)
-        local tab = vim.api.nvim_get_current_tabpage()
-        local tn = vim.t.tabname -- and vim.api.nvim_tabpage_get_var(tab, 'tabname')
+        local tx = vim.api.nvim_get_current_tabpage()
+        local tn = vim.t[tx].tabname
         if tn and string.sub(tn, 1, 1) == pin then return end
 
         local pn = vim.fn.substitute(info.file, os.getenv('HOME'), '~', '')
-        vim.api.nvim_tabpage_set_var(tab, 'tabname', pn)
+        vim.t[tx].tabname = pn
     end
 })
 

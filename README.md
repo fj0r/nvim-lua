@@ -24,6 +24,7 @@
        - [x] pin tabname manually
     - [x] open file in cli
        - [x] open file not in cwd
+    - [x] opposite pwd
  - [x] disable redundant plugins
     - [x] osc52
     - [x] registres.nvim
