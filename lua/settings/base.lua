@@ -86,7 +86,20 @@ a.nvim_create_autocmd("ColorScheme", {
         c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
     end
 })
-c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
+a.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    callback = function (ctx)
+        local name = vim.api.nvim_buf_get_name(ctx.buf)
+        if name == '' then return end
+        --local ft = vim.bo[ctx.buf].filetype
+        --if ft == 'gitcommit' then return end
+        c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
+    end
+})
+a.nvim_create_autocmd("BufWinLeave", {
+    pattern = "*",
+    command = [[call clearmatches()]]
+})
 
 -- Change preview window location
 g.splitbelow = true
