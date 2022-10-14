@@ -76,7 +76,7 @@ require('lualine').setup {
 
 local pin = '#'
 local set_current_tabname = function (name)
-    vim.t[vim.api.nvim_get_current_tabpage()].tabname = pin..name
+    vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin..name
 end
 
 local kb_prompt_rename_tab = {
