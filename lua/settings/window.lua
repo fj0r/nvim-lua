@@ -80,12 +80,12 @@ vim.api.nvim_create_user_command('WinResize',
     { nargs = '?' , desc = 'resize window by double digit'}
 )
 
-m('', '<M-w>', '', { noremap = true, silent = true,
+m('', '<M-h>', '', { noremap = true, silent = true,
     callback = function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count)
     end
 })
-m('', '<M-h>', '', { noremap = true, silent = true,
+m('', '<M-v>', '', { noremap = true, silent = true,
     callback = function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
     end

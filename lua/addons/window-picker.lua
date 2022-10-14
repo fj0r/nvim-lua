@@ -34,7 +34,7 @@ picker.setup {
             filetype = { 'NvimTree', "neo-tree", "neo-tree-popup", "notify" },
 
             -- if the buffer type is one of following, the window will be ignored
-            buftype = { 'terminal' },
+            buftype = {},
         },
 
         -- filter using window options
@@ -61,7 +61,10 @@ picker.setup {
     other_win_hl_color = '#44633f',
 }
 
-vim.keymap.set("n", "<leader>w", function()
+local pick_win = function()
     local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
     vim.api.nvim_set_current_win(picked_window_id)
-end, { desc = "Pick a window" })
+end
+vim.api.nvim_set_keymap("n", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })
+vim.api.nvim_set_keymap("i", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })
+vim.api.nvim_set_keymap("t", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })

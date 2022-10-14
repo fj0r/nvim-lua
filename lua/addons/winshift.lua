@@ -24,7 +24,6 @@ require("winshift").setup({
                     "neo-tree-popup",
                 },
                 buftype = {
-                    "terminal",
                     "quickfix",
                 },
                 bufname = {
