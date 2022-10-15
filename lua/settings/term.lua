@@ -64,8 +64,27 @@ if 'NVIM' in (env).name {
 }
 --]]
 function HookPwdChanged(after, before)
-    vim.api.nvim_command('silent tcd! '..after)
     vim.b.pwd = after
+
+    local all_paths = { }
+    for dir in vim.fs.parents(after) do
+        table.insert(all_paths, dir)
+    end
+
+    local is_git = vim.fn.isdirectory(after.. "/.git") == 1
+    local under_git
+    if not is_git then
+        for _, dir in ipairs(all_paths) do
+            if vim.fn.isdirectory(dir .. "/.git") == 1 then
+                under_git = dir
+                break
+            end
+        end
+    end
+    -- require('notify').notify('cwd: '..after..', is_git: ' .. tostring(is_git).. ', under_git :'.. tostring(under_git),'info', {time = 1})
+    if is_git or not under_git then
+        vim.api.nvim_command('silent tcd! '..after)
+    end
 end
 
 -- let b:pwd='($PWD)'
