@@ -7,8 +7,6 @@ local new_term = function (action, cmd)
         vim.api.nvim_command(action)
         --vim.api.nvim_win_set_height(0, 10) -- set the window height
         local buf = vim.api.nvim_get_current_buf()
-        --local buf = vim.api.nvim_create_buf(true, true)
-        --vim.api.nvim_win_set_buf(win, buf)
         vim.api.nvim_command('terminal '..cmd)
         vim.api.nvim_command('silent tcd! .')
         local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
@@ -83,4 +81,13 @@ function OppositePwd()
             if pwd then return pwd end
         end
     end
+end
+
+function ReadTempDrop(path, action)
+    vim.api.nvim_command(action or 'botright vnew')
+    local win = vim.api.nvim_get_current_win()
+    local buf = vim.api.nvim_create_buf(true, true)
+    vim.api.nvim_win_set_buf(win, buf)
+    vim.api.nvim_command('read '..path)
+    vim.fn.delete(path)
 end
