@@ -69,7 +69,7 @@ local session_excluded = function()
     if vim.fn.bufnr("$") > 2 then return true end
 end
 
-local root = require'vcs'.root
+local vcs_root = require'vcs'.root
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     nested = true,
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         end
         -- if session_excluded() then return end
 
-        local root_dir = root(vim.fn.getcwd(), 2)
+        local root_dir = vcs_root(vim.fn.getcwd(), 2)
 
         vim.g.session_root_dir = root_dir
         if root_dir then

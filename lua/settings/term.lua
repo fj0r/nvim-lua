@@ -63,11 +63,11 @@ if 'NVIM' in (env).name {
     nvim --headless --noplugin --server $env.NVIM --remote-send $"<cmd>lua HookPwdChanged\('($after)', '($before)')<cr>"
 }
 --]]
-local root = require'vcs'.root
+local vcs_root = require'vcs'.root
 function HookPwdChanged(after, before)
     vim.b.pwd = after
 
-    local git_dir = root(after, nil)
+    local git_dir = vcs_root(after, nil)
     vim.api.nvim_command('silent tcd! '..(git_dir or after))
 end
 

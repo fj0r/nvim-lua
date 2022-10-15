@@ -23,6 +23,7 @@ M.root = function (path, relative)
     if not path then return end
 
     local p = M.find(path)
+    if not p then return end
 
     if not relative or relative == 0 then
         return p
