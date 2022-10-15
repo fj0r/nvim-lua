@@ -61,7 +61,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 --]]
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local lspconfig = require'lspconfig'
 lspconfig.util.default_config = vim.tbl_extend("force",
