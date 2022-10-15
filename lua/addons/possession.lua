@@ -69,6 +69,7 @@ local session_excluded = function()
     if vim.fn.bufnr("$") > 2 then return true end
 end
 
+local root = require'vcs'.root
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     nested = true,
@@ -79,23 +80,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         end
         -- if session_excluded() then return end
 
-        local cwd = vim.fn.getcwd()
-        local all_paths = { cwd }
-        for dir in vim.fs.parents(cwd) do
-            table.insert(all_paths, dir)
-        end
-
-        local root_dir
-        local HOME = vim.fn.getenv("HOME")
-
-        for _, dir in ipairs(all_paths) do
-            if not root_dir and vim.fn.isdirectory(dir .. "/.git") == 1 then
-              root_dir = dir
-            end
-            if root_dir and HOME == dir then
-                root_dir = string.sub(root_dir, #HOME + 2, -1)
-            end
-        end
+        local root_dir = root(vim.fn.getcwd(), 2)
 
         vim.g.session_root_dir = root_dir
         if root_dir then
