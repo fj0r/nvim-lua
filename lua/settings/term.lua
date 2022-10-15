@@ -60,6 +60,15 @@ vim.api.nvim_create_autocmd("TermClose", {
     end
 })
 
+--[[ tcd hook
+if 'NVIM' in (env).name {
+    nvim --headless --noplugin --server $env.NVIM --remote-send $"<cmd>lua HookPwdChanged\('($after)', '($before)')<cr>"
+}
+--]]
+function HookPwdChanged(after, before)
+    vim.api.nvim_command('silent tcd! '..after)
+    vim.b.pwd = after
+end
 
 -- let b:pwd='($PWD)'
 function OppositePwd()
@@ -75,13 +84,3 @@ function OppositePwd()
         end
     end
 end
-
---[[
--- nvim remote-send
-nvim --headless --noplugin --server $NVIM --remote-send '<cmd>tabnew ./init.lua<cr>'
-
--- tcd hook
-if 'NVIM' in (env).name {
-    nvim --headless --noplugin --server $env.NVIM --remote-send $"<cmd>silent tcd! ($after)|let b:pwd='($after)'<cr>"
-}
---]]
