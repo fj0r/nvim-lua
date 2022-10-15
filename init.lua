@@ -1,5 +1,5 @@
 vim.g.config_root   = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
-vim.g.data_root     = os.getenv('HOME') .. '/.vim.data'
+vim.g.data_root     = os.getenv('HOME') .. '/.nvim'
 vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
 vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 
