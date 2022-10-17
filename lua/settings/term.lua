@@ -72,6 +72,19 @@ function HookPwdChanged(after, before)
     vim.api.nvim_command('silent tcd! '..(git_dir or after))
 end
 
+--[[ $env.EDITOR
+#!/usr/bin/env nu
+
+def main [file: string] {
+    if 'NVIM' in (env).name {
+        let cmd = $"<cmd>vsplit ($file)<cr>"
+        nvim --headless --noplugin --server $env.NVIM --remote-send $cmd
+    } else {
+        nvim $file
+    }
+}
+--]]
+
 -- let b:pwd='($PWD)'
 function OppositePwd()
     local tab = vim.api.nvim_get_current_tabpage()

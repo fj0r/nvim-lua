@@ -32,6 +32,8 @@
     - [x] yabs -> overseer
     - [x] nvim-goggleterm.lua
  - [x] default [No Name] buffer -> terminal (possession.lua)
+ - [x] $env.EDITOR
+    - [ ] `git_COMMIT`
 
 # extension
  - [ ] packer lazy load by key, desc for which-key
