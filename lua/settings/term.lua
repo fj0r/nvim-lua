@@ -1,6 +1,7 @@
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
 -- Pasting in terminal mode
 vim.cmd [[tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
+--vim.api.nvim_set_keymap('t', '<C-i>', )
 
 local new_term = function (action, cmd)
     return function (ctx)

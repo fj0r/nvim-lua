@@ -41,21 +41,22 @@ m('', '<C-k>', '<C-W>k', op2)
 m('', '<C-h>', '<C-W>h', op2)
 m('', '<C-l>', '<C-W>l', op2)
 
-m('i', '<C-j>', '<cmd>wincmd j<cr>', op2)
-m('i', '<C-k>', '<cmd>wincmd k<cr>', op2)
-m('i', '<C-h>', '<cmd>wincmd h<cr>', op2)
-m('i', '<C-l>', '<cmd>wincmd l<cr>', op2)
+             -- '<cmd>wincmd j<cr>'
+m('i', '<C-j>', "<C-\\><C-N><C-w>j", op2)
+m('i', '<C-k>', "<C-\\><C-N><C-w>k", op2)
+m('i', '<C-h>', "<C-\\><C-N><C-w>h", op2)
+m('i', '<C-l>', "<C-\\><C-N><C-w>l", op2)
 
-m('t', '<C-j>', '<cmd>wincmd j<cr>', op2)
-m('t', '<C-k>', '<cmd>wincmd k<cr>', op2)
-m('t', '<C-h>', '<cmd>wincmd h<cr>', op2)
-m('t', '<C-l>', '<cmd>wincmd l<cr>', op2)
+m('t', '<C-j>', "<C-\\><C-N><C-w>j", op2)
+m('t', '<C-k>', "<C-\\><C-N><C-w>k", op2)
+m('t', '<C-h>', "<C-\\><C-N><C-w>h", op2)
+m('t', '<C-l>', "<C-\\><C-N><C-w>l", op2)
 
 ------ window motion
-m('', '<C-S-j>', '<C-W><S-j>', op2)
-m('', '<C-S-k>', '<C-W><S-k>', op2)
-m('', '<C-S-h>', '<C-W><S-h>', op2)
-m('', '<C-S-l>', '<C-W><S-l>', op2)
+m('', '<M-j>', '<C-W><S-j>', op2)
+m('', '<M-k>', '<C-W><S-k>', op2)
+m('', '<M-h>', '<C-W><S-h>', op2)
+m('', '<M-l>', '<C-W><S-l>', op2)
 
 ------ window resize
 -- use double digits as arg. ones place for width, tens place for height
@@ -80,12 +81,14 @@ vim.api.nvim_create_user_command('WinResize',
     { nargs = '?' , desc = 'resize window by double digit'}
 )
 
-m('', '<M-h>', '', { noremap = true, silent = true,
+m('', '<leader>wh', '', { noremap = true, silent = true,
+    desc = 'window resize horizontal',
     callback = function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count)
     end
 })
-m('', '<M-v>', '', { noremap = true, silent = true,
+m('', '<leader>wv', '', { noremap = true, silent = true,
+    desc = 'window require vertical',
     callback = function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
     end

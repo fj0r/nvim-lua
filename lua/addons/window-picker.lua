@@ -65,6 +65,8 @@ local pick_win = function()
     local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
     vim.api.nvim_set_current_win(picked_window_id)
 end
+
+vim.api.nvim_set_keymap("", "<leader>ww", '', { callback = pick_win, desc = "Pick a window" })
 vim.api.nvim_set_keymap("n", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })
 vim.api.nvim_set_keymap("i", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })
 vim.api.nvim_set_keymap("t", "<M-w>", '', { callback = pick_win, desc = "Pick a window" })

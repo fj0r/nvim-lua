@@ -101,8 +101,8 @@ packer.startup(function(use)
     use {
         'sindrets/winshift.nvim',
         keys = {
-            {'n', '<C-w>x', 'winshift'},
-            {'n', '<C-w><C-x>', 'winswap'},
+            {'n', '<leader>ws', 'winshift'},
+            {'n', '<leader>wx', 'winswap'},
         },
         config = [[require'addons.winshift']],
     }
