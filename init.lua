@@ -295,7 +295,7 @@ packer.startup(function(use)
     }
     use {
         'tversteeg/registers.nvim',
-        disable = true,  --whichkey
+        config = [[require'registers'.setup()]]
     }
 
     use {
