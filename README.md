@@ -33,8 +33,9 @@
     - [x] yabs -> overseer
     - [x] nvim-goggleterm.lua
  - [x] default [No Name] buffer -> terminal (possession.lua)
+ - [ ] clean quited buffer
  - [x] $env.EDITOR
-    - [ ] `git_COMMIT` (remote-send-wait)
+    - [ ] `git_COMMIT` (remote-wait)
 
 # extension
  - [ ] packer lazy load by key, desc for which-key
