@@ -13,7 +13,7 @@ local keymaps = {
     ['<leader>gb']        = "<cmd>lua tele.git_branches()<cr>",
     ['<leader>gs']        = "<cmd>lua tele.git_status()<cr>",
     ['<leader>go']        = "<cmd>lua tele.git_bcommits()<cr>",
-    ['<leader>b']         = "<cmd>lua tele.buffers()<cr>",
+    ['<leader>b']         = "<cmd>lua tele.buffers({show_all_buffers=false, ignore_current_buffer=true, sort_mru=true})<cr>",
     ['<leader>[']         = "<cmd>lua tele.builtin()<cr>",
     ['<leader>]']         = "<cmd>lua tele.help_tags()<cr>",
 }

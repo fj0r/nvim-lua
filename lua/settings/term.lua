@@ -48,19 +48,23 @@ vim.api.nvim_create_user_command('VX', vxnew, { nargs = '?' , desc = 'new term v
 vim.api.nvim_create_user_command('C',  cnew,  { nargs = '?' , desc = 'new term'})
 vim.api.nvim_create_user_command('CX', cxnew, { nargs = '?' , desc = 'new term ext'})
 
+local prepare_term = function ()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.spell = false
+    vim.api.nvim_command('startinsert')
+end
+
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
-    callback = function ()
-        local wo = vim.wo[vim.api.nvim_get_current_win()]
-        wo.number = false
-        wo.relativenumber = false
-        wo.spell = false
-        vim.api.nvim_command('startinsert')
-    end
+    callback = prepare_term,
 })
+
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = 'term://*',
-    command = 'startinsert'
+    callback = function ()
+        vim.api.nvim_command('startinsert')
+    end
 })
 
 vim.api.nvim_create_autocmd("TermClose", {
