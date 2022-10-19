@@ -52,6 +52,11 @@ local prepare_term = function ()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.spell = false
+    vim.opt_local.ruler = false
+    vim.opt_local.showcmd = false
+    vim.opt_local.mouse = ''
+    vim.opt_local.cursorline = false
+    vim.opt_local.lazyredraw = true
     vim.api.nvim_command('startinsert')
 end
 
@@ -62,9 +67,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = 'term://*',
-    callback = function ()
-        vim.api.nvim_command('startinsert')
-    end
+    callback = prepare_term,
 })
 
 vim.api.nvim_create_autocmd("TermClose", {

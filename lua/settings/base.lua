@@ -7,12 +7,12 @@ local ex         = vim.api.nvim_exec
 o.compatible     = false
 o.shortmess      = 'aoOtTWAIcF'
 
-o.errorbells     = false
-o.visualbell     = false
+o.errorbells     = true
+o.visualbell     = true
 o.laststatus     = 2
 o.showtabline    = 1
 o.cmdheight      = 0
-o.wildmenu       = true
+o.wildmenu       = false
 
 o.confirm        = true
 o.foldlevel      = 9
@@ -20,11 +20,10 @@ o.virtualedit    = 'block'
 
 o.number         = true
 o.relativenumber = true
-o.ruler          = true
-o.showmatch      = true -- 显示匹配的括号
-o.showcmd        = true -- 输入命令回显
+o.ruler          = false
+o.showmatch      = true
+o.showcmd        = false
 
--- c 'syntax on' -- 自动语法高亮
 
 o.display        = o.display .. ',lastline' -- Always try to show a paragraph’s last line.
 o.linebreak      = true -- Avoid wrapping a line in the middle of a word.
