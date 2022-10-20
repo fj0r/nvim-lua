@@ -55,6 +55,7 @@ local prepare_term = function ()
     vim.opt_local.ruler = false
     vim.opt_local.showcmd = false
     vim.opt_local.mouse = ''
+    --vim.opt_local.hlsearch = false
     vim.opt_local.cursorline = false
     vim.opt_local.lazyredraw = true
     vim.api.nvim_command('startinsert')

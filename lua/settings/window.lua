@@ -1,4 +1,5 @@
 local m   = vim.api.nvim_set_keymap
+local op1 = { noremap = true }
 local op2 = { noremap = true, silent = true }
 
 ------ tab switching
@@ -13,27 +14,27 @@ m('', '<M-8>', '8gt', op2)
 m('', '<M-9>', '9gt', op2)
 m('', '<M-0>', '<cmd>tablast<cr>', op2)
 
-m('i', '<M-1>', '<cmd>tabn 1<cr>', op2)
-m('i', '<M-2>', '<cmd>tabn 2<cr>', op2)
-m('i', '<M-3>', '<cmd>tabn 3<cr>', op2)
-m('i', '<M-4>', '<cmd>tabn 4<cr>', op2)
-m('i', '<M-5>', '<cmd>tabn 5<cr>', op2)
-m('i', '<M-6>', '<cmd>tabn 6<cr>', op2)
-m('i', '<M-7>', '<cmd>tabn 7<cr>', op2)
-m('i', '<M-8>', '<cmd>tabn 8<cr>', op2)
-m('i', '<M-9>', '<cmd>tabn 9<cr>', op2)
-m('i', '<M-0>', '<cmd>tablast<cr>', op2)
+m('i', '<M-1>', '<cmd>silent! tabn 1<cr>', op1)
+m('i', '<M-2>', '<cmd>silent! tabn 2<cr>', op1)
+m('i', '<M-3>', '<cmd>silent! tabn 3<cr>', op1)
+m('i', '<M-4>', '<cmd>silent! tabn 4<cr>', op1)
+m('i', '<M-5>', '<cmd>silent! tabn 5<cr>', op1)
+m('i', '<M-6>', '<cmd>silent! tabn 6<cr>', op1)
+m('i', '<M-7>', '<cmd>silent! tabn 7<cr>', op1)
+m('i', '<M-8>', '<cmd>silent! tabn 8<cr>', op1)
+m('i', '<M-9>', '<cmd>silent! tabn 9<cr>', op1)
+m('i', '<M-0>', '<cmd>silent! tablast<cr>', op1)
 
-m('t', '<M-1>', '<cmd>tabn 1<cr>', op2)
-m('t', '<M-2>', '<cmd>tabn 2<cr>', op2)
-m('t', '<M-3>', '<cmd>tabn 3<cr>', op2)
-m('t', '<M-4>', '<cmd>tabn 4<cr>', op2)
-m('t', '<M-5>', '<cmd>tabn 5<cr>', op2)
-m('t', '<M-6>', '<cmd>tabn 6<cr>', op2)
-m('t', '<M-7>', '<cmd>tabn 7<cr>', op2)
-m('t', '<M-8>', '<cmd>tabn 8<cr>', op2)
-m('t', '<M-9>', '<cmd>tabn 9<cr>', op2)
-m('t', '<M-0>', '<cmd>tablast<cr>', op2)
+m('t', '<M-1>', '<cmd>silent! tabn 1<cr>', op1)
+m('t', '<M-2>', '<cmd>silent! tabn 2<cr>', op1)
+m('t', '<M-3>', '<cmd>silent! tabn 3<cr>', op1)
+m('t', '<M-4>', '<cmd>silent! tabn 4<cr>', op1)
+m('t', '<M-5>', '<cmd>silent! tabn 5<cr>', op1)
+m('t', '<M-6>', '<cmd>silent! tabn 6<cr>', op1)
+m('t', '<M-7>', '<cmd>silent! tabn 7<cr>', op1)
+m('t', '<M-8>', '<cmd>silent! tabn 8<cr>', op1)
+m('t', '<M-9>', '<cmd>silent! tabn 9<cr>', op1)
+m('t', '<M-0>', '<cmd>silent! tablast<cr>', op1)
 
 ------ window switching
 m('', '<C-j>', '<C-W>j', op2)
