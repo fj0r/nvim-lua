@@ -9,6 +9,7 @@ local sync = function (url)
         print('sync'..' ['..url..']'..file)
         local cmd = {'curl -sSL', url, '>', file }
         local out = io.popen(table.concat(cmd, ' '))
+        if out == nil then return end
         out:close()
         vim.o.cmdheight = 0
     end

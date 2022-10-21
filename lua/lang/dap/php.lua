@@ -11,7 +11,7 @@ xdebug.remote_port=9000
 dap.adapters.php = {
     type = 'executable',
     command = 'node',
-    args = { '/opt/vscode-php-debug/out/phpDebug.js' }
+    args = { '/opt/language-server/vscode-php-debug/out/phpDebug.js' }
 }
 
 dap.configurations.php = {
