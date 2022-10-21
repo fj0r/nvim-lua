@@ -3,7 +3,7 @@ local lspconfig = require'lspconfig'
 
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 local lldb_vscode_bin
-for k, v in ipairs{14, 11} do
+for _, v in ipairs{14, 11} do
     lldb_vscode_bin = 'lldb-vscode-' .. v
     if vim.fn.executable(lldb_vscode_bin) == 1 then
         break
