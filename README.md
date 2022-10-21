@@ -8,7 +8,7 @@
  - [x] bind `<C-r>` to terminal mode
     - [x] lua
     - [x] shell: C-s for `history_menu`
-    - [ ] use registers
+    - [x] use registers
  - [x] `new_term`
     - [x] specify shell
     - [x] open term with cmd :X echo hello word
@@ -33,7 +33,7 @@
     - [x] yabs -> overseer
     - [x] nvim-goggleterm.lua
  - [x] default [No Name] buffer -> terminal (possession.lua)
- - [ ] clean quited buffer
+ - [-] clean quited buffer
  - [x] $env.EDITOR
     - [ ] `git_COMMIT` (remote-wait)
 
@@ -44,3 +44,4 @@
  - [ ] email
  - [x] neovide
  - [ ] hop target include `[]{}<>'",;#`
+ - [ ] term get actual line (vim.fn.line('$') get buffer line)

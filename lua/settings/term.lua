@@ -58,7 +58,13 @@ local prepare_term = function ()
     --vim.opt_local.hlsearch = false
     vim.opt_local.cursorline = false
     vim.opt_local.lazyredraw = true
-    vim.api.nvim_command('startinsert')
+    local curr_line = vim.fn.line('.')
+    local last_line = vim.fn.line('$')
+    local window_line = vim.fn.line('w$') - vim.fn.line('w0')
+    -- :FIXME: curr_line == <term_last_line>
+    if curr_line == last_line or curr_line < window_line then
+        vim.api.nvim_command('startinsert')
+    end
 end
 
 vim.api.nvim_create_autocmd("TermOpen", {
