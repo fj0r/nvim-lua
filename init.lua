@@ -192,7 +192,10 @@ packer.startup(function(use)
         },
         config = [[require'addons.hop']],
     }
-    use 'kevinhwang91/nvim-hlslens'
+    use {
+        'kevinhwang91/nvim-hlslens',
+        config = [[require'hlslens'.setup()]]
+    }
     use {
         'chaoren/vim-wordmotion',
         disable = true,
