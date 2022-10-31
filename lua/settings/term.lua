@@ -43,10 +43,10 @@ vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew,  noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>xC', '', { callback = cxnew, noremap = true, silent = true, desc = 'new term ext' })
 
 vim.api.nvim_create_user_command('X',  xnew,  { nargs = '?' , desc = 'new term tab'})
-vim.api.nvim_create_user_command('V',  vnew,  { nargs = '?' , desc = 'new term vertical'})
-vim.api.nvim_create_user_command('VX', vxnew, { nargs = '?' , desc = 'new term vertical ext'})
-vim.api.nvim_create_user_command('C',  cnew,  { nargs = '?' , desc = 'new term'})
-vim.api.nvim_create_user_command('CX', cxnew, { nargs = '?' , desc = 'new term ext'})
+vim.api.nvim_create_user_command('Xv',  vnew,  { nargs = '?' , desc = 'new term vertical'})
+vim.api.nvim_create_user_command('XV', vxnew, { nargs = '?' , desc = 'new term vertical ext'})
+vim.api.nvim_create_user_command('Xc',  cnew,  { nargs = '?' , desc = 'new term'})
+vim.api.nvim_create_user_command('XC', cxnew, { nargs = '?' , desc = 'new term ext'})
 
 local prepare_term = function ()
     vim.opt_local.number = false
