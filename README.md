@@ -45,3 +45,4 @@
  - [x] neovide
  - [ ] hop target include `[]{}<>'",;#`
  - [ ] term get actual line (vim.fn.line('$') get buffer line)
+ - [ ] lualine: hide tabline when number of tabs is lower than two
