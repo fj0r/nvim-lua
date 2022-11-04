@@ -89,7 +89,7 @@ m('', '<leader>wh', '', { noremap = true, silent = true,
     end
 })
 m('', '<leader>wv', '', { noremap = true, silent = true,
-    desc = 'window require vertical',
+    desc = 'window resize vertical',
     callback = function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
     end
