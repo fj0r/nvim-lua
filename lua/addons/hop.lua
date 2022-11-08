@@ -13,7 +13,7 @@ end
 
 require'hop'.setup {
  -- keys = 'asdghklqwertyuiopzxcvbnmfj'
-    keys = 'asdfjkl;qweruiopzxcv'
+    keys = 'asdfjkl;qweruiopzxcv',
  -- keys = 'ajskdlf;quwieorpzxcv'
 }
 

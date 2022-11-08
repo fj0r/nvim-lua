@@ -43,6 +43,10 @@
  - [ ] feed
  - [ ] email
  - [x] neovide
- - [ ] hop target include `[]{}<>'",;#`
+ - [ ] hop target include punctuation `[]{}<>'",;#`
  - [ ] term get actual line (vim.fn.line('$') get buffer line)
  - [ ] lualine: hide tabline when number of tabs is lower than two
+ - [x] neotree: copy path
+ - [ ] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
+
+

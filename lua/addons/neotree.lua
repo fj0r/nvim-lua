@@ -129,6 +129,16 @@ require("neo-tree").setup({
             --  config = {
             --    show_path = "none" -- "none", "relative", "absolute"
             --  }
+            ["Y"] = function(state)
+                local node = state.tree:get_node()
+                vim.fn.setreg('"', node.name, 'c')
+            end,
+            ["<C-y>"] = function(state)
+                local node = state.tree:get_node()
+                local full_path = node.path
+                local relative_path = full_path:sub(#state.path + 2)
+                vim.fn.setreg('"', relative_path, 'c')
+            end,
             --}
             ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
             ["q"] = "close_window",
