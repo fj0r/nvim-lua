@@ -186,9 +186,9 @@ packer.startup(function(use)
         'phaazon/hop.nvim',
         branch = 'v2',
         keys = {
-            {'n', '<leader><leader>', 'hop hint_words'},
-            {'n', '<leader>c', 'hop hint_char1'},
-            {'n', '<leader>l', 'hop hint_lines_skip_whitespace'},
+            {'n', ';', 'hop hint_words'},
+            {'n', 'f', 'hop hint_char1'},
+            {'n', 'F', 'hop hint_lines_skip_whitespace'},
         },
         config = [[require'addons.hop']],
     }
