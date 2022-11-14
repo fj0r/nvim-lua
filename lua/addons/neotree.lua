@@ -131,13 +131,17 @@ require("neo-tree").setup({
             --  }
             ["Y"] = function(state)
                 local node = state.tree:get_node()
-                vim.fn.setreg('"', node.name, 'c')
+                local full_path = node.path
+                vim.fn.setreg('"', full_path)
+                vim.fn.setreg('1', full_path)
+                vim.fn.setreg('+', full_path)
             end,
             ["<C-y>"] = function(state)
                 local node = state.tree:get_node()
-                local full_path = node.path
-                local relative_path = full_path:sub(#state.path + 2)
-                vim.fn.setreg('"', relative_path, 'c')
+                local relative_path = node.path:sub(#state.path + 2)
+                vim.fn.setreg('"', relative_path)
+                vim.fn.setreg('1', relative_path)
+                vim.fn.setreg('+', relative_path)
             end,
             --}
             ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
