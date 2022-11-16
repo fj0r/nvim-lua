@@ -1,3 +1,5 @@
+local tx = require('termx')
+
 require('possession').setup {
     session_dir = vim.g.data_root.."/possession",
     -- session_dir = (Path:new(vim.fn.stdpath('data')) / 'possession'):absolute(),
@@ -94,7 +96,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
                 session.save(name)
             end
         else
-            vim.api.nvim_command('terminal')
+            tx.n()
         end
     end
 })

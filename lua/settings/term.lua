@@ -12,74 +12,46 @@ vim.api.nvim_set_keymap('t', '<C-r>', '', {
         vim.api.nvim_chan_send(chan, t)
     end
 })
-
-
-local new_term = function (action, cmd)
-    return function (ctx)
-        vim.api.nvim_command(action)
-        --vim.api.nvim_win_set_height(0, 10) -- set the window height
-        local buf = vim.api.nvim_get_current_buf()
-        vim.api.nvim_command('terminal '..cmd)
-        vim.api.nvim_command('silent tcd! .')
-        local chan = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
-        if ctx then
-            vim.api.nvim_chan_send(chan, ctx.args..'\n')
-        else
-            vim.api.nvim_chan_send(chan, '')
-        end
+vim.api.nvim_set_keymap('t', '<C-d>', '', {
+    noremap = true,
+    silent = true,
+    callback = function ()
+        local win = vim.api.nvim_get_current_win()
+        vim.api.nvim_win_hide(win)
     end
-end
+})
 
-local xnew  = new_term('tabnew', '')
-local vnew  = new_term('rightbelow vnew', '')
-local vxnew = new_term('botright vnew', '')
-local cnew  = new_term('rightbelow new', '')
-local cxnew = new_term('botright new', '')
+local tx = require('termx')
 
-vim.api.nvim_set_keymap('n', '<leader>xx', '', { callback = xnew,  noremap = true, silent = true, desc = 'new term tab' })
-vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = vnew,  noremap = true, silent = true, desc = 'new term vertical' })
-vim.api.nvim_set_keymap('n', '<leader>xV', '', { callback = vxnew, noremap = true, silent = true, desc = 'new term vertical ext' })
-vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = cnew,  noremap = true, silent = true, desc = 'new term' })
-vim.api.nvim_set_keymap('n', '<leader>xC', '', { callback = cxnew, noremap = true, silent = true, desc = 'new term ext' })
+vim.api.nvim_set_keymap('n', '<leader>xx', '', { callback = tx.t, noremap = true, silent = true, desc = 'new term tab' })
+vim.api.nvim_set_keymap('n', '<leader>xv', '', { callback = tx.v, noremap = true, silent = true, desc = 'new term vertical' })
+vim.api.nvim_set_keymap('n', '<leader>xV', '', { callback = tx.V, noremap = true, silent = true, desc = 'new term vertical ext' })
+vim.api.nvim_set_keymap('n', '<leader>xc', '', { callback = tx.c, noremap = true, silent = true, desc = 'new term' })
+vim.api.nvim_set_keymap('n', '<leader>xC', '', { callback = tx.C, noremap = true, silent = true, desc = 'new term ext' })
 
-vim.api.nvim_create_user_command('X',  xnew,  { nargs = '?' , desc = 'new term tab'})
-vim.api.nvim_create_user_command('Xv',  vnew,  { nargs = '?' , desc = 'new term vertical'})
-vim.api.nvim_create_user_command('XV', vxnew, { nargs = '?' , desc = 'new term vertical ext'})
-vim.api.nvim_create_user_command('Xc',  cnew,  { nargs = '?' , desc = 'new term'})
-vim.api.nvim_create_user_command('XC', cxnew, { nargs = '?' , desc = 'new term ext'})
+vim.api.nvim_create_user_command('X',  tx.t, { nargs = '?' , desc = 'new term tab'})
+vim.api.nvim_create_user_command('Xv', tx.v, { nargs = '?' , desc = 'new term vertical'})
+vim.api.nvim_create_user_command('XV', tx.V, { nargs = '?' , desc = 'new term vertical ext'})
+vim.api.nvim_create_user_command('Xc', tx.c, { nargs = '?' , desc = 'new term'})
+vim.api.nvim_create_user_command('XC', tx.C, { nargs = '?' , desc = 'new term ext'})
 
-local prepare_term = function ()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.spell = false
-    vim.opt_local.ruler = false
-    vim.opt_local.showcmd = false
-    vim.opt_local.mouse = ''
-    --vim.opt_local.hlsearch = false
-    vim.opt_local.cursorline = false
-    vim.opt_local.lazyredraw = true
-    local curr_line = vim.fn.line('.')
-    local last_line = vim.fn.line('$')
-    local window_line = vim.fn.line('w$') - vim.fn.line('w0')
-    -- :FIXME: curr_line == <term_last_line>
-    if curr_line == last_line or curr_line < window_line then
-        vim.api.nvim_command('startinsert')
-    end
-end
+vim.api.nvim_create_user_command('Xdebug', tx.debug, { nargs = '?' , desc = 'term debug'})
+
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
-    callback = prepare_term,
+    callback = tx.prepare
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = 'term://*',
-    callback = prepare_term,
+    callback = tx.prepare,
 })
 
 vim.api.nvim_create_autocmd("TermClose", {
     pattern = 'term://*',
-    callback = function ()
+    callback = function (ctx)
+        tx.release(ctx.buf)
         vim.api.nvim_input('<cr>')
     end
 })
