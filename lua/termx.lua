@@ -1,13 +1,18 @@
 local M = {}
 
+local notify = function (msg)
+    local notify = require'notify'.notify
+    notify(vim.inspect(msg))
+end
+
 local tab_term = {}
 
-function M.get (action, cmd)
+function M.get (action, cmd, newtab)
     return function (ctx)
         local tab = vim.api.nvim_get_current_tabpage()
         local tot = tab_term[tab]
         local cnt = vim.v.count
-        if tot and tot[cnt] then
+        if tot and tot[cnt] and not newtab then
             local t = tot[cnt]
             local ws = vim.api.nvim_tabpage_list_wins(tab)
             for _, w in ipairs(ws) do
@@ -25,6 +30,10 @@ function M.get (action, cmd)
             if action then vim.api.nvim_command(action) end
             vim.api.nvim_command('terminal '..cmd)
             vim.api.nvim_command('silent tcd! .')
+            if newtab then
+                tab = vim.api.nvim_get_current_tabpage()
+                tot = tab_term[tab]
+            end
             if not tot then
                 tab_term[tab] = {}
             end
@@ -39,7 +48,7 @@ function M.get (action, cmd)
     end
 end
 
-function M.prepare ()
+function M.prepare (buf)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.spell = false
@@ -69,12 +78,11 @@ function M.release(buf)
 end
 
 function M.debug()
-    local notify = require'notify'.notify
-    notify(vim.inspect(tab_term))
+    notify(tab_term)
 end
 
 
-M.t  = M.get('tabnew', '')
+M.t  = M.get('tabnew', '', true)
 M.v  = M.get('rightbelow vnew', '')
 M.V  = M.get('botright vnew', '')
 M.c  = M.get('rightbelow new', '')

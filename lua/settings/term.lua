@@ -12,14 +12,6 @@ vim.api.nvim_set_keymap('t', '<C-r>', '', {
         vim.api.nvim_chan_send(chan, t)
     end
 })
-vim.api.nvim_set_keymap('t', '<C-d>', '', {
-    noremap = true,
-    silent = true,
-    callback = function ()
-        local win = vim.api.nvim_get_current_win()
-        vim.api.nvim_win_hide(win)
-    end
-})
 
 local tx = require('termx')
 
@@ -40,12 +32,16 @@ vim.api.nvim_create_user_command('Xdebug', tx.debug, { nargs = '?' , desc = 'ter
 
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
-    callback = tx.prepare
+    callback = function (ctx)
+        tx.prepare(ctx.buf)
+    end ,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = 'term://*',
-    callback = tx.prepare,
+    callback = function (ctx)
+        tx.prepare(ctx.buf)
+    end ,
 })
 
 vim.api.nvim_create_autocmd("TermClose", {
