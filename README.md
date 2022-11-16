@@ -4,6 +4,13 @@
  - [x] M-hjkl (resize)
  - [x] M-# (switch tab)
 
+ - [ ] change to insert mode when enter term and cursor at last line
+    term get actual line (vim.fn.line('$') get buffer line)
+ - [ ] default 1 term each tab (count arg for multiple)
+    - [ ] data struct { [tab]: {term...} }
+    - [ ] new_term
+      if current tab already has term and not v:count, use first term
+      else create new term
  - [x] stdout > output to buffer
  - [x] bind `<C-r>` to terminal mode
     - [x] lua
@@ -44,7 +51,6 @@
  - [ ] email
  - [x] neovide
  - [ ] hop target include punctuation `[]{}<>'",;#`
- - [ ] term get actual line (vim.fn.line('$') get buffer line)
  - [ ] lualine: hide tabline when number of tabs is lower than two
  - [x] neotree: copy path
  - [ ] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
