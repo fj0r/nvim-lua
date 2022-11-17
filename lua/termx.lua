@@ -48,7 +48,7 @@ function M.get (action, cmd, newtab)
     end
 end
 
-function M.prepare (buf)
+function M.prepare (ctx)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.spell = false

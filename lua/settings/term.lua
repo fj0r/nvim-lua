@@ -33,14 +33,14 @@ vim.api.nvim_create_user_command('Xdebug', tx.debug, { nargs = '?' , desc = 'ter
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = 'term://*',
     callback = function (ctx)
-        tx.prepare(ctx.buf)
+        tx.prepare(ctx)
     end ,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("WinEnter", {
     pattern = 'term://*',
     callback = function (ctx)
-        tx.prepare(ctx.buf)
+        tx.prepare(ctx)
     end ,
 })
 
