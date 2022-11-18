@@ -14,6 +14,7 @@ end
 
 function M.which (name)
     local f = io.popen('which '..name)
+    if f == nil then return end
     local r = f:read()
     f:close()
     return r
@@ -28,19 +29,9 @@ function M.dump(...)
     end
 end
 
-function M.map(mode, lhs, rhs, opts)
-  local options = {noremap = true, silent = true }
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-local function printf(...) print(string.format(...)) end
-local sprintf = string.format
-local function cmdf(...) vim.cmd(sprintf(...)) end
-
-M.printf = printf
-M.sprintf = sprintf
-M.cmdf = cmdf
+M.printf = function (...) print(string.format(...)) end
+M.sprintf = string.format
+M.cmdf = function (...) vim.cmd(M.sprintf(...)) end
 
 function M.get_cursor_pos() return {vim.fn.line('.'), vim.fn.col('.')} end
 

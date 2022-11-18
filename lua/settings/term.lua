@@ -70,8 +70,7 @@ end
 
 def main [file: string] {
     if 'NVIM' in (env).name {
-        let cmd = $"<cmd>vsplit ($file)<cr>"
-        nvim --headless --noplugin --server $env.NVIM --remote-wait $cmd
+        nvim --headless --noplugin --server $env.NVIM --remote-wait $file
     } else {
         nvim $file
     }
