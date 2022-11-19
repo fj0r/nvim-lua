@@ -54,6 +54,6 @@
  - [ ] hop target include punctuation `[]{}<>'",;#`
  - [ ] lualine: hide tabline when number of tabs is lower than two
  - [x] neotree: copy path
- - [ ] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
+ - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
 
 
