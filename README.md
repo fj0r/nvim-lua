@@ -48,11 +48,11 @@
 # extension
  - [ ] packer lazy load by key, desc for which-key
     https://github.com/wbthomason/packer.nvim/issues/925
- - [ ] feed
- - [ ] email
+ - [-] feed
+ - [-] email
  - [x] neovide
  - [ ] hop target include punctuation `[]{}<>'",;#`
- - [ ] lualine: hide tabline when number of tabs is lower than two
+ - [-] lualine: hide tabline when number of tabs is lower than two
  - [x] neotree: copy path
  - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
 
