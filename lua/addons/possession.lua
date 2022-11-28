@@ -77,6 +77,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     nested = true,
     callback = function()
         -- ignore: file gitcommit vimdiff ...
+        -- local notify = function(x) require('notify').notify(vim.inspect(x)) end
         if vim.api.nvim_buf_get_name(0) ~= '' then
             return
         end

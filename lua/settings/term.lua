@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end ,
 })
 
-vim.api.nvim_create_autocmd("WinEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
     pattern = 'term://*',
     callback = function (ctx)
         tx.prepare(ctx)
