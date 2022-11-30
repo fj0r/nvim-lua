@@ -1,7 +1,7 @@
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
 -- Pasting in terminal mode
 -- vim.cmd [[tnoremap <expr> <C-r> '<C-\><C-N>"'.nr2char(getchar()).'pi']]
-vim.api.nvim_set_keymap('t', '<C-r>', '', {
+vim.api.nvim_set_keymap('t', '<C-y>', '', {
     expr = true,
     callback = function ()
         --require("registers").show_window({ mode = "insert" })
