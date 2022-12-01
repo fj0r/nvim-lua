@@ -7,7 +7,6 @@ local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), 
 })
 
 local diag = { 'diagnostics', symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'} }
-local lualine_b = vim.fn.executable('git') > 0 and { 'branch', 'diff', diag } or { diag }
 
 require('lualine').setup {
     options = {
@@ -20,7 +19,7 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = lualine_b,
+        lualine_b = vim.g.has_git and { 'branch', 'diff', diag } or { diag },
         lualine_c = {
             {
                 'filename',
@@ -40,9 +39,9 @@ require('lualine').setup {
         lualine_z = {'location'}
     },
     inactive_sections = {
-        lualine_a = {
-            'diff',
-            diag,
+        lualine_a = {},
+        lualine_b = vim.g.has_git and { 'diff', diag } or { diag },
+        lualine_c = {
             {
                 'filename',
                 file_status = true,
@@ -50,8 +49,6 @@ require('lualine').setup {
                 shorting_target = 40,
             },
         },
-        lualine_b = {},
-        lualine_c = {},
         lualine_x = {},
         lualine_y = {},
         lualine_z = {'progress', 'location'}

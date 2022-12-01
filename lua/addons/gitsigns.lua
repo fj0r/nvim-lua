@@ -1,3 +1,7 @@
+if not vim.g.has_git then
+    return
+end
+
 require('gitsigns').setup {
     signs = {
         add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},

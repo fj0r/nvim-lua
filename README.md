@@ -46,7 +46,7 @@
     - [ ] `git_COMMIT` (remote-wait)
 
 # extension
- - [ ] non git env
+ - [x] run without git
  - [x] vcs_root or cwd
  - [ ] packer lazy load by key, desc for which-key
     https://github.com/wbthomason/packer.nvim/issues/925

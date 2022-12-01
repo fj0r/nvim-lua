@@ -1,3 +1,7 @@
+if not vim.g.has_git then
+    return
+end
+
 local neogit = require'neogit'
 
 neogit.setup {

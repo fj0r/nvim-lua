@@ -1,3 +1,7 @@
+if not vim.g.has_git then
+    return
+end
+
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
