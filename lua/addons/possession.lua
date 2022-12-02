@@ -1,4 +1,4 @@
-local tx = require('termx')
+local tbm = require('taberm')
 
 require('possession').setup {
     session_dir = vim.g.data_root.."/possession",
@@ -98,7 +98,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
                 session.save(name)
             end
         else
-            tx.n()
+            tbm.n()
         end
     end
 })

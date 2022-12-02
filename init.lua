@@ -93,7 +93,7 @@ packer.startup(function(use)
 
     use {
         's1n7ax/nvim-window-picker',
-        keys = {{'n', '<leader>w', 'window picker'}},
+        keys = {{'n', '<leader><leader>', 'window picker'}},
         module = { 'neo-tree' },
         tag = 'v1.*',
         config = [[require'addons.window-picker']],
@@ -132,8 +132,8 @@ packer.startup(function(use)
     use {
         'akinsho/nvim-toggleterm.lua',
         keys = {
-            {'n', '<leader>xx', 'toggleterm'},
-            {'n', '<leader>xv', 'vtoggleterm'},
+            {'n', '<leader>xt', 'toggleterm'},
+            {'n', '<leader>xy', 'vtoggleterm'},
             {'n', '<leader>xp', 'toggleterm ipython'},
         },
         tag = 'v2.*',

@@ -1,9 +1,14 @@
  # orgmode
- # migrate from tmux
+ # taberm (migrate from tmux)
+ > term based on tabs (different with 'akinsho/nvim-toggleterm.lua')
+
  - [x] C-w x/C-w C-x (swap window)
  - [x] M-hjkl (resize)
  - [x] M-# (switch tab)
 
+ - [ ] <c-t> toggle term
+ - [ ] close term when quit
+ - [ ] term num in status line(openterm('nu', {name = ...}))
  - [ ] change to insert mode when enter term and cursor at last line
     term get actual line (vim.fn.line('$') get buffer line)
  - [x] default 1 term each tab (count arg for multiple)
@@ -48,6 +53,7 @@
 # extension
  - [x] run without git
  - [x] vcs_root or cwd
+ - [x] <space><space> pick window
  - [ ] packer lazy load by key, desc for which-key
     https://github.com/wbthomason/packer.nvim/issues/925
  - [-] feed
