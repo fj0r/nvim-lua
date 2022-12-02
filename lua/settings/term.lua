@@ -28,27 +28,3 @@ vim.api.nvim_create_user_command('Xc', tbm.c, { nargs = '?' , desc = 'new term'}
 vim.api.nvim_create_user_command('XC', tbm.C, { nargs = '?' , desc = 'new term ext'})
 
 vim.api.nvim_create_user_command('Xdebug', tbm.debug, { nargs = '?' , desc = 'term debug'})
-
-
-vim.api.nvim_create_autocmd("TermOpen", {
-    pattern = 'term://*',
-    callback = function (ctx)
-        tbm.prepare(ctx)
-    end ,
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = 'term://*',
-    callback = function (ctx)
-        tbm.prepare(ctx)
-    end ,
-})
-
-vim.api.nvim_create_autocmd("TermClose", {
-    pattern = 'term://*',
-    callback = function (ctx)
-        tbm.release(ctx.buf)
-        vim.api.nvim_input('<cr>')
-    end
-})
-

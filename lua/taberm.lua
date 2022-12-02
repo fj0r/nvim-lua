@@ -55,7 +55,17 @@ local notify = function (msg)
     notify(vim.inspect(msg))
 end
 
+local get_tabpage = function (n)
+    for _, i in pairs(vim.api.nvim_list_tabpages()) do
+        if vim.api.nvim_tabpage_get_number(i) == n then
+            return i
+        end
+    end
+end
+
+
 local tab_term = {}
+
 
 function M.get (action, cmd, newtab)
     return function (ctx)
@@ -129,6 +139,14 @@ function M.release(buf)
     end
 end
 
+function M.close_tab(tab)
+    local t = get_tabpage(tonumber(tab))
+    if t == nil then return end
+    for _, b in pairs(tab_term[t]) do
+        vim.api.nvim_buf_delete(b, {})
+    end
+end
+
 function M.debug()
     notify(tab_term)
 end
@@ -140,5 +158,33 @@ M.V  = M.get('botright vnew', '')
 M.c  = M.get('rightbelow new', '')
 M.C  = M.get('botright new', '')
 M.n  = M.get(nil, '')
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = 'term://*',
+    callback = function (ctx)
+        M.prepare(ctx)
+    end ,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = 'term://*',
+    callback = function (ctx)
+        M.prepare(ctx)
+    end ,
+})
+
+vim.api.nvim_create_autocmd("TermClose", {
+    pattern = 'term://*',
+    callback = function (ctx)
+        M.release(ctx.buf)
+        vim.api.nvim_input('<cr>')
+    end
+})
+
+vim.api.nvim_create_autocmd("TabClosed", {
+    callback = function (ctx)
+        M.close_tab(ctx.file)
+    end
+})
 
 return M
