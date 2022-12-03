@@ -1,6 +1,7 @@
 local a   = vim.api
 local m   = vim.api.nvim_set_keymap
 local c   = vim.api.nvim_command
+local u   = vim.api.nvim_create_user_command
 local g   = vim.g
 local ex  = vim.api.nvim_exec
 local op1 = { noremap = true }
@@ -63,19 +64,12 @@ m('n', '<leader>;', ':<C-f>', op2)
 -- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
 
 m('n', 'M', '<cmd>marks<CR>', op2)
--- Quickly close the current tabpage or window
-m('n', '<leader>q', '', {
-    noremap = true,
-    silent = true,
-    callback = function ()
-        vim.api.nvim_command(
-            #vim.api.nvim_list_tabpages() > 1
-            and 'tabclose'
-            or 'quit'
-        )
-    end
-})
-m('n', '<C-q>', '<cmd>quit<CR>', op2)
+
+m('n', '<leader>q', '<cmd>quit<CR>', op2)
+u('Q', function ()
+    vim.api.nvim_command(#vim.api.nvim_list_tabpages() > 1 and 'tabclose' or 'quit')
+end, {desc = 'Quickly close the current tabpage or window'})
+
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')
 c('command! -nargs=0  WQ :wqall')
