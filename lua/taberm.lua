@@ -51,8 +51,12 @@ end
 local M = {}
 
 local notify = function (msg)
-    local notify = require'notify'.notify
-    notify(vim.inspect(msg))
+    if false then
+        local notify = require'notify'.notify
+        notify(vim.inspect(msg))
+    else
+        print(vim.inspect(msg))
+    end
 end
 
 local get_tabpage = function (n)
@@ -140,10 +144,30 @@ function M.release(buf)
 end
 
 function M.close_tab(tab)
-    local t = get_tabpage(tonumber(tab))
-    if t == nil then return end
-    for _, b in pairs(tab_term[t]) do
-        vim.api.nvim_buf_delete(b, {})
+    --local t = get_tabpage(tonumber(tab))
+    --if t == nil then return end
+    --for _, b in pairs(tab_term[t]) do
+    --    vim.api.nvim_buf_delete(b, {})
+    --end
+
+    local available = {}
+
+    for _, i in pairs(vim.api.nvim_list_tabpages()) do
+        available[i] = true
+    end
+
+    local unavailable = {}
+    for t, _ in pairs(tab_term) do
+        if not available[t] then
+            table.insert(unavailable, t)
+        end
+    end
+
+    for _, u in pairs(unavailable) do
+        for _, b in pairs(tab_term[u]) do
+            vim.api.nvim_buf_delete(b, {force = true})
+        end
+        tab_term[u] = nil
     end
 end
 

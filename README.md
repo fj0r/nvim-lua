@@ -7,7 +7,7 @@
  - [x] M-# (switch tab)
 
  - [ ] <c-t> toggle term
- - [ ] close term when quit
+ - [x] quit term when tabclose
  - [ ] term num in status line(openterm('nu', {name = ...}))
  - [ ] change to insert mode when enter term and cursor at last line
     term get actual line (vim.fn.line('$') get buffer line)
