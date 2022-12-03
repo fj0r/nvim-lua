@@ -63,7 +63,7 @@ m('n', '<leader>;', ':<C-f>', op2)
 -- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
 
 m('n', 'M', '<cmd>marks<CR>', op2)
--- Quickly close the current window
+-- Quickly close the current tabpage or window
 m('n', '<leader>q', '', {
     noremap = true,
     silent = true,
@@ -75,6 +75,7 @@ m('n', '<leader>q', '', {
         )
     end
 })
+m('n', '<C-q>', '<cmd>quit<CR>', op2)
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')
 c('command! -nargs=0  WQ :wqall')

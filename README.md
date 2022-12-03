@@ -6,7 +6,7 @@
  - [x] M-hjkl (resize)
  - [x] M-# (switch tab)
 
- - [ ] <c-t> toggle term
+ - [x] <c-t> toggle term
  - [x] quit term when tabclose
  - [ ] term num in status line(openterm('nu', {name = ...}))
  - [ ] change to insert mode when enter term and cursor at last line
