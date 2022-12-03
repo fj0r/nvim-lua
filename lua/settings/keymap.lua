@@ -65,10 +65,19 @@ m('n', '<leader>;', ':<C-f>', op2)
 
 m('n', 'M', '<cmd>marks<CR>', op2)
 
-m('n', '<leader>q', '<cmd>quit<CR>', op2)
-u('Q', function ()
-    vim.api.nvim_command(#vim.api.nvim_list_tabpages() > 1 and 'tabclose' or 'quit')
-end, {desc = 'Quickly close the current tabpage or window'})
+m('n', '<M-q>', '<cmd>quit<CR>', op2)
+m('t', '<M-q>', '<cmd>quit<CR>', op2)
+m('i', '<M-q>', '<cmd>quit<CR>', op2)
+
+local kill_tabpage = function ()
+    local t = vim.api.nvim_get_current_tabpage()
+    local w = vim.api.nvim_tabpage_list_wins(t)
+    for _, b in pairs(w) do
+        vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), {force=true})
+    end
+end
+u('Q', kill_tabpage, {desc = 'close all window of the current tabpage'})
+m('n', '<leader>q', '', { callback = kill_tabpage, noremap = true, silent = true })
 
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')
