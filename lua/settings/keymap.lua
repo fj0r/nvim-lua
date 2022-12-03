@@ -64,7 +64,17 @@ m('n', '<leader>;', ':<C-f>', op2)
 
 m('n', 'M', '<cmd>marks<CR>', op2)
 -- Quickly close the current window
-m('n', '<leader>q', '<cmd>q<CR>', op2)
+m('n', '<leader>q', '', {
+    noremap = true,
+    silent = true,
+    callback = function ()
+        vim.api.nvim_command(
+            #vim.api.nvim_list_tabpages() > 1
+            and 'tabclose'
+            or 'quit'
+        )
+    end
+})
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')
 c('command! -nargs=0  WQ :wqall')
