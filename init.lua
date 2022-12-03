@@ -128,6 +128,10 @@ packer.startup(function(use)
         config = [[require'addons.spectre']],
     }
 
+    use {
+        'fj0r/nvim-taberm',
+        config = [[require'taberm'.setup{}]],
+    }
     --[=[
     use {
         'akinsho/nvim-toggleterm.lua',
