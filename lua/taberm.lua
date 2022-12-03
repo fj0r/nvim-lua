@@ -50,8 +50,8 @@ end
 ----------------------------------------------------------------------
 local M = {}
 
-local notify = function (msg)
-    if false then
+local log = function (msg)
+    if true then
         local notify = require'notify'.notify
         notify(vim.inspect(msg))
     else
@@ -173,27 +173,44 @@ end
 
 function M.toggle_taberm()
     local ctab = vim.api.nvim_get_current_tabpage()
-    local cwins = vim.api.nvim_tabpage_list_wins(ctab)
-    local bufs = {}
-    for _, i in pairs(cwins) do
-        bufs[vim.api.nvim_win_get_buf(i)] = true
+    local ctabwins = vim.api.nvim_tabpage_list_wins(ctab)
+    local buf2win = {}
+    for _, i in pairs(ctabwins) do
+        buf2win[vim.api.nvim_win_get_buf(i)] = i
     end
-    local display = false
+    local termwins = {}
     for _, b in pairs(tab_term[ctab] or {}) do
-        if bufs[b] then
-            display = true
-            break
+        if buf2win[b] then
+            table.insert(termwins, buf2win[b])
         end
     end
-    if display then
-        notify('display')
+    if #termwins > 0 then
+        if #termwins == #ctabwins then
+            return
+        end
+        for _, w in pairs(termwins) do
+            vim.api.nvim_win_close(w, {force=true})
+        end
     else
-        notify('nodisplay')
+        if tab_term[ctab] then
+            local first = true
+            for _, b in pairs(tab_term[ctab]) do
+                if first then
+                    first = false
+                    vim.api.nvim_command('botright vnew')
+                else
+                    vim.api.nvim_command('rightbelow new')
+                end
+                vim.api.nvim_win_set_buf(vim.api.nvim_get_current_win(), b)
+            end
+        else
+            M.v()
+        end
     end
 end
 
 function M.debug()
-    notify(tab_term)
+    log(tab_term)
 end
 
 
