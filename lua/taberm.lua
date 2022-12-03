@@ -171,6 +171,27 @@ function M.close_tab(tab)
     end
 end
 
+function M.toggle_taberm()
+    local ctab = vim.api.nvim_get_current_tabpage()
+    local cwins = vim.api.nvim_tabpage_list_wins(ctab)
+    local bufs = {}
+    for _, i in pairs(cwins) do
+        bufs[vim.api.nvim_win_get_buf(i)] = true
+    end
+    local display = false
+    for _, b in pairs(tab_term[ctab] or {}) do
+        if bufs[b] then
+            display = true
+            break
+        end
+    end
+    if display then
+        notify('display')
+    else
+        notify('nodisplay')
+    end
+end
+
 function M.debug()
     notify(tab_term)
 end
