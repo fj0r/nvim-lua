@@ -65,9 +65,7 @@ m('n', '<leader>;', ':<C-f>', op2)
 
 m('n', 'M', '<cmd>marks<CR>', op2)
 
-m('n', '<M-q>', '<cmd>quit<CR>', op2)
-m('t', '<M-q>', '<cmd>quit<CR>', op2)
-m('i', '<M-q>', '<cmd>quit<CR>', op2)
+m('n', '<leader>q', '<cmd>quit<CR>', op2)
 
 local kill_tabpage = function ()
     local t = vim.api.nvim_get_current_tabpage()
@@ -77,7 +75,9 @@ local kill_tabpage = function ()
     end
 end
 u('Q', kill_tabpage, {desc = 'close all window of the current tabpage'})
-m('n', '<leader>q', '', { callback = kill_tabpage, noremap = true, silent = true })
+m('n', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
+m('i', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
+m('t', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
 
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')
