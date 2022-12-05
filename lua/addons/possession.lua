@@ -1,4 +1,5 @@
 local tbm = require('taberm')
+local vcs_root = require'taberm.vcs'.root
 
 require('possession').setup {
     session_dir = vim.g.data_root.."/possession",
@@ -71,7 +72,6 @@ local session_excluded = function()
     if vim.fn.bufnr("$") > 2 then return true end
 end
 
-local vcs_root = require'vcs'.root
 vim.api.nvim_create_autocmd("VimEnter", {
     pattern = "*",
     nested = true,
