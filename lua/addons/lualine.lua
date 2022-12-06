@@ -97,7 +97,14 @@ vim.api.nvim_create_autocmd("DirChanged", {
         local tn = vim.t[tx].tabname
         if tn and string.sub(tn, 1, 1) == pin then return end
 
-        local pn = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
+        --local pn = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
+        --local pn = vim.fs.basename(vim.fn.getcwd())
+        local pn
+        if vim.fn.isdirectory(ctx.file.."/.git") == 1 then
+            pn = vim.fs.basename(ctx.file)
+        else
+            pn = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
+        end
         vim.t[tx].tabname = pn
     end
 })
