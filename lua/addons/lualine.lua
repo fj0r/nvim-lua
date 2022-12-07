@@ -79,6 +79,8 @@ end
 local kb_prompt_rename_tab = {
     noremap = true, silent = true, desc = 'rename tab',
     callback = function ()
+        --local p = vim.fn.substitute(vim.fn.getcwd(), vim.fn.getenv('HOME'), '~', '')
+        --local p = vim.fs.basename(vim.fn.getcwd())
         local x = vim.fn.input('rename tab: ', '')
         set_current_tabname(x)
     end
@@ -93,19 +95,27 @@ vim.api.nvim_create_user_command('TabRename', function (ctx) set_current_tabname
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function (ctx)
-        local tx = vim.api.nvim_get_current_tabpage()
-        local tn = vim.t[tx].tabname
-        if tn and string.sub(tn, 1, 1) == pin then return end
+        local curridx = vim.api.nvim_get_current_tabpage()
+        local currname = vim.t[curridx].tabname
+        if currname and string.sub(currname, 1, 1) == pin then return end
 
-        --local pn = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
-        --local pn = vim.fs.basename(vim.fn.getcwd())
-        local pn
-        if vim.fn.isdirectory(ctx.file.."/.git") == 1 then
-            pn = vim.fs.basename(ctx.file)
+        local shortname = vim.fs.basename(ctx.file)
+        local fullname = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
+        local name = shortname
+        if vim.fn.isdirectory(ctx.file.."/.git") ~= 1 then
+            name = fullname
         else
-            pn = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
+            --[[ :FIXME: chaos when switch tabs because nvim emit `DirChanged`
+            for _, x in pairs(require('taberm.utils').list_tabpage()) do
+                local xn = vim.t[x].tabname
+                if xn == name then
+                    name = pin..fullname
+                    break
+                end
+            end
+            --]]
         end
-        vim.t[tx].tabname = pn
+        vim.t[curridx].tabname = name
     end
 })
 

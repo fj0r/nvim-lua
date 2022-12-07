@@ -11,6 +11,8 @@
  - [ ] term num in status line(openterm('nu', {name = ...}))
  - [ ] change to insert mode when enter term and cursor at last line
     term get actual line (vim.fn.line('$') get buffer line)
+ - [ ] handle duplicated tabname (`lua/addons/lualine.lua:106`)
+    chaos when switch tabs because nvim emit `DirChanged`
  - [x] default 1 term each tab (count arg for multiple)
     - [x] data struct { [tab]: {term...} }
     - [x] new_term -> get_term
