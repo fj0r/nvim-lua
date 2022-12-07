@@ -79,9 +79,21 @@ end
 local kb_prompt_rename_tab = {
     noremap = true, silent = true, desc = 'rename tab',
     callback = function ()
+        local c = vim.v.count
+        local p
+        if c == 0 then
+            p = ''
+        else
+            local parents = {}
+            local cwd = vim.fn.getcwd()
+            for pr in vim.fs.parents(cwd) do
+                table.insert(parents, pr)
+            end
+            p = vim.fn.substitute(cwd, parents[c]..'/', '', nil)
+        end
         --local p = vim.fn.substitute(vim.fn.getcwd(), vim.fn.getenv('HOME'), '~', '')
         --local p = vim.fs.basename(vim.fn.getcwd())
-        local x = vim.fn.input('rename tab: ', '')
+        local x = vim.fn.input('rename tab: ', p)
         set_current_tabname(x)
     end
 }
