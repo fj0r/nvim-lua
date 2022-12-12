@@ -1,6 +1,7 @@
 local picker = require('window-picker')
 
 picker.setup {
+    show_prompt = false,
     -- when there is only one window available to pick from, use that window
     -- without prompting the user to select
     autoselect_one = true,
