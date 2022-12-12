@@ -82,7 +82,12 @@ local kb_prompt_rename_tab = {
         local c = vim.v.count
         local p
         if c == 0 then
-            p = ''
+            local currname = vim.t[vim.api.nvim_get_current_tabpage()].tabname
+            if currname and string.sub(currname, 1, 1) == pin then
+                p = string.sub(currname, 2, #currname)
+            else
+                p = ''
+            end
         else
             local parents = {}
             local cwd = vim.fn.getcwd()
@@ -117,16 +122,6 @@ vim.api.nvim_create_autocmd("DirChanged", {
         local name = shortname
         if not vcs_root(ctx.file, true) then
             name = fullname
-        else
-            --[[ :FIXME: chaos when switch tabs because nvim emit `DirChanged`
-            for _, x in pairs(require('taberm.utils').list_tabpage()) do
-                local xn = vim.t[x].tabname
-                if xn == name then
-                    name = pin..fullname
-                    break
-                end
-            end
-            --]]
         end
         vim.t[curridx].tabname = name
     end
