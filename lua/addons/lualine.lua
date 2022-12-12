@@ -104,6 +104,7 @@ vim.api.nvim_set_keymap('t', '<M-r>', '', kb_prompt_rename_tab)
 
 vim.api.nvim_create_user_command('TabRename', function (ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
 
+local vcs_root = require'taberm.vcs'.root
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function (ctx)
@@ -114,7 +115,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
         local shortname = vim.fs.basename(ctx.file)
         local fullname = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
         local name = shortname
-        if vim.fn.isdirectory(ctx.file.."/.git") ~= 1 then
+        if not vcs_root(ctx.file, true) then
             name = fullname
         else
             --[[ :FIXME: chaos when switch tabs because nvim emit `DirChanged`

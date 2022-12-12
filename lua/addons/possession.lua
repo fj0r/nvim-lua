@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         -- if session_excluded() then return end
 
         local cwd = vim.fn.getcwd()
-        local root_dir = vcs_root(cwd, 2) or cwd
+        local root_dir = vcs_root(cwd, true) or cwd
 
         vim.g.session_root_dir = root_dir
         if root_dir then
