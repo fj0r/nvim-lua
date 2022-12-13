@@ -91,6 +91,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             local session = require('possession.session')
             local config = require('possession.config')
             local name = vim.fn.substitute(root_dir, '/', '::', 'g')
+            vim.g.session_id = name
             local path = config.session_dir.."/"..name..".json"
             if vim.fn.empty(vim.fn.glob(path)) == 0 then
                 session.load(name)
@@ -105,3 +106,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 require('telescope').load_extension('possession')
 vim.keymap.set('n', '<leader>s', require('telescope').extensions.possession.list, { desc = 'session: list' })
+
+vim.api.nvim_create_user_command('Ssv', function ()
+    local session = require('possession.session')
+    session.save(vim.g.session_id)
+end, { nargs = '?' , desc = 'save current session'})
