@@ -9,10 +9,16 @@ local op2 = { noremap = true, silent = true }
 local op3 = { noremap = true, expr = true, silent = true }
 
 m('', '<Space>', '<Nop>', op2)
+g.mapesc = '<C-;>'
 g.mapleader = " "
 g.maplocalleader = " "
 
---插入模式下 jk/kj 映射为 ESC，两次按键间隔不能超过 150毫秒
+m('i', g.mapesc, '<ESC>', op2)
+m('c', g.mapesc, '<ESC>', op2)
+m('v', g.mapesc, '<ESC>', op2)
+m('t', g.mapesc, '<C-\\><C-n>', op2)
+
+-- map kj to <ESC>, 150ms interval
 if os.getenv('VIM_DUAL_ESC') == '1' then
     m('i', 'kj', '<ESC>', op2)
     c('autocmd InsertEnter * set timeoutlen=150')
@@ -58,6 +64,7 @@ m('x', 'L', 'g_', op2)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', op2)
+m('n', '<C-/>', ':nohls<CR>', op2)
 -- command history
 m('n', '<leader>;', ':<C-f>', op2)
 -- NOTE: not need

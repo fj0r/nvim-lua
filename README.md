@@ -1,4 +1,9 @@
- # orgmode
+ # plugins
+ - [ ] orgmode
+ - [ ] https://github.com/empat94/nvim-rss
+ - [ ] https://github.com/chipsenkbeil/distant.nvim
+ - [ ] tui-csiu
+
  # taberm (migrate from tmux)
  > term based on tabs (different with 'akinsho/nvim-toggleterm.lua')
 
@@ -8,10 +13,11 @@
 
  - [x] <c-t> toggle term
  - [x] quit term when tabclose
+ - [ ] fold term prompt
  - [ ] term num in status line(openterm('nu', {name = ...}))
  - [ ] change to insert mode when enter term and cursor at last line
     term get actual line (vim.fn.line('$') get buffer line)
- - [ ] handle duplicated tabname (`lua/addons/lualine.lua:106`)
+ - [x] handle duplicated tabname (`lua/addons/lualine.lua:106`)
     chaos when switch tabs because nvim emit `DirChanged`
  - [x] default 1 term each tab (count arg for multiple)
     - [x] data struct { [tab]: {term...} }
