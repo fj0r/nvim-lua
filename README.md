@@ -3,6 +3,23 @@
  - [ ] https://github.com/empat94/nvim-rss
  - [ ] https://github.com/chipsenkbeil/distant.nvim
  - [ ] tui-csiu
+ - [ ] surround: visual mode map
+ - [ ] neotree: exit rename with <C-;>
+
+# extension
+ - [x] run without git
+ - [x] vcs_root or cwd
+ - [x] <space><space> pick window
+ - [ ] packer lazy load by key, desc for which-key
+    https://github.com/wbthomason/packer.nvim/issues/925
+ - [-] feed
+ - [-] email
+ - [x] neovide
+ - [ ] hop target include punctuation `[]{}<>'",;#`
+ - [-] lualine: hide tabline when number of tabs is lower than two
+ - [x] neotree: copy path
+ - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
+
 
  # taberm (migrate from tmux)
  > term based on tabs (different with 'akinsho/nvim-toggleterm.lua')
@@ -57,19 +74,4 @@
  - [-] clean quited buffer
  - [x] $env.EDITOR
     - [ ] `git_COMMIT` (remote-wait)
-
-# extension
- - [x] run without git
- - [x] vcs_root or cwd
- - [x] <space><space> pick window
- - [ ] packer lazy load by key, desc for which-key
-    https://github.com/wbthomason/packer.nvim/issues/925
- - [-] feed
- - [-] email
- - [x] neovide
- - [ ] hop target include punctuation `[]{}<>'",;#`
- - [-] lualine: hide tabline when number of tabs is lower than two
- - [x] neotree: copy path
- - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
-
 

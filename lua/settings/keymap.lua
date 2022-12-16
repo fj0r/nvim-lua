@@ -13,6 +13,7 @@ g.mapesc = '<C-;>'
 g.mapleader = " "
 g.maplocalleader = " "
 
+m('n', g.mapesc, '<ESC>', op2)
 m('i', g.mapesc, '<ESC>', op2)
 m('c', g.mapesc, '<ESC>', op2)
 m('v', g.mapesc, '<ESC>', op2)
@@ -64,7 +65,6 @@ m('x', 'L', 'g_', op2)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', op2)
-m('n', '<C-/>', ':nohls<CR>', op2)
 -- command history
 m('n', '<leader>;', ':<C-f>', op2)
 -- NOTE: not need
