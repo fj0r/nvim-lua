@@ -1,7 +1,7 @@
-require("nvim-rss").setup{
-    feeds_dir = vim.g.data_root..'/rss',
-    date_format = "%x %r",
-}
+require("nvim-rss").setup({   -- set nothing to use defaults
+  feeds_dir = os.getenv('HOME')..'/.rss',   -- ensure has write permissions (use full path to dir)
+  date_format = "%x %r",      -- man date for more formats; updates when feed is refreshed
+})
 
 vim.cmd [[
 command! OpenRssView lua require("nvim-rss").open_feeds_tab()

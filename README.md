@@ -1,9 +1,9 @@
  # plugins
  - [ ] orgmode
- - [ ] https://github.com/empat94/nvim-rss
+ - [x] https://github.com/empat94/nvim-rss
  - [ ] https://github.com/chipsenkbeil/distant.nvim
  - [ ] tui-csiu
- - [ ] surround: visual mode map
+ - [x] surround: visual mode map -- 'S'
  - [ ] neotree: exit rename with <C-;>
 
 # extension
