@@ -6,7 +6,7 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Terminal=false
-Exec=env SHELL=/usr/local/bin/nu /usr/local/bin/neovide --multigrid --maximized
+Exec=env SHELL=/usr/local/bin/nu /usr/local/bin/neovide --multigrid --maximized %F
 Name=Neovide
 Icon=nvim
 Categories=Utility;TextEditor;
