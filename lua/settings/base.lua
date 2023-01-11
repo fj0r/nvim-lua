@@ -16,7 +16,7 @@ o.wildmenu       = false
 
 o.confirm        = true
 o.foldlevel      = 9
-o.virtualedit    = 'block'
+o.virtualedit    = 'onemore'
 
 o.number         = true
 o.relativenumber = true
