@@ -441,6 +441,12 @@ packer.startup(function(use)
     use 'seandewar/nvimesweeper'
 
     use {
+        'glacambre/firenvim',
+        disable = vim.g.nvim_preset == 'core',
+        run = function() vim.fn['firenvim#install'](0) end
+    }
+
+    use {
         'rafcamlet/nvim-luapad',
         disable = vim.g.nvim_preset == 'core',
         cmd = { 'Luapad', 'LuaRun' },
