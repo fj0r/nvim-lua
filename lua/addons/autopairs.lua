@@ -1,8 +1,6 @@
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
--- FIXME:
---local has_plugin = require'packer_helper'.has_plugin
-local has_plugin = function(x) return true end
+local has_plugin = require'lazy_helper'.has_plugin
 
 local cfg = {
     disable_filetype = { "TelescopePrompt" , "vim" },
@@ -16,8 +14,7 @@ if has_plugin'cmp' then
     cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
     -- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
-    -- FIXME:
-    -- cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+    cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 end
 
 
