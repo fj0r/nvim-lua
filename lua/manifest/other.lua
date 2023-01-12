@@ -1,0 +1,38 @@
+return {
+    -- use_rocks 'lua-yaml'
+
+
+
+    --[=[
+    'tpope/vim-speeddating',
+    {
+        'monaqa/dial.nvim',
+        config = function(plugin) require'addons.dial' end
+    },
+    --]=]
+
+    {
+        'jbyuki/instant.nvim',
+        cmd = {'InstantStartSingle', 'InstantStartSession', 'InstantStartServer'}
+        --enabled = vim.g.nvim_preset ~= 'core',
+    },
+
+
+    --[=[
+    {
+        'kyazdani42/nvim-tree.lua',
+        config = function(plugin) require'addons.tree' end,
+    },
+    --]=]
+
+    --[=[
+    'kabouzeid/nvim-lspinstall',
+    'nvim-lua/lsp-status.nvim',
+    'nvim-lua/lsp_extensions.nvim',
+
+    {
+        "olimorris/persisted.nvim",
+        config = function(plugin) require'addons.persisted' end,
+    },
+    --]=]
+}
