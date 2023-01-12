@@ -1,161 +1,142 @@
-vim.g.config_root   = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
-vim.g.data_root     = os.getenv('HOME') .. '/.nvim'
-vim.o.runtimepath   = vim.o.runtimepath .. ',' .. vim.g.config_root
-vim.g.nvim_preset   = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
-vim.g.has_git       = pcall(vim.fn.systemlist, { 'git', '--version'})
+vim.g.config_root  = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
+vim.g.data_root    = os.getenv('HOME') .. '/.nvim'
+vim.g.nvim_preset  = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
+vim.g.has_git      = pcall(vim.fn.systemlist, { 'git', '--version'})
+vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'settings'
 
---[=[
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+local lazypath = vim.g.config_root .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
+vim.opt.runtimepath:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
---]=]
-
-vim.cmd [[packadd packer.nvim]]
-
-local packer = require 'packer'
-
-packer.init {
-    package_root = vim.g.config_root .. '/pack',
-    profile = {
-        enable = true,
-        threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
-    },
-    display = {
-        open_fn = require('packer.util').float,
-    },
-    git = {
-        clone_timeout = 600,
-    },
-}
-
-packer.startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'rcarriga/nvim-notify'
+require('lazy').setup({
+    'nvim-lua/plenary.nvim',
+    'rcarriga/nvim-notify',
     -- use_rocks 'lua-yaml'
 
     --[=[
     use {
         'rktjmp/lush.nvim',
-        --config = [[require'addons.lush']]
+        --config = function(plugin) require'addons.lush' end
     }
     --]=]
-    use {
+    {
         "ellisonleao/gruvbox.nvim",
-        config = [[vim.cmd'set background=dark|colorscheme gruvbox']]
-        --config = [[require'addons.period-themes']]
-    }
+        config = function(plugin)
+            vim.cmd'set background=dark|colorscheme gruvbox'
+            --require'addons.period-themes'
+        end
+    },
 
-    use {
+    {
         'nvim-lualine/lualine.nvim',
-        config = [[require'addons.lualine']],
-        --requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-    use {
+        config = function(plugin) require'addons.lualine' end,
+        --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
+    },
+    {
         'norcalli/nvim-colorizer.lua',
-        config = [[require'addons.colorizer']]
-    }
+        config = function(plugin) require'addons.colorizer' end
+    },
 
-    use {
+    {
         'nvim-telescope/telescope.nvim',
-        config = [[require'addons.telescope']],
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
-    use 'TC72/telescope-tele-tabby.nvim'
-    use 'xiyaowong/telescope-emoji.nvim'
-    use "LinArcX/telescope-env.nvim"
+        config = function(plugin) require'addons.telescope' end,
+        dependencies = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    },
+    'TC72/telescope-tele-tabby.nvim',
+    'xiyaowong/telescope-emoji.nvim',
+    "LinArcX/telescope-env.nvim",
 
-    use {
+    {
         "folke/trouble.nvim",
         keys = {
-            {'n', '<leader>gt', 'TroubleToggle'},
-            {'n', '<leader>gw', 'TroubleToggle workspace_diagnostics'},
-            {'n', '<leader>ga', 'TroubleToggle document_diagnostics'},
-            {'n', '<leader>gl', 'TroubleToggle loclist'},
-            {'n', '<leader>gq', 'TroubleToggle quickfix'},
-            {'n', '<leader>gr', 'TroubleToggle lsp_references'},
+            {'<leader>gt', nil, desc = 'TroubleToggle'},
+            {'<leader>gw', nil, desc = 'TroubleToggle workspace_diagnostics'},
+            {'<leader>ga', nil, desc = 'TroubleToggle document_diagnostics'},
+            {'<leader>gl', nil, desc = 'TroubleToggle loclist'},
+            {'<leader>gq', nil, desc = 'TroubleToggle quickfix'},
+            {'<leader>gr', nil, desc = 'TroubleToggle lsp_references'},
         },
-        requires = "kyazdani42/nvim-web-devicons",
-        config = [[require'addons.trouble']]
-    }
+        dependencies = "kyazdani42/nvim-web-devicons",
+        config = function(plugin) require'addons.trouble' end
+    },
 
-    use {
+    {
         's1n7ax/nvim-window-picker',
-        keys = {{'n', '<leader><leader>', 'window picker'}},
+        keys = {{'<leader><leader>', nil, desc = 'window picker'}},
         module = { 'neo-tree' },
-        tag = 'v1.*',
-        config = [[require'addons.window-picker']],
-    }
+        version = 'v1.*',
+        config = function(plugin) require'addons.window-picker' end,
+    },
 
-    use {
+    {
         'sindrets/winshift.nvim',
         keys = {
-            {'n', '<leader>ws', 'winshift'},
-            {'n', '<leader>wx', 'winswap'},
+            {'<leader>ws', nil, desc = 'winshift'},
+            {'<leader>wx', nil, desc = 'winswap'},
         },
-        config = [[require'addons.winshift']],
-    }
-    use {
+        config = function(plugin) require'addons.winshift' end,
+    },
+    {
         'notomo/cmdbuf.nvim',
-        disable = true,
-        config = [[require'addons.cmdbuf']],
-    }
-    use 'tpope/vim-rsi'
-    use {
+        enabled = false,
+        config = function(plugin) require'addons.cmdbuf' end,
+    },
+    'tpope/vim-rsi',
+    {
         "luukvbaal/stabilize.nvim",
-        config = [[require'stabilize'.setup()]],
-    }
-    use {
+        config = function(plugin) require'stabilize'.setup() end,
+    },
+    {
         'karb94/neoscroll.nvim',
-        disable = true,
-        config = [[require'neoscroll'.setup()]],
-    }
-    use {
+        enabled = false,
+        config = function(plugin) require'neoscroll'.setup() end,
+    },
+    {
         'windwp/nvim-spectre',
-        disable = true,
-        config = [[require'addons.spectre']],
-    }
+        enabled = false,
+        config = function(plugin) require'addons.spectre' end,
+    },
 
-    use {
+    {
         'fj0r/nvim-taberm',
-        config = [[require'taberm'.setup{}]],
-    }
+        config = function(plugin) require'taberm'.setup{} end,
+    },
     --[=[
-    use {
+    {
         'akinsho/nvim-toggleterm.lua',
         keys = {
-            {'n', '<leader>xt', 'toggleterm'},
-            {'n', '<leader>xy', 'vtoggleterm'},
-            {'n', '<leader>xp', 'toggleterm ipython'},
+            {'<leader>xt', nil, desc = 'toggleterm'},
+            {'<leader>xy', nil, desc = 'vtoggleterm'},
+            {'<leader>xp', nil, desc = 'toggleterm ipython'},
         },
-        tag = 'v2.*',
-        config = [[require'addons.toggleterm']],
-    }
+        version = 'v2.*',
+        config = function(plugin) require'addons.toggleterm' end,
+    },
     --]=]
 
-    use {
+    {
         "folke/which-key.nvim",
-        config = [[require'addons.whichkey']],
-    }
+        config = function(plugin) require'addons.whichkey' end,
+    },
 
-    use {
+    {
         'stevearc/overseer.nvim',
+        lazy = true,
         keys = {
-            {'n', '<leader>ot', 'overseer toggle'},
-            {'n', '<leader>oo', 'overseer open'},
-            {'n', '<leader>or', 'overseer run'},
+            {'<leader>ot', nil, desc = 'overseer toggle'},
+            {'<leader>oo', nil, desc = 'overseer open'},
+            {'<leader>or', nil, desc = 'overseer run'},
         },
         cmd = {
             'OverseerRun',
@@ -166,98 +147,91 @@ packer.startup(function(use)
             'OverseerQuickAction',
             'OverseerTaskAction'
         },
-        config = [[require'addons.overseer']],
-    }
+        config = function(plugin) require'addons.overseer' end,
+    },
 
     --[=[
-    use {
+    {
         'pianocomposer321/yabs.nvim',
-        keys = {{'n', '<leader>j', 'yabs'}},
-        tag = "main",
-        requires = {
+        keys = {{'<leader>j', nil, desc = 'yabs'}},
+        version = "main",
+        dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
         },
-        config = [[require'addons.yabs']],
-    }
+        config = function(plugin) require'addons.yabs' end,
+    },
 
-    use {
+    {
         'ggandor/lightspeed.nvim',
-        config = [[require'addons.lightspeed']],
-        -- requires = { 'tpope/vim-repeat' },
-    }
+        config = function(plugin) require'addons.lightspeed' end,
+        -- dependencies = { 'tpope/vim-repeat' },
+    },
     --]=]
-    use {
+    {
         'phaazon/hop.nvim',
         branch = 'v2',
         keys = {
-            {'n', ';', 'hop hint_words'},
-            {'n', 'f', 'hop hint_char1'},
-            {'n', 'F', 'hop hint_lines_skip_whitespace'},
+            {';', nil, desc = 'hop hint_words'},
+            {'f', nil, desc = 'hop hint_char1'},
+            {'F', nil, desc = 'hop hint_lines_skip_whitespace'},
         },
-        config = [[require'addons.hop']],
-    }
-    use {
+        config = function(plugin) require'addons.hop' end,
+    },
+    {
         'kevinhwang91/nvim-hlslens',
-        config = [[require'hlslens'.setup()]]
-    }
-    use {
+        config = function(plugin) require'hlslens'.setup() end
+    },
+    {
         'chaoren/vim-wordmotion',
-        disable = true,
+        enabled = false,
         config = function ()
             vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
         end
-    }
-    use 'mg979/vim-visual-multi'
+    },
+    'mg979/vim-visual-multi',
 
-    use {
+    {
         'junegunn/vim-easy-align',
         keys = {
-            {'x', 'ga', 'EasyAlign'},
-            {'n', 'ga', 'EasyAlign'},
+            {'ga', '<Plug>(EasyAlign)', desc = 'EasyAlign', mode = 'x'},
+            {'ga', '<Plug>(EasyAlign)', desc = 'EasyAlign'},
         },
-        config = function ()
-            vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
-            vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
-        end
-    }
-    use {
+    },
+    {
         'Chiel92/vim-autoformat',
         keys = {
-            {'n', '[f', 'Autoformat'},
+            {'[f', '<cmd>Autoformat<cr>', desc = 'Autoformat'},
         },
-        config = function ()
-            vim.api.nvim_set_keymap('n', '[f', '<cmd>Autoformat<cr>', {noremap = true})
-        end
-    }
-    use {
+    },
+    {
         'junegunn/rainbow_parentheses.vim',
-        config = [[require'addons.rainbow']]
-    }
-    use 'tpope/vim-commentary'
-    use {
+        config = function(plugin) require'addons.rainbow' end
+    },
+    'tpope/vim-commentary',
+    {
         'windwp/nvim-autopairs',
-        config = [[require'addons.autopairs']]
-    }
+        config = function(plugin) require'addons.autopairs' end
+    },
 
 
-    --use 'matze/vim-move'
-    use 'wellle/targets.vim'
-    use {
+    --'matze/vim-move',
+    'wellle/targets.vim',
+    {
         "kylechui/nvim-surround",
-        config = [[require'addons.surround']]
-    }
+        config = function(plugin) require'addons.surround' end
+    },
 
-    use {
+    {
         'L3MON4D3/LuaSnip',
-        requires = {
+        dependencies = {
             'rafamadriz/friendly-snippets',
         },
-        config = [[require'addons.luasnip']],
-    }
-    use {
+        config = function(plugin) require'addons.luasnip' end,
+    },
+    {
         'hrsh7th/nvim-cmp',
-        requires = {
+        dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
@@ -265,199 +239,197 @@ packer.startup(function(use)
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = [[require'addons.nvim-cmp']]
-    }
+        config = function(plugin) require'addons.nvim-cmp' end
+    },
 
     -- vcs
-    use {
+    {
         'lewis6991/gitsigns.nvim',
-        requires = {
+        dependencies = {
             'nvim-lua/plenary.nvim'
         },
-        -- tag = 'release' -- To use the latest release
-        config = [[require'addons.gitsigns']]
-    }
-    use {
+        -- version = 'release' -- To use the latest release
+        config = function(plugin) require'addons.gitsigns' end
+    },
+    {
         'sindrets/diffview.nvim',
         keys = {
-            {'n', '<leader>gd', 'diffview open'},
-            {'n', '<leader>gf', 'diffview file history'},
-            {'n', '<leader>gh', 'diffview history'},
+            {'<leader>gd', nil, desc = 'diffview open'},
+            {'<leader>gf', nil, desc = 'diffview file history'},
+            {'<leader>gh', nil, desc = 'diffview history'},
         },
-        config = [[require'addons.diffview']]
-    }
-    use {
+        config = function(plugin) require'addons.diffview' end
+    },
+    {
         'TimUntersberger/neogit',
-        keys = {{'n', '<leader>gg', 'neogit'}},
-        config = [[require'addons.neogit']],
-        requires = { 'nvim-lua/plenary.nvim' },
-    }
+        keys = {{'<leader>gg', nil, desc = 'neogit'}},
+        config = function(plugin)
+            vim.opt.rtp:append(plugin.dir)
+            require'addons.neogit'
+        end,
+        dependencies = { 'nvim-lua/plenary.nvim' },
+    },
 
-    --use 'mbbill/undotree'
-    use {
+    --'mbbill/undotree',
+    {
         'simnalamburt/vim-mundo',
-        keys = {{'n', '<leader>u', 'mundo'}},
-        config = function ()
-            vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>MundoToggle<CR>', {})
-        end
-    }
-    use {
+        keys = {{'<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo'}},
+    },
+    {
         'tversteeg/registers.nvim',
-        config = [[require'registers'.setup()]]
-    }
+        config = function(plugin) require'registers'.setup() end
+    },
 
-    use {
+    {
         'ojroques/nvim-osc52',
-        disable = true, -- by integration terminal
-        config = [[require'addons.osc52']],
-    }
+        enabled = false, -- by integration terminal
+        config = function(plugin) require'addons.osc52' end,
+    },
 
     --[=[
-    use 'tpope/vim-speeddating'
-    use {
+    'tpope/vim-speeddating',
+    {
         'monaqa/dial.nvim',
-        config = [[require'addons.dial']]
-    }
+        config = function(plugin) require'addons.dial' end
+    },
     --]=]
 
-    use {
+    {
         'jbyuki/instant.nvim',
         cmd = {'InstantStartSingle', 'InstantStartSession', 'InstantStartServer'}
-        --disable = vim.g.nvim_preset == 'core',
-    }
+        --enabled = vim.g.nvim_preset ~= 'core',
+    },
 
-    use {
+    {
         'simrat39/symbols-outline.nvim',
-        --disable = vim.g.nvim_preset == 'core',
-        config = [[require'addons.outline']]
-    }
+        --enabled = vim.g.nvim_preset ~= 'core',
+        config = function(plugin) require'addons.outline' end
+    },
 
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
-        --run = ':TSUpdate',
+        --build = ':TSUpdate',
         config = function () require 'lang.treesitter' end
-    }
-    use {
+    },
+    {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        after = {'nvim-treesitter'},
-        requires = {'nvim-treesitter/nvim-treesitter'}
-    }
-    use {
+        dependencies = {'nvim-treesitter/nvim-treesitter'}
+    },
+    {
         'mizlan/iswap.nvim',
-        after = {'nvim-treesitter'},
-        config = [[require'addons.swap']]
-    }
+        dependencies = {'nvim-treesitter'},
+        config = function(plugin) require'addons.swap' end
+    },
     --[=[
-    use {
+    {
         'kyazdani42/nvim-tree.lua',
-        config = [[require'addons.tree']],
-    }
+        config = function(plugin) require'addons.tree' end,
+    },
     --]=]
-    use {
+    {
         'nvim-neo-tree/neo-tree.nvim',
         branch = "v2.x",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
             {
                 -- only needed if you want to use the commands with "_with_window_picker" suffix
                 's1n7ax/nvim-window-picker',
-                tag = "v1.*",
+                version = "v1.*",
             }
         },
-        keys = {{'n', '<leader>e', 'Neotree'}},
-        config = [[require'addons.neotree']],
-    }
+        keys = {{'<leader>e', nil, desc = 'Neotree'}},
+        config = function(plugin) require'addons.neotree' end,
+    },
 
-    use {
+    {
         'neovim/nvim-lspconfig',
-        config = [[require'lang.lsp']],
-    }
-    use 'b0o/schemastore.nvim'
+        config = function(plugin) require'lang.lsp' end,
+    },
+    'b0o/schemastore.nvim',
     --[=[
-    use 'kabouzeid/nvim-lspinstall'
-    use 'nvim-lua/lsp-status.nvim'
-    use 'nvim-lua/lsp_extensions.nvim'
+    'kabouzeid/nvim-lspinstall',
+    'nvim-lua/lsp-status.nvim',
+    'nvim-lua/lsp_extensions.nvim',
 
-    use{
+    {
         "olimorris/persisted.nvim",
-        config = [[require'addons.persisted']],
-    }
+        config = function(plugin) require'addons.persisted' end,
+    },
     --]=]
 
-    use {
+    {
         'jedrzejboczar/possession.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = [[require'addons.possession']]
-    }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function(plugin) require'addons.possession' end
+    },
 
-    use {
+    {
         'mfussenegger/nvim-dap',
-        module = {'dapui'},
-        opt = true,
-    }
-    use {
+        lazy = true,
+    },
+    {
         'rcarriga/nvim-dap-ui',
         keys = {
-            {'n', '[b', 'toggle breakpoint'},
-            {'n', '[l', 'list breakpoints'},
-            {'n', '[B', 'condition breakpoint'},
-            {'n', '[L', 'log breakpoint'},
+            {'[b', nil, desc = 'toggle breakpoint'},
+            {'[l', nil, desc = 'list breakpoints'},
+            {'[B', nil, desc = 'condition breakpoint'},
+            {'[L', nil, desc = 'log breakpoint'},
         },
-        config = [[require'lang.dap']],
-        requires = {'mfussenegger/nvim-dap'}
-    }
-    use {
+        config = function(plugin) require'lang.dap' end,
+        dependencies = {'mfussenegger/nvim-dap'}
+    },
+    {
         'theHamsta/nvim-dap-virtual-text',
-        disable = true,
-        requires = {'mfussenegger/nvim-dap'}
-    }
+        enabled = false,
+        dependencies = {'mfussenegger/nvim-dap'}
+    },
 
-    use {
+    {
         'LhKipp/nvim-nu',
-        disable = true,
-        run = ':TSInstall nu',
-        config = [[require'nu'.setup{}]]
-    }
+        enabled = false,
+        build = ':TSInstall nu',
+        config = function(plugin) require'nu'.setup{} end
+    },
 
-    use {
+    {
         'NTBBloodbath/rest.nvim',
-        keys = {{'n', '<leader>h', 'rest'}},
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = [[require'addons.rest']],
-    }
+        keys = {{'<leader>h', nil, desc = 'rest'}},
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function(plugin) require'addons.rest' end,
+    },
 
-    use {
+    {
         'nvim-orgmode/orgmode',
         keys = {
-            {'n', '<leader>oa', 'orgmode agenda'},
-            {'n', '<leader>oc', 'orgmode capture'},
+            {'<leader>oa', nil, desc = 'orgmode agenda'},
+            {'<leader>oc', nil, desc = 'orgmode capture'},
         },
         ft = {'org'},
-        config = [[require'addons.orgmode']],
-    }
+        config = function(plugin) require'addons.orgmode' end,
+    },
 
-    use 'seandewar/nvimesweeper'
+    'seandewar/nvimesweeper',
 
-    use {
+    {
         'glacambre/firenvim',
-        disable = vim.g.nvim_preset == 'core',
-        run = function() vim.fn['firenvim#install'](0) end
-    }
+        enabled = vim.g.nvim_preset ~= 'core',
+        build = function() vim.fn['firenvim#install'](0) end
+    },
 
-    use {
+    {
         'rafcamlet/nvim-luapad',
-        disable = vim.g.nvim_preset == 'core',
+        enabled = vim.g.nvim_preset ~= 'core',
         cmd = { 'Luapad', 'LuaRun' },
-    }
+    },
     --[=[
-    use {
+    {
         "empat94/nvim-rss",
-        disable = vim.g.nvim_preset == 'core',
-        requires = { "tami5/sqlite.lua" },
+        enabled = vim.g.nvim_preset ~= 'core',
+        dependencies = { "tami5/sqlite.lua" },
         rocks = { "luaexpat" },
-        config = [[require'addons.nvim-rss']],
+        config = function(plugin) require'addons.nvim-rss' end,
         cmd = {
             'OpenRssView',
             'FetchFeed',
@@ -469,10 +441,12 @@ packer.startup(function(use)
             'ResetDB',
             'ImportOpml',
         },
-    }
+    },
     --]=]
-
-end)
+},
+{
+    root = vim.g.config_root .. "/lazy"
+})
 
 local user_config = os.getenv("HOME") .. '/.nvim.lua'
 if vim.fn.empty(vim.fn.glob(user_config)) == 0 then
