@@ -20,7 +20,10 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup('manifest', {
-    root = vim.g.config_root .. "/lazy"
+    root = vim.g.config_root .. "/lazy/package",
+    readme = {
+        root = vim.g.config_root .. "/lazy/readme",
+    }
 })
 
 local user_config = os.getenv("HOME") .. '/.nvim.lua'

@@ -19,8 +19,9 @@ return {
         config = function(plugin) require'addons.osc52' end,
     },
 
+    --remote-wait
     {
         "samjwill/nvim-unception",
-        enabled = vim.g.nvim_preset ~= 'core',
+        -- enabled = vim.g.nvim_preset ~= 'core',
     }
 }
