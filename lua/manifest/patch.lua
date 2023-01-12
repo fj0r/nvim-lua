@@ -18,4 +18,9 @@ return {
         enabled = false, -- by integration terminal
         config = function(plugin) require'addons.osc52' end,
     },
+
+    {
+        "samjwill/nvim-unception",
+        enabled = vim.g.nvim_preset ~= 'core',
+    }
 }

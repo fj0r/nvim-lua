@@ -10,8 +10,10 @@
  - [x] run without git
  - [x] vcs_root or cwd
  - [x] <space><space> pick window
- - [ ] packer lazy load by key, desc for which-key
-    https://github.com/wbthomason/packer.nvim/issues/925
+ - [x] packer ==> lazy
+    - [x] packer lazy load by key, desc for which-key
+       https://github.com/wbthomason/packer.nvim/issues/925
+    - [ ] clone --depth=1
  - [-] feed
  - [-] email
  - [x] neovide
