@@ -7,7 +7,7 @@ local override_opts = function(opts)
 end
 
 --local regex = vim.regex('\\k\\+')
-local regex = vim.regex('\\v[a-zA-Z0-9]+|[<>{},;:=#]+')
+local regex = vim.regex('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$')
 
 function hint_somewhere(opts)
     local jump_target = require'hop.jump_target'

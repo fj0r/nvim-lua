@@ -65,7 +65,10 @@ return {
             {'[B', nil, desc = 'condition breakpoint'},
             {'[L', nil, desc = 'log breakpoint'},
         },
-        config = function(plugin) require'lang.dap' end,
+        config = function(plugin)
+            --vim.opt.rtp:append(plugin.dir)
+            require'lang.dap'
+        end,
         dependencies = {'mfussenegger/nvim-dap'}
     },
     {
