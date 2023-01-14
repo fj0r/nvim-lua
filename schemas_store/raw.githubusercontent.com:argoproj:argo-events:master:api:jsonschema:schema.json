@@ -196,6 +196,29 @@
       },
       "type": "object"
     },
+    "io.argoproj.common.SchemaRegistryConfig": {
+      "description": "SchemaRegistryConfig refers to configuration for a client",
+      "properties": {
+        "auth": {
+          "$ref": "#/definitions/io.argoproj.common.BasicAuth",
+          "description": "SchemaRegistry - basic authentication"
+        },
+        "schemaId": {
+          "description": "Schema ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "description": "Schema Registry URL.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "schemaId"
+      ],
+      "type": "object"
+    },
     "io.argoproj.common.SecureHeader": {
       "description": "SecureHeader refers to HTTP Headers with auth tokens as values",
       "properties": {
@@ -1943,7 +1966,6 @@
       },
       "required": [
         "url",
-        "partition",
         "topic"
       ],
       "type": "object"
@@ -1951,6 +1973,10 @@
     "io.argoproj.eventsource.v1alpha1.MQTTEventSource": {
       "description": "MQTTEventSource refers to event-source for MQTT related events",
       "properties": {
+        "auth": {
+          "$ref": "#/definitions/io.argoproj.common.BasicAuth",
+          "description": "Auth hosts secret selectors for username and password"
+        },
         "clientId": {
           "description": "ClientID is the id of the client",
           "type": "string"
@@ -3066,6 +3092,51 @@
       ],
       "type": "object"
     },
+    "io.argoproj.sensor.v1alpha1.AzureServiceBusTrigger": {
+      "properties": {
+        "connectionString": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "ConnectionString is the connection string for the Azure Service Bus"
+        },
+        "parameters": {
+          "description": "Parameters is the list of key-value extracted from event's payload that are applied to the trigger resource.",
+          "items": {
+            "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
+          },
+          "type": "array"
+        },
+        "payload": {
+          "description": "Payload is the list of key-value extracted from an event payload to construct the request payload.",
+          "items": {
+            "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
+          },
+          "type": "array"
+        },
+        "queueName": {
+          "description": "QueueName is the name of the Azure Service Bus Queue",
+          "type": "string"
+        },
+        "subscriptionName": {
+          "description": "SubscriptionName is the name of the Azure Service Bus Topic Subscription",
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/definitions/io.argoproj.common.TLSConfig",
+          "description": "TLS configuration for the service bus client"
+        },
+        "topicName": {
+          "description": "TopicName is the name of the Azure Service Bus Topic",
+          "type": "string"
+        }
+      },
+      "required": [
+        "queueName",
+        "topicName",
+        "subscriptionName",
+        "payload"
+      ],
+      "type": "object"
+    },
     "io.argoproj.sensor.v1alpha1.ConditionsResetByTime": {
       "properties": {
         "cron": {
@@ -3534,12 +3605,12 @@
           "type": "array"
         },
         "partition": {
-          "description": "Partition to write data to.",
+          "description": "DEPRECATED",
           "format": "int32",
           "type": "integer"
         },
         "partitioningKey": {
-          "description": "The partitioning key for the messages put on the Kafka topic. Defaults to broker url.",
+          "description": "The partitioning key for the messages put on the Kafka topic.",
           "type": "string"
         },
         "payload": {
@@ -3557,6 +3628,10 @@
         "sasl": {
           "$ref": "#/definitions/io.argoproj.common.SASLConfig",
           "description": "SASL configuration for the kafka client"
+        },
+        "schemaRegistry": {
+          "$ref": "#/definitions/io.argoproj.common.SchemaRegistryConfig",
+          "description": "Schema Registry configuration to producer message with avro format"
         },
         "tls": {
           "$ref": "#/definitions/io.argoproj.common.TLSConfig",
@@ -3578,7 +3653,6 @@
       "required": [
         "url",
         "topic",
-        "partition",
         "payload"
       ],
       "type": "object"
@@ -3842,8 +3916,20 @@
           "description": "EventBusName references to a EventBus name. By default the value is \"default\"",
           "type": "string"
         },
+        "loggingFields": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "LoggingFields add additional key-value pairs when logging happens",
+          "type": "object"
+        },
         "replicas": {
           "description": "Replicas is the sensor deployment replicas",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revisionHistoryLimit": {
+          "description": "RevisionHistoryLimit specifies how many old deployment revisions to retain",
           "format": "int32",
           "type": "integer"
         },
@@ -3880,11 +3966,45 @@
       },
       "type": "object"
     },
+    "io.argoproj.sensor.v1alpha1.SlackSender": {
+      "properties": {
+        "icon": {
+          "description": "Icon is the Slack application's icon, e.g. :robot_face: or https://example.com/image.png",
+          "type": "string"
+        },
+        "username": {
+          "description": "Username is the Slack application's username",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "io.argoproj.sensor.v1alpha1.SlackThread": {
+      "properties": {
+        "broadcastMessageToChannel": {
+          "description": "BroadcastMessageToChannel allows to also broadcast the message from the thread to the channel",
+          "type": "boolean"
+        },
+        "messageAggregationKey": {
+          "description": "MessageAggregationKey allows to aggregate the messages to a thread by some key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "io.argoproj.sensor.v1alpha1.SlackTrigger": {
       "description": "SlackTrigger refers to the specification of the slack notification trigger.",
       "properties": {
+        "attachments": {
+          "description": "Attachments is a JSON format string that represents an array of Slack attachments according to the attachments API: https://api.slack.com/reference/messaging/attachments .",
+          "type": "string"
+        },
+        "blocks": {
+          "description": "Blocks is a JSON format string that represents an array of Slack blocks according to the blocks API: https://api.slack.com/reference/block-kit/blocks .",
+          "type": "string"
+        },
         "channel": {
-          "description": "Channel refers to which Slack channel to send slack message.",
+          "description": "Channel refers to which Slack channel to send Slack message.",
           "type": "string"
         },
         "message": {
@@ -3898,9 +4018,17 @@
           },
           "type": "array"
         },
+        "sender": {
+          "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.SlackSender",
+          "description": "Sender refers to additional configuration of the Slack application that sends the message."
+        },
         "slackToken": {
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
           "description": "SlackToken refers to the Kubernetes secret that holds the slack token required to send messages."
+        },
+        "thread": {
+          "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.SlackThread",
+          "description": "Thread refers to additional options for sending messages to a Slack thread."
         }
       },
       "type": "object"
@@ -4108,6 +4236,10 @@
           "description": "DependencyName refers to the name of the dependency. The event which is stored for this dependency is used as payload for the parameterization. Make sure to refer to one of the dependencies you have defined under Dependencies list.",
           "type": "string"
         },
+        "useRawData": {
+          "description": "UseRawData indicates if the value in an event at data key should be used without converting to string. When true, a number, boolean, json or string parameter may be extracted. When the field is unspecified, or explicitly false, the behavior is to turn the extracted field into a string. (e.g. when set to true, the parameter 123 will resolve to the numerical type, but when false, or not provided, the string \"123\" will be resolved)",
+          "type": "boolean"
+        },
         "value": {
           "description": "Value is the default literal value to use for this parameter source This is only used if the DataKey is invalid. If the DataKey is invalid and this is not defined, this param source will produce an error.",
           "type": "string"
@@ -4146,6 +4278,10 @@
         "azureEventHubs": {
           "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.AzureEventHubsTrigger",
           "description": "AzureEventHubs refers to the trigger send an event to an Azure Event Hub."
+        },
+        "azureServiceBus": {
+          "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.AzureServiceBusTrigger",
+          "description": "AzureServiceBus refers to the trigger designed to place messages on Azure Service Bus"
         },
         "conditions": {
           "description": "Conditions is the conditions to execute the trigger. For example: \"(dep01 || dep02) \u0026\u0026 dep04\"",

@@ -179,6 +179,11 @@
 			"type": "string",
 			"default": ""
 		},
+		"sourceLinkTemplate": {
+			"description": "Specify a link template to be used when generating source urls. If not set, will be automatically created using the git remote. Supports {path}, {line}, {gitRevision} placeholders.",
+			"type": "string",
+			"default": ""
+		},
 		"gitRevision": {
 			"description": "Use specified revision instead of the last revision for linking to GitHub/Bitbucket source files.",
 			"type": "string",
@@ -218,6 +223,19 @@
 			"description": "If set, TypeDoc will remove the output directory before writing output.",
 			"type": "boolean",
 			"default": true
+		},
+		"titleLink": {
+			"description": "Set the link the title in the header points to. Defaults to the documentation homepage.",
+			"type": "string",
+			"default": ""
+		},
+		"navigationLinks": {
+			"description": "Defines links to be included in the header.",
+			"default": {}
+		},
+		"sidebarLinks": {
+			"description": "Defines links to be included in the sidebar.",
+			"default": {}
 		},
 		"commentStyle": {
 			"description": "Determines how TypeDoc searches for comments.",
@@ -335,6 +353,14 @@
 				"instance-first",
 				"alphabetical"
 			]
+		},
+		"kindSortOrder": {
+			"description": "Specify the sort order for reflections when 'kind' is specified.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": []
 		},
 		"visibilityFilters": {
 			"description": "Specify the default visibility for builtin filters and additional filters according to modifier tags.",

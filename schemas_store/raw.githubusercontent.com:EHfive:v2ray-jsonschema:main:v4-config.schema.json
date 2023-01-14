@@ -3,6 +3,12 @@
   "$id": "https://github.com/v2fly/v2ray-core/v5/infra/conf/v4/github:v2fly_v2ray-core_v5_infra_conf_v4:-config",
   "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_v4:Config",
   "$defs": {
+    "github:EHfive_v2ray-jsonschema_common:CustomDNSDomainMatcher": {
+      "enum": [
+        "linear",
+        "mph"
+      ]
+    },
     "github:EHfive_v2ray-jsonschema_common:CustomNumber": {
       "type": "integer"
     },
@@ -43,17 +49,55 @@
       },
       "type": "object"
     },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomDNSCacheStrategy": {
+      "enum": [
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomDNSFallbackStrategy": {
+      "enum": [
+        "Enabled",
+        "Disabled",
+        "DisabledIfAnyMatch"
+      ]
+    },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomDNSQueryStrategy": {
+      "enum": [
+        "UseIP",
+        "UseIPv4",
+        "UseIPv6"
+      ]
+    },
     "github:EHfive_v2ray-jsonschema_v4config:CustomFakeDNSConfig": {
       "oneOf": [
         {
-          "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_v4:FakeDNSPoolElementConfig"
+          "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_synthetic_dns:FakeDNSPoolElementConfig"
         },
         {
           "items": {
-            "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_v4:FakeDNSPoolElementConfig"
+            "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_synthetic_dns:FakeDNSPoolElementConfig"
           },
           "type": "array"
         }
+      ]
+    },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomFakeDNSConfigExtend": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFakeDNSConfig"
+        }
+      ]
+    },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomFreedomDomainStrategy": {
+      "enum": [
+        "AsIs",
+        "UseIP",
+        "UseIPv4",
+        "UseIPv6"
       ]
     },
     "github:EHfive_v2ray-jsonschema_v4config:CustomHTTPRemoteConfigUser": {
@@ -530,6 +574,14 @@
         "protocol"
       ]
     },
+    "github:EHfive_v2ray-jsonschema_v4config:CustomRouterDomainStrategy": {
+      "enum": [
+        "AsIs",
+        "AlwaysIP",
+        "IPIfNonMatch",
+        "IPOnDemand"
+      ]
+    },
     "github:EHfive_v2ray-jsonschema_v4config:CustomRouterRule": {
       "properties": {
         "type": {
@@ -542,7 +594,7 @@
           "type": "string"
         },
         "domainMatcher": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomDNSDomainMatcher"
         },
         "domain": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomStringList"
@@ -926,6 +978,12 @@
           },
           "type": "object"
         },
+        "fakedns": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFakeDNSConfig"
+        },
+        "domainMatcher": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomDNSDomainMatcher"
+        },
         "clientIp": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomString"
         },
@@ -933,7 +991,13 @@
           "type": "string"
         },
         "queryStrategy": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSQueryStrategy"
+        },
+        "cacheStrategy": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSCacheStrategy"
+        },
+        "fallbackStrategy": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSFallbackStrategy"
         },
         "disableCache": {
           "type": "boolean"
@@ -948,6 +1012,17 @@
       "type": "object",
       "description": "DNSConfig is a JSON serializable object for dns.Config."
     },
+    "github:v2fly_v2ray-core_v5_infra_conf_synthetic_dns:FakeDNSPoolElementConfig": {
+      "properties": {
+        "ipPool": {
+          "type": "string"
+        },
+        "poolSize": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "github:v2fly_v2ray-core_v5_infra_conf_synthetic_dns:NameServerConfig": {
       "properties": {
         "address": {
@@ -958,6 +1033,18 @@
         },
         "port": {
           "type": "integer"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "queryStrategy": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSQueryStrategy"
+        },
+        "cacheStrategy": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSCacheStrategy"
+        },
+        "fallbackStrategy": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomDNSFallbackStrategy"
         },
         "skipFallback": {
           "type": "boolean"
@@ -970,6 +1057,9 @@
         },
         "expectIps": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomStringList"
+        },
+        "fakeDns": {
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFakeDNSConfigExtend"
         }
       },
       "type": "object"
@@ -1038,7 +1128,7 @@
           "type": "array"
         },
         "domainStrategy": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomRouterDomainStrategy"
         },
         "balancers": {
           "items": {
@@ -1047,7 +1137,7 @@
           "type": "array"
         },
         "domainMatcher": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomDNSDomainMatcher"
         }
       },
       "type": "object"
@@ -1061,7 +1151,7 @@
           "type": "array"
         },
         "domainStrategy": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomRouterDomainStrategy"
         }
       },
       "type": "object"
@@ -1322,17 +1412,6 @@
       },
       "type": "object"
     },
-    "github:v2fly_v2ray-core_v5_infra_conf_v4:FakeDNSPoolElementConfig": {
-      "properties": {
-        "ipPool": {
-          "type": "string"
-        },
-        "poolSize": {
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "github:v2fly_v2ray-core_v5_infra_conf_v4:FeaturesConfig": {
       "properties": {
         "detour": {
@@ -1344,7 +1423,7 @@
     "github:v2fly_v2ray-core_v5_infra_conf_v4:FreedomConfig": {
       "properties": {
         "domainStrategy": {
-          "type": "string"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFreedomDomainStrategy"
         },
         "timeout": {
           "type": "integer"
