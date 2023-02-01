@@ -12,7 +12,7 @@ return {
             {'<leader>xp', nil, desc = 'toggleterm ipython'},
         },
         version = 'v2.*',
-        config = function(plugin) require'addons.toggleterm' end,
+        config = function(plugin) require'extensions.toggleterm' end,
     },
     --]=]
     {
@@ -32,7 +32,7 @@ return {
             'OverseerQuickAction',
             'OverseerTaskAction'
         },
-        config = function(plugin) require'addons.overseer' end,
+        config = function(plugin) require'extensions.overseer' end,
     },
 
     --[=[
@@ -44,7 +44,7 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
         },
-        config = function(plugin) require'addons.yabs' end,
+        config = function(plugin) require'extensions.yabs' end,
     },
     --]=]
 }

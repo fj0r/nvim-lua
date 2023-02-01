@@ -19,7 +19,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup('manifest', {
+require('lazy').setup('packages', {
     root = vim.g.config_root .. "/lazy/packages",
     readme = {
         root = vim.g.config_root .. "/lazy/readme",

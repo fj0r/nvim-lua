@@ -7,7 +7,7 @@ return {
             {'f', nil, desc = 'hop hint_char1'},
             {'F', nil, desc = 'hop hint_lines_skip_whitespace'},
         },
-        config = function(plugin) require'addons.hop' end,
+        config = function(plugin) require'extensions.hop' end,
     },
     {
         'chaoren/vim-wordmotion',
@@ -33,18 +33,18 @@ return {
     },
     {
         'junegunn/rainbow_parentheses.vim',
-        config = function(plugin) require'addons.rainbow' end
+        config = function(plugin) require'extensions.rainbow' end
     },
     'tpope/vim-commentary',
     {
         'windwp/nvim-autopairs',
-        config = function(plugin) require'addons.autopairs' end
+        config = function(plugin) require'extensions.autopairs' end
     },
     --'matze/vim-move',
     'wellle/targets.vim',
     {
         "kylechui/nvim-surround",
-        config = function(plugin) require'addons.surround' end
+        config = function(plugin) require'extensions.surround' end
     },
     {
         'simnalamburt/vim-mundo',
@@ -58,6 +58,6 @@ return {
     {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function(plugin) require'addons.possession' end
+        config = function(plugin) require'extensions.possession' end
     },
 }

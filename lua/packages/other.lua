@@ -7,7 +7,7 @@ return {
     'tpope/vim-speeddating',
     {
         'monaqa/dial.nvim',
-        config = function(plugin) require'addons.dial' end
+        config = function(plugin) require'extensions.dial' end
     },
     --]=]
 
@@ -21,7 +21,7 @@ return {
     --[=[
     {
         'kyazdani42/nvim-tree.lua',
-        config = function(plugin) require'addons.tree' end,
+        config = function(plugin) require'extensions.tree' end,
     },
     --]=]
 
@@ -32,7 +32,7 @@ return {
 
     {
         "olimorris/persisted.nvim",
-        config = function(plugin) require'addons.persisted' end,
+        config = function(plugin) require'extensions.persisted' end,
     },
     --]=]
 }

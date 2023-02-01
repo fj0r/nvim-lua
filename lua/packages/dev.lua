@@ -4,7 +4,7 @@ return {
         dependencies = {
             'rafamadriz/friendly-snippets',
         },
-        config = function(plugin) require'addons.luasnip' end,
+        config = function(plugin) require'extensions.luasnip' end,
     },
     {
         'hrsh7th/nvim-cmp',
@@ -16,7 +16,7 @@ return {
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = function(plugin) require'addons.nvim-cmp' end
+        config = function(plugin) require'extensions.nvim-cmp' end
     },
     {
         'neovim/nvim-lspconfig',
@@ -34,7 +34,7 @@ return {
         --enabled = vim.g.nvim_preset ~= 'core',
         config = function(plugin)
             vim.opt.rtp:append(plugin.dir)
-            require'addons.outline'
+            require'extensions.outline'
         end
     },
 
@@ -50,7 +50,7 @@ return {
     {
         'mizlan/iswap.nvim',
         dependencies = {'nvim-treesitter'},
-        config = function(plugin) require'addons.swap' end
+        config = function(plugin) require'extensions.swap' end
     },
 
     {
@@ -88,6 +88,6 @@ return {
             {'<leader>gr', nil, desc = 'TroubleToggle lsp_references'},
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function(plugin) require'addons.trouble' end
+        config = function(plugin) require'extensions.trouble' end
     },
 }

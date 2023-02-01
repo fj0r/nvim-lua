@@ -12,13 +12,13 @@ return {
             {'<leader>oc', nil, desc = 'orgmode capture'},
         },
         ft = {'org'},
-        config = function(plugin) require'addons.orgmode' end,
+        config = function(plugin) require'extensions.orgmode' end,
     },
     {
         'NTBBloodbath/rest.nvim',
         keys = {{'<leader>h', nil, desc = 'rest'}},
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function(plugin) require'addons.rest' end,
+        config = function(plugin) require'extensions.rest' end,
     },
     {
         'rafcamlet/nvim-luapad',

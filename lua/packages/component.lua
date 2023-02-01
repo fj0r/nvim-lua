@@ -13,12 +13,12 @@ return {
             }
         },
         keys = {{'<leader>e', nil, desc = 'Neotree'}},
-        config = function(plugin) require'addons.neotree' end,
+        config = function(plugin) require'extensions.neotree' end,
     },
 
     {
         'nvim-telescope/telescope.nvim',
-        config = function(plugin) require'addons.telescope' end,
+        config = function(plugin) require'extensions.telescope' end,
         dependencies = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     },
     'TC72/telescope-tele-tabby.nvim',
@@ -30,7 +30,7 @@ return {
         keys = {{'<leader><leader>', nil, desc = 'window picker'}},
         module = { 'neo-tree' },
         version = 'v1.*',
-        config = function(plugin) require'addons.window-picker' end,
+        config = function(plugin) require'extensions.window-picker' end,
     },
 
     {
@@ -39,17 +39,17 @@ return {
             {'<leader>ws', nil, desc = 'winshift'},
             {'<leader>wx', nil, desc = 'winswap'},
         },
-        config = function(plugin) require'addons.winshift' end,
+        config = function(plugin) require'extensions.winshift' end,
     },
     {
         'notomo/cmdbuf.nvim',
         enabled = false,
-        config = function(plugin) require'addons.cmdbuf' end,
+        config = function(plugin) require'extensions.cmdbuf' end,
     },
 
     {
         "folke/which-key.nvim",
-        config = function(plugin) require'addons.whichkey' end,
+        config = function(plugin) require'extensions.whichkey' end,
     },
     {
         'kevinhwang91/nvim-hlslens',

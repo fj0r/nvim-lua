@@ -11,12 +11,12 @@ return {
     {
         'windwp/nvim-spectre',
         enabled = false,
-        config = function(plugin) require'addons.spectre' end,
+        config = function(plugin) require'extensions.spectre' end,
     },
     {
         'ojroques/nvim-osc52',
         enabled = false, -- by integration terminal
-        config = function(plugin) require'addons.osc52' end,
+        config = function(plugin) require'extensions.osc52' end,
     },
 
     --remote-wait
