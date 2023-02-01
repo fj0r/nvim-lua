@@ -20,7 +20,7 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup('manifest', {
-    root = vim.g.config_root .. "/lazy/package",
+    root = vim.g.config_root .. "/lazy/packages",
     readme = {
         root = vim.g.config_root .. "/lazy/readme",
     }
