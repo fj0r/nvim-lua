@@ -19,9 +19,11 @@ return {
         'stevearc/overseer.nvim',
         lazy = true,
         keys = {
-            {'<leader>ot', nil, desc = 'overseer toggle'},
-            {'<leader>oo', nil, desc = 'overseer open'},
+            {'<leader>oo', nil, desc = 'overseer toggle'},
             {'<leader>or', nil, desc = 'overseer run'},
+            {'<leader>ob', nil, desc = 'overseer build'},
+            {'<leader>ot', nil, desc = 'overseer task action'},
+            {'<leader>oq', nil, desc = 'overseer quick action'},
         },
         cmd = {
             'OverseerRun',
