@@ -127,10 +127,3 @@ vim.api.nvim_create_autocmd("DirChanged", {
     end
 })
 
--- event: OptionSet, pattern: showtabline
-vim.api.nvim_create_autocmd("VimEnter", {
-    pattern = '*',
-    callback = function ()
-        vim.o.showtabline = 1
-    end
-})
