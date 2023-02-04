@@ -21,6 +21,7 @@
  - [-] lualine: hide tabline when number of tabs is lower than two
  - [x] neotree: copy path
  - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
+ - [ ] OverseerRun use telescope
 
 
  # taberm (migrate from tmux)

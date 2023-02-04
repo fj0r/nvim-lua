@@ -1,5 +1,16 @@
 return {
     {
+        'nvim-telescope/telescope.nvim',
+        config = function(plugin) require'extensions.telescope' end,
+        dependencies = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    },
+    'TC72/telescope-tele-tabby.nvim',
+    'xiyaowong/telescope-emoji.nvim',
+    "LinArcX/telescope-env.nvim",
+
+
+
+    {
         'nvim-neo-tree/neo-tree.nvim',
         branch = "v2.x",
         dependencies = {
@@ -15,15 +26,6 @@ return {
         keys = {{'<leader>e', nil, desc = 'Neotree'}},
         config = function(plugin) require'extensions.neotree' end,
     },
-
-    {
-        'nvim-telescope/telescope.nvim',
-        config = function(plugin) require'extensions.telescope' end,
-        dependencies = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    },
-    'TC72/telescope-tele-tabby.nvim',
-    'xiyaowong/telescope-emoji.nvim',
-    "LinArcX/telescope-env.nvim",
 
     {
         's1n7ax/nvim-window-picker',

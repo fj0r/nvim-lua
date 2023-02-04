@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 require('telescope').load_extension('possession')
-vim.keymap.set('n', '<leader>s', require('telescope').extensions.possession.list, { desc = 'session: list' })
+vim.keymap.set('n', '<leader>S', require('telescope').extensions.possession.list, { desc = 'session: list' })
 
 vim.api.nvim_create_user_command('Ssv', function ()
     local session = require('possession.session')
