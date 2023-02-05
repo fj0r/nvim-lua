@@ -66,7 +66,7 @@ m('x', 'L', 'g_', op2)
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', op2)
 -- command history
-m('n', '<leader>;', ':<C-f>', op2)
+-- m('n', '<leader>;', ':<C-f>', op2)
 -- NOTE: not need
 -- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
 

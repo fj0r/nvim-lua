@@ -3,9 +3,9 @@ return {
         'phaazon/hop.nvim',
         branch = 'v2',
         keys = {
-            {'s', nil, desc = 'hop hint_words'},
-            {'<leader>s', nil, desc = 'hop hint_char1'},
-            {'S', nil, desc = 'hop hint_lines'},
+            {';', nil, desc = 'hop hint_words'},
+            {',', nil, desc = 'hop hint_char1'},
+            {'<leader>;', nil, desc = 'hop hint_lines'},
         },
         config = function(plugin) require'extensions.hop' end,
     },
