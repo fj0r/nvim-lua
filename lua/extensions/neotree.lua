@@ -20,7 +20,7 @@ require("neo-tree").setup({
     --     },
     -- },
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-    popup_border_style = "single",
+    popup_border_style = "rounded",
     enable_git_status = vim.g.has_git,
     enable_diagnostics = true,
     sort_case_insensitive = false, -- used when sorting files and directories in the tree
