@@ -39,7 +39,7 @@ telescope.setup{
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                 ["<esc>"] = actions.close,
-                [vim.g.mapesc] = actions.close,
+                [vim.g.mapesc or '<ESC>'] = actions.close,
                 ["<CR>"] = actions.select_default + actions.center
                 -- You can perform as many actions in a row as you like
                 -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,

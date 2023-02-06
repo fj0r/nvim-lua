@@ -9,15 +9,18 @@ local op2 = { noremap = true, silent = true }
 local op3 = { noremap = true, expr = true, silent = true }
 
 m('', '<Space>', '<Nop>', op2)
-g.mapesc = '<C-;>'
+g.mapesc = nil -- nil or '<C-;>'
 g.mapleader = " "
 g.maplocalleader = " "
 
-m('n', g.mapesc, '<ESC>', op2)
-m('i', g.mapesc, '<ESC>', op2)
-m('c', g.mapesc, '<ESC>', op2)
-m('v', g.mapesc, '<ESC>', op2)
-m('t', g.mapesc, '<C-\\><C-n>', op2)
+if g.mapesc then
+    m('n', g.mapesc, '<ESC>', op2)
+    m('i', g.mapesc, '<ESC>', op2)
+    m('c', g.mapesc, '<ESC>', op2)
+    m('v', g.mapesc, '<ESC>', op2)
+end
+
+m('t', g.mapesc or '<ESC>', '<C-\\><C-n>', op2)
 
 -- map kj to <ESC>, 150ms interval
 if os.getenv('VIM_DUAL_ESC') == '1' then
