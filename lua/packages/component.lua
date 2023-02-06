@@ -9,6 +9,12 @@ return {
     "LinArcX/telescope-env.nvim",
 
 
+    {
+        'stevearc/dressing.nvim',
+        config = function (plugin) require'extensions.dressing' end
+    },
+
+
 
     {
         'nvim-neo-tree/neo-tree.nvim',

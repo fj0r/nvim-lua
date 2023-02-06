@@ -51,6 +51,8 @@ telescope.setup{
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
             }
         },
+    },
+    extensions = {
     }
 }
 
