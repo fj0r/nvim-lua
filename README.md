@@ -1,10 +1,10 @@
  # plugins
  - [ ] orgmode
  - [x] https://github.com/empat94/nvim-rss
- - [ ] https://github.com/chipsenkbeil/distant.nvim
+ - [-] https://github.com/chipsenkbeil/distant.nvim
  - [ ] tui-csiu
  - [x] surround: visual mode map -- 'S'
- - [ ] neotree: exit rename with <C-;>
+ - [x] neotree: exit rename with <C-;> (discard using <C-;> as ESC)
 
 # extension
  - [x] run without git
@@ -21,7 +21,8 @@
  - [-] lualine: hide tabline when number of tabs is lower than two
  - [x] neotree: copy path
  - [x] [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects/pull/317)
- - [ ] OverseerRun use telescope
+ - [x] OverseerRun use telescope
+    - [x] telescope.themes.dropdown height
 
 
  # taberm (migrate from tmux)

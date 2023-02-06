@@ -100,6 +100,12 @@ local kb_prompt_rename_tab = {
         --local p = vim.fs.basename(vim.fn.getcwd())
         local x = vim.fn.input('rename tab: ', p)
         set_current_tabname(x)
+        --[[
+        vim.ui.input({ prompt = 'rename tab', default = p }, function (x)
+            if not x then return end
+            set_current_tabname(x)
+        end)
+        --]]
     end
 }
 
