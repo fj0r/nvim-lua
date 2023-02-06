@@ -4,7 +4,7 @@
     {
       "label": "hello",
       "type": "shell",
-      "command": "echo 'envHOME: ${env:HOME}, workspaceFolder: ${workspaceFolder}'"
+      "command": "echo 'envHOME: ${env:HOME}, workspaceFolder: ${workspaceFolder}, fileBasename: ${fileBasename}, lineNumber: ${lineNumber}'"
     },
     {
       "type": "process",
