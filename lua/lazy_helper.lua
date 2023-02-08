@@ -9,4 +9,8 @@ function M.has_plugin(p)
     return plugins[p]
 end
 
+function M.all_plugin()
+    return plugins
+end
+
 return M

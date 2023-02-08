@@ -1,9 +1,9 @@
 local tbm = require('taberm')
 local vcs_root = require'taberm.vcs'.root
+local has_plugin = require'lazy_helper'.has_plugin
 
 require('possession').setup {
     session_dir = vim.g.data_root.."/possession",
-    -- session_dir = (Path:new(vim.fn.stdpath('data')) / 'possession'):absolute(),
     silent = true,
     load_silent = true,
     debug = false,
@@ -26,10 +26,14 @@ require('possession').setup {
         migrate = 'Smigrate',
     },
     hooks = {
-        before_save = function(name) return {} end,
+        before_save = function(name)
+            if has_plugin'neo-tree.nvim' then
+                require("neo-tree").close_all()
+            end
+        end,
         after_save = function(name, user_data, aborted) end,
         before_load = function(name, user_data) return user_data end,
-        after_load = function(name, user_data) end,
+        after_load = function(name, user_data)  end,
     },
     plugins = {
         close_windows = {
@@ -39,6 +43,7 @@ require('possession').setup {
                 floating = true,
                 buftype = {
                     'terminal',
+                    'nofile',
                 },
                 filetype = {
                     'neo-tree',
@@ -58,9 +63,9 @@ require('possession').setup {
             },
             force = false,  -- or fun(buf): boolean
         },
-        nvim_tree = true,
-        tabby = true,
-        delete_buffers = false,
+        nvim_tree = false,
+        tabby = false,
+        delete_buffers = true,
     },
 }
 
