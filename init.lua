@@ -20,7 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup('packages', {
+require('lazy').setup('manifest', {
     root = lazyhome..'packages',
     readme = {
         root = lazyhome..'readme',

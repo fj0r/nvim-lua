@@ -1,7 +1,0 @@
-require'lang.lsp.base'
-require'lang.lsp.common'
-require'lang.lsp.sumneko'
-require'lang.lsp.yamlls'
-require'lang.lsp.frontend'
-require'lang.lsp.php'
-require'lang.lsp.sqlls'

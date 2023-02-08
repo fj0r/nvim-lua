@@ -4,7 +4,7 @@ return {
         dependencies = {
             'rafamadriz/friendly-snippets',
         },
-        config = function(plugin) require'extensions.luasnip' end,
+        config = function(plugin) require'plugins.luasnip' end,
     },
     {
         'hrsh7th/nvim-cmp',
@@ -16,11 +16,11 @@ return {
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = function(plugin) require'extensions.nvim-cmp' end
+        config = function(plugin) require'plugins.nvim-cmp' end
     },
     {
         'neovim/nvim-lspconfig',
-        config = function(plugin) require'lang.lsp' end,
+        config = function(plugin) require'settings.lsp' end,
     },
     'b0o/schemastore.nvim',
     --[=[
@@ -34,14 +34,14 @@ return {
         --enabled = vim.g.nvim_preset ~= 'core',
         config = function(plugin)
             vim.opt.rtp:append(plugin.dir)
-            require'extensions.outline'
+            require'plugins.outline'
         end
     },
 
     {
         'nvim-treesitter/nvim-treesitter',
         --build = ':TSUpdate',
-        config = function () require 'lang.treesitter' end
+        config = function () require 'settings.treesitter' end
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -50,7 +50,7 @@ return {
     {
         'mizlan/iswap.nvim',
         dependencies = {'nvim-treesitter'},
-        config = function(plugin) require'extensions.swap' end
+        config = function(plugin) require'plugins.swap' end
     },
 
     {
@@ -67,7 +67,7 @@ return {
         },
         config = function(plugin)
             --vim.opt.rtp:append(plugin.dir)
-            require'lang.dap'
+            require'settings.dap'
         end,
         dependencies = {'mfussenegger/nvim-dap'}
     },
@@ -88,6 +88,6 @@ return {
             {'<leader>gr', nil, desc = 'TroubleToggle lsp_references'},
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function(plugin) require'extensions.trouble' end
+        config = function(plugin) require'plugins.trouble' end
     },
 }

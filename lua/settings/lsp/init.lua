@@ -1,0 +1,7 @@
+require'settings.lsp.base'
+require'settings.lsp.common'
+require'settings.lsp.sumneko'
+require'settings.lsp.yamlls'
+require'settings.lsp.frontend'
+require'settings.lsp.php'
+require'settings.lsp.sqlls'

@@ -12,7 +12,7 @@ return {
             {'<leader>xp', nil, desc = 'toggleterm ipython'},
         },
         version = 'v2.*',
-        config = function(plugin) require'extensions.toggleterm' end,
+        config = function(plugin) require'plugins.toggleterm' end,
     },
     --]=]
 }

@@ -5,7 +5,7 @@ end
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
-local lang = vim.g.config_root .. '/lua/lang/treesitter_lang.json'
+local lang = vim.g.config_root .. '/lua/settings/treesitter_lang.json'
 if vim.fn.filereadable(lang) ~= 0 then
     vim.g.treesitter_lang = vim.fn.json_decode(vim.fn.readfile(lang))
 end

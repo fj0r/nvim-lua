@@ -23,6 +23,6 @@ return {
         dependencies = {
             'nvim-telescope/telescope.nvim',
         },
-        config = function(plugin) require'extensions.overseer' end,
+        config = function(plugin) require'plugins.overseer' end,
     },
 }
