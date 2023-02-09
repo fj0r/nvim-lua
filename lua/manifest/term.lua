@@ -1,7 +1,9 @@
 return {
     {
         'fj0r/nvim-taberm',
-        config = function(plugin) require'taberm'.setup{} end,
+        config = function(plugin) require'taberm'.setup {
+
+        } end,
     },
     --[=[
     {
