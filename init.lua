@@ -6,8 +6,8 @@ vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'settings'
 
-local lazyhome = vim.g.config_root .. '/lazy/'
-local lazypath = lazyhome .. 'lazy.nvim'
+local lazyhome = vim.g.config_root .. '/lazy'
+local lazypath = lazyhome .. '/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
         "git",
@@ -21,9 +21,9 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup('manifest', {
-    root = lazyhome..'packages',
+    root = lazyhome..'/packages',
     readme = {
-        root = lazyhome..'readme',
+        root = lazyhome..'/readme',
     }
 })
 
