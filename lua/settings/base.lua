@@ -1,5 +1,5 @@
 local o                 = vim.o
-local opt	            = vim.opt
+local opt               = vim.opt
 local g                 = vim.g
 local a                 = vim.api
 local c                 = vim.api.nvim_command
@@ -60,23 +60,24 @@ o.preserveindent        = true
 o.breakindent           = true
 
 ------ visual
-o.cursorline            = true
-
 o.cursorcolumn          = false
 o.lazyredraw            = true -- "Don’t update screen during macro and script execution.
 opt.guicursor:append    { 'a:blinkon0' }
 
-local cursorGrp = a.nvim_create_augroup("CursorLine", { clear = true })
-a.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-    pattern = "*",
-    command = "set cursorline",
-    group = cursorGrp
-})
-a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-    pattern = "*",
-    command = "set nocursorline",
-    group = cursorGrp
-})
+o.cursorline            = true
+if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
+    local cursorGrp = a.nvim_create_augroup("CursorLine", { clear = true })
+    a.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+        pattern = "*",
+        command = "set cursorline",
+        group = cursorGrp
+    })
+    a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+        pattern = "*",
+        command = "set nocursorline",
+        group = cursorGrp
+    })
+end
 
 -- Highlight redundant space
 a.nvim_create_autocmd("ColorScheme", {
