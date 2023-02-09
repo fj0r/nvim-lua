@@ -192,9 +192,10 @@ overseer.register_template {
         local file = vim.fn.expand("%:p")
         local cmds = {
             go = { "go", "run", file },
-            py = { "python", file},
-            js = { "node", file},
+            python = { "python3", file},
+            javascript = { "node", file},
             sh = { "sh", file},
+            lua = { "cat", file, "|", "nvim", "-ll", "-"}
         }
         return {
             cmd = cmds[vim.bo.filetype],
@@ -206,7 +207,7 @@ overseer.register_template {
         }
     end,
     condition = {
-        filetype = { "sh", "python", "go" },
+        filetype = { "sh", "python", "go", "javascript", "lua" },
     },
 }
 
