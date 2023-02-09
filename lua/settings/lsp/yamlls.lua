@@ -1,4 +1,4 @@
-vim.g.local_schemas_store = vim.g.config_root .. '/schemas_store'
+vim.g.local_schemas_store = vim.g.config_root .. '/schemas'
 
 local sync = function (url)
     local uri = vim.fn.substitute(url, 'https\\?://', '', '')

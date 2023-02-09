@@ -186,6 +186,30 @@ overseer.setup({
     },
 })
 
+overseer.register_template {
+    name = "run",
+    builder = function()
+        local file = vim.fn.expand("%:p")
+        local cmds = {
+            go = { "go", "run", file },
+            py = { "python", file},
+            js = { "node", file},
+            sh = { "sh", file},
+        }
+        return {
+            cmd = cmds[vim.bo.filetype],
+            components = {
+                { "on_output_quickfix", set_diagnostics = true },
+                "on_result_diagnostics",
+                "default",
+            },
+        }
+    end,
+    condition = {
+        filetype = { "sh", "python", "go" },
+    },
+}
+
 local opt = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>OverseerRun<cr>', opt)
 vim.api.nvim_set_keymap('n', '<C-t>', '<cmd>OverseerToggle<cr>', opt)
