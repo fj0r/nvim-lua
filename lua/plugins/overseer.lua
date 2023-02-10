@@ -187,7 +187,7 @@ overseer.setup({
 })
 
 overseer.register_template {
-    name = "run",
+    name = "run script",
     builder = function()
         local file = vim.fn.expand("%:p")
         local cmds = {
@@ -195,7 +195,7 @@ overseer.register_template {
             python = { "python3", file},
             javascript = { "node", file},
             sh = { "sh", file},
-            lua = { "cat", file, "|", "nvim", "-ll", "-"}
+            lua = { "cat", file, "|", "nvim", "-ll", "-"},
         }
         return {
             cmd = cmds[vim.bo.filetype],
