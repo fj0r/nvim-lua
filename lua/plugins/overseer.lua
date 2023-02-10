@@ -191,11 +191,18 @@ overseer.register_template {
     builder = function()
         local file = vim.fn.expand("%:p")
         local cmds = {
-            go = { "go", "run", file },
-            python = { "python3", file},
-            javascript = { "node", file},
-            sh = { "sh", file},
-            lua = { "cat", file, "|", "nvim", "-ll", "-"},
+            python     = { "python3", file },
+            javascript = { "node", file },
+            lua        = { "nvim", "-ll", file },
+            rust       = { "cargo", "run", file },
+            haskell    = { "stack", "run", file },
+            julia      = { "julia", file },
+            scheme     = { "racket", "-t", file },
+            ruby       = { "ruby", file },
+            go         = { "go", "run", file },
+            nu         = { "nu", file },
+            sh         = { "sh", file },
+            bash       = { "bash", file },
         }
         return {
             cmd = cmds[vim.bo.filetype],
