@@ -28,7 +28,7 @@ require('possession').setup {
     hooks = {
         before_save = function(name)
             if has_plugin'neo-tree.nvim' then
-                require("neo-tree").close_all()
+                pcall(require("neo-tree").close_all)
             end
             return {} -- user_data
         end,
