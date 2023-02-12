@@ -7,10 +7,12 @@ return {
         'phaazon/hop.nvim',
         branch = 'v2',
         keys = {
-            --{';', nil, desc = 'hop hint_words'},
-            --{',', nil, desc = 'hop hint_char1'},
-            --{'s', nil, desc = 'hop hint_char2'},
-            --{'<leader>;', nil, desc = 'hop hint_lines'},
+            --[[ standalone
+            {';', nil, desc = 'hop hint_words'},
+            {',', nil, desc = 'hop hint_char1'},
+            {'s', nil, desc = 'hop hint_char2'},
+            {'<leader>;', nil, desc = 'hop hint_lines'},
+            --]]
             {'<leader><leader>', nil, desc = 'hop hint_words'},
             {'<leader>;', nil, desc = 'hop hint_lines'},
         },

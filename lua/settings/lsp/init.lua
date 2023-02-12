@@ -1,4 +1,5 @@
 require'settings.lsp.base'
+require'settings.lsp.ui'
 require'settings.lsp.common'
 require'settings.lsp.lua'
 require'settings.lsp.yaml'
