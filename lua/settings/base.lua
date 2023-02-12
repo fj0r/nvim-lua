@@ -62,6 +62,7 @@ o.breakindent    = true
 ------ visual
 o.cursorline     = true
 o.cursorcolumn   = false
+o.updatetime     = 750
 o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
 opt.guicursor:append { 'a:blinkon0' }
 
