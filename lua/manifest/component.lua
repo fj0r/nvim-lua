@@ -35,7 +35,10 @@ return {
 
     {
         's1n7ax/nvim-window-picker',
-        keys = {{'<leader><leader>', nil, desc = 'window picker'}},
+        keys = {
+            {'<leader>ww', nil, desc = 'window picker'},
+            {'<M-w>', nil, desc = 'window picker'},
+        },
         module = { 'neo-tree' },
         version = 'v1.*',
         config = function(plugin) require'plugins.window-picker' end,

@@ -1,22 +1,4 @@
 return {
-    {
-        'phaazon/hop.nvim',
-        branch = 'v2',
-        keys = {
-            {';', nil, desc = 'hop hint_words'},
-            {',', nil, desc = 'hop hint_char1'},
-            {'s', nil, desc = 'hop hint_char2'},
-            {'<leader>;', nil, desc = 'hop hint_lines'},
-        },
-        config = function(plugin) require'plugins.hop' end,
-    },
-    {
-        'chaoren/vim-wordmotion',
-        enabled = false,
-        config = function ()
-            vim.g.wordmotion_uppercase_spaces = {'/', '.', '{', '}', '(', ')'}
-        end
-    },
     'mg979/vim-visual-multi',
 
     {
@@ -40,12 +22,6 @@ return {
     {
         'windwp/nvim-autopairs',
         config = function(plugin) require'plugins.autopairs' end
-    },
-    --'matze/vim-move',
-    'wellle/targets.vim',
-    {
-        "kylechui/nvim-surround",
-        config = function(plugin) require'plugins.surround' end
     },
     {
         'simnalamburt/vim-mundo',

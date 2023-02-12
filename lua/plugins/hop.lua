@@ -1,4 +1,5 @@
 hop = require('hop')
+local has_plugin = require'lazy_helper'.has_plugin
 
 local override_opts = function(opts)
     return setmetatable(opts or {}, {
@@ -26,15 +27,22 @@ function hint_somewhere(opts)
 end
 
 local m = vim.keymap.set
-for _, o in ipairs({'n', 'v', 'x'}) do
-    m(o, ';', hint_somewhere, {})
-    m(o, 's', hop.hint_char2, {})
-    --m(o, 'F', "<cmd>lua hop.hint_lines_skip_whitespace()<cr>", {})
-    --m(o, '<C-s>', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<cr>", {})
-    m(o, ',', hop.hint_char1, {})
-    m(o, '<leader>;', hop.hint_lines, {})
-    --m(o, '<leader>z', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-    --m(o, '<leader>p', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+if has_plugin'lightspeed.nvim' then
+    for _, o in ipairs({'n', 'v', 'x'}) do
+        m(o, '<leader><leader>', hint_somewhere, {})
+        m(o, '<leader>;', hop.hint_lines, {})
+    end
+else
+    for _, o in ipairs({'n', 'v', 'x'}) do
+        m(o, ';', hint_somewhere, {})
+        m(o, 's', hop.hint_char2, {})
+        --m(o, 'F', "<cmd>lua hop.hint_lines_skip_whitespace()<cr>", {})
+        --m(o, '<C-s>', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<cr>", {})
+        m(o, ',', hop.hint_char1, {})
+        m(o, '<leader>;', hop.hint_lines, {})
+        --m(o, '<leader>z', "<cmd>lua require'hop'.hint_char2()<cr>", {})
+        --m(o, '<leader>p', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+    end
 end
 
 require'hop'.setup {
