@@ -1,4 +1,4 @@
-local config = require'lspconfig'
+local config = require 'lspconfig'
 
 for _, lsp in
 ipairs { "hls"
@@ -10,4 +10,3 @@ ipairs { "hls"
        , "gopls"
        , "jdtls"
        } do config[lsp].setup {} end
-

@@ -1,3 +1,3 @@
-require'lspconfig'.phpactor.setup{
-    cmd = {"phpactor", "language-server"}
+require 'lspconfig'.phpactor.setup {
+    cmd = { "phpactor", "language-server" }
 }

@@ -4,7 +4,7 @@ return {
         dependencies = {
             'rafamadriz/friendly-snippets',
         },
-        config = function(plugin) require'plugins.luasnip' end,
+        config = function(plugin) require 'plugins.luasnip' end,
     },
     {
         'hrsh7th/nvim-cmp',
@@ -16,11 +16,11 @@ return {
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = function(plugin) require'plugins.nvim-cmp' end
+        config = function(plugin) require 'plugins.nvim-cmp' end
     },
     {
         'neovim/nvim-lspconfig',
-        config = function(plugin) require'settings.lsp' end,
+        config = function(plugin) require 'settings.lsp' end,
     },
     'b0o/schemastore.nvim',
     --[=[
@@ -34,23 +34,23 @@ return {
         --enabled = vim.g.nvim_preset ~= 'core',
         config = function(plugin)
             vim.opt.rtp:append(plugin.dir)
-            require'plugins.outline'
+            require 'plugins.outline'
         end
     },
 
     {
         'nvim-treesitter/nvim-treesitter',
         --build = ':TSUpdate',
-        config = function () require 'settings.treesitter' end
+        config = function() require 'settings.treesitter' end
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        dependencies = {'nvim-treesitter/nvim-treesitter'}
+        dependencies = { 'nvim-treesitter/nvim-treesitter' }
     },
     {
         'mizlan/iswap.nvim',
-        dependencies = {'nvim-treesitter'},
-        config = function(plugin) require'plugins.swap' end
+        dependencies = { 'nvim-treesitter' },
+        config = function(plugin) require 'plugins.swap' end
     },
 
     {
@@ -60,34 +60,34 @@ return {
     {
         'rcarriga/nvim-dap-ui',
         keys = {
-            {'[b', nil, desc = 'toggle breakpoint'},
-            {'[l', nil, desc = 'list breakpoints'},
-            {'[B', nil, desc = 'condition breakpoint'},
-            {'[L', nil, desc = 'log breakpoint'},
+            { '[b', nil, desc = 'toggle breakpoint' },
+            { '[l', nil, desc = 'list breakpoints' },
+            { '[B', nil, desc = 'condition breakpoint' },
+            { '[L', nil, desc = 'log breakpoint' },
         },
         config = function(plugin)
             --vim.opt.rtp:append(plugin.dir)
-            require'settings.dap'
+            require 'settings.dap'
         end,
-        dependencies = {'mfussenegger/nvim-dap'}
+        dependencies = { 'mfussenegger/nvim-dap' }
     },
     {
         'theHamsta/nvim-dap-virtual-text',
         enabled = false,
-        dependencies = {'mfussenegger/nvim-dap'}
+        dependencies = { 'mfussenegger/nvim-dap' }
     },
 
     {
         "folke/trouble.nvim",
         keys = {
-            {'<leader>gt', nil, desc = 'TroubleToggle'},
-            {'<leader>gw', nil, desc = 'TroubleToggle workspace_diagnostics'},
-            {'<leader>ga', nil, desc = 'TroubleToggle document_diagnostics'},
-            {'<leader>gl', nil, desc = 'TroubleToggle loclist'},
-            {'<leader>gq', nil, desc = 'TroubleToggle quickfix'},
-            {'<leader>gr', nil, desc = 'TroubleToggle lsp_references'},
+            { '<leader>gt', nil, desc = 'TroubleToggle' },
+            { '<leader>gw', nil, desc = 'TroubleToggle workspace_diagnostics' },
+            { '<leader>ga', nil, desc = 'TroubleToggle document_diagnostics' },
+            { '<leader>gl', nil, desc = 'TroubleToggle loclist' },
+            { '<leader>gq', nil, desc = 'TroubleToggle quickfix' },
+            { '<leader>gr', nil, desc = 'TroubleToggle lsp_references' },
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function(plugin) require'plugins.trouble' end
+        config = function(plugin) require 'plugins.trouble' end
     },
 }

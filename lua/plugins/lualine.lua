@@ -1,24 +1,24 @@
 local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
-    terminal = {
-        a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
-        b = { bg = '#504945', fg = '#ebdbb2' },
-        c = { bg = '#7c6f64', fg = '#282828' },
-    },
-})
+        terminal = {
+            a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
+            b = { bg = '#504945', fg = '#ebdbb2' },
+            c = { bg = '#7c6f64', fg = '#282828' },
+        },
+    })
 
-local diag = { 'diagnostics', symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'} }
+local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
 require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = gruvbox,
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {},
         always_divide_middle = true,
     },
     sections = {
-        lualine_a = {'mode'},
+        lualine_a = { 'mode' },
         lualine_b = vim.g.has_git and { 'branch', 'diff', diag } or { diag },
         lualine_c = {
             {
@@ -31,12 +31,12 @@ require('lualine').setup {
             'encoding',
             {
                 'fileformat',
-                symbols = {unix = 'unix', dos = 'dos', mac = 'mac'}
+                symbols = { unix = 'unix', dos = 'dos', mac = 'mac' }
             },
             'filetype'
         },
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
     },
     inactive_sections = {
         lualine_a = {},
@@ -51,15 +51,15 @@ require('lualine').setup {
         },
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {'progress', 'location'}
+        lualine_z = { 'progress', 'location' }
     },
     tabline = {
         lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 } },
         lualine_b = {},
         lualine_c = {},
-        lualine_x = {'overseer'},
+        lualine_x = { 'overseer' },
         lualine_y = {},
-        lualine_z = {'windows'}
+        lualine_z = { 'windows' }
     },
     extensions = {
         'neo-tree',
@@ -72,13 +72,15 @@ require('lualine').setup {
 }
 
 local pin = '^'
-local set_current_tabname = function (name)
-    vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin..name
+local set_current_tabname = function(name)
+    vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin .. name
 end
 
 local kb_prompt_rename_tab = {
-    noremap = true, silent = true, desc = 'rename tab',
-    callback = function ()
+    noremap = true,
+    silent = true,
+    desc = 'rename tab',
+    callback = function()
         local c = vim.v.count
         local p
         if c == 0 then
@@ -94,7 +96,7 @@ local kb_prompt_rename_tab = {
             for pr in vim.fs.parents(cwd) do
                 table.insert(parents, pr)
             end
-            p = vim.fn.substitute(cwd, parents[c]..'/', '', nil)
+            p = vim.fn.substitute(cwd, parents[c] .. '/', '', nil)
         end
         --local p = vim.fn.substitute(vim.fn.getcwd(), vim.fn.getenv('HOME'), '~', '')
         --local p = vim.fs.basename(vim.fn.getcwd())
@@ -109,16 +111,16 @@ local kb_prompt_rename_tab = {
     end
 }
 
-vim.keymap.set('',  '<M-r>', '', kb_prompt_rename_tab)
+vim.keymap.set('', '<M-r>', '', kb_prompt_rename_tab)
 vim.keymap.set('i', '<M-r>', '', kb_prompt_rename_tab)
 vim.keymap.set('t', '<M-r>', '', kb_prompt_rename_tab)
 
-vim.api.nvim_create_user_command('TabRename', function (ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
+vim.api.nvim_create_user_command('TabRename', function(ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
 
-local vcs_root = require'taberm.vcs'.root
+local vcs_root = require 'taberm.vcs'.root
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
-    callback = function (ctx)
+    callback = function(ctx)
         local curridx = vim.api.nvim_get_current_tabpage()
         local currname = vim.t[curridx].tabname
         if currname and string.sub(currname, 1, 1) == pin then return end
@@ -132,4 +134,3 @@ vim.api.nvim_create_autocmd("DirChanged", {
         vim.t[curridx].tabname = name
     end
 })
-

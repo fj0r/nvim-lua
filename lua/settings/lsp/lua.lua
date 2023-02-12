@@ -1,5 +1,5 @@
-require"lspconfig".lua_ls.setup {
-    cmd = { 'lua-language-server' };
+require "lspconfig".lua_ls.setup {
+    cmd = { 'lua-language-server' },
     settings = {
         Lua = {
             runtime = {
@@ -8,7 +8,7 @@ require"lspconfig".lua_ls.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
+                globals = { 'vim' },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -20,4 +20,3 @@ require"lspconfig".lua_ls.setup {
         },
     },
 }
-

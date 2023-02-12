@@ -1,29 +1,29 @@
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
-local has_plugin = require'lazy_helper'.has_plugin
+local has_plugin = require 'lazy_helper'.has_plugin
 
 local cfg = {
-    disable_filetype = { "TelescopePrompt" , "vim" },
-    fast_wrap = { },
+    disable_filetype = { "TelescopePrompt", "vim" },
+    fast_wrap = {},
 }
 
-if has_plugin'cmp' then
+if has_plugin 'cmp' then
     -- If you want insert `(` after select function or method item
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
-    cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
     -- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
-    cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+    cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
 end
 
 
-if has_plugin'nvim-treesitter' then
+if has_plugin 'nvim-treesitter' then
     cfg.check_ts = true
     cfg.ts_config = {
-        lua = {'string'},-- it will not add pair on that treesitter node
-        javascript = {'template_string'},
-        java = false,-- don't check treesitter on java
+        lua = { 'string' }, -- it will not add pair on that treesitter node
+        javascript = { 'template_string' },
+        java = false, -- don't check treesitter on java
     }
     npairs.setup(cfg)
 
@@ -31,9 +31,9 @@ if has_plugin'nvim-treesitter' then
     -- press % => %% only while inside a comment or string
     npairs.add_rules({
         Rule("%", "%", "lua")
-        :with_pair(ts_conds.is_ts_node({'string','comment'})),
+        :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
         Rule("$", "$", "lua")
-        :with_pair(ts_conds.is_not_ts_node({'function'}))
+        :with_pair(ts_conds.is_not_ts_node({ 'function' }))
     })
     require('nvim-treesitter.configs').setup {
         autotag = {
@@ -52,4 +52,3 @@ if has_plugin'nvim-treesitter' then
 else
     npairs.setup(cfg)
 end
-

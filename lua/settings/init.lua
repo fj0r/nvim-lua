@@ -5,4 +5,3 @@ require 'settings.filetype'
 require 'settings.colors'
 require 'settings.window'
 require 'settings.gui'
-

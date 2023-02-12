@@ -2,7 +2,7 @@ if not vim.g.has_git then
     return
 end
 
-local neogit = require'neogit'
+local neogit = require 'neogit'
 
 neogit.setup {
     disable_signs = false,
@@ -28,7 +28,7 @@ neogit.setup {
 --vim.keymap.set('n', '<Leader>gg', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
 vim.keymap.set('n', '<Leader>gg',
     function()
-        require'neogit'.open({kind='split'})
+        require 'neogit'.open({ kind = 'split' })
     end,
     { noremap = true, desc = 'neogit' }
 )

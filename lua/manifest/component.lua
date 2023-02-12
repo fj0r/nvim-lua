@@ -1,8 +1,8 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        config = function(plugin) require'plugins.telescope' end,
-        dependencies = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        config = function(plugin) require 'plugins.telescope' end,
+        dependencies = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
     },
     'TC72/telescope-tele-tabby.nvim',
     'xiyaowong/telescope-emoji.nvim',
@@ -11,7 +11,7 @@ return {
 
     {
         'stevearc/dressing.nvim',
-        config = function (plugin) require'plugins.dressing' end
+        config = function(plugin) require 'plugins.dressing' end
     },
 
 
@@ -29,41 +29,41 @@ return {
                 version = "v1.*",
             }
         },
-        keys = {{'<leader>e', nil, desc = 'Neotree'}},
-        config = function(plugin) require'plugins.neotree' end,
+        keys = { { '<leader>e', nil, desc = 'Neotree' } },
+        config = function(plugin) require 'plugins.neotree' end,
     },
 
     {
         's1n7ax/nvim-window-picker',
         keys = {
-            {'<leader>ww', nil, desc = 'window picker'},
-            {'<M-w>', nil, desc = 'window picker'},
+            { '<leader>ww', nil, desc = 'window picker' },
+            { '<M-w>',      nil, desc = 'window picker' },
         },
         module = { 'neo-tree' },
         version = 'v1.*',
-        config = function(plugin) require'plugins.window-picker' end,
+        config = function(plugin) require 'plugins.window-picker' end,
     },
 
     {
         'sindrets/winshift.nvim',
         keys = {
-            {'<leader>ws', nil, desc = 'winshift'},
-            {'<leader>wx', nil, desc = 'winswap'},
+            { '<leader>ws', nil, desc = 'winshift' },
+            { '<leader>wx', nil, desc = 'winswap' },
         },
-        config = function(plugin) require'plugins.winshift' end,
+        config = function(plugin) require 'plugins.winshift' end,
     },
     {
         'notomo/cmdbuf.nvim',
         enabled = false,
-        config = function(plugin) require'plugins.cmdbuf' end,
+        config = function(plugin) require 'plugins.cmdbuf' end,
     },
 
     {
         "folke/which-key.nvim",
-        config = function(plugin) require'plugins.whichkey' end,
+        config = function(plugin) require 'plugins.whichkey' end,
     },
     {
         'kevinhwang91/nvim-hlslens',
-        config = function(plugin) require'hlslens'.setup() end
+        config = function(plugin) require 'hlslens'.setup() end
     },
 }

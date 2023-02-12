@@ -1,4 +1,4 @@
-local dap = require'dap'
+local dap = require 'dap'
 
 --[[
 zend_extension=xdebug.so
@@ -22,4 +22,3 @@ dap.configurations.php = {
         port = 9000
     }
 }
-

@@ -1,9 +1,9 @@
-local dap = require'dap'
-local lspconfig = require'lspconfig'
+local dap = require 'dap'
+local lspconfig = require 'lspconfig'
 
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 local lldb_vscode_bin
-for _, v in ipairs{15, 14, 11} do
+for _, v in ipairs { 15, 14, 11 } do
     lldb_vscode_bin = 'lldb-vscode-' .. v
     if vim.fn.executable(lldb_vscode_bin) == 1 then
         break
@@ -21,7 +21,7 @@ dap.configurations.rust = {
         type = "lldb",
         request = 'launch',
         -- program = "${workspaceFolder}/target/debug/${file}"
-        program = function ()
+        program = function()
             local r = io.popen("cargo build --quiet 2>/dev/null")
             if r == nil then return end
             local _ = r:read("*a")

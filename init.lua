@@ -1,7 +1,7 @@
-vim.g.config_root  = debug.getinfo(1,'S').source:match('^@(.+)/.+$')
-vim.g.data_root    = os.getenv('HOME') .. '/.nvim'
-vim.g.nvim_preset  = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
-vim.g.has_git      = pcall(vim.fn.systemlist, { 'git', '--version'})
+vim.g.config_root = debug.getinfo(1, 'S').source:match('^@(.+)/.+$')
+vim.g.data_root   = os.getenv('HOME') .. '/.nvim'
+vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
+vim.g.has_git     = pcall(vim.fn.systemlist, { 'git', '--version' })
 vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'settings'
@@ -21,13 +21,13 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup('manifest', {
-    root = lazyhome..'/packages',
+    root = lazyhome .. '/packages',
     readme = {
-        root = lazyhome..'/readme',
+        root = lazyhome .. '/readme',
     }
 })
 
 local user_config = os.getenv("HOME") .. '/.nvim.lua'
 if vim.fn.empty(vim.fn.glob(user_config)) == 0 then
-    vim.cmd('luafile '..user_config)
+    vim.cmd('luafile ' .. user_config)
 end

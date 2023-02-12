@@ -1,16 +1,16 @@
 local tbm = require('taberm')
-local vcs_root = require'taberm.vcs'.root
-local has_plugin = require'lazy_helper'.has_plugin
+local vcs_root = require 'taberm.vcs'.root
+local has_plugin = require 'lazy_helper'.has_plugin
 
 require('possession').setup {
-    session_dir = vim.g.data_root.."/possession",
+    session_dir = vim.g.data_root .. "/possession",
     silent = true,
     load_silent = true,
     debug = false,
     prompt_no_cr = false,
     autosave = {
-        current = true,  -- or fun(name): boolean
-        tmp = true,  -- or fun(): boolean
+        current = true, -- or fun(name): boolean
+        tmp = true, -- or fun(): boolean
         tmp_name = 'tmp',
         on_load = true,
         on_quit = true,
@@ -27,19 +27,21 @@ require('possession').setup {
     },
     hooks = {
         before_save = function(name)
-            if has_plugin'neo-tree.nvim' then
+            if has_plugin 'neo-tree.nvim' then
                 pcall(require("neo-tree").close_all)
             end
             return {} -- user_data
         end,
-        after_save = function(name, user_data, aborted) end,
+        after_save = function(name, user_data, aborted)
+        end,
         before_load = function(name, user_data) return user_data end,
-        after_load = function(name, user_data)  end,
+        after_load = function(name, user_data)
+        end,
     },
     plugins = {
         close_windows = {
-            hooks = {'before_save', 'before_load'},
-            preserve_layout = false,  -- or fun(win): boolean
+            hooks = { 'before_save', 'before_load' },
+            preserve_layout = false, -- or fun(win): boolean
             match = {
                 floating = true,
                 buftype = {
@@ -54,7 +56,7 @@ require('possession').setup {
                     'DiffviewFilePanel',
                     'DiffviewFileHistoryPanel',
                 },
-                custom = false,  -- or fun(win): boolean
+                custom = false, -- or fun(win): boolean
             },
         },
         delete_hidden_buffers = {
@@ -62,7 +64,7 @@ require('possession').setup {
                 'before_load',
                 vim.o.sessionoptions:match('buffer') and 'before_save',
             },
-            force = false,  -- or fun(buf): boolean
+            force = false, -- or fun(buf): boolean
         },
         nvim_tree = false,
         tabby = false,
@@ -97,7 +99,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
             local config = require('possession.config')
             local name = vim.fn.substitute(root_dir, '/', '::', 'g')
             vim.g.session_id = name
-            local path = config.session_dir.."/"..name..".json"
+            local path = config.session_dir .. "/" .. name .. ".json"
             if vim.fn.empty(vim.fn.glob(path)) == 0 then
                 session.load(name)
             else
@@ -112,7 +114,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 require('telescope').load_extension('possession')
 vim.keymap.set('n', '<leader>S', require('telescope').extensions.possession.list, { desc = 'session: list' })
 
-vim.api.nvim_create_user_command('Ssv', function ()
+vim.api.nvim_create_user_command('Ssv', function()
     local session = require('possession.session')
     session.save(vim.g.session_id)
-end, { nargs = '?' , desc = 'save current session'})
+end, { nargs = '?', desc = 'save current session' })

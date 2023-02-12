@@ -33,7 +33,7 @@ vim.g.treesitter_lang = {
     "org"
 }
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
     ensure_installed = vim.g.treesitter_lang,
     sync_install = true,
     auto_install = false,
@@ -112,4 +112,3 @@ require'nvim-treesitter.configs'.setup {
         },
     }
 }
-

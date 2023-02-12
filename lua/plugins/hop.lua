@@ -1,17 +1,17 @@
 hop = require('hop')
-local has_plugin = require'lazy_helper'.has_plugin
+local has_plugin = require 'lazy_helper'.has_plugin
 
 local override_opts = function(opts)
     return setmetatable(opts or {}, {
-        __index = hop.opts,
-    })
+            __index = hop.opts,
+        })
 end
 
 --local regex = vim.regex('\\k\\+')
 local regex = vim.regex('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$')
 
 function hint_somewhere(opts)
-    local jump_target = require'hop.jump_target'
+    local jump_target = require 'hop.jump_target'
     local hint_with = require("hop").hint_with
 
     opts = override_opts(opts)
@@ -23,17 +23,17 @@ function hint_somewhere(opts)
         generator = jump_target.jump_targets_by_scanning_lines
     end
 
-    hint_with(generator{ oneshot = false, match = function(s) return regex:match_str(s) end }, opts)
+    hint_with(generator { oneshot = false, match = function(s) return regex:match_str(s) end }, opts)
 end
 
 local m = vim.keymap.set
-if has_plugin'lightspeed.nvim' then
-    for _, o in ipairs({'n', 'v', 'x'}) do
+if has_plugin 'lightspeed.nvim' then
+    for _, o in ipairs({ 'n', 'v', 'x' }) do
         m(o, '<leader><leader>', hint_somewhere, {})
         m(o, '<leader>;', hop.hint_lines, {})
     end
 else
-    for _, o in ipairs({'n', 'v', 'x'}) do
+    for _, o in ipairs({ 'n', 'v', 'x' }) do
         m(o, ';', hint_somewhere, {})
         m(o, 's', hop.hint_char2, {})
         --m(o, 'F', "<cmd>lua hop.hint_lines_skip_whitespace()<cr>", {})
@@ -45,10 +45,8 @@ else
     end
 end
 
-require'hop'.setup {
+require 'hop'.setup {
     -- keys = 'asdghklqwertyuiopzxcvbnmfj'
     keys = 'asdfjklqweruiopzxcv',
     -- keys = 'ajskdlf;quwieorpzxcv'
 }
-
-

@@ -1,10 +1,10 @@
-local dap = require'dap'
+local dap = require 'dap'
 
 --stack install haskell-dap ghci-dap haskell-debug-adapter
 dap.adapters.haskell = {
-    type = 'executable';
-    command = 'haskell-debug-adapter';
-    args = {'--hackage-version=0.0.35.0'};
+    type = 'executable',
+    command = 'haskell-debug-adapter',
+    args = { '--hackage-version=0.0.35.0' },
 }
 dap.configurations.haskell = {
     {
@@ -20,6 +20,6 @@ dap.configurations.haskell = {
         ghciPrompt = "H>>= ",
         -- Adjust the prompt to the prompt you see when you invoke the stack ghci command below
         ghciInitialPrompt = "H>>= ",
-        ghciCmd= "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
+        ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
     },
 }

@@ -1,4 +1,4 @@
-local overseer = require'overseer'
+local overseer = require 'overseer'
 
 overseer.setup({
     -- Default task strategy
@@ -227,4 +227,3 @@ vim.keymap.set('n', '<leader>oo', '<cmd>OverseerToggle<cr>', opt)
 vim.keymap.set('n', '<leader>ob', '<cmd>OverseerBuild<cr>', opt)
 vim.keymap.set('n', '<leader>ot', '<cmd>OverseerTaskAction<cr>', opt)
 vim.keymap.set('n', '<leader>oq', '<cmd>OverseerQuickAction<cr>', opt)
-

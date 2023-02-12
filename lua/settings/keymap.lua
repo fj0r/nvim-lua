@@ -77,14 +77,14 @@ m('n', 'M', '<cmd>marks<CR>', op2)
 
 m('n', '<leader>q', '<cmd>quit<CR>', op2)
 
-local kill_tabpage = function ()
+local kill_tabpage = function()
     local t = vim.api.nvim_get_current_tabpage()
     local w = vim.api.nvim_tabpage_list_wins(t)
     for _, b in pairs(w) do
-        vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), {force=true})
+        vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), { force = true })
     end
 end
-u('Q', kill_tabpage, {desc = 'close all window of the current tabpage'})
+u('Q', kill_tabpage, { desc = 'close all window of the current tabpage' })
 m('n', '<M-q>', kill_tabpage, op2)
 m('i', '<M-q>', kill_tabpage, op2)
 m('t', '<M-q>', kill_tabpage, op2)

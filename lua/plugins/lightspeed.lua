@@ -1,4 +1,4 @@
-require'lightspeed'.setup {
+require 'lightspeed'.setup {
     ignore_case = true,
     exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
 

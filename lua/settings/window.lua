@@ -62,35 +62,35 @@ m('', '<M-l>', '<C-W><S-l>', op2)
 ------ window resize
 -- use double digits as arg. ones place for width, tens place for height
 -- 0 for keep old, 9 for max, 1-8 for grid
-local resize_window_by_grid = function (id, nn)
-    local h = math.floor(nn/10)
-    local w = nn - h*10
-    local tw = w==0 and vim.api.nvim_win_get_width(id)
-            or w==9 and vim.o.columns
+local resize_window_by_grid = function(id, nn)
+    local h = math.floor(nn / 10)
+    local w = nn - h * 10
+    local tw = w == 0 and vim.api.nvim_win_get_width(id)
+            or w == 9 and vim.o.columns
             or math.floor(vim.o.columns * w / 8)
-    local th = h==0 and vim.api.nvim_win_get_height(id)
-            or h==9 and vim.o.lines
+    local th = h == 0 and vim.api.nvim_win_get_height(id)
+            or h == 9 and vim.o.lines
             or math.floor(vim.o.lines * h / 8)
     vim.api.nvim_win_set_width(id, tw)
     vim.api.nvim_win_set_height(id, th)
 end
 
 vim.api.nvim_create_user_command('WinResize',
-    function (ctx)
+    function(ctx)
         resize_window_by_grid(vim.api.nvim_get_current_win(), ctx.args)
     end,
-    { nargs = '?' , desc = 'resize window by double digit'}
+    { nargs = '?', desc = 'resize window by double digit' }
 )
 
 m('', '<leader>wh',
-    function ()
+    function()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count)
     end,
     { noremap = true, silent = true, desc = 'window resize horizontal' }
 )
 
 m('', '<leader>wv',
-    function ()
+    function()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
     end,
     { noremap = true, silent = true, desc = 'window resize vertical' }
