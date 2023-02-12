@@ -1,5 +1,5 @@
 local a   = vim.api
-local m   = vim.api.nvim_set_keymap
+local m   = vim.keymap.set
 local c   = vim.api.nvim_command
 local u   = vim.api.nvim_create_user_command
 local g   = vim.g
@@ -85,9 +85,9 @@ local kill_tabpage = function ()
     end
 end
 u('Q', kill_tabpage, {desc = 'close all window of the current tabpage'})
-m('n', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
-m('i', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
-m('t', '<M-q>', '', { callback = kill_tabpage, noremap = true, silent = true })
+m('n', '<M-q>', kill_tabpage, op2)
+m('i', '<M-q>', kill_tabpage, op2)
+m('t', '<M-q>', kill_tabpage, op2)
 
 c('command! -nargs=0  W :wall')
 c('command! -nargs=0  Wq :wall|tabclose')

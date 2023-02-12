@@ -5,9 +5,9 @@ require("trouble").setup {
 }
 
 local o = {silent = true, noremap = true}
-vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>TroubleToggle<cr>', o)
-vim.api.nvim_set_keymap('n', '<leader>gw', '<cmd>TroubleToggle workspace_diagnostics<cr>', o)
-vim.api.nvim_set_keymap('n', '<leader>ga', '<cmd>TroubleToggle document_diagnostics<cr>', o)
-vim.api.nvim_set_keymap('n', '<leader>gl', '<cmd>TroubleToggle loclist<cr>', o)
-vim.api.nvim_set_keymap('n', '<leader>gq', '<cmd>TroubleToggle quickfix<cr>', o)
-vim.api.nvim_set_keymap('n', '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', o)
+vim.keymap.set('n', '<leader>gt', '<cmd>TroubleToggle<cr>', o)
+vim.keymap.set('n', '<leader>gw', '<cmd>TroubleToggle workspace_diagnostics<cr>', o)
+vim.keymap.set('n', '<leader>ga', '<cmd>TroubleToggle document_diagnostics<cr>', o)
+vim.keymap.set('n', '<leader>gl', '<cmd>TroubleToggle loclist<cr>', o)
+vim.keymap.set('n', '<leader>gq', '<cmd>TroubleToggle quickfix<cr>', o)
+vim.keymap.set('n', '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', o)

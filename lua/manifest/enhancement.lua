@@ -5,6 +5,7 @@ return {
         keys = {
             {';', nil, desc = 'hop hint_words'},
             {',', nil, desc = 'hop hint_char1'},
+            {'s', nil, desc = 'hop hint_char2'},
             {'<leader>;', nil, desc = 'hop hint_lines'},
         },
         config = function(plugin) require'plugins.hop' end,

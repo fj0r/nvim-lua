@@ -25,14 +25,14 @@ function hint_somewhere(opts)
     hint_with(generator{ oneshot = false, match = function(s) return regex:match_str(s) end }, opts)
 end
 
-local m = vim.api.nvim_set_keymap
+local m = vim.keymap.set
 for _, o in ipairs({'n', 'v', 'x'}) do
-    m(o, ';', "<cmd>lua hint_somewhere()<cr>", {})
-    --m(o, 's', "<cmd>lua require'hop'.hint_words()<cr>", {})
+    m(o, ';', hint_somewhere, {})
+    m(o, 's', hop.hint_char2, {})
     --m(o, 'F', "<cmd>lua hop.hint_lines_skip_whitespace()<cr>", {})
     --m(o, '<C-s>', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<cr>", {})
-    m(o, ',', "<cmd>lua hop.hint_char1()<cr>", {})
-    m(o, '<leader>;', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+    m(o, ',', hop.hint_char1, {})
+    m(o, '<leader>;', hop.hint_lines, {})
     --m(o, '<leader>z', "<cmd>lua require'hop'.hint_char2()<cr>", {})
     --m(o, '<leader>p', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
 end

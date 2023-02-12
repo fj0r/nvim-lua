@@ -227,4 +227,4 @@ require("neo-tree").setup({
     } or nil
 })
 
-vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree reveal<CR>', {noremap=true, silent=true})
+vim.keymap.set('n', '<leader>e', ':Neotree reveal<CR>', {noremap=true, silent=true})

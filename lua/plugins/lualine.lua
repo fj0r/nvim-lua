@@ -109,9 +109,9 @@ local kb_prompt_rename_tab = {
     end
 }
 
-vim.api.nvim_set_keymap('',  '<M-r>', '', kb_prompt_rename_tab)
-vim.api.nvim_set_keymap('i', '<M-r>', '', kb_prompt_rename_tab)
-vim.api.nvim_set_keymap('t', '<M-r>', '', kb_prompt_rename_tab)
+vim.keymap.set('',  '<M-r>', '', kb_prompt_rename_tab)
+vim.keymap.set('i', '<M-r>', '', kb_prompt_rename_tab)
+vim.keymap.set('t', '<M-r>', '', kb_prompt_rename_tab)
 
 vim.api.nvim_create_user_command('TabRename', function (ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
 

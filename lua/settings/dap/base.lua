@@ -9,27 +9,27 @@ function _dap_continue()
 end
 
 local keymaps = {
-    ['[b'] = "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
-    ['[c'] = "<cmd>lua _dap_continue()<cr>",
-    ['[s'] = "<cmd>lua require'dap'.step_over()<cr>",
-    ['[i'] = "<cmd>lua require'dap'.step_into()<cr>",
-    ['[o'] = "<cmd>lua require'dap'.step_out()<cr>",
-    --['[g'] = "<cmd>lua require'dap'.goto_()<cr>",
-    ['[g'] = "<cmd>lua require'dap'.run_to_cursor()<cr>",
-    ['[x'] = "<cmd>lua require'dap'.repl.open()<cr>",
-    ['[l'] = "<cmd>lua require'dap'.list_breakpoints()<cr>",
-    ['[B'] = "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-    ['[L'] = "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-    ['[C'] = "<cmd>lua require'dap'.run_last()<CR>",
-    ['[p'] = "<cmd>lua _dap_stop()<cr>",
+    ['[b'] = require'dap'.toggle_breakpoint,
+    ['[c'] = _dap_continue,
+    ['[s'] = require'dap'.step_over,
+    ['[i'] = require'dap'.step_into,
+    ['[o'] = require'dap'.step_out,
+    ['[g'] = require'dap'.goto_,
+    ['[r'] = require'dap'.run_to_cursor,
+    ['[x'] = require'dap'.repl.open,
+    ['[l'] = require'dap'.list_breakpoints,
+    ['[B'] = function() require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    ['[L'] = function() require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+    ['[C'] = require'dap'.run_last,
+    ['[p'] = _dap_stop,
 }
 
 for k, v in pairs(keymaps) do
-    vim.api.nvim_set_keymap('n', k, v, { noremap = true })
+    vim.keymap.set('n', k, v, { noremap = true })
 end
 
 for _, v in ipairs {'n', 'v'} do
-    vim.api.nvim_set_keymap(v, '[v',"<cmd>lua require'dapui'.eval()<cr>", { noremap = true})
+    vim.keymap.set(v, '[v', require'dapui'.eval, { noremap = true})
 end
 
 vim.g.dap_virtual_text = true

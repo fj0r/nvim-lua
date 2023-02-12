@@ -1,4 +1,4 @@
-local m   = vim.api.nvim_set_keymap
+local m   = vim.keymap.set
 local op1 = { noremap = true }
 local op2 = { noremap = true, silent = true }
 
@@ -42,7 +42,7 @@ m('', '<C-k>', '<C-W>k', op2)
 m('', '<C-h>', '<C-W>h', op2)
 m('', '<C-l>', '<C-W>l', op2)
 
-             -- '<cmd>wincmd j<cr>'
+-- '<cmd>wincmd j<cr>'
 m('i', '<C-j>', "<C-\\><C-N><C-w>j", op2)
 m('i', '<C-k>', "<C-\\><C-N><C-w>k", op2)
 m('i', '<C-h>', "<C-\\><C-N><C-w>h", op2)
@@ -82,15 +82,16 @@ vim.api.nvim_create_user_command('WinResize',
     { nargs = '?' , desc = 'resize window by double digit'}
 )
 
-m('', '<leader>wh', '', { noremap = true, silent = true,
-    desc = 'window resize horizontal',
-    callback = function ()
+m('', '<leader>wh',
+    function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count)
-    end
-})
-m('', '<leader>wv', '', { noremap = true, silent = true,
-    desc = 'window resize vertical',
-    callback = function ()
+    end,
+    { noremap = true, silent = true, desc = 'window resize horizontal' }
+)
+
+m('', '<leader>wv',
+    function ()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
-    end
-})
+    end,
+    { noremap = true, silent = true, desc = 'window resize vertical' }
+)
