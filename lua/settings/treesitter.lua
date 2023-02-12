@@ -5,10 +5,34 @@ end
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
-local lang = vim.g.config_root .. '/lua/settings/treesitter.json'
-if vim.fn.filereadable(lang) ~= 0 then
-    vim.g.treesitter_lang = vim.fn.json_decode(vim.fn.readfile(lang)).languages
-end
+vim.g.treesitter_lang = {
+    "css",
+    "diff",
+    "dockerfile",
+    "go",
+    "gomod",
+    "graphql",
+    "haskell",
+    "html",
+    "java",
+    "javascript",
+    "jsdoc",
+    "json",
+    "jsonc",
+    "julia",
+    "lua",
+    "markdown",
+    "php",
+    "python",
+    "regex",
+    "rust",
+    "toml",
+    "typescript",
+    "vue",
+    "yaml",
+    "org"
+}
+
 require'nvim-treesitter.configs'.setup {
     ensure_installed = vim.g.treesitter_lang,
     sync_install = true,
