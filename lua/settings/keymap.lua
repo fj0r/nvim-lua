@@ -22,13 +22,6 @@ end
 
 m('t', g.mapesc or '<ESC>', '<C-\\><C-n>', op2)
 
--- map kj to <ESC>, 150ms interval
-if os.getenv('VIM_DUAL_ESC') == '1' then
-    m('i', 'kj', '<ESC>', op2)
-    c('autocmd InsertEnter * set timeoutlen=150')
-    c('autocmd InsertLeave * set timeoutlen=1000')
-end
-
 if os.getenv('VIM_JK_WRAP') == '1' then
     m('n', 'k', "v:count == 0 ? 'gk' : 'k'", op3)
     m('n', 'j', "v:count == 0 ? 'gj' : 'j'", op3)
