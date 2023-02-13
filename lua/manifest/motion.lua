@@ -27,8 +27,4 @@ return {
     },
     --'matze/vim-move',
     'wellle/targets.vim',
-    {
-        "kylechui/nvim-surround",
-        config = function(plugin) require 'plugins.surround' end
-    },
 }

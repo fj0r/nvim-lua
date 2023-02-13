@@ -18,10 +18,17 @@ return {
         'junegunn/rainbow_parentheses.vim',
         config = function(plugin) require 'plugins.rainbow' end
     },
-    'tpope/vim-commentary',
+    {
+        'numToStr/Comment.nvim',
+        config = function(plugin) require 'Comment'.setup() end
+    },
     {
         'windwp/nvim-autopairs',
         config = function(plugin) require 'plugins.autopairs' end
+    },
+    {
+        "kylechui/nvim-surround",
+        config = function(plugin) require 'plugins.surround' end
     },
     {
         'simnalamburt/vim-mundo',
