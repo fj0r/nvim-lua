@@ -33,10 +33,16 @@ return {
         'simrat39/symbols-outline.nvim',
         --enabled = vim.g.nvim_preset ~= 'core',
         config = function(plugin)
-            vim.opt.rtp:append(plugin.dir)
+            --vim.opt.rtp:append(plugin.dir)
             require 'plugins.outline'
         end
     },
+    --[[
+    {
+        'stevearc/aerial.nvim',
+        config = function() require('aerial').setup() end
+    },
+    --]]
 
     {
         'nvim-treesitter/nvim-treesitter',
