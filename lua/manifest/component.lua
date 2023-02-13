@@ -59,10 +59,6 @@ return {
     },
 
     {
-        "folke/which-key.nvim",
-        config = function(plugin) require 'plugins.whichkey' end,
-    },
-    {
         'kevinhwang91/nvim-hlslens',
         config = function(plugin) require 'hlslens'.setup() end
     },
