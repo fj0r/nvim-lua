@@ -12,6 +12,7 @@ require('whitespace-nvim').setup({
         'Trouble',
         'help',
         'WhichKey',
+        'neo-tree',
         'NeogitCommitView',
     },
 })

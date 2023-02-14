@@ -49,8 +49,14 @@ return {
         'simnalamburt/vim-mundo',
         keys = { { '<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo' } },
     },
+
     {
         'tversteeg/registers.nvim',
         config = function(plugin) require 'registers'.setup() end
+    },
+    {
+        'gbprod/yanky.nvim',
+        enabled = false,
+        config = function (plugin) require 'yanky'.setup() end
     },
 }
