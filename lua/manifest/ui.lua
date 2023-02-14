@@ -18,6 +18,21 @@ return {
         config = function(plugin) require 'plugins.colorizer' end
     },
 
+    {
+        'stevearc/dressing.nvim',
+        config = function(plugin) require 'plugins.dressing' end
+    },
+
+    {
+        'notomo/cmdbuf.nvim',
+        enabled = false,
+        config = function(plugin) require 'plugins.cmdbuf' end,
+    },
+
+    {
+        'kevinhwang91/nvim-hlslens',
+        config = function(plugin) require 'hlslens'.setup() end
+    },
     --[=[
     use {
         'rktjmp/lush.nvim',

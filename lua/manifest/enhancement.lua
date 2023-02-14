@@ -31,14 +31,9 @@ return {
         config = function(plugin) require 'plugins.surround' end
     },
     {
-        'simnalamburt/vim-mundo',
-        keys = { { '<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo' } },
+        'johnfrankmorgan/whitespace.nvim',
+        config = function (plugin) require 'plugins.whitespace' end
     },
-    {
-        'tversteeg/registers.nvim',
-        config = function(plugin) require 'registers'.setup() end
-    },
-
     {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },

@@ -13,6 +13,7 @@ o.visualbell     = true
 o.laststatus     = 2
 o.showtabline    = 1
 o.cmdheight      = 0
+o.timeoutlen     = 500
 o.wildmenu       = false
 
 o.confirm        = true
@@ -79,30 +80,6 @@ if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
         group = cursorGrp
     })
 end
-
--- Highlight redundant space
-a.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    nested = true,
-    callback = function()
-        c [[highlight ExtraWhitespace ctermbg=red guibg=red]]
-    end
-})
-a.nvim_create_autocmd("BufWinEnter", {
-    pattern = "*",
-    callback = function(ctx)
-        local name = vim.api.nvim_buf_get_name(ctx.buf)
-        --local ft = vim.bo[ctx.buf].filetype
-        --if ft == 'gitcommit' then return end
-        if name == '' then return end
-        if string.sub(name, 1, 7) == 'term://' then return end
-        c [[match ExtraWhitespace /\s\+$\| \+\ze\t/]]
-    end
-})
-a.nvim_create_autocmd("BufWinLeave", {
-    pattern = "*",
-    command = [[call clearmatches()]]
-})
 
 -- Change preview window location
 g.splitbelow = true

@@ -8,14 +8,6 @@ return {
     'xiyaowong/telescope-emoji.nvim',
     "LinArcX/telescope-env.nvim",
 
-
-    {
-        'stevearc/dressing.nvim',
-        config = function(plugin) require 'plugins.dressing' end
-    },
-
-
-
     {
         'nvim-neo-tree/neo-tree.nvim',
         branch = "v2.x",
@@ -52,14 +44,13 @@ return {
         },
         config = function(plugin) require 'plugins.winshift' end,
     },
-    {
-        'notomo/cmdbuf.nvim',
-        enabled = false,
-        config = function(plugin) require 'plugins.cmdbuf' end,
-    },
 
     {
-        'kevinhwang91/nvim-hlslens',
-        config = function(plugin) require 'hlslens'.setup() end
+        'simnalamburt/vim-mundo',
+        keys = { { '<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo' } },
+    },
+    {
+        'tversteeg/registers.nvim',
+        config = function(plugin) require 'registers'.setup() end
     },
 }
