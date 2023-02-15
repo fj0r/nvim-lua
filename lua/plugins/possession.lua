@@ -29,6 +29,7 @@ require('possession').setup {
         before_save = function(name)
             if has_plugin 'neo-tree.nvim' then
                 pcall(require("neo-tree").close_all)
+                pcall(require("aerial").close_all)
             end
             return {} -- user_data
         end,

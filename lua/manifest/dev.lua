@@ -29,6 +29,7 @@ return {
     'nvim-lua/lsp_extensions.nvim',
     --]=]
 
+    --[[
     {
         'simrat39/symbols-outline.nvim',
         --enabled = vim.g.nvim_preset ~= 'core',
@@ -37,12 +38,11 @@ return {
             require 'plugins.outline'
         end
     },
-    --[[
+    --]]
     {
         'stevearc/aerial.nvim',
-        config = function() require('aerial').setup() end
+        config = function() require 'plugins.aerial' end
     },
-    --]]
 
     {
         'nvim-treesitter/nvim-treesitter',

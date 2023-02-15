@@ -58,7 +58,7 @@ require('lualine').setup {
         lualine_b = {},
         lualine_c = {},
         lualine_x = { 'overseer' },
-        lualine_y = {},
+        lualine_y = { 'aerial' },
         lualine_z = { 'windows' }
     },
     extensions = {

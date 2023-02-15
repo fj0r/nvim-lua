@@ -23,11 +23,17 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 
     -- Set some keybinds conditional on server capabilities
-    if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set("n", "[f", vim.lsp.buf.formatting, bufopts)
-    end
-    if client.server_capabilities.documentRangeFormattingProvider then
-        vim.keymap.set("v", "[f", vim.lsp.buf.range_formatting, bufopts)
+    if vim.version().api_level > 10 then
+        if client.server_capabilities.documentFormattingProvider then
+            vim.keymap.set("n", "[f", vim.lsp.buf.format, bufopts)
+        end
+    else
+        if client.server_capabilities.documentFormattingProvider then
+            vim.keymap.set("n", "[f", vim.lsp.buf.formatting, bufopts)
+        end
+        if client.server_capabilities.documentRangeFormattingProvider then
+            vim.keymap.set("v", "[f", vim.lsp.buf.range_formatting, bufopts)
+        end
     end
 
     -- Set autocommands conditional on server_capabilities
@@ -74,12 +80,12 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local lspconfig = require 'lspconfig'
 lspconfig.util.default_config = vim.tbl_extend("force",
-        lspconfig.util.default_config,
-        {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            flags = {
-                debounce_text_changes = 150
-            }
+    lspconfig.util.default_config,
+    {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+            debounce_text_changes = 150
         }
-    )
+    }
+)

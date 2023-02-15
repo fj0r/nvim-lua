@@ -16,6 +16,9 @@ require('whitespace-nvim').setup({
         'NeogitCommitView',
         'NeogitStatus',
         'OverseerList',
+        'Outline',
+        'aerial',
+        'lazy',
     },
 })
 
