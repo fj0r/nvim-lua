@@ -14,6 +14,8 @@ require('whitespace-nvim').setup({
         'WhichKey',
         'neo-tree',
         'NeogitCommitView',
+        'NeogitStatus',
+        'OverseerList',
     },
 })
 
