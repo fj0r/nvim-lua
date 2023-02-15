@@ -39,9 +39,9 @@ local on_attach = function(client, bufnr)
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.documentHighlightProvider then
         vim.cmd [[
-        hi! LspReferenceRead cterm=bold ctermbg=red guibg=#504945
-        hi! LspReferenceText cterm=bold ctermbg=red guibg=#504945
-        hi! LspReferenceWrite cterm=bold ctermbg=red guibg=#504945
+        hi! link LspReferenceRead MatchParen
+        hi! link LspReferenceText MatchParen
+        hi! link LspReferenceWrite MatchParen
         ]]
         vim.api.nvim_create_augroup('lsp_document_highlight', {
             clear = false

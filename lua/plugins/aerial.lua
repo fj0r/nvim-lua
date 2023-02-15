@@ -1,5 +1,6 @@
 require('aerial').setup {
     backends = { "lsp", "treesitter", "markdown", "man" },
+    attach_mode = 'global',
     filter_kind = {
         'Array',
         'Boolean',
@@ -40,3 +41,9 @@ vim.keymap.set('n', '<leader>s', require("telescope").extensions.aerial.aerial)
 -- lualine.lua:62
 -- possession.lua:31
 -- telescope.lua:55,66
+
+-- hi link AerialLine StatusLine
+vim.cmd [[
+hi link AerialLine MatchParen
+hi link AerialLineNC CursorLine
+]]

@@ -7,19 +7,7 @@ require('whitespace-nvim').setup({
 
     -- `ignored_filetypes` configures which filetypes to ignore when
     -- displaying trailing whitespace
-    ignored_filetypes = {
-        'TelescopePrompt',
-        'Trouble',
-        'help',
-        'WhichKey',
-        'neo-tree',
-        'NeogitCommitView',
-        'NeogitStatus',
-        'OverseerList',
-        'Outline',
-        'aerial',
-        'lazy',
-    },
+    ignored_filetypes = vim.g.plugin_filetypes,
 })
 
 -- remove trailing whitespace with a keybinding

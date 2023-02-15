@@ -28,12 +28,12 @@ require('lualine').setup {
             }
         },
         lualine_x = {
-            'encoding',
             {
                 'fileformat',
-                symbols = { unix = 'unix', dos = 'dos', mac = 'mac' }
+                --symbols = { unix = 'unix', dos = 'dos', mac = 'mac' }
             },
-            'filetype'
+            'encoding',
+            'filetype',
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
@@ -54,12 +54,16 @@ require('lualine').setup {
         lualine_z = { 'progress', 'location' }
     },
     tabline = {
-        lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 } },
-        lualine_b = {},
+        lualine_a = {
+            { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 }
+        },
+        lualine_b = { 'aerial' },
         lualine_c = {},
         lualine_x = { 'overseer' },
-        lualine_y = { 'aerial' },
-        lualine_z = { 'windows' }
+        lualine_y = {},
+        lualine_z = {
+            { 'windows', disabled_filetypes = vim.g.plugin_filetypes }
+        }
     },
     extensions = {
         'neo-tree',
@@ -68,6 +72,7 @@ require('lualine').setup {
         'symbols-outline',
         'quickfix',
         'overseer',
+        'aerial'
     }
 }
 
