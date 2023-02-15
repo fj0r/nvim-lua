@@ -3,7 +3,9 @@ return {
         'fj0r/nvim-taberm',
         config = function(plugin)
             require 'taberm'.setup {
-
+                keymap = {
+                    toggle = '<C-x>'
+                }
             }
         end,
     },
