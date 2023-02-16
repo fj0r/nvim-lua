@@ -1,4 +1,4 @@
-require 'settings.dap.base'
+require 'settings.dap.common'
 require 'settings.dap.rust'
 require 'settings.dap.haskell'
 require 'settings.dap.python'

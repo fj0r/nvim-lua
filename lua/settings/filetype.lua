@@ -20,4 +20,5 @@ vim.g.plugin_filetypes = {
     'Outline',
     'aerial',
     'lazy',
+    'lspinfo',
 }
