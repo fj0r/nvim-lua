@@ -29,6 +29,12 @@ return {
     'nvim-lua/lsp_extensions.nvim',
     --]=]
 
+    {
+        "folke/neodev.nvim",
+        dependencies = {'neovim/nvim-lspconfig'},
+        enabled = vim.g.nvim_preset ~= 'core',
+        config = function(plugin) require 'neodev'.setup{} end,
+    },
     --[[
     {
         'simrat39/symbols-outline.nvim',

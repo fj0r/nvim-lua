@@ -6,6 +6,9 @@ require "lspconfig".lua_ls.setup {
                 -- Tell the language server which version of Lua you're using (LuaJIT in the case of Neovim)
                 version = 'LuaJIT',
             },
+            completion = {
+                callSnippet = "Replace"
+            },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
                 globals = { 'vim' },
