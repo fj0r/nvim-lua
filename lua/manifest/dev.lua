@@ -96,4 +96,10 @@ return {
         dependencies = "kyazdani42/nvim-web-devicons",
         config = function(plugin) require 'plugins.trouble' end
     },
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function(plugin) require 'plugins.todo-comments' end,
+    },
 }
