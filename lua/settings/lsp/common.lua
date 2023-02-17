@@ -23,18 +23,12 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 
     -- Set some keybinds conditional on server capabilities
-    if vim.version().api_level > 10 then
-        if client.server_capabilities.documentFormattingProvider then
-            vim.keymap.set("n", "[f", vim.lsp.buf.format, bufopts)
-        end
-    else
-        if client.server_capabilities.documentFormattingProvider then
-            vim.keymap.set("n", "[f", vim.lsp.buf.formatting, bufopts)
-        end
-        if client.server_capabilities.documentRangeFormattingProvider then
-            vim.keymap.set("v", "[f", vim.lsp.buf.range_formatting, bufopts)
-        end
+    if client.server_capabilities.documentFormattingProvider then
+        vim.keymap.set("n", "[f", function() vim.lsp.buf.format { async = true } end, bufopts)
     end
+    -- if client.server_capabilities.documentRangeFormattingProvider then
+    --     vim.keymap.set("v", "[f", vim.lsp.buf.range_formatting, bufopts)
+    -- end
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.documentHighlightProvider then
