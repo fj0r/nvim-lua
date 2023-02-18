@@ -9,7 +9,12 @@ function _dap_continue()
 end
 
 local keymaps = {
+    --[[ set in Lazy.nvim
     ['[b'] = require 'dap'.toggle_breakpoint,
+    ['[l'] = require 'dap'.list_breakpoints,
+    ['[B'] = function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    ['[L'] = function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+    --]]
     ['[c'] = _dap_continue,
     ['[s'] = require 'dap'.step_over,
     ['[i'] = require 'dap'.step_into,
@@ -17,9 +22,6 @@ local keymaps = {
     ['[g'] = require 'dap'.goto_,
     ['[r'] = require 'dap'.run_to_cursor,
     ['[x'] = require 'dap'.repl.open,
-    ['[l'] = require 'dap'.list_breakpoints,
-    ['[B'] = function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-    ['[L'] = function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
     ['[C'] = require 'dap'.run_last,
     ['[p'] = _dap_stop,
 }

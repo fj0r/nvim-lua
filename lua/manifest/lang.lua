@@ -1,3 +1,5 @@
+local apply_keymap = require('lazy_helper').apply_keymap
+
 return {
     {
         'LhKipp/nvim-nu',
@@ -16,9 +18,15 @@ return {
     },
     {
         'NTBBloodbath/rest.nvim',
-        keys = { { '<leader>h', nil, desc = 'rest' } },
+        keys = {
+            { '<leader>H', '<Plug>RestNvim', desc = 'rest' },
+            { '<leader>h', '<Plug>RestNvimPreview', desc = 'rest' },
+        },
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function(plugin) require 'plugins.rest' end,
+        config = function(plugin)
+            require 'plugins.rest'
+            apply_keymap(plugin)
+        end,
     },
     {
         'rafcamlet/nvim-luapad',

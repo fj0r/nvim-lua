@@ -1,3 +1,4 @@
+local apply_keymap = require('lazy_helper').apply_keymap
 return {
     {
         'lewis6991/gitsigns.nvim',
@@ -10,18 +11,25 @@ return {
     {
         'sindrets/diffview.nvim',
         keys = {
-            { '<leader>gd', nil, desc = 'diffview open' },
-            { '<leader>gf', nil, desc = 'diffview file history' },
-            { '<leader>gh', nil, desc = 'diffview history' },
+            { '<leader>gd', "<cmd>DiffviewOpen<cr>", desc = 'DiffviewOpen' },
+            { '<leader>gf', "<cmd>DiffviewFileHistory %<cr>", desc = 'DiffviewFileHistory' },
+            { '<leader>gh', "<cmd>DiffviewFileHistory<cr>", desc = 'DiffviewHistory' },
+            { '<leader>gx', "<cmd>DiffviewClose<cr>", desc = 'DiffviewClose' },
         },
-        config = function(plugin) require 'plugins.diffview' end
+        config = function(plugin)
+            require 'plugins.diffview'
+            apply_keymap(plugin)
+        end
     },
     {
         'TimUntersberger/neogit',
-        keys = { { '<leader>gg', nil, desc = 'neogit' } },
+        keys = {
+            { '<leader>gg', function() require 'neogit'.open({ kind = 'split' }) end, desc = 'neogit' },
+        },
         config = function(plugin)
             --vim.opt.rtp:append(plugin.dir)
             require 'plugins.neogit'
+            apply_keymap(plugin)
         end,
         dependencies = { 'nvim-lua/plenary.nvim' },
     },

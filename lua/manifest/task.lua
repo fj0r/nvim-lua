@@ -1,15 +1,17 @@
+local apply_keymap = require('lazy_helper').apply_keymap
 return {
     {
         'stevearc/overseer.nvim',
         lazy = true,
         keys = {
-            { '<leader>oo', nil, desc = 'overseer toggle' },
-            { '<C-t>',      nil, desc = 'overseer toggle' },
-            { '<leader>or', nil, desc = 'overseer run' },
-            { '<leader>t',  nil, desc = 'overseer run' },
-            { '<leader>ob', nil, desc = 'overseer build' },
-            { '<leader>ot', nil, desc = 'overseer task action' },
-            { '<leader>oq', nil, desc = 'overseer quick action' },
+            { '<leader>t', '<cmd>OverseerRun<cr>' },
+            { '<C-t>', '<cmd>OverseerToggle<cr>' },
+            { '<C-t>', '<cmd>OverseerToggle<cr>', mode = 't' },
+            { '<leader>or', '<cmd>OverseerRun<cr>' },
+            { '<leader>oo', '<cmd>OverseerToggle<cr>' },
+            { '<leader>ob', '<cmd>OverseerBuild<cr>' },
+            { '<leader>ot', '<cmd>OverseerTaskAction<cr>' },
+            { '<leader>oq', '<cmd>OverseerQuickAction<cr>' },
         },
         cmd = {
             'OverseerRun',
@@ -23,6 +25,9 @@ return {
         dependencies = {
             'nvim-telescope/telescope.nvim',
         },
-        config = function(plugin) require 'plugins.overseer' end,
+        config = function(plugin)
+            require 'plugins.overseer'
+            apply_keymap(plugin)
+        end,
     },
 }

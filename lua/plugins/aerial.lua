@@ -36,8 +36,6 @@ require('aerial').setup {
     end
 }
 
-vim.keymap.set('n', '<C-s>', '<cmd>AerialToggle!<CR>')
-vim.keymap.set('n', '<leader>s', require("telescope").extensions.aerial.aerial)
 -- lualine.lua:62
 -- possession.lua:31
 -- telescope.lua:55,66

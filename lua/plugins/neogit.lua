@@ -25,10 +25,3 @@ neogit.setup {
     }
 }
 
---vim.keymap.set('n', '<Leader>gg', "<cmd>lua require'neogit'.open({kind='split'})<cr>", { noremap = true })
-vim.keymap.set('n', '<Leader>gg',
-    function()
-        require 'neogit'.open({ kind = 'split' })
-    end,
-    { noremap = true, desc = 'neogit' }
-)

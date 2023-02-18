@@ -1,3 +1,4 @@
+local apply_keymap = require('lazy_helper').apply_keymap
 return {
     {
         'L3MON4D3/LuaSnip',
@@ -31,9 +32,9 @@ return {
 
     {
         "folke/neodev.nvim",
-        dependencies = {'neovim/nvim-lspconfig'},
+        dependencies = { 'neovim/nvim-lspconfig' },
         enabled = vim.g.nvim_preset ~= 'core',
-        config = function(plugin) require 'neodev'.setup{} end,
+        config = function(plugin) require 'neodev'.setup {} end,
     },
     --[[
     {
@@ -47,7 +48,14 @@ return {
     --]]
     {
         'stevearc/aerial.nvim',
-        config = function() require 'plugins.aerial' end
+        keys = {
+            { '<C-s>', '<cmd>AerialToggle!<CR>', desc = 'AerialTelescope' },
+            { '<leader>s', function() require("telescope").extensions.aerial.aerial() end, desc = 'AerialToggle' }
+        },
+        config = function(plugin)
+            require 'plugins.aerial'
+            apply_keymap(plugin)
+        end,
     },
 
     {
@@ -72,14 +80,17 @@ return {
     {
         'rcarriga/nvim-dap-ui',
         keys = {
-            { '[b', nil, desc = 'toggle breakpoint' },
-            { '[l', nil, desc = 'list breakpoints' },
-            { '[B', nil, desc = 'condition breakpoint' },
-            { '[L', nil, desc = 'log breakpoint' },
+            { '[b', function() require 'dap'.toggle_breakpoint() end, desc = 'toggle breakpoint' },
+            { '[l', function() require 'dap'.list_breakpoints() end, desc = 'list breakpoints' },
+            { '[B', function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+                desc = 'condition breakpoint' },
+            { '[L', function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+                desc = 'log breakpoint' },
         },
         config = function(plugin)
             --vim.opt.rtp:append(plugin.dir)
             require 'settings.dap'
+            apply_keymap(plugin)
         end,
         dependencies = { 'mfussenegger/nvim-dap' }
     },
@@ -92,20 +103,29 @@ return {
     {
         "folke/trouble.nvim",
         keys = {
-            { '<leader>gt', nil, desc = 'TroubleToggle' },
-            { '<leader>gw', nil, desc = 'TroubleToggle workspace_diagnostics' },
-            { '<leader>ga', nil, desc = 'TroubleToggle document_diagnostics' },
-            { '<leader>gl', nil, desc = 'TroubleToggle loclist' },
-            { '<leader>gq', nil, desc = 'TroubleToggle quickfix' },
-            { '<leader>gr', nil, desc = 'TroubleToggle lsp_references' },
+            { '<leader>gw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'TroubleToggle workspace_diagnostics' },
+            { '<leader>ga', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'TroubleToggle document_diagnostics' },
+            { '<leader>gl', '<cmd>TroubleToggle loclist<cr>', desc = 'TroubleToggle loclist' },
+            { '<leader>gq', '<cmd>TroubleToggle quickfix<cr>', desc = 'TroubleToggle quickfix' },
+            { '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function(plugin) require 'plugins.trouble' end
+        config = function(plugin)
+            require 'plugins.trouble'
+            apply_keymap(plugin)
+        end
     },
 
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function(plugin) require 'plugins.todo-comments' end,
+        keys = {
+            { '<leader>ga', '<cmd>TodoTelescope<cr>', desc = 'TodoTelescope' },
+            { '<leader>gt', '<cmd>TodoTrouble<cr>', desc = 'TodoTrouble' },
+        },
+        config = function(plugin)
+            require 'plugins.todo-comments'
+            apply_keymap(plugin)
+        end,
     },
 }

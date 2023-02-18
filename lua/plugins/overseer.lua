@@ -217,13 +217,3 @@ overseer.register_template {
         filetype = { "sh", "python", "go", "javascript", "lua" },
     },
 }
-
-local opt = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>t', '<cmd>OverseerRun<cr>', opt)
-vim.keymap.set('n', '<C-t>', '<cmd>OverseerToggle<cr>', opt)
-vim.keymap.set('t', '<C-t>', '<cmd>OverseerToggle<cr>', opt)
-vim.keymap.set('n', '<leader>or', '<cmd>OverseerRun<cr>', opt)
-vim.keymap.set('n', '<leader>oo', '<cmd>OverseerToggle<cr>', opt)
-vim.keymap.set('n', '<leader>ob', '<cmd>OverseerBuild<cr>', opt)
-vim.keymap.set('n', '<leader>ot', '<cmd>OverseerTaskAction<cr>', opt)
-vim.keymap.set('n', '<leader>oq', '<cmd>OverseerQuickAction<cr>', opt)

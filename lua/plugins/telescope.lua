@@ -1,27 +1,5 @@
 tele = require 'telescope.builtin'
 tele_tabby = require 'telescope'.extensions.tele_tabby
-local keymaps = {
-    ['<leader>p']  = tele.pickers,
-    ['<leader>y']  = tele.lsp_document_symbols,
-    ['<leader>m']  = tele.marks,
-    ['<leader>d']  = tele.oldfiles,
-    ['<leader>f']  = tele.find_files,
-    ['<leader>r']  = tele.live_grep,
-    ['<leader>T']  = tele_tabby.list,
-    ['<leader>F']  = tele.git_files,
-    ['<leader>gc'] = tele.git_commits,
-    ['<leader>gb'] = tele.git_branches,
-    ['<leader>gs'] = tele.git_status,
-    ['<leader>go'] = tele.git_bcommits,
-    ['<leader>b']  = function() tele.buffers({ show_all_buffers = false, ignore_current_buffer = true, sort_mru = true }) end,
-    ['<leader>[']  = tele.builtin,
-    ['<leader>]']  = tele.help_tags,
-}
-
-for k, v in pairs(keymaps) do
-    vim.keymap.set('n', k, v, { noremap = true })
-end
-
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
@@ -66,3 +44,21 @@ telescope.setup {
 telescope.load_extension('aerial')
 telescope.load_extension("emoji")
 telescope.load_extension('env')
+
+return {
+    pickers  = tele.pickers,
+    lsp_document_symbols  = tele.lsp_document_symbols,
+    marks  = tele.marks,
+    oldfiles  = tele.oldfiles,
+    find_files  = tele.find_files,
+    live_grep  = tele.live_grep,
+    tabs = tele_tabby.list,
+    git_files  = tele.git_files,
+    git_commits = tele.git_commits,
+    git_branches = tele.git_branches,
+    git_status = tele.git_status,
+    git_bcommits = tele.git_bcommits,
+    buffers  = function() tele.buffers({ show_all_buffers = false, ignore_current_buffer = true, sort_mru = true }) end,
+    builtin  = tele.builtin,
+    help_tags  = tele.help_tags,
+}

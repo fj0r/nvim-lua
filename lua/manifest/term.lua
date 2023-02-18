@@ -1,6 +1,9 @@
 return {
     {
         'fj0r/nvim-taberm',
+        keys = {
+            { '<C-x>', nil, desc = 'taberm' },
+        },
         config = function(plugin)
             require 'taberm'.setup {
                 keymap = {
