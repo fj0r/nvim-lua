@@ -33,4 +33,8 @@ return {
         enabled = vim.g.nvim_preset ~= 'core',
         cmd = { 'Luapad', 'LuaRun' },
     },
+    {
+        'towolf/vim-helm',
+        enabled = vim.g.nvim_preset ~= 'core',
+    }
 }
