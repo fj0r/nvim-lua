@@ -4,7 +4,7 @@ vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') o
 vim.g.has_git     = pcall(vim.fn.systemlist, { 'git', '--version' })
 vim.opt.runtimepath:prepend(vim.g.config_root)
 
-require 'settings'
+require 'settings.common'
 
 local lazyhome = vim.g.config_root .. '/lazy'
 local lazypath = lazyhome .. '/lazy.nvim'
