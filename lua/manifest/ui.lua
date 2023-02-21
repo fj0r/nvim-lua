@@ -37,7 +37,12 @@ return {
     },
     {
         "m4xshen/smartcolumn.nvim",
-        opts = {}
+        opts = {
+            disabled_filetypes = {
+                "help", "text", "markdown",
+                unpack(vim.g.plugin_filetypes),
+            }
+        }
     },
     --[=[
     use {
