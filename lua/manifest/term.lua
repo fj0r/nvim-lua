@@ -4,13 +4,11 @@ return {
         keys = {
             { '<C-x>', nil, desc = 'taberm' },
         },
-        config = function()
-            require 'taberm'.setup {
-                keymap = {
-                    toggle = '<C-x>'
-                }
+        opts = {
+            keymap = {
+                toggle = '<C-x>'
             }
-        end,
+        },
     },
     --[=[
     {
