@@ -2,14 +2,6 @@ local h = require('lazy_helper')
 
 return {
     {
-        "ellisonleao/gruvbox.nvim",
-        config = function()
-            vim.cmd 'set background=dark|colorscheme gruvbox'
-            --require'plugins.period-themes'
-        end
-    },
-
-    {
         'nvim-lualine/lualine.nvim',
         config = h.plugins 'lualine',
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
