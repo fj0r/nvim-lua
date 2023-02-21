@@ -1,7 +1,9 @@
+local h = require('lazy_helper')
+
 return {
     {
         "ellisonleao/gruvbox.nvim",
-        config = function(plugin)
+        config = function()
             vim.cmd 'set background=dark|colorscheme gruvbox'
             --require'plugins.period-themes'
         end
@@ -9,29 +11,33 @@ return {
 
     {
         'nvim-lualine/lualine.nvim',
-        config = function(plugin) require 'plugins.lualine' end,
+        config = h.plugins 'lualine',
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
     },
 
     {
         'norcalli/nvim-colorizer.lua',
-        config = function(plugin) require 'plugins.colorizer' end
+        config = h.plugins 'colorizer'
     },
 
     {
         'stevearc/dressing.nvim',
-        config = function(plugin) require 'plugins.dressing' end
+        config = h.plugins 'dressing'
     },
 
     {
         'notomo/cmdbuf.nvim',
         enabled = false,
-        config = function(plugin) require 'plugins.cmdbuf' end,
+        config = h.plugins 'cmdbuf',
     },
 
     {
         'kevinhwang91/nvim-hlslens',
-        config = function(plugin) require 'hlslens'.setup() end
+        opts = {}
+    },
+    {
+        "m4xshen/smartcolumn.nvim",
+        opts = {}
     },
     --[=[
     use {

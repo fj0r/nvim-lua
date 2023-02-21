@@ -4,7 +4,7 @@ return {
         keys = {
             { '<C-x>', nil, desc = 'taberm' },
         },
-        config = function(plugin)
+        config = function()
             require 'taberm'.setup {
                 keymap = {
                     toggle = '<C-x>'

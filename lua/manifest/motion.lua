@@ -1,9 +1,9 @@
-local apply_keymap = require('lazy_helper').apply_keymap
+local h = require('lazy_helper')
 
 return {
     {
         'ggandor/lightspeed.nvim',
-        config = function(plugin) require 'plugins.lightspeed' end,
+        config = h.plugins'lightspeed',
     },
     {
         'phaazon/hop.nvim',
@@ -21,7 +21,7 @@ return {
         config = function(plugin)
             local fns = require 'plugins.hop'
             for _, m in ipairs { 'n', 'v', 'x' } do
-                apply_keymap(plugin, { mode = m, fns = fns })
+                h.apply_keymap(plugin, { mode = m, fns = fns })
             end
         end,
     },

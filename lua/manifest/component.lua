@@ -1,29 +1,29 @@
-local apply_keymap = require('lazy_helper').apply_keymap
+local h = require('lazy_helper')
 
 return {
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
         keys = {
-            { '<leader>p',  'pickers', desc = 'telescope pickers' },
-            { '<leader>y',  'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
-            { '<leader>m',  'marks', desc = 'telescope marks' },
-            { '<leader>d',  'oldfiles', desc = 'telescope oldfiles' },
-            { '<leader>f',  'find_files', desc = 'telescope find_files' },
-            { '<leader>r',  'live_grep', desc = 'telescope live_grep' },
-            { '<leader>T',  'tabs', desc = 'telescope tabs' },
-            { '<leader>F',  'git_files', desc = 'telescope git_files' },
+            { '<leader>p', 'pickers', desc = 'telescope pickers' },
+            { '<leader>y', 'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
+            { '<leader>m', 'marks', desc = 'telescope marks' },
+            { '<leader>d', 'oldfiles', desc = 'telescope oldfiles' },
+            { '<leader>f', 'find_files', desc = 'telescope find_files' },
+            { '<leader>r', 'live_grep', desc = 'telescope live_grep' },
+            { '<leader>T', 'tabs', desc = 'telescope tabs' },
+            { '<leader>F', 'git_files', desc = 'telescope git_files' },
             { '<leader>gc', 'git_commits', desc = 'telescope git_commits' },
             { '<leader>gb', 'git_branches', desc = 'telescope git_branches' },
             { '<leader>gs', 'git_status', desc = 'telescope git_status' },
             { '<leader>go', 'git_bcommits', desc = 'telescope git_bcommits' },
-            { '<leader>b',  'buffers', desc = 'telescope buffers' },
-            { '<leader>[',  'builtin', desc = 'telescope builtin' },
-            { '<leader>]',  'help_tags', desc = 'telescope help_tags' },
+            { '<leader>b', 'buffers', desc = 'telescope buffers' },
+            { '<leader>[', 'builtin', desc = 'telescope builtin' },
+            { '<leader>]', 'help_tags', desc = 'telescope help_tags' },
         },
         config = function(plugin)
             local m = require 'plugins.telescope'
-            apply_keymap(plugin, { fns = m })
+            h.apply_keymap(plugin, { fns = m })
         end,
     },
     'TC72/telescope-tele-tabby.nvim',
@@ -46,10 +46,7 @@ return {
         keys = {
             { '<leader>e', ':Neotree reveal<CR>', desc = 'Neotree' }
         },
-        config = function(plugin)
-            require 'plugins.neotree'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'neotree',
     },
 
     {
@@ -76,10 +73,7 @@ return {
             { '<leader>ws', '<cmd>WinShift swap<cr>', desc = 'winshift' },
             { '<leader>wx', '<cmd>WinShift<cr>', desc = 'winswap' },
         },
-        config = function(plugin)
-            require 'plugins.winshift'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'winshift',
     },
 
     {
@@ -89,11 +83,11 @@ return {
 
     {
         'tversteeg/registers.nvim',
-        config = function(plugin) require 'registers'.setup() end
+        opts = {},
     },
     {
         'gbprod/yanky.nvim',
         enabled = false,
-        config = function(plugin) require 'yanky'.setup() end
+        opts = {},
     },
 }

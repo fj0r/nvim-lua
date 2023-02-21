@@ -1,3 +1,5 @@
+local h = require('lazy_helper')
+
 return {
     'mg979/vim-visual-multi',
 
@@ -16,27 +18,27 @@ return {
     },
     {
         'junegunn/rainbow_parentheses.vim',
-        config = function(plugin) require 'plugins.rainbow' end
+        config = h.plugins 'rainbow'
     },
     {
         'numToStr/Comment.nvim',
-        config = function(plugin) require 'Comment'.setup() end
+        opts = {}
     },
     {
         'windwp/nvim-autopairs',
-        config = function(plugin) require 'plugins.autopairs' end
+        config = h.plugins 'autopairs'
     },
     {
         "kylechui/nvim-surround",
-        config = function(plugin) require 'plugins.surround' end
+        config = h.plugins 'surround'
     },
     {
         'johnfrankmorgan/whitespace.nvim',
-        config = function (plugin) require 'plugins.whitespace' end
+        config = h.plugins 'whitespace'
     },
     {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function(plugin) require 'plugins.possession' end
+        config = h.plugins 'possession'
     },
 }

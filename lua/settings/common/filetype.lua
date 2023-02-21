@@ -21,4 +21,5 @@ vim.g.plugin_filetypes = {
     'aerial',
     'lazy',
     'lspinfo',
+    'Mundo',
 }

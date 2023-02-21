@@ -1,3 +1,5 @@
+local h = require('lazy_helper')
+
 return {
     'nvim-lua/plenary.nvim',
     'rcarriga/nvim-notify',
@@ -6,11 +8,11 @@ return {
     {
         "max397574/better-escape.nvim",
         enabled = os.getenv('VIM_DISABLE_DUAL_ESC') ~= '1',
-        config = function() require 'plugins.better-escape' end
+        config = h.plugins 'better-escape'
     },
 
     {
         "folke/which-key.nvim",
-        config = function(plugin) require 'plugins.whichkey' end,
+        config = h.plugins 'whichkey',
     },
 }

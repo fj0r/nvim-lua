@@ -1,11 +1,12 @@
-local apply_keymap = require('lazy_helper').apply_keymap
+local h = require('lazy_helper')
+
 return {
     {
         'L3MON4D3/LuaSnip',
         dependencies = {
             'rafamadriz/friendly-snippets',
         },
-        config = function(plugin) require 'plugins.luasnip' end,
+        config = h.plugins 'luasnip',
     },
     {
         'hrsh7th/nvim-cmp',
@@ -17,11 +18,11 @@ return {
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = function(plugin) require 'plugins.nvim-cmp' end
+        config = h.plugins 'nvim-cmp'
     },
     {
         'neovim/nvim-lspconfig',
-        config = function(plugin) require 'settings.lsp' end,
+        config = h.settings 'lsp',
     },
     'b0o/schemastore.nvim',
     --[=[
@@ -34,7 +35,7 @@ return {
         "folke/neodev.nvim",
         dependencies = { 'neovim/nvim-lspconfig' },
         enabled = vim.g.nvim_preset ~= 'core',
-        config = function(plugin) require 'neodev'.setup {} end,
+        opts = {}
     },
     --[[
     {
@@ -52,16 +53,13 @@ return {
             { '<C-s>', '<cmd>AerialToggle!<CR>', desc = 'AerialTelescope' },
             { '<leader>s', function() require("telescope").extensions.aerial.aerial() end, desc = 'AerialToggle' }
         },
-        config = function(plugin)
-            require 'plugins.aerial'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'aerial',
     },
 
     {
         'nvim-treesitter/nvim-treesitter',
         --build = ':TSUpdate',
-        config = function() require 'settings.treesitter' end
+        config = h.settings 'treesitter'
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -70,7 +68,7 @@ return {
     {
         'mizlan/iswap.nvim',
         dependencies = { 'nvim-treesitter' },
-        config = function(plugin) require 'plugins.swap' end
+        config = h.plugins 'swap'
     },
 
     {
@@ -87,11 +85,7 @@ return {
             { '[L', function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
                 desc = 'log breakpoint' },
         },
-        config = function(plugin)
-            --vim.opt.rtp:append(plugin.dir)
-            require 'settings.dap'
-            apply_keymap(plugin)
-        end,
+        config = h.settings 'dap',
         dependencies = { 'mfussenegger/nvim-dap' }
     },
     {
@@ -110,10 +104,7 @@ return {
             { '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function(plugin)
-            require 'plugins.trouble'
-            apply_keymap(plugin)
-        end
+        config = h.plugins 'trouble'
     },
 
     {
@@ -123,9 +114,6 @@ return {
             { '<leader>ga', '<cmd>TodoTelescope<cr>', desc = 'TodoTelescope' },
             { '<leader>gt', '<cmd>TodoTrouble<cr>', desc = 'TodoTrouble' },
         },
-        config = function(plugin)
-            require 'plugins.todo-comments'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'todo-comments',
     },
 }

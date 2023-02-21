@@ -1,4 +1,5 @@
-local apply_keymap = require('lazy_helper').apply_keymap
+local h = require('lazy_helper')
+
 return {
     {
         'stevearc/overseer.nvim',
@@ -25,9 +26,6 @@ return {
         dependencies = {
             'nvim-telescope/telescope.nvim',
         },
-        config = function(plugin)
-            require 'plugins.overseer'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'overseer',
     },
 }

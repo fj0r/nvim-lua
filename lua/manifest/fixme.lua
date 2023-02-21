@@ -1,22 +1,24 @@
+local h = require('lazy_helper')
+
 return {
     {
         "luukvbaal/stabilize.nvim",
-        config = function(plugin) require 'stabilize'.setup() end,
+        opts = {}
     },
     {
         'karb94/neoscroll.nvim',
         enabled = false,
-        config = function(plugin) require 'neoscroll'.setup() end,
+        opts = {}
     },
     {
         'windwp/nvim-spectre',
         enabled = false,
-        config = function(plugin) require 'plugins.spectre' end,
+        config = h.plugins 'spectre',
     },
     {
         'ojroques/nvim-osc52',
         enabled = false, -- by integration terminal
-        config = function(plugin) require 'plugins.osc52' end,
+        config = h.plugins 'osc52',
     },
 
     --remote-wait

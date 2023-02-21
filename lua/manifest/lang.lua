@@ -1,11 +1,11 @@
-local apply_keymap = require('lazy_helper').apply_keymap
+local h = require('lazy_helper')
 
 return {
     {
         'LhKipp/nvim-nu',
         enabled = false,
         build = ':TSInstall nu',
-        config = function(plugin) require 'nu'.setup {} end
+        opts = {}
     },
     {
         'nvim-orgmode/orgmode',
@@ -14,7 +14,7 @@ return {
             { '<leader>oc', nil, desc = 'orgmode capture' },
         },
         ft = { 'org' },
-        config = function(plugin) require 'plugins.orgmode' end,
+        config = h.plugins 'orgmode',
     },
     {
         'NTBBloodbath/rest.nvim',
@@ -23,10 +23,7 @@ return {
             { '<leader>h', '<Plug>RestNvimPreview', desc = 'rest' },
         },
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function(plugin)
-            require 'plugins.rest'
-            apply_keymap(plugin)
-        end,
+        config = h.plugins 'rest',
     },
     {
         'rafcamlet/nvim-luapad',
