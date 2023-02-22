@@ -1,7 +1,7 @@
 return {
     {
         "savq/melange-nvim",
-        config = function ()
+        config = function()
             vim.cmd 'set background=dark|colorscheme melange'
         end
     },
