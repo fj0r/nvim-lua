@@ -1,9 +1,9 @@
-function _dap_stop()
+local dap_stop = function()
     require 'dap'.close()
     require 'dapui'.close()
 end
 
-function _dap_continue()
+local dap_continue = function()
     require 'dapui'.open()
     require 'dap'.continue()
 end
@@ -15,7 +15,7 @@ local keymaps = {
     ['[B'] = function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
     ['[L'] = function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
     --]]
-    ['[c'] = _dap_continue,
+    ['[c'] = dap_continue,
     ['[s'] = require 'dap'.step_over,
     ['[i'] = require 'dap'.step_into,
     ['[o'] = require 'dap'.step_out,
@@ -23,7 +23,7 @@ local keymaps = {
     ['[r'] = require 'dap'.run_to_cursor,
     ['[x'] = require 'dap'.repl.open,
     ['[C'] = require 'dap'.run_last,
-    ['[p'] = _dap_stop,
+    ['[p'] = dap_stop,
 }
 
 for k, v in pairs(keymaps) do

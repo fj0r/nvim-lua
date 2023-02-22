@@ -75,6 +75,7 @@ local special_files = {
     }
 }
 
+---@diagnostic disable-next-line: unused-local
 local tree_orthodox = {
     renderer = {
         indent_markers = {
@@ -115,6 +116,7 @@ local tree_orthodox = {
     },
 }
 
+---@diagnostic disable-next-line: unused-local
 local tree_modern = {
     renderer = {
         indent_markers = {

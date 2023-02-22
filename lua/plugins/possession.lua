@@ -73,11 +73,13 @@ require('possession').setup {
     },
 }
 
+---@diagnostic disable-next-line: unused-local, unused-function
 local session_excluded = function()
     -- exclude by filetype
     local ft = { gitcommit = true }
     if ft[vim.bo.filetype] then return true end
     -- exclude vimdiff
+    ---@diagnostic disable-next-line: param-type-mismatch
     if vim.fn.bufnr("$") > 2 then return true end
 end
 

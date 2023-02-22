@@ -1,5 +1,4 @@
-hop = require('hop')
-local has_plugin = require 'lazy_helper'.has_plugin
+local hop = require('hop')
 
 local override_opts = function(opts)
     return setmetatable(opts or {}, {
@@ -10,7 +9,7 @@ end
 --local regex = vim.regex('\\k\\+')
 local regex = vim.regex('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$')
 
-function hint_somewhere(opts)
+local hint_somewhere = function(opts)
     local jump_target = require 'hop.jump_target'
     local hint_with = require("hop").hint_with
 
@@ -23,6 +22,7 @@ function hint_somewhere(opts)
         generator = jump_target.jump_targets_by_scanning_lines
     end
 
+    ---@diagnostic disable-next-line: need-check-nil
     hint_with(generator { oneshot = false, match = function(s) return regex:match_str(s) end }, opts)
 end
 

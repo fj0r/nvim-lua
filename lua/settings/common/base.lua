@@ -2,8 +2,6 @@ local o          = vim.o
 local opt        = vim.opt
 local g          = vim.g
 local a          = vim.api
-local c          = vim.api.nvim_command
-local ex         = vim.api.nvim_exec
 
 o.compatible     = false
 o.shortmess      = 'aoOtTWAIcF'

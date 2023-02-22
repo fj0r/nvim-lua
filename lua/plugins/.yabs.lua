@@ -92,6 +92,7 @@ require('yabs'):setup({
                             -- Job here is a plenary.job object that represents
                             -- the finished task, read more about it here:
                             -- https://github.com/nvim-lua/plenary.nvim#plenaryjob
+                            ---@diagnostic disable-next-line: unused-local
                             on_exit = function(Job, exit_code)
                                 -- The parameters `Job` and `exit_code` are optional,
                                 -- you can omit extra arguments or

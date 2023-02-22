@@ -1,5 +1,5 @@
-tele = require 'telescope.builtin'
-tele_tabby = require 'telescope'.extensions.tele_tabby
+local tele = require 'telescope.builtin'
+local tele_tabby = require 'telescope'.extensions.tele_tabby
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')

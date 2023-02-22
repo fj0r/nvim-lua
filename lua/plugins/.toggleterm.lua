@@ -38,6 +38,7 @@ require'toggleterm'.setup{
             background = "Normal",
         }
     },
+    ---@diagnostic disable-next-line: unused-local
     on_close = function(term)
         -- vim.cmd("Closing terminal")
     end,
