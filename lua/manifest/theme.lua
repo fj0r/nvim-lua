@@ -1,9 +1,15 @@
 return {
     {
+        "savq/melange-nvim",
+        config = function ()
+            vim.cmd 'set background=dark|colorscheme melange'
+        end
+    },
+    {
         "sainnhe/sonokai",
         config = function()
             vim.g.sonokai_style = 'espresso' -- 'shusia'
-            vim.cmd 'set background=dark|colorscheme sonokai'
+            -- vim.cmd 'set background=dark|colorscheme sonokai'
         end
     },
     {
