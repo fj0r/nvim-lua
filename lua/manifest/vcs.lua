@@ -6,7 +6,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim'
         },
-        -- version = 'release' -- To use the latest release
+        enabled = vim.g.has_git,
         config = h.plugins 'gitsigns'
     },
     {
@@ -17,7 +17,7 @@ return {
             { '<leader>gh', "<cmd>DiffviewFileHistory<cr>", desc = 'DiffviewHistory' },
             { '<leader>gx', "<cmd>DiffviewClose<cr>", desc = 'DiffviewClose' },
         },
-        config = h.plugins 'diffview'
+        opts = {},
     },
     {
         'TimUntersberger/neogit',

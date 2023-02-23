@@ -34,7 +34,7 @@ telescope.setup {
             -- Display symbols as <root>.<parent>.<symbol>
             show_nesting = {
                 ['_'] = false, -- This key will be the default
-                json = true,   -- You can set the option for specific filetypes
+                json = true, -- You can set the option for specific filetypes
                 yaml = true,
             }
         }
@@ -46,19 +46,20 @@ telescope.load_extension("emoji")
 telescope.load_extension('env')
 
 return {
-    pickers  = tele.pickers,
-    lsp_document_symbols  = tele.lsp_document_symbols,
-    marks  = tele.marks,
-    oldfiles  = tele.oldfiles,
-    find_files  = tele.find_files,
-    live_grep  = tele.live_grep,
-    tabs = tele_tabby.list,
-    git_files  = tele.git_files,
-    git_commits = tele.git_commits,
-    git_branches = tele.git_branches,
-    git_status = tele.git_status,
-    git_bcommits = tele.git_bcommits,
-    buffers  = function() tele.buffers({ show_all_buffers = false, ignore_current_buffer = true, sort_mru = true }) end,
-    builtin  = tele.builtin,
-    help_tags  = tele.help_tags,
+    pickers              = tele.pickers,
+    lsp_document_symbols = tele.lsp_document_symbols,
+    marks                = tele.marks,
+    oldfiles             = tele.oldfiles,
+    find_files           = tele.find_files,
+    live_grep            = tele.live_grep,
+    tabs                 = tele_tabby.list,
+    git_files            = tele.git_files,
+    git_commits          = tele.git_commits,
+    git_branches         = tele.git_branches,
+    git_status           = tele.git_status,
+    git_bcommits         = tele.git_bcommits,
+    buffers              = function() tele.buffers({ show_all_buffers = false, ignore_current_buffer = true,
+        sort_mru = true }) end,
+    builtin              = tele.builtin,
+    help_tags            = tele.help_tags,
 }

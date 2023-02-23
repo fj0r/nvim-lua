@@ -101,19 +101,19 @@ return {
             { '<leader>ga', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'TroubleToggle document_diagnostics' },
             { '<leader>gl', '<cmd>TroubleToggle loclist<cr>', desc = 'TroubleToggle loclist' },
             { '<leader>gq', '<cmd>TroubleToggle quickfix<cr>', desc = 'TroubleToggle quickfix' },
-            { '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
+            --{ '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
         },
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = h.plugins 'trouble'
+        opts = {},
     },
 
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
         keys = {
             { '<leader>ga', '<cmd>TodoTelescope<cr>', desc = 'TodoTelescope' },
             { '<leader>gt', '<cmd>TodoTrouble<cr>', desc = 'TodoTrouble' },
         },
-        config = h.plugins 'todo-comments',
+        opts = {},
     },
 }

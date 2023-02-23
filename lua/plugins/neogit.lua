@@ -24,4 +24,3 @@ neogit.setup {
         diffview = true
     }
 }
-

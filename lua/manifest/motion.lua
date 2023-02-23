@@ -3,7 +3,7 @@ local h = require('lazy_helper')
 return {
     {
         'ggandor/lightspeed.nvim',
-        config = h.plugins'lightspeed',
+        config = h.plugins 'lightspeed',
     },
     {
         'phaazon/hop.nvim',

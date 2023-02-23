@@ -45,18 +45,6 @@ require('possession').setup {
             preserve_layout = false, -- or fun(win): boolean
             match = {
                 floating = true,
-                buftype = {
-                    'terminal',
-                    'nofile',
-                },
-                filetype = {
-                    'neo-tree',
-                    'neo-tree-popup',
-                    'NeogitCommitMessage',
-                    'NeogitStatus',
-                    'DiffviewFilePanel',
-                    'DiffviewFileHistoryPanel',
-                },
                 custom = false, -- or fun(win): boolean
             },
         },

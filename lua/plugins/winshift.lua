@@ -14,23 +14,22 @@ require("winshift").setup({
     -- A string of chars used as identifiers by the window picker.
     window_picker = function()
         return require("winshift.lib").pick_window({
-                picker_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-                filter_rules = {
-                    cur_win = true,
-                    floats = true,
-                    filetype = {
-                        "NvimTree",
-                        "neo-tree",
-                        "neo-tree-popup",
-                    },
-                    buftype = {
-                        "quickfix",
-                    },
-                    bufname = {
-                        [[.*foo/bar/baz\.qux]]
-                    },
+            picker_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            filter_rules = {
+                cur_win = true,
+                floats = true,
+                filetype = {
+                    "NvimTree",
+                    "neo-tree",
+                    "neo-tree-popup",
                 },
-            })
+                buftype = {
+                    "quickfix",
+                },
+                bufname = {
+                    [[.*foo/bar/baz\.qux]]
+                },
+            },
+        })
     end,
 })
-

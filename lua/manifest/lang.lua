@@ -18,12 +18,11 @@ return {
     },
     {
         'NTBBloodbath/rest.nvim',
-        keys = {
-            { '<leader>H', '<Plug>RestNvim', desc = 'rest' },
-            { '<leader>h', '<Plug>RestNvimPreview', desc = 'rest' },
+        cmd = {
+            'RestNvim', 'RestNvimPreview'
         },
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = h.plugins 'rest',
+        opts = {},
     },
     {
         'rafcamlet/nvim-luapad',

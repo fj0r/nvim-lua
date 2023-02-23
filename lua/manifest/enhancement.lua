@@ -30,7 +30,7 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        config = h.plugins 'surround'
+        opts = {},
     },
     {
         'johnfrankmorgan/whitespace.nvim',
