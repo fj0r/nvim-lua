@@ -1,15 +1,20 @@
+local function set_theme(name)
+    local theme = vim.fn.exists('$NVIM_THEME') and os.getenv('NVIM_THEME') or name
+    vim.cmd('set background=dark|colorscheme ' .. theme)
+end
+
 return {
     {
         "savq/melange-nvim",
         config = function()
-            vim.cmd 'set background=dark|colorscheme melange'
+            set_theme('melange')
         end
     },
     {
         "sainnhe/sonokai",
-        config = function()
+        config = function(plugin)
             vim.g.sonokai_style = 'espresso' -- 'shusia'
-            -- vim.cmd 'set background=dark|colorscheme sonokai'
+            -- set_theme(plugin.name)
         end
     },
     {
@@ -20,8 +25,7 @@ return {
                 palette_overrides = {
                 }
             }
-            -- vim.cmd 'set background=dark|colorscheme gruvbox'
-            --require'plugins.period-themes'
+            -- set_theme('gruvbox')
         end
     },
 
