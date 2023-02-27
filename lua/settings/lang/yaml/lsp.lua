@@ -20,6 +20,7 @@ local json_origin = require('schemastore').json.schemas {
         select = {
             'appsettings.json',
             'AsyncAPI',
+            'Avro Avsc',
             'bucklescript',
             'Cargo Config Schema',
             'Cargo Make',
@@ -94,6 +95,18 @@ require 'lspconfig'.jsonls.setup {
 
 local yaml_origin = require('schemastore').json.schemas {
         select = {
+            'Ansible Argument Specs',
+            'Ansible Collection Galaxy',
+            'Ansible Execution Environment',
+            'Ansible Inventory',
+            'Ansible Meta',
+            'Ansible Meta Runtime',
+            'Ansible Navigator Configuration',
+            'Ansible Playbook',
+            'Ansible Requirements',
+            'Ansible Tasks File',
+            'Ansible Vars File',
+            'Ansible-lint Configuration',
             'Argo Events',
             'Argo Workflows',
             'AsyncAPI',
