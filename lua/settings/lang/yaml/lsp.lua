@@ -2,7 +2,7 @@ vim.g.local_schemas_store = vim.g.config_root .. '/schemas'
 
 local sync = function(url)
     local uri = vim.fn.substitute(url, 'https\\?://', '', '')
-    local name = vim.fn.substitute(uri, '/', ':', 'g')
+    local name = vim.fn.substitute(uri, '[/#$]', ':', 'g')
     local file = vim.g.local_schemas_store .. '/' .. name
     if vim.fn.empty(vim.fn.glob(file)) == 1 then
         vim.o.cmdheight = 1

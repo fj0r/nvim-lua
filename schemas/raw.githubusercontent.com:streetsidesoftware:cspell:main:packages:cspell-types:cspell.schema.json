@@ -195,6 +195,9 @@
           "$ref": "#/definitions/DictionaryDefinitionAugmented"
         },
         {
+          "$ref": "#/definitions/DictionaryDefinitionInline"
+        },
+        {
           "$ref": "#/definitions/DictionaryDefinitionAlternate"
         }
       ]
@@ -342,6 +345,209 @@
         "addWords",
         "name",
         "path"
+      ],
+      "type": "object"
+    },
+    "DictionaryDefinitionInline": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/DictionaryDefinitionInlineWords"
+        },
+        {
+          "$ref": "#/definitions/DictionaryDefinitionInlineIgnoreWords"
+        },
+        {
+          "$ref": "#/definitions/DictionaryDefinitionInlineFlagWords"
+        }
+      ],
+      "description": "Inline Dictionary Definitions"
+    },
+    "DictionaryDefinitionInlineFlagWords": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "description": "Optional description.",
+          "type": "string"
+        },
+        "flagWords": {
+          "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoreWords": {
+          "description": "List of words to be ignored. An ignored word will not show up as an error, even if it is also in the `flagWords`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "$ref": "#/definitions/DictionaryId",
+          "description": "This is the name of a dictionary.\n\nName Format:\n- Must contain at least 1 number or letter.\n- Spaces are allowed.\n- Leading and trailing space will be removed.\n- Names ARE case-sensitive.\n- Must not contain `*`, `!`, `;`, `,`, `{`, `}`, `[`, `]`, `~`."
+        },
+        "noSuggest": {
+          "description": "Indicate that suggestions should not come from this dictionary. Words in this dictionary are considered correct, but will not be used when making spell correction suggestions.\n\nNote: if a word is suggested by another dictionary, but found in this dictionary, it will be removed from the set of possible suggestions.",
+          "type": "boolean"
+        },
+        "repMap": {
+          "$ref": "#/definitions/ReplaceMap",
+          "description": "Replacement pairs."
+        },
+        "suggestWords": {
+          "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "#/definitions/DictionaryFileTypes",
+          "default": "S",
+          "description": "Type of file: S - single word per line, W - each line can contain one or more words separated by space, C - each line is treated like code (Camel Case is allowed). Default is S. C is the slowest to load due to the need to split each line based upon code splitting rules."
+        },
+        "useCompounds": {
+          "description": "Use Compounds.",
+          "type": "boolean"
+        },
+        "words": {
+          "description": "List of words to be considered correct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "flagWords",
+        "name"
+      ],
+      "type": "object"
+    },
+    "DictionaryDefinitionInlineIgnoreWords": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "description": "Optional description.",
+          "type": "string"
+        },
+        "flagWords": {
+          "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoreWords": {
+          "description": "List of words to be ignored. An ignored word will not show up as an error, even if it is also in the `flagWords`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "$ref": "#/definitions/DictionaryId",
+          "description": "This is the name of a dictionary.\n\nName Format:\n- Must contain at least 1 number or letter.\n- Spaces are allowed.\n- Leading and trailing space will be removed.\n- Names ARE case-sensitive.\n- Must not contain `*`, `!`, `;`, `,`, `{`, `}`, `[`, `]`, `~`."
+        },
+        "noSuggest": {
+          "description": "Indicate that suggestions should not come from this dictionary. Words in this dictionary are considered correct, but will not be used when making spell correction suggestions.\n\nNote: if a word is suggested by another dictionary, but found in this dictionary, it will be removed from the set of possible suggestions.",
+          "type": "boolean"
+        },
+        "repMap": {
+          "$ref": "#/definitions/ReplaceMap",
+          "description": "Replacement pairs."
+        },
+        "suggestWords": {
+          "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "#/definitions/DictionaryFileTypes",
+          "default": "S",
+          "description": "Type of file: S - single word per line, W - each line can contain one or more words separated by space, C - each line is treated like code (Camel Case is allowed). Default is S. C is the slowest to load due to the need to split each line based upon code splitting rules."
+        },
+        "useCompounds": {
+          "description": "Use Compounds.",
+          "type": "boolean"
+        },
+        "words": {
+          "description": "List of words to be considered correct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "ignoreWords",
+        "name"
+      ],
+      "type": "object"
+    },
+    "DictionaryDefinitionInlineWords": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "description": "Optional description.",
+          "type": "string"
+        },
+        "flagWords": {
+          "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ignoreWords": {
+          "description": "List of words to be ignored. An ignored word will not show up as an error, even if it is also in the `flagWords`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "$ref": "#/definitions/DictionaryId",
+          "description": "This is the name of a dictionary.\n\nName Format:\n- Must contain at least 1 number or letter.\n- Spaces are allowed.\n- Leading and trailing space will be removed.\n- Names ARE case-sensitive.\n- Must not contain `*`, `!`, `;`, `,`, `{`, `}`, `[`, `]`, `~`."
+        },
+        "noSuggest": {
+          "description": "Indicate that suggestions should not come from this dictionary. Words in this dictionary are considered correct, but will not be used when making spell correction suggestions.\n\nNote: if a word is suggested by another dictionary, but found in this dictionary, it will be removed from the set of possible suggestions.",
+          "type": "boolean"
+        },
+        "repMap": {
+          "$ref": "#/definitions/ReplaceMap",
+          "description": "Replacement pairs."
+        },
+        "suggestWords": {
+          "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "$ref": "#/definitions/DictionaryFileTypes",
+          "default": "S",
+          "description": "Type of file: S - single word per line, W - each line can contain one or more words separated by space, C - each line is treated like code (Camel Case is allowed). Default is S. C is the slowest to load due to the need to split each line based upon code splitting rules."
+        },
+        "useCompounds": {
+          "description": "Use Compounds.",
+          "type": "boolean"
+        },
+        "words": {
+          "description": "List of words to be considered correct.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "words"
       ],
       "type": "object"
     },
@@ -681,7 +887,7 @@
           "type": "boolean"
         },
         "flagWords": {
-          "description": "List of words to always be considered incorrect.",
+          "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
           "items": {
             "type": "string"
           },
@@ -768,8 +974,15 @@
           },
           "type": "array"
         },
+        "suggestWords": {
+          "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "words": {
-          "description": "List of words to be always considered correct.",
+          "description": "List of words to be considered correct.",
           "items": {
             "type": "string"
           },
@@ -853,7 +1066,7 @@
           "description": "Glob pattern or patterns to match against."
         },
         "flagWords": {
-          "description": "List of words to always be considered incorrect.",
+          "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
           "items": {
             "type": "string"
           },
@@ -904,7 +1117,7 @@
           "type": "number"
         },
         "maxNumberOfProblems": {
-          "default": 100,
+          "default": 10000,
           "description": "The maximum number of problems to report in a file.",
           "type": "number"
         },
@@ -947,6 +1160,13 @@
           },
           "type": "array"
         },
+        "suggestWords": {
+          "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "suggestionNumChanges": {
           "default": 3,
           "description": "The maximum number of changes allowed on a word to be considered a suggestions.\n\nFor example, appending an `s` onto `example` -> `examples` is considered 1 change.\n\nRange: between 1 and 5.",
@@ -963,7 +1183,7 @@
           "type": "boolean"
         },
         "words": {
-          "description": "List of words to be always considered correct.",
+          "description": "List of words to be considered correct.",
           "items": {
             "type": "string"
           },
@@ -1105,14 +1325,23 @@
       },
       "type": "array"
     },
+    "ReporterModuleName": {
+      "description": "The module or path to the the reporter to load.",
+      "type": "string"
+    },
+    "ReporterOptions": {
+      "$ref": "#/definitions/Serializable",
+      "description": "Options to send to the reporter. These are defined by the reporter."
+    },
     "ReporterSettings": {
       "anyOf": [
         {
-          "type": "string"
+          "$ref": "#/definitions/ReporterModuleName"
         },
         {
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/ReporterModuleName",
+            "title": "name"
           },
           "maxItems": 1,
           "minItems": 1,
@@ -1121,10 +1350,12 @@
         {
           "items": [
             {
-              "type": "string"
+              "$ref": "#/definitions/ReporterModuleName",
+              "title": "name"
             },
             {
-              "$ref": "#/definitions/Serializable"
+              "$ref": "#/definitions/ReporterOptions",
+              "title": "options"
             }
           ],
           "maxItems": 2,
@@ -1132,7 +1363,7 @@
           "type": "array"
         }
       ],
-      "description": "Reporter name or reporter name + reporter config."
+      "description": "Declare a reporter to use.\n\n`default` - is a special name for the default cli reporter.\n\nExamples:\n- `\"default\"` - to use the default reporter\n- `\"@cspell/cspell-json-reporter\"` - use the cspell JSON reporter.\n- `[\"@cspell/cspell-json-reporter\", { \"outFile\": \"out.json\" }]`"
     },
     "Serializable": {
       "anyOf": [
@@ -1272,7 +1503,7 @@
     },
     "features": {
       "$ref": "#/definitions/Features",
-      "description": "Configure CSpell features.\n\n- Added with `v5.16.0`."
+      "description": "Configure CSpell features."
     },
     "files": {
       "description": "Glob patterns of files to be checked.\n\nGlob patterns are relative to the `globRoot` of the configuration file that defines them.",
@@ -1282,7 +1513,7 @@
       "type": "array"
     },
     "flagWords": {
-      "description": "List of words to always be considered incorrect.",
+      "description": "List of words to always be considered incorrect. Words found in `flagWords` override `words`.\n\nFormat of `flagWords`\n- single word entry - `word`\n- with suggestions - `word:suggestion` or `word->suggestion, suggestions`\n\nExample: ```ts \"flagWords\": [   \"color: colour\",   \"incase: in case, encase\",   \"canot->cannot\",   \"cancelled->canceled\" ] ```",
       "items": {
         "type": "string"
       },
@@ -1373,7 +1604,7 @@
       "type": "number"
     },
     "maxNumberOfProblems": {
-      "default": 100,
+      "default": 10000,
       "description": "The maximum number of problems to report in a file.",
       "type": "number"
     },
@@ -1434,7 +1665,10 @@
       "type": "boolean"
     },
     "reporters": {
-      "description": "Custom reporters configuration.",
+      "default": [
+        "default"
+      ],
+      "description": "Define which reports to use. `default` - is a special name for the default cli reporter.\n\nExamples:\n- `[\"default\"]` - to use the default reporter\n- `[\"@cspell/cspell-json-reporter\"]` - use the cspell JSON reporter.\n- `[[\"@cspell/cspell-json-reporter\", { \"outFile\": \"out.json\" }]]`\n- `[ \"default\", [\"@cspell/cspell-json-reporter\", { \"outFile\": \"out.json\" }]]` - Use both the default reporter and the cspell-json-reporter.",
       "items": {
         "$ref": "#/definitions/ReporterSettings"
       },
@@ -1449,6 +1683,13 @@
       "deprecated": true,
       "description": "Delay in ms after a document has changed before checking it for spelling errors.",
       "type": "number"
+    },
+    "suggestWords": {
+      "description": "A list of suggested replacements for words. Suggested words provide a way to make preferred suggestions on word replacements. To hint at a preferred change, but not to require it.\n\nFormat of `suggestWords`\n- Single suggestion (possible auto fix)     - `word: suggestion`     - `word->suggestion`\n- Multiple suggestions (not auto fixable)    - `word: first, second, third`    - `word->first, second, third`",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "suggestionNumChanges": {
       "default": 3,
@@ -1487,7 +1728,7 @@
       "description": "Configuration format version of the settings file.\n\nThis controls how the settings in the configuration file behave."
     },
     "words": {
-      "description": "List of words to be always considered correct.",
+      "description": "List of words to be considered correct.",
       "items": {
         "type": "string"
       },

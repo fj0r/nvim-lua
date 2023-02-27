@@ -239,6 +239,10 @@
                 }
               ]
             },
+            "browser_performance": {
+              "type": "string",
+              "description": "Path to a single file with browser performance metric report(s)."
+            },
             "coverage_report": {
               "type": [
                 "object",
@@ -294,10 +298,6 @@
             "license_scanning": {
               "$ref": "#/definitions/string_file_list",
               "description": "Path to file or list of files with license report(s)."
-            },
-            "performance": {
-              "$ref": "#/definitions/string_file_list",
-              "description": "Path to file or list of files with performance metrics report(s)."
             },
             "requirements": {
               "$ref": "#/definitions/string_file_list",
@@ -417,6 +417,20 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "component": {
+              "description": "Local path to component directory or full path to external component directory.",
+              "type": "string",
+              "format": "uri-reference"
+            }
+          },
+          "required": [
+            "component"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
             "remote": {
               "description": "URL to a `yaml`/`yml` template file using HTTP/HTTPS.",
               "type": "string",
@@ -523,7 +537,7 @@
               },
               "entrypoint": {
                 "type": "array",
-                "description": "Command or script that should be executed as the container's entrypoint. It will be translated to Docker's --entrypoint option while creating the container. The syntax is similar to Dockerfile's ENTRYPOINT directive, where each shell token is a separate string in the array.",
+                "markdownDescription": "Command or script that should be executed as the container's entrypoint. It will be translated to Docker's --entrypoint option while creating the container. The syntax is similar to Dockerfile's ENTRYPOINT directive, where each shell token is a separate string in the array. [Learn More](https://docs.gitlab.com/ee/ci/services/index.html#available-settings-for-services)",
                 "minItems": 1,
                 "items": {
                   "type": "string"
@@ -558,7 +572,7 @@
               },
               "command": {
                 "type": "array",
-                "description": "Command or script that should be used as the container's command. It will be translated to arguments passed to Docker after the image's name. The syntax is similar to Dockerfile's CMD directive, where each shell token is a separate string in the array.",
+                "markdownDescription": "Command or script that should be used as the container's command. It will be translated to arguments passed to Docker after the image's name. The syntax is similar to Dockerfile's CMD directive, where each shell token is a separate string in the array. [Learn More](https://docs.gitlab.com/ee/ci/services/index.html#available-settings-for-services)",
                 "minItems": 1,
                 "items": {
                   "type": "string"
@@ -566,8 +580,12 @@
               },
               "alias": {
                 "type": "string",
-                "description": "Additional alias that can be used to access the service from the job's container. Read Accessing the services for more information.",
+                "markdownDescription": "Additional alias that can be used to access the service from the job's container. Read Accessing the services for more information. [Learn More](https://docs.gitlab.com/ee/ci/services/index.html#available-settings-for-services)",
                 "minLength": 1
+              },
+              "variables": {
+                "$ref": "#/definitions/jobVariables",
+                "markdownDescription": "Additional environment variables that are passed exclusively to the service. Service variables cannot reference themselves. [Learn More](https://docs.gitlab.com/ee/ci/services/index.html#available-settings-for-services)"
               }
             },
             "required": [
@@ -777,7 +795,7 @@
               "properties": {
                 "value": {
                   "type": "string",
-                  "markdownDescription": "Default value of the variable. If used with `options`, `value` must be included in the array. [Learn More](https://docs.gitlab.com/ee/ci/pipelines/index.html#prefill-variables-in-manual-pipelines)"
+                  "markdownDescription": "Default value of the variable. If used with `options`, `value` must be included in the array. [Learn More](https://docs.gitlab.com/ee/ci/yaml/#variablesvalue)"
                 },
                 "options": {
                   "type": "array",
@@ -786,7 +804,7 @@
                   },
                   "minItems": 1,
                   "uniqueItems": true,
-                  "markdownDescription": "A list of predefined values that users can select from in the **Run pipeline** page when running a pipeline manually. [Learn More](https://docs.gitlab.com/ee/ci/pipelines/index.html#configure-a-list-of-selectable-values-for-a-prefilled-variable)"
+                  "markdownDescription": "A list of predefined values that users can select from in the **Run pipeline** page when running a pipeline manually. [Learn More](https://docs.gitlab.com/ee/ci/yaml/#variablesoptions)"
                 },
                 "description": {
                   "type": "string",
@@ -1612,7 +1630,7 @@
               "description": "Creates N instances of the same job that run in parallel.",
               "default": 0,
               "minimum": 2,
-              "maximum": 50
+              "maximum": 200
             },
             {
               "type": "object",
@@ -1631,7 +1649,7 @@
                       ]
                     }
                   },
-                  "maxItems": 50
+                  "maxItems": 200
                 }
               },
               "additionalProperties": false,

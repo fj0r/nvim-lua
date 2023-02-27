@@ -19,6 +19,7 @@
       "title": "openrpc",
       "type": "string",
       "enum": [
+        "1.3.0",
         "1.2.6",
         "1.2.5",
         "1.2.4",
@@ -142,6 +143,11 @@
           }
         }
       }
+    },
+    "$schema": {
+      "description": "JSON Schema URI (used by some editors)",
+      "type": "string",
+      "default": "https://meta.open-rpc.org/"
     }
   },
   "definitions": {
@@ -402,7 +408,6 @@
       "type": "object",
       "required": [
         "name",
-        "result",
         "params"
       ],
       "additionalProperties": false,
@@ -607,8 +612,7 @@
       "type": "object",
       "required": [
         "name",
-        "params",
-        "result"
+        "params"
       ],
       "properties": {
         "name": {

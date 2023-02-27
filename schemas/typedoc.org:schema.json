@@ -61,6 +61,33 @@
 			"type": "boolean",
 			"default": false
 		},
+		"excludeNotDocumentedKinds": {
+			"description": "Specify the type of reflections that can be removed by excludeNotDocumented.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"Module",
+				"Namespace",
+				"Enum",
+				"Variable",
+				"Function",
+				"Class",
+				"Interface",
+				"Constructor",
+				"Property",
+				"Method",
+				"CallSignature",
+				"IndexSignature",
+				"ConstructorSignature",
+				"Accessor",
+				"GetSignature",
+				"SetSignature",
+				"TypeAlias",
+				"Reference"
+			]
+		},
 		"excludeInternal": {
 			"description": "Prevent symbols that are marked with @internal from being documented.",
 			"type": "boolean",
