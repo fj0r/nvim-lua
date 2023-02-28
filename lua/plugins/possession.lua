@@ -27,10 +27,6 @@ require('possession').setup {
     },
     hooks = {
         before_save = function(name)
-            if has_plugin 'neo-tree.nvim' then
-                pcall(require("neo-tree").close_all)
-                pcall(require("aerial").close_all)
-            end
             return {} -- user_data
         end,
         after_save = function(name, user_data, aborted)
@@ -45,6 +41,7 @@ require('possession').setup {
             preserve_layout = false, -- or fun(win): boolean
             match = {
                 floating = true,
+                filetype = vim.g.plugin_filetypes,
                 custom = false, -- or fun(win): boolean
             },
         },
