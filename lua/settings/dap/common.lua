@@ -10,28 +10,28 @@ end
 
 local keymaps = {
     --[[ set in Lazy.nvim
-    ['[b'] = require 'dap'.toggle_breakpoint,
-    ['[l'] = require 'dap'.list_breakpoints,
-    ['[B'] = function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-    ['[L'] = function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+    { '[b', require 'dap'.toggle_breakpoint(), 'dap toggle breakpoint' },
+    { '[l', require 'dap'.list_breakpoints(), 'dap list breakpoints' },
+    { '[B', require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')), 'dap condition breakpoint' },
+    { '[L', require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')), 'dap log breakpoint' },
     --]]
-    ['[c'] = dap_continue,
-    ['[s'] = require 'dap'.step_over,
-    ['[i'] = require 'dap'.step_into,
-    ['[o'] = require 'dap'.step_out,
-    ['[g'] = require 'dap'.goto_,
-    ['[r'] = require 'dap'.run_to_cursor,
-    ['[x'] = require 'dap'.repl.open,
-    ['[C'] = require 'dap'.run_last,
-    ['[p'] = dap_stop,
+    { '[c', dap_continue, "dap continue" },
+    { '[s', require 'dap'.step_over, "dap step over" },
+    { '[i', require 'dap'.step_into, "dap step into" },
+    { '[o', require 'dap'.step_out, "dap out" },
+    { '[g', require 'dap'.goto_, "dap goto" },
+    { '[r', require 'dap'.run_to_cursor, "dap run to cursor" },
+    { '[x', require 'dap'.repl.open, "dap repl open" },
+    { '[C', require 'dap'.run_last, "dap run last" },
+    { '[p', dap_stop, "dap stop" },
 }
 
-for k, v in pairs(keymaps) do
-    vim.keymap.set('n', k, v, { noremap = true })
+for _, v in ipairs(keymaps) do
+    vim.keymap.set('n', v[1], v[2], { noremap = true, desc = v[3] })
 end
 
 for _, v in ipairs { 'n', 'v' } do
-    vim.keymap.set(v, '[v', require 'dapui'.eval, { noremap = true })
+    vim.keymap.set(v, '[v', require 'dapui'.eval, { noremap = true, desc = 'dapui eval' })
 end
 
 vim.g.dap_virtual_text = true

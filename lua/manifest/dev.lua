@@ -78,12 +78,12 @@ return {
     {
         'rcarriga/nvim-dap-ui',
         keys = {
-            { '[b', function() require 'dap'.toggle_breakpoint() end, desc = 'toggle breakpoint' },
-            { '[l', function() require 'dap'.list_breakpoints() end, desc = 'list breakpoints' },
+            { '[b', function() require 'dap'.toggle_breakpoint() end, desc = 'dap toggle breakpoint' },
+            { '[l', function() require 'dap'.list_breakpoints() end, desc = 'dap list breakpoints' },
             { '[B', function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-                desc = 'condition breakpoint' },
+                desc = 'dap condition breakpoint' },
             { '[L', function() require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
-                desc = 'log breakpoint' },
+                desc = 'dap log breakpoint' },
         },
         config = h.settings 'dap',
         dependencies = { 'mfussenegger/nvim-dap' }
