@@ -21,10 +21,7 @@ return {
             { '<leader>[', 'builtin', desc = 'telescope builtin' },
             { '<leader>]', 'help_tags', desc = 'telescope help_tags' },
         },
-        config = function(plugin)
-            local m = require 'plugins.telescope'
-            h.apply_keymap(plugin, { fns = m })
-        end,
+        config = h.plugins 'telescope',
     },
     'TC72/telescope-tele-tabby.nvim',
     'xiyaowong/telescope-emoji.nvim',
@@ -52,19 +49,12 @@ return {
     {
         's1n7ax/nvim-window-picker',
         keys = {
-            { '<M-w>', nil, desc = 'window picker' },
+            { '<leader>ww', 'pick_win', desc = 'window picker' },
+            { '<M-w>', 'pick_win', desc = 'window picker', mode = { 'n', 'v', 'i', 't' } },
         },
         module = { 'neo-tree' },
         version = 'v1.*',
-        config = function(plugin)
-            local m = require 'plugins.window-picker'
-            local o = { silent = true, noremap = true }
-            for _, k in ipairs(plugin.keys) do
-                vim.keymap.set('n', k[1], m.pick_win, o)
-                vim.keymap.set('i', k[1], m.pick_win, o)
-                vim.keymap.set('t', k[1], m.pick_win, o)
-            end
-        end,
+        config = h.plugins 'window-picker',
     },
 
     {

@@ -67,4 +67,4 @@ local pick_win = function()
     vim.api.nvim_set_current_win(picked_window_id)
 end
 
-return { pick_win = pick_win }
+return { fns = { pick_win = pick_win } }

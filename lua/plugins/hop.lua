@@ -33,6 +33,8 @@ require 'hop'.setup {
 }
 
 return {
-    hint_somewhere = hint_somewhere,
-    hint_lines = hop.hint_lines
+    fns = {
+        hint_somewhere = hint_somewhere,
+        hint_lines = hop.hint_lines
+    }
 }

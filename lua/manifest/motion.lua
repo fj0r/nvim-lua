@@ -15,15 +15,10 @@ return {
             {'s', nil, desc = 'hop hint_char2'},
             {'<leader>;', nil, desc = 'hop hint_lines'},
             --]]
-            { '<leader><leader>', 'hint_somewhere', desc = 'hop hint_words' },
-            { '<leader>;', 'hint_lines', desc = 'hop hint_lines' },
+            { '<leader><leader>', 'hint_somewhere', desc = 'hop hint_words', mode = { 'n', 'v' } },
+            { '<leader>;', 'hint_lines', desc = 'hop hint_lines', mode = { 'n', 'v' } },
         },
-        config = function(plugin)
-            local fns = require 'plugins.hop'
-            for _, m in ipairs { 'n', 'v', 'x' } do
-                h.apply_keymap(plugin, { mode = m, fns = fns })
-            end
-        end,
+        config = h.plugins 'hop',
     },
     {
         'chaoren/vim-wordmotion',

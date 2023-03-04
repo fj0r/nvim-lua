@@ -45,3 +45,4 @@ vim.cmd [[
 hi link AerialLine MatchParen
 hi link AerialLineNC CursorLine
 ]]
+
