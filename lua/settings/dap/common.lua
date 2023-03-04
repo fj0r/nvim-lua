@@ -8,32 +8,6 @@ local dap_continue = function()
     require 'dap'.continue()
 end
 
-local keymaps = {
-    --[[ set in Lazy.nvim
-    { '[b', require 'dap'.toggle_breakpoint(), 'dap toggle breakpoint' },
-    { '[l', require 'dap'.list_breakpoints(), 'dap list breakpoints' },
-    { '[B', require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')), 'dap condition breakpoint' },
-    { '[L', require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')), 'dap log breakpoint' },
-    --]]
-    { '[c', dap_continue, "dap continue" },
-    { '[s', require 'dap'.step_over, "dap step over" },
-    { '[i', require 'dap'.step_into, "dap step into" },
-    { '[o', require 'dap'.step_out, "dap out" },
-    { '[g', require 'dap'.goto_, "dap goto" },
-    { '[r', require 'dap'.run_to_cursor, "dap run to cursor" },
-    { '[x', require 'dap'.repl.open, "dap repl open" },
-    { '[C', require 'dap'.run_last, "dap run last" },
-    { '[p', dap_stop, "dap stop" },
-}
-
-for _, v in ipairs(keymaps) do
-    vim.keymap.set('n', v[1], v[2], { noremap = true, desc = v[3] })
-end
-
-for _, v in ipairs { 'n', 'v' } do
-    vim.keymap.set(v, '[v', require 'dapui'.eval, { noremap = true, desc = 'dapui eval' })
-end
-
 vim.g.dap_virtual_text = true
 
 require("dapui").setup({
@@ -73,3 +47,26 @@ require("dapui").setup({
         max_width = nil -- Floats will be treated as percentage of your screen.
     },
 })
+
+return {
+    fns = {
+        toggle_breakpoint = require 'dap'.toggle_breakpoint,
+        list_breakpoints = require 'dap'.list_breakpoints,
+        condition_breakpoint = function()
+            require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+        end,
+        log_breakpoint = function()
+            require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+        end,
+        continue = dap_continue,
+        step_over = require 'dap'.step_over,
+        goto_ = require 'dap'.goto_,
+        step_into = require 'dap'.step_into,
+        out = require 'dap'.step_out,
+        run_to_cursor = require 'dap'.run_to_cursor,
+        repl_open = require 'dap'.repl.open,
+        run_last = require 'dap'.run_last,
+        stop = dap_stop,
+        eval = require 'dapui'.eval,
+    }
+}

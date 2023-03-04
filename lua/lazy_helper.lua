@@ -21,7 +21,8 @@ function M.apply_keymap(plugin, opt)
 
     opt = type(opt) == 'table' and opt or { fns = {} }
     for _, k in ipairs(plugin.keys) do
-        local lo = k.desc and { silent = true, noremap = true, desc = k.desc } or o
+        local desc = k.desc
+        local lo = desc and { silent = true, noremap = true, desc = desc } or o
         local mode = type(k.mode) == 'table' and k.mode or { k.mode or 'n' }
         for _, m in ipairs(mode) do
             vim.keymap.set(m, k[1], opt.fns[k[2]] or k[2], lo)
