@@ -1,10 +1,10 @@
 local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
-    terminal = {
-        a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
-        b = { bg = '#504945', fg = '#ebdbb2' },
-        c = { bg = '#7c6f64', fg = '#282828' },
-    },
-})
+        terminal = {
+            a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
+            b = { bg = '#504945', fg = '#ebdbb2' },
+            c = { bg = '#7c6f64', fg = '#282828' },
+        },
+    })
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
@@ -122,7 +122,7 @@ vim.keymap.set('t', '<M-r>', '', kb_prompt_rename_tab)
 
 vim.api.nvim_create_user_command('TabRename', function(ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
 
-local vcs_root = require 'taberm.vcs'.root
+local vcs_root = require('lspconfig.util').root_pattern('.git/')
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function(ctx)
@@ -130,11 +130,11 @@ vim.api.nvim_create_autocmd("DirChanged", {
         local currname = vim.t[curridx].tabname
         if currname and string.sub(currname, 1, 1) == pin then return end
 
-        local shortname = vim.fs.basename(ctx.file)
-        local fullname = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
-        local name = shortname
-        if not vcs_root(ctx.file, true) then
-            name = fullname
+        local name = nil
+        if vcs_root(ctx.file) then
+            name = vim.fs.basename(ctx.file)
+        else
+            name = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
         end
         vim.t[curridx].tabname = name
     end

@@ -49,5 +49,6 @@
                 "privateName": [
                         "_*"
                 ]
-        }
+        },
+    "workspace.checkThirdParty": false
 }
