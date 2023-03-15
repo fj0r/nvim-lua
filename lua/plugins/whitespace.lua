@@ -10,6 +10,9 @@ require('whitespace-nvim').setup({
     ignored_filetypes = vim.g.plugin_filetypes,
 })
 
--- remove trailing whitespace with a keybinding
-vim.keymap.set('n', 'gs', require('whitespace-nvim').trim,
-    { desc = 'remove tailing whitespace' })
+return {
+    fns = {
+        -- remove trailing whitespace with a keybinding
+        remove = require('whitespace-nvim').trim
+    }
+}

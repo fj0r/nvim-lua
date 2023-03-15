@@ -33,6 +33,9 @@ return {
         opts = {},
     },
     {
+        keys = {
+            { 'gw', 'remove', desc = 'remove tailing whitespace' },
+        },
         'johnfrankmorgan/whitespace.nvim',
         config = h.plugins 'whitespace'
     },
