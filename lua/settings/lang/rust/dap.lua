@@ -1,14 +1,14 @@
+--run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
+
 local dap = require 'dap'
 local lspconfig = require 'lspconfig'
-
---run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 local lldb_vscode_bin
-for _, v in ipairs { 15, 14, 11 } do
-    lldb_vscode_bin = 'lldb-vscode-' .. v
-    if vim.fn.executable(lldb_vscode_bin) == 1 then
-        break
-    end
+local lldb_version = io.popen("lldb -v 2>/dev/null | rg 'lldb version ([0-9]+)\\..*' -or '$1'")
+if lldb_version ~= nil then
+    lldb_vscode_bin = 'lldb-vscode-' .. lldb_version:read()
+    lldb_version:close()
 end
+
 dap.adapters.lldb = {
     type = 'executable',
     command = lldb_vscode_bin,
