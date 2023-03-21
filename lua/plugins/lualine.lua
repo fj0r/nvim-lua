@@ -55,7 +55,7 @@ require('lualine').setup {
     },
     tabline = {
         lualine_a = {
-            { 'tabs', mode = 2, max_length = vim.o.columns / 1.5 }
+            { 'tabs', mode = 2, max_length = math.floor(vim.o.columns / 1.5) }
         },
         lualine_b = { 'aerial' },
         lualine_c = {},
