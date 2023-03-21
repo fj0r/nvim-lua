@@ -51,7 +51,12 @@ require('possession').setup {
                 'before_load',
                 vim.o.sessionoptions:match('buffer') and 'before_save',
             },
-            force = function(buf) return vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal' end
+            force = function(buf)
+                if vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal' then
+                    local job = vim.api.nvim_buf_get_var(buf, 'terminal_job_id')
+                    return vim.fn.jobwait({job}, 0)[1] == -1
+                end
+            end
         },
         nvim_tree = false,
         tabby = false,

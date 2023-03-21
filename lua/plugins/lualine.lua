@@ -1,10 +1,10 @@
 local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
-        terminal = {
-            a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
-            b = { bg = '#504945', fg = '#ebdbb2' },
-            c = { bg = '#7c6f64', fg = '#282828' },
-        },
-    })
+    terminal = {
+        a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
+        b = { bg = '#504945', fg = '#ebdbb2' },
+        c = { bg = '#7c6f64', fg = '#282828' },
+    },
+})
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
@@ -75,6 +75,17 @@ require('lualine').setup {
         'aerial'
     }
 }
+vim.api.nvim_create_autocmd("VimResized", {
+    callback = function()
+        require('lualine').setup {
+            tabline = {
+                lualine_a = {
+                    { 'tabs', mode = 2, max_length = math.floor(vim.o.columns / 1.5) }
+                },
+            }
+        }
+    end
+})
 
 local pin = '^'
 local set_current_tabname = function(name)

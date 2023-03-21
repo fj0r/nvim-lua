@@ -5,6 +5,8 @@
  - [ ] tui-csiu
  - [x] surround: visual mode map -- 'S'
  - [x] neotree: exit rename with <C-;> (discard using <C-;> as ESC)
+ - [ ] possession close terminal without job
+    - lua/plugins/possession.lua#55
 
 # extension
  - [x] run without git
