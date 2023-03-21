@@ -42,6 +42,7 @@ require('possession').setup {
             match = {
                 floating = true,
                 filetype = vim.g.plugin_filetypes,
+                buftype = { 'terminal' },
                 custom = false, -- or fun(win): boolean
             },
         },
@@ -50,7 +51,7 @@ require('possession').setup {
                 'before_load',
                 vim.o.sessionoptions:match('buffer') and 'before_save',
             },
-            force = false, -- or fun(buf): boolean
+            force = function(buf) return vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal' end
         },
         nvim_tree = false,
         tabby = false,
