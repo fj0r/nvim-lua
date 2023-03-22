@@ -8,6 +8,15 @@ local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), 
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
+local macro_recording = function()
+    local t = vim.fn.reg_recording()
+    if t ~= '' then
+        return 'recording @' .. t
+    else
+        return ''
+    end
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -55,12 +64,12 @@ require('lualine').setup {
     },
     tabline = {
         lualine_a = {
-            { 'tabs', mode = 2, max_length = math.floor(vim.o.columns / 1.5) }
+            { 'tabs', mode = 2, max_length = function() return math.floor(vim.o.columns / 1.5) end }
         },
         lualine_b = { 'aerial' },
         lualine_c = {},
-        lualine_x = { 'overseer' },
-        lualine_y = {},
+        lualine_x = { macro_recording },
+        lualine_y = { 'overseer' },
         lualine_z = {
             { 'windows', disabled_filetypes = vim.g.plugin_filetypes }
         }
@@ -75,17 +84,17 @@ require('lualine').setup {
         'aerial'
     }
 }
-vim.api.nvim_create_autocmd("VimResized", {
-    callback = function()
-        require('lualine').setup {
-            tabline = {
-                lualine_a = {
-                    { 'tabs', mode = 2, max_length = math.floor(vim.o.columns / 1.5) }
-                },
-            }
-        }
-    end
-})
+
+local refresh_tabline = function()
+    require('lualine').refresh {
+        scope = 'all',
+        place = { 'tabline' }
+    }
+end
+
+vim.api.nvim_create_autocmd("VimResized", { callback = refresh_tabline })
+vim.api.nvim_create_autocmd("RecordingEnter", { callback = refresh_tabline })
+vim.api.nvim_create_autocmd("RecordingLeave", { callback = refresh_tabline })
 
 local pin = '^'
 local set_current_tabname = function(name)

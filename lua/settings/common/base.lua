@@ -65,6 +65,11 @@ o.updatetime     = 750
 o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
 opt.guicursor:append { 'a:blinkon0' }
 
+--[[ cmdheight=0: show recording indicator for macros
+a.nvim_create_autocmd("RecordingEnter", { command = 'set cmdheight=1' })
+a.nvim_create_autocmd("RecordingLeave", { command = 'set cmdheight=0' })
+--]]
+
 if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
     local cursorGrp = a.nvim_create_augroup("CursorLine", { clear = true })
     a.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
