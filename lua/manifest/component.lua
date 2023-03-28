@@ -8,6 +8,7 @@ return {
             { '<leader>p', 'pickers', desc = 'telescope pickers' },
             { '<leader>y', 'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
             { '<leader>m', 'marks', desc = 'telescope marks' },
+            { '<leader>c', 'registers', desc = 'telescope registers' },
             { '<leader>d', 'oldfiles', desc = 'telescope oldfiles' },
             { '<leader>f', 'find_files', desc = 'telescope find_files' },
             { '<leader>r', 'live_grep', desc = 'telescope live_grep' },
@@ -73,6 +74,7 @@ return {
 
     {
         'tversteeg/registers.nvim',
+        enabled = false,
         opts = {},
     },
     {

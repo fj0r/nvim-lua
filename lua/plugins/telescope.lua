@@ -50,6 +50,7 @@ return {
         pickers              = tele.pickers,
         lsp_document_symbols = tele.lsp_document_symbols,
         marks                = tele.marks,
+        registers            = tele.registers,
         oldfiles             = tele.oldfiles,
         find_files           = tele.find_files,
         live_grep            = tele.live_grep,
