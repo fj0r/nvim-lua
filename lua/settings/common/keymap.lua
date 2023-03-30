@@ -73,7 +73,7 @@ m('n', '<leader>q', '<cmd>quit<CR>', op2)
 local kill_tabpage = function()
     local t = vim.api.nvim_get_current_tabpage()
     local w = vim.api.nvim_tabpage_list_wins(t)
-    for _, b in pairs(w) do
+    for _, b in ipairs(w) do
         vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), { force = true })
     end
 end

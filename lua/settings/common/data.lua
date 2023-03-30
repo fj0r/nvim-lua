@@ -2,7 +2,7 @@ local dirs = { 'backup', 'swap', 'undo', 'info', 'sessions' }
 
 if vim.fn.isdirectory(vim.g.data_root) == 0 then
     os.execute('mkdir -p ' .. vim.g.data_root)
-    for _, v in pairs(dirs) do
+    for _, v in ipairs(dirs) do
         local d = vim.g.data_root .. '/' .. v
         if vim.fn.isdirectory(d) == 0 then
             os.execute('mkdir -p ' .. d)
