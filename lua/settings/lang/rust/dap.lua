@@ -5,7 +5,10 @@ local lspconfig = require 'lspconfig'
 local lldb_vscode_bin
 local lldb_version = io.popen("lldb -v 2>/dev/null | rg 'lldb version ([0-9]+)\\..*' -or '$1'")
 if lldb_version ~= nil then
-    lldb_vscode_bin = 'lldb-vscode-' .. lldb_version:read()
+    local version = lldb_version:read()
+    if version then
+        lldb_vscode_bin = 'lldb-vscode-' .. version
+    end
     lldb_version:close()
 end
 
