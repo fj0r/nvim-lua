@@ -1,5 +1,3 @@
-vim.o.guifont = "JetBrains Mono ExtraLight:h12"
-
 --[[
 #/usr/share/applications/neovide.desktop
 [Desktop Entry]
@@ -14,9 +12,10 @@ Categories=Utility;TextEditor;
 MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 --]]
 if vim.g.neovide then
-    vim.g.neovide_scale_factor = 0.9
+    vim.opt.guifont = { "JetBrains Mono ExtraLight", "h12" }
+    vim.g.neovide_scale_factor = 0.6
     vim.g.neovide_font_subpixel_antialiasing = 1
-    vim.g.neovide_fullscreen = true
+    vim.g.neovide_fullscreen = false
     vim.g.neovide_remember_window_size = true
     vim.g.neovide_transparency = 1
     vim.g.neovide_floating_blur_amount_x = 2.0
