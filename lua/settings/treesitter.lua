@@ -33,6 +33,12 @@ vim.g.treesitter_lang = {
     "org"
 }
 
+if os.getenv('NVIM_MUSL') == '1' then
+    -- apt install musl-dev musl-tools
+    require 'nvim-treesitter.install'.compilers = { "musl-gcc" }
+    require 'nvim-treesitter.parsers'.command_extra_args = { ["musl-gcc"] = { "-I/usr/include", "-static" } }
+end
+
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = vim.g.treesitter_lang,
     sync_install = true,
