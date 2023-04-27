@@ -2,8 +2,11 @@ local h = require('lazy_helper')
 
 return {
     {
+        'jose-elias-alvarez/null-ls.nvim',
+    },
+    {
         'LhKipp/nvim-nu',
-        enabled = false,
+        enabled = true,
         build = ':TSInstall nu',
         opts = {}
     },
