@@ -3,6 +3,10 @@ local h = require('lazy_helper')
 return {
     {
         'ggandor/lightspeed.nvim',
+        keys = {
+            { 's', '<Plug>Lightspeed_omni_s', desc = 'Lightspeed_omni_s'},
+            { 'S', '<Plug>Lightspeed_omni_gs', desc = 'Lightspeed_omni_gs'},
+        },
         config = h.plugins 'lightspeed',
     },
     {
