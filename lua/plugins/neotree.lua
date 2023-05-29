@@ -197,3 +197,30 @@ require("neo-tree").setup({
         }
     } or nil
 })
+
+return {
+    fns = {
+        reveal = function ()
+            local cwd = vim.fn.getcwd()
+            local bn = vim.api.nvim_buf_get_name(0)
+            local sub = false
+            if string.sub(bn, 1, 7) == 'term://' then
+                sub = false
+            else
+                for p in vim.fs.parents(bn) do
+                    if p == cwd then
+                        sub = true
+                        break
+                    end
+                end
+            end
+
+            local cmd = 'Neotree float dir=' .. cwd .. ' '
+            if sub then
+                vim.api.nvim_command(cmd .. 'reveal_file=' .. bn)
+            else
+                vim.api.nvim_command(cmd .. 'reveal=false')
+            end
+        end
+    }
+}

@@ -42,7 +42,7 @@ return {
             }
         },
         keys = {
-            { '<leader>e', ':Neotree reveal<CR>', desc = 'Neotree' }
+            { '<leader>e', 'reveal', desc = 'Neotree' }
         },
         config = h.plugins 'neotree',
     },
