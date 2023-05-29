@@ -198,6 +198,7 @@ require("neo-tree").setup({
     } or nil
 })
 
+local notify = function(x) require('notify').notify(vim.inspect(x)) end
 return {
     fns = {
         reveal = function ()
@@ -217,10 +218,12 @@ return {
 
             local cmd = 'Neotree float dir=' .. cwd .. ' '
             if sub then
-                vim.api.nvim_command(cmd .. 'reveal_file=' .. bn)
+                cmd = cmd .. 'reveal_file=' .. bn
             else
-                vim.api.nvim_command(cmd .. 'reveal=false')
+                cmd = cmd .. 'reveal=false'
             end
+            --notify(cmd)
+            vim.api.nvim_command(cmd)
         end
     }
 }
