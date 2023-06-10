@@ -1,3 +1,5 @@
+vim.opt.guicursor:append { 'a:blinkon0' }
+
 --[[
 #/usr/share/applications/neovide.desktop
 [Desktop Entry]

@@ -68,7 +68,7 @@ require('lualine').setup {
         },
         lualine_b = { 'aerial' },
         lualine_c = {},
-        lualine_x = { macro_recording },
+        lualine_x = {}, -- macro_recording
         lualine_y = { 'overseer' },
         lualine_z = {
             { 'windows', disabled_filetypes = vim.g.plugin_filetypes }
