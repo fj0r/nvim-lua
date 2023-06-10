@@ -1,5 +1,6 @@
 require 'settings.common.base'
 require 'settings.common.keymap'
+require 'settings.common.command'
 require 'settings.common.data'
 require 'settings.common.filetype'
 require 'settings.common.colors'
