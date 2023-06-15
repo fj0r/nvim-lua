@@ -5,9 +5,22 @@ end
 
 return {
     {
+        "ellisonleao/gruvbox.nvim",
+        name = "gruvbox",
+        config = function(plugin)
+            require 'gruvbox'.setup {
+                contrast = '',
+                palette_overrides = {
+                }
+            }
+            set_theme(plugin.name)
+        end
+    },
+    {
         "savq/melange-nvim",
-        config = function()
-            set_theme('melange')
+        name = "melange",
+        config = function(plugin)
+            -- set_theme(plugin.name)
         end
     },
     {
@@ -17,16 +30,4 @@ return {
             -- set_theme(plugin.name)
         end
     },
-    {
-        "ellisonleao/gruvbox.nvim",
-        config = function()
-            require 'gruvbox'.setup {
-                contrast = '',
-                palette_overrides = {
-                }
-            }
-            -- set_theme('gruvbox')
-        end
-    },
-
 }
