@@ -61,15 +61,15 @@ local json_origin = require('schemastore').json.schemas {
             'VSCode Code Snippets',
         },
         --[[
-    replace = {
-        ['package.json'] = {
-            description = 'package.json overriden',
-            fileMatch = { 'package.json' },
-            name = 'package.json',
-            url = ''
-        },
-    }
-    --]]
+        replace = {
+            ['package.json'] = {
+                description = 'package.json overriden',
+                fileMatch = { 'package.json' },
+                name = 'package.json',
+                url = ''
+            },
+        }
+        --]]
     }
 local json_schemas = {}
 local replace_url = function(schema)
