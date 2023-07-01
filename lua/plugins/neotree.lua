@@ -216,7 +216,8 @@ return {
                 end
             end
 
-            local cmd = 'Neotree float dir=' .. cwd .. ' '
+            -- local cmd = 'Neotree float dir=' .. cwd .. ' '
+            local cmd = 'Neotree dir=' .. cwd .. ' '
             if sub then
                 cmd = cmd .. 'reveal_file=' .. bn
             else
