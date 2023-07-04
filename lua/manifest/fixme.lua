@@ -24,7 +24,7 @@ return {
     --remote-wait
     {
         "samjwill/nvim-unception",
-        enabled = false
+        enabled = true
         -- enabled = vim.g.nvim_preset ~= 'core',
     }
 }
