@@ -3,6 +3,17 @@ local op1 = { noremap = true }
 local op2 = { noremap = true, silent = true }
 
 ------ tab switching
+m('', '<leader>1', '1gt', op2)
+m('', '<leader>2', '2gt', op2)
+m('', '<leader>3', '3gt', op2)
+m('', '<leader>4', '4gt', op2)
+m('', '<leader>5', '5gt', op2)
+m('', '<leader>6', '6gt', op2)
+m('', '<leader>7', '7gt', op2)
+m('', '<leader>8', '8gt', op2)
+m('', '<leader>9', '9gt', op2)
+m('', '<leader>0', '<cmd>tablast<cr>', op2)
+
 m('', '<M-1>', '1gt', op2)
 m('', '<M-2>', '2gt', op2)
 m('', '<M-3>', '3gt', op2)
