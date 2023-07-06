@@ -6,8 +6,8 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim'
         },
-        enabled = vim.g.has_git,
-        config = h.plugins 'gitsigns'
+        enabled = vim.g.has_git and vim.g.nvim_level >= 2,
+        config = h.plugins 'gitsigns',
     },
     {
         'sindrets/diffview.nvim',
@@ -18,6 +18,7 @@ return {
             { '<leader>gx', "<cmd>DiffviewClose<cr>", desc = 'DiffviewClose' },
         },
         opts = {},
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'TimUntersberger/neogit',
@@ -26,5 +27,6 @@ return {
         },
         config = h.plugins 'neogit',
         dependencies = { 'nvim-lua/plenary.nvim' },
+        enabled = vim.g.nvim_level >= 2,
     },
 }

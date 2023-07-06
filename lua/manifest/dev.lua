@@ -18,13 +18,19 @@ return {
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             'L3MON4D3/LuaSnip' -- Snippets plugin
         },
-        config = h.plugins 'nvim-cmp'
+        config = h.plugins 'nvim-cmp',
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'neovim/nvim-lspconfig',
         config = h.settings 'lsp',
+        enabled = vim.g.nvim_level >= 2,
     },
-    'b0o/schemastore.nvim',
+    {
+        'b0o/schemastore.nvim',
+        enabled = vim.g.nvim_level >= 2,
+    },
+
     --[=[
     'kabouzeid/nvim-lspinstall',
     'nvim-lua/lsp-status.nvim',
@@ -34,13 +40,13 @@ return {
     {
         "folke/neodev.nvim",
         dependencies = { 'neovim/nvim-lspconfig' },
-        enabled = vim.g.nvim_preset ~= 'core',
-        opts = {}
+        opts = {},
+        enabled = vim.g.nvim_level >= 3,
     },
     --[[
     {
         'simrat39/symbols-outline.nvim',
-        --enabled = vim.g.nvim_preset ~= 'core',
+        --enabled = vim.g.nvim_level >= 'core',
         config = function(plugin)
             --vim.opt.rtp:append(plugin.dir)
             require 'plugins.outline'
@@ -54,25 +60,30 @@ return {
             { '<leader>s', function() require("telescope").extensions.aerial.aerial() end, desc = 'AerialToggle' }
         },
         config = h.plugins 'aerial',
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
         'nvim-treesitter/nvim-treesitter',
         --build = ':TSUpdate',
-        config = h.settings 'treesitter'
+        config = h.settings 'treesitter',
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' }
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'mizlan/iswap.nvim',
         dependencies = { 'nvim-treesitter' },
-        config = h.plugins 'swap'
+        config = h.plugins 'swap',
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
         'mfussenegger/nvim-dap',
+        enabled = vim.g.nvim_level >= 2,
         lazy = true,
     },
     {
@@ -94,7 +105,8 @@ return {
             { '[v', 'eval', desc = "dapui eval", mode = { 'n', 'v' } },
         },
         config = h.settings 'dap',
-        dependencies = { 'mfussenegger/nvim-dap' }
+        dependencies = { 'mfussenegger/nvim-dap' },
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'theHamsta/nvim-dap-virtual-text',
@@ -113,6 +125,7 @@ return {
         },
         dependencies = "kyazdani42/nvim-web-devicons",
         opts = {},
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
@@ -123,5 +136,6 @@ return {
             { '<leader>gt', '<cmd>TodoTrouble<cr>', desc = 'TodoTrouble' },
         },
         opts = {},
+        enabled = vim.g.nvim_level >= 2,
     },
 }

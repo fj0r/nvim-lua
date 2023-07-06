@@ -23,10 +23,21 @@ return {
             { '<leader>]', 'help_tags', desc = 'telescope help_tags' },
         },
         config = h.plugins 'telescope',
+        enabled = vim.g.nvim_level >= 2
     },
-    'TC72/telescope-tele-tabby.nvim',
-    'xiyaowong/telescope-emoji.nvim',
-    "LinArcX/telescope-env.nvim",
+    {
+        'TC72/telescope-tele-tabby.nvim',
+        enabled = vim.g.nvim_level >= 2
+    },
+    {
+        'xiyaowong/telescope-emoji.nvim',
+        enabled = vim.g.nvim_level >= 2
+    },
+    {
+        "LinArcX/telescope-env.nvim",
+        enabled = vim.g.nvim_level >= 2
+    },
+
 
     {
         'nvim-neo-tree/neo-tree.nvim',
@@ -45,6 +56,7 @@ return {
             { '<leader>e', 'reveal', desc = 'Neotree' }
         },
         config = h.plugins 'neotree',
+        enabled = vim.g.nvim_level >= 2
     },
 
     {
@@ -56,6 +68,7 @@ return {
         module = { 'neo-tree' },
         version = 'v1.*',
         config = h.plugins 'window-picker',
+        enabled = vim.g.nvim_level >= 2
     },
 
     {
@@ -65,11 +78,13 @@ return {
             { '<leader>wx', '<cmd>WinShift<cr>', desc = 'winswap' },
         },
         config = h.plugins 'winshift',
+        enabled = vim.g.nvim_level >= 2
     },
 
     {
         'simnalamburt/vim-mundo',
         keys = { { '<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo' } },
+        enabled = vim.g.nvim_level >= 2
     },
 
     {

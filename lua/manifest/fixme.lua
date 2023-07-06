@@ -3,7 +3,8 @@ local h = require('lazy_helper')
 return {
     {
         "luukvbaal/stabilize.nvim",
-        opts = {}
+        opts = {},
+        enabled = false,
     },
     {
         'karb94/neoscroll.nvim',

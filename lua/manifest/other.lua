@@ -13,8 +13,8 @@ return {
 
     {
         'jbyuki/instant.nvim',
-        cmd = { 'InstantStartSingle', 'InstantStartSession', 'InstantStartServer' }
-        --enabled = vim.g.nvim_preset ~= 'core',
+        cmd = { 'InstantStartSingle', 'InstantStartSession', 'InstantStartServer' },
+        enabled = vim.g.nvim_level >= 3,
     },
 
 

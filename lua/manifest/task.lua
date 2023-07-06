@@ -27,5 +27,6 @@ return {
             'nvim-telescope/telescope.nvim',
         },
         config = h.plugins 'overseer',
+        enabled = vim.g.nvim_level >= 2,
     },
 }

@@ -1,7 +1,11 @@
 vim.g.config_root = debug.getinfo(1, 'S').source:match('^@(.+)/.+$')
 vim.g.data_root   = os.getenv('HOME') .. '/.nvim'
-vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') and os.getenv('NVIM_PRESET') or 'core'
 vim.g.has_git     = pcall(vim.fn.systemlist, { 'git', '--version' })
+vim.g.nvim_preset = vim.fn.exists('$NVIM_PRESET') == 1 and 'ext'
+                 or vim.g.vscode and 'embed'
+                 or vim.g.started_by_firenvim and 'embed'
+                 or 'core'
+vim.g.nvim_level  = ({ embed = 1, core = 2, ext = 3 })[vim.g.nvim_preset]
 vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'settings.common'

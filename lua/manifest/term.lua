@@ -9,6 +9,7 @@ return {
                 toggle = '<C-x>'
             }
         },
+        enabled = vim.g.nvim_level >= 2,
     },
     --[=[
     {

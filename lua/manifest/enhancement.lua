@@ -1,7 +1,10 @@
 local h = require('lazy_helper')
 
 return {
-    'mg979/vim-visual-multi',
+    {
+        'mg979/vim-visual-multi',
+        enabled = vim.g.nvim_level >= 2,
+    },
 
     {
         'junegunn/vim-easy-align',
@@ -18,6 +21,7 @@ return {
     },
     {
         'junegunn/rainbow_parentheses.vim',
+        enabled = vim.g.nvim_level >= 2,
         config = h.plugins 'rainbow'
     },
     {
@@ -42,6 +46,7 @@ return {
     {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
+        enabled = vim.g.nvim_level >= 2,
         config = h.plugins 'possession'
     },
 }

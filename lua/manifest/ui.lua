@@ -5,27 +5,31 @@ return {
         'nvim-lualine/lualine.nvim',
         config = h.plugins 'lualine',
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
         'norcalli/nvim-colorizer.lua',
-        config = h.plugins 'colorizer'
+        config = h.plugins 'colorizer',
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
         'stevearc/dressing.nvim',
-        config = h.plugins 'dressing'
+        config = h.plugins 'dressing',
+        enabled = vim.g.nvim_level >= 2,
     },
 
     {
         'notomo/cmdbuf.nvim',
-        enabled = false,
         config = h.plugins 'cmdbuf',
+        enabled = false,
     },
 
     {
         'kevinhwang91/nvim-hlslens',
-        opts = {}
+        opts = {},
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         "m4xshen/smartcolumn.nvim",
@@ -44,7 +48,8 @@ return {
                 "help", "text", "markdown",
                 unpack(vim.g.plugin_filetypes),
             }
-        }
+        },
+        enabled = vim.g.nvim_level >= 2,
     },
     --[=[
     use {

@@ -3,12 +3,13 @@ local h = require('lazy_helper')
 return {
     {
         'jose-elias-alvarez/null-ls.nvim',
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'LhKipp/nvim-nu',
-        enabled = true,
         build = ':TSInstall nu',
-        opts = {}
+        opts = {},
+        enabled = vim.g.nvim_level >= 3,
     },
     {
         'nvim-orgmode/orgmode',
@@ -18,6 +19,7 @@ return {
         },
         ft = { 'org' },
         config = h.plugins 'orgmode',
+        enabled = vim.g.nvim_level >= 3,
     },
     {
         'NTBBloodbath/rest.nvim',
@@ -26,14 +28,15 @@ return {
         },
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {},
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'rafcamlet/nvim-luapad',
-        enabled = vim.g.nvim_preset ~= 'core',
         cmd = { 'Luapad', 'LuaRun' },
+        enabled = vim.g.nvim_level >= 3,
     },
     {
         'towolf/vim-helm',
-        enabled = vim.g.nvim_preset ~= 'core',
+        enabled = vim.g.nvim_level >= 3,
     }
 }
