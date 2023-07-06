@@ -35,7 +35,8 @@ local wrap_config = function(dir)
         return function(plugin)
             -- vim.opt.rtp:append(plugin.dir)
             -- debug: print(vim.inspect(plugin[1]))
-            M.apply_keymap(plugin, require(dir .. '.' .. file))
+            local opt = require(dir .. '.' .. file)
+            M.apply_keymap(plugin, opt)
         end
     end
 end
