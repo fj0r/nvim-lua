@@ -30,4 +30,10 @@ return {
             -- set_theme(plugin.name)
         end
     },
+    --[=[
+    use {
+        'rktjmp/lush.nvim',
+        --config = function(plugin) require'plugins.lush' end
+    }
+    --]=]
 }

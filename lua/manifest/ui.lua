@@ -29,7 +29,7 @@ return {
     {
         'kevinhwang91/nvim-hlslens',
         opts = {},
-        enabled = vim.g.nvim_level >= 2,
+        enabled = false and vim.g.nvim_level >= 2,
     },
     {
         "m4xshen/smartcolumn.nvim",
