@@ -7,7 +7,7 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Terminal=false
-Exec=bash -c 'export NVIM_PRESET=x SHELL=/usr/local/bin/nu; export PATH=/opt/node/bin:$HOME/.local/bin:$PATH; /usr/local/bin/neovide --multigrid --maximized'
+Exec=bash -c 'export NVIM_LEVEL=x SHELL=/usr/local/bin/nu; export PATH=/opt/node/bin:$HOME/.local/bin:$PATH; /usr/local/bin/neovide --multigrid --maximized'
 Name=Neovide
 Icon=nvim
 Categories=Utility;TextEditor;
