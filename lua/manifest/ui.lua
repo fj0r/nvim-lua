@@ -51,10 +51,4 @@ return {
         },
         enabled = vim.g.nvim_level >= 2,
     },
-    --[=[
-    use {
-        'rktjmp/lush.nvim',
-        --config = function(plugin) require'plugins.lush' end
-    }
-    --]=]
 }

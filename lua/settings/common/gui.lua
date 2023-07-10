@@ -23,7 +23,7 @@ if vim.g.neovide then
     vim.g.neovide_floating_blur_amount_y = 2.0
     vim.g.neovide_hide_mouse_when_typing = true
     vim.g.neovide_underline_automatic_scaling = true
-    vim.g.neovide_cursor_vfx_mode = "sonicboom" -- "wireframe" -- "railgun"
+    vim.g.neovide_cursor_vfx_mode = "railgun" -- "sonicboom" -- "wireframe" -- "railgun"
     vim.g.neovide_cursor_vfx_particle_lifetime = 2
     vim.g.neovide_cursor_vfx_particle_density = 12.0
     vim.g.neovide_cursor_vfx_particle_speed = 10.0
