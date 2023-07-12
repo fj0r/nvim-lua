@@ -29,8 +29,7 @@ vim.g.treesitter_lang = {
     "toml",
     "typescript",
     "vue",
-    "yaml",
-    "org"
+    "yaml"
 }
 
 if os.getenv('NVIM_MUSL') == '1' then
