@@ -22,7 +22,7 @@ local json_origin = require('schemastore').json.schemas {
             'AsyncAPI',
             'Avro Avsc',
             'bucklescript',
-            'Cargo Config Schema',
+            'Cargo Manifest',
             'Cargo Make',
             'Chrome Extension',
             'composer.json',
