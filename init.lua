@@ -1,12 +1,13 @@
 vim.g.config_root = debug.getinfo(1, 'S').source:match('^@(.+)/.+$')
 vim.g.data_root   = os.getenv('HOME') .. '/.nvim'
 vim.g.has_git     = pcall(vim.fn.systemlist, { 'git', '--version' })
+vim.opt.runtimepath:prepend(vim.g.config_root)
+vim.g.nvim_server = vim.fn.exists('$NVIM_SERVER') == 1
 vim.g.nvim_level  = vim.fn.exists('$NVIM_LEVEL') == 1 and 3
                  or vim.g.neovide and 3
                  or vim.g.vscode and 1
                  or vim.g.started_by_firenvim and 1
                  or 2
-vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'settings.common'
 
