@@ -106,6 +106,9 @@ m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', op2)
 -- Y yank until the end of line
 m('n', 'Y', 'y$', op2)
 
+-- repeat substitution
+m('n', '&', ':%&<CR>', op2)
+
 
 -- windows to close with "q"
 a.nvim_create_autocmd("FileType", {
