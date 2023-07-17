@@ -1,4 +1,5 @@
 require 'settings.common.base'
+require 'settings.common.arrow'
 require 'settings.common.keymap'
 require 'settings.common.command'
 require 'settings.common.data'

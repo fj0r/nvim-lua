@@ -23,10 +23,10 @@ end
 m('t', g.mapesc or '<ESC>', '<C-\\><C-n>', op2)
 
 if os.getenv('VIM_JK_WRAP') == '1' then
-    m('n', 'k', "v:count == 0 ? 'gk' : 'k'", op3)
-    m('n', 'j', "v:count == 0 ? 'gj' : 'j'", op3)
-    m('v', 'k', "v:count == 0 ? 'gk' : 'k'", op3)
-    m('v', 'j', "v:count == 0 ? 'gj' : 'j'", op3)
+    m('n', vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'", op3)
+    m('n', vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'", op3)
+    m('v', vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'", op3)
+    m('v', vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'", op3)
 end
 
 -- go to end of parenthesis/brackets/quotes without switching insert mode
@@ -52,12 +52,12 @@ m('c', '<C-d>', '<Delete>', op1)
 m('c', '<M-o>', '<C-f>', op1)
 
 -- Go to home and end using capitalized directions
-m('n', 'H', '^', op2)
-m('n', 'L', '$', op2)
+m('n', '<C-a>', '^', op2)
+m('n', '<C-e>', '$', op2)
 
 -- visual selection excluding newline & space
-m('x', 'H', '^', op2)
-m('x', 'L', 'g_', op2)
+m('x', '<C-a>', '^', op2)
+m('x', '<C-e>', 'g_', op2)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', op2)
