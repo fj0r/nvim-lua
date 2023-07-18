@@ -30,6 +30,8 @@ require 'hop'.setup {
     -- keys = 'asdghklqwertyuiopzxcvbnmfj'
     keys = 'asdfjklqweruiopzxcv',
     -- keys = 'ajskdlf;quwieorpzxcv'
+    perm_method = require'hop.perm'.TermSeqBias,
+    term_seq_bias = 0.7
 }
 
 return {

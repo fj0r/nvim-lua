@@ -2,15 +2,6 @@ local h = require('lazy_helper')
 
 return {
     {
-        'ggandor/lightspeed.nvim',
-        keys = {
-            { 's', '<Plug>Lightspeed_omni_s',  desc = 'Lightspeed_omni_s' },
-            { 'S', '<Plug>Lightspeed_omni_gs', desc = 'Lightspeed_omni_gs' },
-        },
-        config = h.plugins 'lightspeed',
-        enabled = false,
-    },
-    {
         "folke/flash.nvim",
         event = "VeryLazy",
         config = h.plugins 'flash',
@@ -60,6 +51,23 @@ return {
         },
     },
     {
+        'chaoren/vim-wordmotion',
+        enabled = false,
+        config = function()
+            vim.g.wordmotion_uppercase_spaces = { '/', '.', '{', '}', '(', ')' }
+        end
+    },
+    'wellle/targets.vim',
+    {
+        'ggandor/lightspeed.nvim',
+        keys = {
+            { 's', '<Plug>Lightspeed_omni_s',  desc = 'Lightspeed_omni_s' },
+            { 'S', '<Plug>Lightspeed_omni_gs', desc = 'Lightspeed_omni_gs' },
+        },
+        config = h.plugins 'lightspeed',
+        enabled = false,
+    },
+    {
         'phaazon/hop.nvim',
         branch = 'v2',
         keys = {
@@ -73,14 +81,6 @@ return {
             { '<leader>;',        'hint_lines',     desc = 'hop hint_lines', mode = { 'n', 'v' } },
         },
         config = h.plugins 'hop',
-    },
-    {
-        'chaoren/vim-wordmotion',
         enabled = false,
-        config = function()
-            vim.g.wordmotion_uppercase_spaces = { '/', '.', '{', '}', '(', ')' }
-        end
     },
-    --'matze/vim-move',
-    'wellle/targets.vim',
 }
