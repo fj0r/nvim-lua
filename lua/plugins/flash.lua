@@ -23,7 +23,7 @@ return {
     fns = {
         jump_to_line = function()
             require("flash").jump({
-                search = { mode = "search", max_length = 0 },
+                search = { mode = "search", max_length = 0, multi_window = false },
                 label = { after = { 0, 0 } },
                 pattern = [[^]]
             })
