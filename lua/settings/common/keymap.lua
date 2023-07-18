@@ -52,12 +52,12 @@ m('c', '<C-d>', '<Delete>', op1)
 m('c', '<M-o>', '<C-f>', op1)
 
 -- Go to home and end using capitalized directions
-m('n', '<C-a>', '^', op2)
-m('n', '<C-e>', '$', op2)
+m('n', 'H', '^', op2)
+m('n', 'L', '$', op2)
 
 -- visual selection excluding newline & space
-m('x', '<C-a>', '^', op2)
-m('x', '<C-e>', 'g_', op2)
+m('x', 'H', '^', op2)
+m('x', 'L', 'g_', op2)
 
 -- 去掉搜索高亮
 m('n', '<leader>/', ':nohls<CR>', op2)
