@@ -14,6 +14,7 @@ return {
                 }
             }
             set_theme(plugin.name)
+            vim.api.nvim_set_hl(0, "Substitute", { bg = "#ff007c", bold = true, fg = "#c8d3f5" })
         end
     },
     {
