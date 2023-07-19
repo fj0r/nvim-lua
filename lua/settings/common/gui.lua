@@ -14,7 +14,17 @@ Categories=Utility;TextEditor;
 MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 --]]
 
-if vim.g.neovide or vim.g.nvim_server then
+local function has_value (tab, val)
+    for _, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
+
+if vim.g.neovide or has_value(vim.v.argv, "--listen") then
     vim.opt.guifont = "JetBrains Mono ExtraLight:h12:#e-subpixelantialias"
     vim.g.neovide_scale_factor = 1
     vim.g.neovide_fullscreen = false
