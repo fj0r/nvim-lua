@@ -14,4 +14,5 @@ if vim.g.nvim_level >= 3 then
     require 'settings.lang.sql.lsp'
     require 'settings.lang.docker.lsp'
     require 'settings.lang.helm.lsp'
+    require 'settings.lang.typst.lsp'
 end

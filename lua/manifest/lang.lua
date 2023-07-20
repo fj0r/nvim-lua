@@ -12,6 +12,11 @@ return {
         enabled = vim.g.nvim_level >= 3,
     },
     {
+        'kaarmu/typst.vim',
+        ft = 'typst',
+        enabled = vim.g.nvim_level >= 3,
+    },
+    {
         'nvim-orgmode/orgmode',
         keys = {
             { '<leader>oa', nil, desc = 'orgmode agenda' },
