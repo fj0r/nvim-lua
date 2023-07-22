@@ -21,7 +21,7 @@ return {
         enabled = vim.g.nvim_level >= 2,
     },
     {
-        'TimUntersberger/neogit',
+        'NeogitOrg/neogit',
         keys = {
             { '<leader>gg', function() require 'neogit'.open({ kind = 'split' }) end, desc = 'neogit' },
         },

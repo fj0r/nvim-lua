@@ -1,9 +1,11 @@
 local Flash = require('flash')
 require 'flash'.setup {
+    labels = "asdfghjklqwertyuiopzxcvbnm",
     jump = {
         autojump = true
     },
     label = {
+        uppercase = true,
         rainbow = {
             enable = true,
             shade = 5
