@@ -14,12 +14,6 @@ return {
         },
     },
     {
-        'Chiel92/vim-autoformat',
-        keys = {
-            { '[f', '<cmd>Autoformat<cr>', desc = 'Autoformat' },
-        },
-    },
-    {
         'junegunn/rainbow_parentheses.vim',
         enabled = vim.g.nvim_level >= 2,
         config = h.plugins 'rainbow'
