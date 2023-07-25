@@ -14,20 +14,19 @@ return {
                 palette_overrides = {
                 },
                 overrides = {
-                    Substitute = { bg = "#9055a2" , bold = true, fg = "#c8d3f5" }
+                    Substitute = { bg = "#9055a2", bold = true, fg = "#c8d3f5" }
                 }
             }
             set_theme(plugin.name, "dark")
         end
     },
     {
-        "luisiacc/gruvbox-baby",
-    },
-    {
         "savq/melange-nvim",
         name = "melange",
         config = function(plugin)
-            -- set_theme(plugin.name)
+            --[[
+            set_theme(plugin.name, "dark")
+            --]]
         end
     },
 }
