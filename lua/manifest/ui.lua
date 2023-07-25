@@ -31,24 +31,4 @@ return {
         opts = {},
         enabled = false and vim.g.nvim_level >= 2,
     },
-    {
-        "m4xshen/smartcolumn.nvim",
-        opts = {
-            colorcolumn = 80,
-            custom_colorcolumn = {
-                python     = 100,
-                go         = 120,
-                typescript = 120,
-                rust       = 150,
-                haskell    = 150,
-                scala      = 200,
-                java       = 200,
-            },
-            disabled_filetypes = {
-                "help", "text", "markdown",
-                unpack(vim.g.plugin_filetypes),
-            }
-        },
-        enabled = vim.g.nvim_level >= 2,
-    },
 }

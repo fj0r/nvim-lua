@@ -5,6 +5,9 @@ end
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- c lua nvim
+-- bash markdown python
+-- vim.version()
 vim.g.treesitter_lang = {
     "css",
     "diff",
@@ -20,7 +23,6 @@ vim.g.treesitter_lang = {
     "json",
     "jsonc",
     "julia",
-    "lua",
     "markdown",
     "php",
     "python",
