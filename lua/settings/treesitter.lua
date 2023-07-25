@@ -1,13 +1,17 @@
 if not vim.g.has_git then
     return
 end
+table.unpack = table.unpack or unpack
 
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- c lua nvim
--- bash markdown python
--- vim.version()
+local version = vim.version()
+local builtin_parser = {} -- c lua nvim
+if version.major == 0 and version.minor <= 9 then
+    builtin_parser = {"bash", "markdown", "python"}
+end
+
 vim.g.treesitter_lang = {
     "css",
     "diff",
@@ -23,15 +27,14 @@ vim.g.treesitter_lang = {
     "json",
     "jsonc",
     "julia",
-    "markdown",
     "php",
-    "python",
     "regex",
     "rust",
     "toml",
     "typescript",
     "vue",
-    "yaml"
+    "yaml",
+    table.unpack(builtin_parser)
 }
 
 if os.getenv('NVIM_MUSL') == '1' then
