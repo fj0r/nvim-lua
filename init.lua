@@ -8,11 +8,13 @@ vim.g.nvim_level  = vim.fn.exists('$NVIM_LEVEL') == 1 and 3
                  or vim.g.started_by_firenvim and 1
                  or 2
 
+
+require 'shim'
 require 'settings.common'
 
 local lazyhome = vim.g.config_root .. '/lazy'
 local lazypath = lazyhome .. '/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",

@@ -1,7 +1,6 @@
 if not vim.g.has_git then
     return
 end
-table.unpack = table.unpack or unpack
 
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
@@ -64,7 +63,7 @@ require 'nvim-treesitter.configs'.setup {
         use_languagetree = true,
         disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
                 return true
             end

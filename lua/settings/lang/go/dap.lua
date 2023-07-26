@@ -2,7 +2,7 @@ local dap = require 'dap'
 
 --go install github.com/go-delve/delve/cmd/dlv@latest
 dap.adapters.go = function(callback, config)
-    local stdout = vim.loop.new_pipe(false)
+    local stdout = vim.uv.new_pipe(false)
     local handle
     local pid_or_err
     local port = 38697
@@ -11,7 +11,7 @@ dap.adapters.go = function(callback, config)
         args = { "dap", "-l", "127.0.0.1:" .. port },
         detached = true
     }
-    handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+    handle, pid_or_err = vim.uv.spawn("dlv", opts, function(code)
             stdout:close()
             handle:close()
             if code ~= 0 then
