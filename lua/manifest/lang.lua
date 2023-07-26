@@ -8,7 +8,6 @@ return {
     {
         'LhKipp/nvim-nu',
         build = ':TSInstall nu',
-        opts = {},
         enabled = vim.g.nvim_level >= 3,
     },
     {

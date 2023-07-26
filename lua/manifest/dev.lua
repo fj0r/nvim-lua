@@ -40,7 +40,6 @@ return {
     {
         "folke/neodev.nvim",
         dependencies = { 'neovim/nvim-lspconfig' },
-        opts = {},
         enabled = vim.g.nvim_level >= 3,
     },
     --[[
