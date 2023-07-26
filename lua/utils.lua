@@ -20,19 +20,6 @@ function M.which(name)
     return r
 end
 
-function M.dump(...)
-    local args = { ... }
-    if #args == 1 then
-        print(vim.inspect(args[1]))
-    else
-        print(vim.inspect(args))
-    end
-end
-
-M.printf = function(...) print(string.format(...)) end
-M.sprintf = string.format
-M.cmdf = function(...) vim.cmd(M.sprintf(...)) end
-
 function M.get_cursor_pos() return { vim.fn.line('.'), vim.fn.col('.') } end
 
 function M.debounce(func, timeout)
