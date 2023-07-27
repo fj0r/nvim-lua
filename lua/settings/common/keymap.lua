@@ -1,121 +1,68 @@
-local a   = vim.api
-local m   = vim.keymap.set
-local c   = vim.api.nvim_command
-local u   = vim.api.nvim_create_user_command
-local g   = vim.g
-local ex  = vim.api.nvim_exec
-local op1 = { noremap = true }
-local op2 = { noremap = true, silent = true }
-local op3 = { noremap = true, expr = true, silent = true }
+local keytables = require('helper').keytables
 
-m('', '<Space>', '<Nop>', op2)
-g.mapesc = nil -- nil or '<C-;>'
-g.mapleader = " "
-g.maplocalleader = " "
+vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapesc = nil -- nil or '<C-;>'
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-if g.mapesc then
-    m('n', g.mapesc, '<ESC>', op2)
-    m('i', g.mapesc, '<ESC>', op2)
-    m('c', g.mapesc, '<ESC>', op2)
-    m('v', g.mapesc, '<ESC>', op2)
-end
+local jk_wrap = os.getenv('VIM_JK_WRAP') == '1'
 
-m('t', g.mapesc or '<ESC>', '<C-\\><C-n>', op2)
+keytables {
+    { vim.g.mapesc or '<ESC>', '<C-\\><C-n>',                                 'ns',  mode = 't' },
+    { vim.g.mapesc,            '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
+    { vim.g.arrow_keys.k,      "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
+    { vim.g.arrow_keys.j,      "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
+    { '<M-o>',                 '<C-f>',                                       'n',   mode = 'c' },
+    -- Go to home and end using capitalized directions
+    { 'H',                     '^',                                           'ns' },
+    { 'L',                     '$',                                           'ns' },
+    -- visual selection excluding newline & space
+    { 'H',                     '^',                                           'ns',  mode = 'x' },
+    { 'L',                     'g_',                                          'ns',  mode = 'x' },
+    -- 去掉搜索高亮
+    { '<leader>/',             ':nohls<CR>',                                  'ns' },
+    -- command history
+    -- m('n', '<leader>;', ':<C-f>', op2)
+    -- NOTE: not need
+    -- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
+    { 'M',                     '<cmd>marks<CR>',                              'ns' },
+    { '<leader>q',             '<cmd>quit<CR>',                               'ns' },
+    { '<M-d>',                 '<cmd>Detach<CR>',                             'ns' },
+    { '<M-q>',                 '<cmd>Q<CR>',                                  'ns',  mode = 'nit' },
+    -- 防止水平滑动的时候失去选择
+    { '<',                     '<gv',                                         'ns',  mode = 'x' },
+    { '>',                     '>gv',                                         'ns',  mode = 'x' },
+    -- toggle number
+    { '<leader>n',             '<cmd>set relativenumber! | :set number!<CR>', 'ns' },
+    -- Y yank until the end of line
+    { 'Y',                     'y$',                                          'ns' },
+    -- repeat substitution
+    { '&',                     ':%&<CR>',                                     'ns' },
+    -- go to end of parenthesis/brackets/quotes without switching insert mode
+    --[[ provided by vim-rsi
+    { '<C-l>', '<C-o>A',    'ns', mode = 'i' },
+    { '<C-a>', '<C-o>^',    'ns', mode = 'i' },
+    { '<C-e>', '<C-o>$',    'ns', mode = 'i' },
+    { '<C-f>', '<C-o>l',    'ns', mode = 'i' },
+    { '<C-b>', '<C-o>h',    'ns', mode = 'i' },
+    { '<M-f>', '<C-o>w',    'ns', mode = 'i' },
+    { '<M-b>', '<C-o>b',    'ns', mode = 'i' },
+    { '<C-w>', '<C-o>db',   'ns', mode = 'i' },
 
-if os.getenv('VIM_JK_WRAP') == '1' then
-    m('n', vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'", op3)
-    m('n', vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'", op3)
-    m('v', vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'", op3)
-    m('v', vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'", op3)
-end
-
--- go to end of parenthesis/brackets/quotes without switching insert mode
---[[ provided by vim-rsi
-m('i', '<C-l>', '<C-o>A', op2)
-m('i', '<C-a>', '<C-o>^', op2)
-m('i', '<C-e>', '<C-o>$', op2)
-m('i', '<C-f>', '<C-o>l', op2)
-m('i', '<C-b>', '<C-o>h', op2)
-m('i', '<M-f>', '<C-o>w', op2)
-m('i', '<M-b>', '<C-o>b', op2)
-m('i', '<C-w>', '<C-o>db', op2)
-
-m('c', '<C-o>', '<C-f>', op1)
-m('c', '<C-a>', '<Home>', op1)
-m('c', '<C-e>', '<End>', op1)
-m('c', '<C-f>', '<Right>', op1)
-m('c', '<C-b>', '<Left>', op1)
-m('c', '<M-f>', '<S-Right>', op1)
-m('c', '<M-b>', '<S-Left>', op1)
-m('c', '<C-d>', '<Delete>', op1)
---]]
-m('c', '<M-o>', '<C-f>', op1)
-
--- Go to home and end using capitalized directions
-m('n', 'H', '^', op2)
-m('n', 'L', '$', op2)
-
--- visual selection excluding newline & space
-m('x', 'H', '^', op2)
-m('x', 'L', 'g_', op2)
-
--- 去掉搜索高亮
-m('n', '<leader>/', ':nohls<CR>', op2)
--- command history
--- m('n', '<leader>;', ':<C-f>', op2)
--- NOTE: not need
--- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
-
-m('n', 'M', '<cmd>marks<CR>', op2)
-
-m('n', '<leader>q', '<cmd>quit<CR>', op2)
-
-local kill_tabpage = function()
-    local t = vim.api.nvim_get_current_tabpage()
-    local w = vim.api.nvim_tabpage_list_wins(t)
-    for _, b in ipairs(w) do
-        vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), { force = true })
-    end
-end
-u('Q', kill_tabpage, { desc = 'close all window of the current tabpage' })
-m('n', '<M-q>', kill_tabpage, op2)
-m('i', '<M-q>', kill_tabpage, op2)
-m('t', '<M-q>', kill_tabpage, op2)
-
-c('command! -nargs=0  W :wall')
-c('command! -nargs=0  Wq :wall|tabclose')
-c('command! -nargs=0  WQ :wqall')
--- reload file
-c('command! -nargs=0  E :e!')
+    { '<C-o>', '<C-f>',     'n',  mode = 'c' },
+    { '<C-a>', '<Home>',    'n',  mode = 'c' },
+    { '<C-e>', '<End>',     'n',  mode = 'c' },
+    { '<C-f>', '<Right>',   'n',  mode = 'c' },
+    { '<C-b>', '<Left>',    'n',  mode = 'c' },
+    { '<M-f>', '<S-Right>', 'n',  mode = 'c' },
+    { '<M-b>', '<S-Left>',  'n',  mode = 'c' },
+    { '<C-d>', '<Delete>',  'n',  mode = 'c' },
+    --]]
+}
 
 
-ex([[
+vim.api.nvim_command [[
 nnoremap <expr><silent><Esc> len(filter(range(1, winnr('$')), 'getwinvar(v:val, "&ft") == "qf"')) ? ":ccl<CR>" : "\<Esc>"
 "快速编辑自定义宏
 nnoremap <leader>xm  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-]], false)
-
-
--- 防止水平滑动的时候失去选择
-m('x', '<', '<gv', op2)
-m('x', '>', '>gv', op2)
-
--- toggle number
-m('n', '<leader>n', '<cmd>set relativenumber! | :set number!<CR>', op2)
-
--- Y yank until the end of line
-m('n', 'Y', 'y$', op2)
-
--- repeat substitution
-m('n', '&', ':%&<CR>', op2)
-
-
--- windows to close with "q"
-a.nvim_create_autocmd("FileType", {
-    pattern = { "help", "startuptime", "qf", "lspinfo" },
-    command = [[nnoremap <buffer><silent> q :close<CR>]]
-})
-a.nvim_create_autocmd("FileType", {
-    pattern = "man",
-    command = [[nnoremap <buffer><silent> q :quit<CR>]]
-})
+]]

@@ -1,74 +1,74 @@
-local m   = vim.keymap.set
-local op1 = { noremap = true }
-local op2 = { noremap = true, silent = true }
+local keytables = require('helper').keytables
 
------- tab switching
-m('', '<leader>1', '1gt', op2)
-m('', '<leader>2', '2gt', op2)
-m('', '<leader>3', '3gt', op2)
-m('', '<leader>4', '4gt', op2)
-m('', '<leader>5', '5gt', op2)
-m('', '<leader>6', '6gt', op2)
-m('', '<leader>7', '7gt', op2)
-m('', '<leader>8', '8gt', op2)
-m('', '<leader>9', '9gt', op2)
-m('', '<leader>0', '<cmd>tablast<cr>', op2)
+keytables {
+    ------ tab switching
+    { '<leader>1', '1gt',                      'ns', mode = '' },
+    { '<leader>2', '2gt',                      'ns', mode = '' },
+    { '<leader>3', '3gt',                      'ns', mode = '' },
+    { '<leader>4', '4gt',                      'ns', mode = '' },
+    { '<leader>5', '5gt',                      'ns', mode = '' },
+    { '<leader>6', '6gt',                      'ns', mode = '' },
+    { '<leader>7', '7gt',                      'ns', mode = '' },
+    { '<leader>8', '8gt',                      'ns', mode = '' },
+    { '<leader>9', '9gt',                      'ns', mode = '' },
+    { '<leader>0', '<cmd>tablast<cr>',         'ns', mode = '' },
 
-m('', '<M-1>', '1gt', op2)
-m('', '<M-2>', '2gt', op2)
-m('', '<M-3>', '3gt', op2)
-m('', '<M-4>', '4gt', op2)
-m('', '<M-5>', '5gt', op2)
-m('', '<M-6>', '6gt', op2)
-m('', '<M-7>', '7gt', op2)
-m('', '<M-8>', '8gt', op2)
-m('', '<M-9>', '9gt', op2)
-m('', '<M-0>', '<cmd>tablast<cr>', op2)
+    { '<M-1>',     '1gt',                      'ns', mode = '' },
+    { '<M-2>',     '2gt',                      'ns', mode = '' },
+    { '<M-3>',     '3gt',                      'ns', mode = '' },
+    { '<M-4>',     '4gt',                      'ns', mode = '' },
+    { '<M-5>',     '5gt',                      'ns', mode = '' },
+    { '<M-6>',     '6gt',                      'ns', mode = '' },
+    { '<M-7>',     '7gt',                      'ns', mode = '' },
+    { '<M-8>',     '8gt',                      'ns', mode = '' },
+    { '<M-9>',     '9gt',                      'ns', mode = '' },
+    { '<M-0>',     '<cmd>tablast<cr>',         'ns', mode = '' },
 
-m('i', '<M-1>', '<cmd>silent! tabn 1<cr>', op1)
-m('i', '<M-2>', '<cmd>silent! tabn 2<cr>', op1)
-m('i', '<M-3>', '<cmd>silent! tabn 3<cr>', op1)
-m('i', '<M-4>', '<cmd>silent! tabn 4<cr>', op1)
-m('i', '<M-5>', '<cmd>silent! tabn 5<cr>', op1)
-m('i', '<M-6>', '<cmd>silent! tabn 6<cr>', op1)
-m('i', '<M-7>', '<cmd>silent! tabn 7<cr>', op1)
-m('i', '<M-8>', '<cmd>silent! tabn 8<cr>', op1)
-m('i', '<M-9>', '<cmd>silent! tabn 9<cr>', op1)
-m('i', '<M-0>', '<cmd>silent! tablast<cr>', op1)
+    { '<M-1>',     '<cmd>silent! tabn 1<cr>',  'n',  mode = 'i' },
+    { '<M-2>',     '<cmd>silent! tabn 2<cr>',  'n',  mode = 'i' },
+    { '<M-3>',     '<cmd>silent! tabn 3<cr>',  'n',  mode = 'i' },
+    { '<M-4>',     '<cmd>silent! tabn 4<cr>',  'n',  mode = 'i' },
+    { '<M-5>',     '<cmd>silent! tabn 5<cr>',  'n',  mode = 'i' },
+    { '<M-6>',     '<cmd>silent! tabn 6<cr>',  'n',  mode = 'i' },
+    { '<M-7>',     '<cmd>silent! tabn 7<cr>',  'n',  mode = 'i' },
+    { '<M-8>',     '<cmd>silent! tabn 8<cr>',  'n',  mode = 'i' },
+    { '<M-9>',     '<cmd>silent! tabn 9<cr>',  'n',  mode = 'i' },
+    { '<M-0>',     '<cmd>silent! tablast<cr>', 'n',  mode = 'i' },
 
-m('t', '<M-1>', '<cmd>silent! tabn 1<cr>', op1)
-m('t', '<M-2>', '<cmd>silent! tabn 2<cr>', op1)
-m('t', '<M-3>', '<cmd>silent! tabn 3<cr>', op1)
-m('t', '<M-4>', '<cmd>silent! tabn 4<cr>', op1)
-m('t', '<M-5>', '<cmd>silent! tabn 5<cr>', op1)
-m('t', '<M-6>', '<cmd>silent! tabn 6<cr>', op1)
-m('t', '<M-7>', '<cmd>silent! tabn 7<cr>', op1)
-m('t', '<M-8>', '<cmd>silent! tabn 8<cr>', op1)
-m('t', '<M-9>', '<cmd>silent! tabn 9<cr>', op1)
-m('t', '<M-0>', '<cmd>silent! tablast<cr>', op1)
+    { '<M-1>',     '<cmd>silent! tabn 1<cr>',  'n',  mode = 't' },
+    { '<M-2>',     '<cmd>silent! tabn 2<cr>',  'n',  mode = 't' },
+    { '<M-3>',     '<cmd>silent! tabn 3<cr>',  'n',  mode = 't' },
+    { '<M-4>',     '<cmd>silent! tabn 4<cr>',  'n',  mode = 't' },
+    { '<M-5>',     '<cmd>silent! tabn 5<cr>',  'n',  mode = 't' },
+    { '<M-6>',     '<cmd>silent! tabn 6<cr>',  'n',  mode = 't' },
+    { '<M-7>',     '<cmd>silent! tabn 7<cr>',  'n',  mode = 't' },
+    { '<M-8>',     '<cmd>silent! tabn 8<cr>',  'n',  mode = 't' },
+    { '<M-9>',     '<cmd>silent! tabn 9<cr>',  'n',  mode = 't' },
+    { '<M-0>',     '<cmd>silent! tablast<cr>', 'n',  mode = 't' },
 
------- window switching
-m('', '<C-j>', '<C-W>j', op2)
-m('', '<C-k>', '<C-W>k', op2)
-m('', '<C-h>', '<C-W>h', op2)
-m('', '<C-l>', '<C-W>l', op2)
+    ------ window switching
+    { '<C-j>',     '<C-W>j',                   'ns', mode = '' },
+    { '<C-k>',     '<C-W>k',                   'ns', mode = '' },
+    { '<C-h>',     '<C-W>h',                   'ns', mode = '' },
+    { '<C-l>',     '<C-W>l',                   'ns', mode = '' },
 
--- '<cmd>wincmd j<cr>'
-m('i', '<C-j>', "<C-\\><C-N><C-w>j", op2)
-m('i', '<C-k>', "<C-\\><C-N><C-w>k", op2)
-m('i', '<C-h>', "<C-\\><C-N><C-w>h", op2)
-m('i', '<C-l>', "<C-\\><C-N><C-w>l", op2)
+    -- '<cmd>wincmd j<cr>'
+    { '<C-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 'i' },
+    { '<C-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 'i' },
+    { '<C-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 'i' },
+    { '<C-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 'i' },
 
-m('t', '<C-j>', "<C-\\><C-N><C-w>j", op2)
-m('t', '<C-k>', "<C-\\><C-N><C-w>k", op2)
-m('t', '<C-h>', "<C-\\><C-N><C-w>h", op2)
-m('t', '<C-l>', "<C-\\><C-N><C-w>l", op2)
+    { '<C-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 't' },
+    { '<C-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 't' },
+    { '<C-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 't' },
+    { '<C-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 't' },
 
------- window motion
-m('', '<M-j>', '<C-W><S-j>', op2)
-m('', '<M-k>', '<C-W><S-k>', op2)
-m('', '<M-h>', '<C-W><S-h>', op2)
-m('', '<M-l>', '<C-W><S-l>', op2)
+    ------ window motion
+    { '<M-j>',     '<C-W><S-j>',               'ns', mode = '' },
+    { '<M-k>',     '<C-W><S-k>',               'ns', mode = '' },
+    { '<M-h>',     '<C-W><S-h>',               'ns', mode = '' },
+    { '<M-l>',     '<C-W><S-l>',               'ns', mode = '' },
+}
 
 ------ window resize
 -- use double digits as arg. ones place for width, tens place for height
@@ -77,11 +77,11 @@ local resize_window_by_grid = function(id, nn)
     local h = math.floor(nn / 10)
     local w = nn - h * 10
     local tw = w == 0 and vim.api.nvim_win_get_width(id)
-            or w == 9 and vim.o.columns
-            or math.floor(vim.o.columns * w / 8)
+        or w == 9 and vim.o.columns
+        or math.floor(vim.o.columns * w / 8)
     local th = h == 0 and vim.api.nvim_win_get_height(id)
-            or h == 9 and vim.o.lines
-            or math.floor(vim.o.lines * h / 8)
+        or h == 9 and vim.o.lines
+        or math.floor(vim.o.lines * h / 8)
     vim.api.nvim_win_set_width(id, tw)
     vim.api.nvim_win_set_height(id, th)
 end
@@ -93,14 +93,14 @@ vim.api.nvim_create_user_command('WinResize',
     { nargs = '?', desc = 'resize window by double digit' }
 )
 
-m('', '<leader>wh',
+vim.keymap.set('', '<leader>wh',
     function()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count)
     end,
     { noremap = true, silent = true, desc = 'window resize horizontal' }
 )
 
-m('', '<leader>wv',
+vim.keymap.set('', '<leader>wv',
     function()
         resize_window_by_grid(vim.api.nvim_get_current_win(), vim.v.count * 10)
     end,
