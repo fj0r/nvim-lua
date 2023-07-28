@@ -11,16 +11,17 @@ if vim.fn.isdirectory(vim.g.data_root) == 0 then
 end
 
 
-local o       = vim.o
-o.backup      = true
-o.backupdir   = vim.g.data_root .. '/backup/'
-o.backupext   = '-vimbackup'
-o.backupskip  = ''
+require('helper').option_table {
+    backup      = true,
+    backupdir   = vim.g.data_root .. '/backup/',
+    backupext   = '-vimbackup',
+    backupskip  = '',
 
-o.directory   = vim.g.data_root .. '/swap//'
-o.updatecount = 100
+    directory   = vim.g.data_root .. '/swap//',
+    updatecount = 100,
 
-o.undofile    = true
-o.undodir     = vim.g.data_root .. '/undo/'
+    undofile    = true,
+    undodir     = vim.g.data_root .. '/undo/',
 
-o.viminfo     = "'1000,n" .. vim.g.data_root .. "/info/viminfo"
+    viminfo     = "'1000,n" .. vim.g.data_root .. "/info/viminfo",
+}
