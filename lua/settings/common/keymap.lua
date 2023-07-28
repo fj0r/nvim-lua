@@ -20,13 +20,13 @@ require('helper').keymap_table {
     -- 去掉搜索高亮
     { '<leader>/',             ':nohls<CR>',                                  'ns' },
     -- command history
-    -- m('n', '<leader>;', ':<C-f>', op2)
+    -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
     -- NOTE: not need
-    -- m('n', '<leader>p', '<cmd>set paste!<CR>', op2)
+    -- { '<leader>p', '<cmd>set paste!<CR>', 'ns', mode = 'n' }
     { 'M',                     '<cmd>marks<CR>',                              'ns' },
     { '<leader>q',             '<cmd>quit<CR>',                               'ns' },
-    { '<M-d>',                 '<cmd>Detach<CR>',                             'ns' },
-    { '<M-q>',                 '<cmd>Q<CR>',                                  'ns',  mode = 'nit' },
+    -- { '<M-d>',                 '<cmd>Detach<CR>',                             'ns' },
+    { '<M-q>',                 '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
     { '<',                     '<gv',                                         'ns',  mode = 'x' },
     { '>',                     '>gv',                                         'ns',  mode = 'x' },

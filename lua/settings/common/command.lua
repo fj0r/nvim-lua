@@ -23,12 +23,21 @@ local kill_tabpage = function()
         vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(b), { force = true })
     end
 end
-vim.api.nvim_create_user_command('Q', kill_tabpage, { desc = 'close all window of the current tabpage' })
+vim.api.nvim_create_user_command('TabpageQuit', kill_tabpage, { desc = 'close all window of the current tabpage' })
 
+
+if vim.g.server_mode then
+    vim.api.nvim_command('command! -nargs=0  WQ :wall|Detach')
+    vim.api.nvim_command('command! Q :Detach')
+    vim.api.nvim_command('cabbrev qa :Detach<CR>')
+    vim.api.nvim_command('cabbrev qall :Detach<CR>')
+else
+    vim.api.nvim_command('command! -nargs=0  WQ :wqall')
+    vim.api.nvim_command('command! Q :qall')
+end
 
 vim.api.nvim_command('command! -nargs=0  W :wall')
 vim.api.nvim_command('command! -nargs=0  Wq :wall|tabclose')
-vim.api.nvim_command('command! -nargs=0  WQ :wqall')
 -- reload file
 vim.api.nvim_command('command! -nargs=0  E :e!')
 
