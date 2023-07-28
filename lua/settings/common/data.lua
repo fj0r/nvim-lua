@@ -11,7 +11,7 @@ if vim.fn.isdirectory(vim.g.data_root) == 0 then
 end
 
 
-require('helper').option_table {
+require('setup').option_table {
     backup      = true,
     backupdir   = vim.g.data_root .. '/backup/',
     backupext   = '-vimbackup',

@@ -1,4 +1,4 @@
-require('helper').option_table {
+require('setup').option_table {
     compatible     = false,
     shortmess      = 'aoOtTWAIcF',
 

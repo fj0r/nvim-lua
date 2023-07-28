@@ -48,4 +48,10 @@ function M.option_table(tbl)
     end
 end
 
+function M.global_table(tbl)
+    for k, v in pairs(tbl) do
+        vim.g[k] = v
+    end
+end
+
 return M
