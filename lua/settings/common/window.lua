@@ -1,6 +1,4 @@
-local keytables = require('helper').keytables
-
-keytables {
+require('helper').keymap_table {
     ------ tab switching
     { '<leader>1', '1gt',                      'ns', mode = '' },
     { '<leader>2', '2gt',                      'ns', mode = '' },

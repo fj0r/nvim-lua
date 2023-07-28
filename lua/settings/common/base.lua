@@ -1,83 +1,82 @@
-local o          = vim.o
-local opt        = vim.opt
-local g          = vim.g
-local a          = vim.api
+require('helper').option_table {
+    compatible     = false,
+    shortmess      = 'aoOtTWAIcF',
 
-o.compatible     = false
-o.shortmess      = 'aoOtTWAIcF'
+    errorbells     = true,
+    visualbell     = true,
+    laststatus     = 2,
+    showtabline    = 1,
+    cmdheight      = 0,
+    timeoutlen     = 500,
+    wildmenu       = false,
 
-o.errorbells     = true
-o.visualbell     = true
-o.laststatus     = 2
-o.showtabline    = 1
-o.cmdheight      = 0
-o.timeoutlen     = 500
-o.wildmenu       = false
+    confirm        = true,
+    foldlevel      = 9,
+    --virtualedit  = 'onemore'
 
-o.confirm        = true
-o.foldlevel      = 9
---o.virtualedit           = 'onemore'
+    number         = true,
+    relativenumber = true,
+    ruler          = false,
+    showmatch      = true,
+    showcmd        = false,
 
-o.number         = true
-o.relativenumber = true
-o.ruler          = false
-o.showmatch      = true
-o.showcmd        = false
+    display        = { 'lastline' }, -- Always try to show a paragraph’s last line.
+    linebreak      = true,           -- Avoid wrapping a line in the middle of a word.
+    scrolloff      = 1,              -- The number of screen lines to keep above and below the cursor.
+    sidescrolloff  = 5,              -- The number of screen columns to keep to the left and right of the cursor.
+    wrap           = true,           -- Enable line wrapping.
+    --ambiwidth    = 'double',       -- 设置为双字宽显示，否则无法完整显示如:☆ :FIXME:
+    backspace      = '2',            -- 解决 backspace 按键删除的问题 http://cenalulu.github.io/linux/why-my-backspace-not-work-in-vim/
 
+    -- backspace   = 'indent,eol,start',
+    encoding       = 'utf-8',
+    fileencoding   = 'utf-8',
+    fileformat     = 'unix',
+    fixendofline   = false,
 
-opt.display:append { 'lastline' } -- Always try to show a paragraph’s last line.
-o.linebreak     = true -- Avoid wrapping a line in the middle of a word.
-o.scrolloff     = 1 -- The number of screen lines to keep above and below the cursor.
-o.sidescrolloff = 5 -- The number of screen columns to keep to the left and right of the cursor.
-o.wrap          = true -- Enable line wrapping.
+    hlsearch       = true, -- 搜索时高亮显示被找到的文本
+    ignorecase     = true, -- 搜索时忽略大小写
+    smartcase      = true, --有一个或以上大写字母时仍保持对大小写敏感
+    incsearch      = true, -- 输入搜索内容时就显示搜索结果
 
---o.ambiwidth           = 'double' -- 设置为双字宽显示，否则无法完整显示如:☆ :FIXME:
-o.backspace     = '2' -- 解决 backspace 按键删除的问题 http://cenalulu.github.io/linux/why-my-backspace-not-work-in-vim/
--- o.backspace          = 'indent,eol,start'
-o.encoding      = 'utf-8'
-o.fileencoding  = 'utf-8'
-o.fileformat    = 'unix'
-o.fixendofline  = false
+    magic          = true,
+    autoread       = true,
+    wildignore     = { '*.pyc', 'node_modules', '*.swp', '*.o', '*.obj' },
 
-o.hlsearch      = true -- 搜索时高亮显示被找到的文本
-o.ignorecase    = true -- 搜索时忽略大小写，
-o.smartcase     = true --有一个或以上大写字母时仍保持对大小写敏感
-o.incsearch     = true -- 输入搜索内容时就显示搜索结果
+    ----- ident
+    expandtab      = true,
+    tabstop        = 4,
+    shiftwidth     = 4,
+    softtabstop    = -1,
+    autoindent     = true,
+    copyindent     = true,
+    preserveindent = true,
+    breakindent    = true,
 
-o.magic         = true
-o.autoread      = true
-opt.wildignore:append { '*.pyc', 'node_modules', '*.swp', '*.o', '*.obj' }
+    ------ visual
+    cursorline     = true,
+    cursorcolumn   = false,
+    updatetime     = 750,
+    lazyredraw     = true, -- "Don’t update screen during macro and script execution.
 
------ ident
-o.expandtab      = true
-o.tabstop        = 4
-o.shiftwidth     = 4
-o.softtabstop    = -1
-o.autoindent     = true
-o.copyindent     = true
-o.preserveindent = true
-o.breakindent    = true
+}
 
------- visual
-o.cursorline     = true
-o.cursorcolumn   = false
-o.updatetime     = 750
-o.lazyredraw     = true -- "Don’t update screen during macro and script execution.
 
 -- cmdheight=0: show recording indicator for macros
-if o.cmdheight == 0 then
-    a.nvim_create_autocmd("RecordingEnter", { command = 'set cmdheight=1' })
-    a.nvim_create_autocmd("RecordingLeave", { command = 'set cmdheight=0' })
+if vim.o.cmdheight == 0 then
+    vim.api.nvim_create_autocmd("RecordingEnter", { command = 'set cmdheight=1' })
+    vim.api.nvim_create_autocmd("RecordingLeave", { command = 'set cmdheight=0' })
 end
 
+
 if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
-    local cursorGrp = a.nvim_create_augroup("CursorLine", { clear = true })
-    a.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+    local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+    vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
         pattern = "*",
         command = "set cursorline",
         group = cursorGrp
     })
-    a.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+    vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
         pattern = "*",
         command = "set nocursorline",
         group = cursorGrp
@@ -85,16 +84,16 @@ if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
 end
 
 -- Change preview window location
-g.splitbelow = true
+vim.g.splitbelow = true
 
 -- Highlight on yank
-local yankGrp = a.nvim_create_augroup("YankHighlight", { clear = true })
-a.nvim_create_autocmd("TextYankPost", {
+local yankGrp    = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
     command = "silent! lua vim.highlight.on_yank()",
     group = yankGrp,
 })
 
 -- go to last loc when opening a buffer
-a.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufReadPost", {
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
 })

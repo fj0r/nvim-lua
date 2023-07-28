@@ -1,5 +1,3 @@
-local keytables = require('helper').keytables
-
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapesc = nil -- nil or '<C-;>'
 vim.g.mapleader = " "
@@ -7,7 +5,7 @@ vim.g.maplocalleader = " "
 
 local jk_wrap = os.getenv('VIM_JK_WRAP') == '1'
 
-keytables {
+require('helper').keymap_table {
     { vim.g.mapesc or '<ESC>', '<C-\\><C-n>',                                 'ns',  mode = 't' },
     { vim.g.mapesc,            '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
     { vim.g.arrow_keys.k,      "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
