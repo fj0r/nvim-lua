@@ -1,13 +1,13 @@
 local M = {}
 
-local kmopt = function(a, desc)
+local kmopt = function(str_or_tbl, desc)
     local o
-    if type(a) == 'table' then
-        o = a
+    if type(str_or_tbl) == 'table' then
+        o = str_or_tbl
     else
         o = {}
-        for i = 1, #a do
-            local k = string.sub(a, i, i)
+        for i = 1, #str_or_tbl do
+            local k = string.sub(str_or_tbl, i, i)
             if k == 'n' then o.noremap = true end
             if k == 's' then o.silent = true end
             if k == 'e' then o.expr = true end
@@ -19,10 +19,13 @@ local kmopt = function(a, desc)
     return o
 end
 
-function M.keymap_table(tbls)
-    for _, km in ipairs(tbls) do
+function M.keymap_table(tbl)
+    for _, km in ipairs(tbl) do
         if not km.disabled then
             local ms = km.mode or ''
+            if type(ms) == 'table' then
+                ms = table.concat(ms, '')
+            end
             local opt = km[3] and kmopt(km[3], km.desc) or kmopt('ns', km.desc)
             if ms == '' then
                 vim.keymap.set('', km[1], km[2], opt)
@@ -35,8 +38,8 @@ function M.keymap_table(tbls)
     end
 end
 
-function M.option_table(tbls)
-    for k, v in pairs(tbls) do
+function M.option_table(tbl)
+    for k, v in pairs(tbl) do
         if type(v) == 'table' then
             vim.opt[k]:append(v)
         else
