@@ -24,8 +24,7 @@ require('setup').keymap_table {
     -- NOTE: not need
     -- { '<leader>p', '<cmd>set paste!<CR>', 'ns', mode = 'n' }
     { '@',                     ':normal @',                                   'n',   mode = 'v' },
-    { '<leader>q',             '<cmd>quit<CR>',                               'ns' },
-    -- { '<M-d>',                 '<cmd>Detach<CR>',                             'ns' },
+    { '<leader>q',             '<cmd>CloseExceptLast<CR>',                    'ns' },
     { '<M-q>',                 '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
     { '<',                     '<gv',                                         'ns',  mode = 'x' },

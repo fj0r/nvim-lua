@@ -25,12 +25,19 @@ local kill_tabpage = function()
 end
 vim.api.nvim_create_user_command('TabpageQuit', kill_tabpage, { desc = 'close all window of the current tabpage' })
 
+local close_except_last = function ()
+    if #vim.api.nvim_list_wins() > 1 then
+        vim.api.nvim_win_close(vim.api.nvim_get_current_win(), false)
+    end
+end
+vim.api.nvim_create_user_command('CloseExceptLast', close_except_last, { desc = 'close window except last one' })
 
 if vim.g.server_mode then
     vim.api.nvim_command('command! -nargs=0  WQ :wall|Detach')
     vim.api.nvim_command('command! Q :Detach')
-    vim.api.nvim_command('cabbrev qa :Detach<CR>')
-    vim.api.nvim_command('cabbrev qall :Detach<CR>')
+    vim.api.nvim_command('cabbrev q CloseExceptLast')
+    vim.api.nvim_command('cabbrev qa Detach')
+    vim.api.nvim_command('cabbrev qall Detach')
 else
     vim.api.nvim_command('command! -nargs=0  WQ :wqall')
     vim.api.nvim_command('command! Q :qall')
