@@ -15,15 +15,29 @@ return {
     },
 
     {
+        'rcarriga/nvim-notify',
+    },
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        },
+        config = h.plugins 'noice',
+        enabled = false,
+    },
+    {
         'stevearc/dressing.nvim',
         config = h.plugins 'dressing',
         enabled = vim.g.nvim_level >= 2,
-    },
-
-    {
-        'notomo/cmdbuf.nvim',
-        config = h.plugins 'cmdbuf',
-        enabled = false,
     },
 
     {

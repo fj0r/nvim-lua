@@ -21,6 +21,7 @@ return {
             { '<leader>b', 'buffers', desc = 'telescope buffers' },
             { '<leader>[', 'builtin', desc = 'telescope builtin' },
             { '<leader>]', 'help_tags', desc = 'telescope help_tags' },
+            { '<leader>N', 'notify', desc = 'telescope notify' },
         },
         config = h.plugins 'telescope',
         enabled = vim.g.nvim_level >= 2

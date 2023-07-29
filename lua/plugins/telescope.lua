@@ -34,7 +34,7 @@ telescope.setup {
             -- Display symbols as <root>.<parent>.<symbol>
             show_nesting = {
                 ['_'] = false, -- This key will be the default
-                json = true, -- You can set the option for specific filetypes
+                json = true,   -- You can set the option for specific filetypes
                 yaml = true,
             }
         }
@@ -60,10 +60,17 @@ return {
         git_branches         = tele.git_branches,
         git_status           = tele.git_status,
         git_bcommits         = tele.git_bcommits,
-        buffers              = function() tele.buffers({ show_all_buffers = false, ignore_current_buffer = true,
-                sort_mru = true })
-        end,
+        buffers              = function()
+                                   tele.buffers({
+                                       show_all_buffers = false,
+                                       ignore_current_buffer = true,
+                                       sort_mru = true
+                                   })
+                               end,
         builtin              = tele.builtin,
         help_tags            = tele.help_tags,
+        notify               = function ()
+                                   telescope.extensions.notify.notify()
+                               end,
     }
 }
