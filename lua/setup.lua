@@ -11,6 +11,8 @@ local kmopt = function(str_or_tbl, desc)
             if k == 'n' then o.noremap = true end
             if k == 's' then o.silent = true end
             if k == 'e' then o.expr = true end
+            if k == 'b' then o.buffer = true end
+            if k == 'r' then o.remap = true end
         end
     end
     if desc then
