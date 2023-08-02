@@ -96,51 +96,6 @@ vim.api.nvim_create_autocmd("VimResized", { callback = refresh_tabline })
 vim.api.nvim_create_autocmd("RecordingEnter", { callback = refresh_tabline })
 vim.api.nvim_create_autocmd("RecordingLeave", { callback = refresh_tabline })
 
-local pin = '^'
-local set_current_tabname = function(name)
-    vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin .. name
-end
-
-local kb_prompt_rename_tab = {
-    noremap = true,
-    silent = true,
-    desc = 'rename tab',
-    callback = function()
-        local c = vim.v.count
-        local p
-        if c == 0 then
-            local currname = vim.t[vim.api.nvim_get_current_tabpage()].tabname
-            if currname and string.sub(currname, 1, 1) == pin then
-                p = string.sub(currname, 2, #currname)
-            else
-                p = ''
-            end
-        else
-            local parents = {}
-            local cwd = vim.fn.getcwd()
-            for pr in vim.fs.parents(cwd) do
-                table.insert(parents, pr)
-            end
-            p = vim.fn.substitute(cwd, parents[c] .. '/', '', nil)
-        end
-        --local p = vim.fn.substitute(vim.fn.getcwd(), vim.fn.getenv('HOME'), '~', '')
-        --local p = vim.fs.basename(vim.fn.getcwd())
-        local x = vim.fn.input('rename tab: ', p)
-        set_current_tabname(x)
-        --[[
-        vim.ui.input({ prompt = 'rename tab', default = p }, function (x)
-            if not x then return end
-            set_current_tabname(x)
-        end)
-        --]]
-    end
-}
-
-vim.keymap.set('', '<M-r>', '', kb_prompt_rename_tab)
-vim.keymap.set('i', '<M-r>', '', kb_prompt_rename_tab)
-vim.keymap.set('t', '<M-r>', '', kb_prompt_rename_tab)
-
-vim.api.nvim_create_user_command('TabRename', function(ctx) set_current_tabname(ctx.args) end, { nargs = '?' })
 
 local vcs_root = require('lspconfig.util').root_pattern('.git/')
 vim.api.nvim_create_autocmd("DirChanged", {

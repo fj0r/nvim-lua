@@ -24,4 +24,6 @@ function M.get_cursor_pos() return { vim.fn.line('.'), vim.fn.col('.') } end
 
 function M.glob_exists(path) return vim.fn.empty(vim.fn.glob(path)) == 0 end
 
+
+
 return M
