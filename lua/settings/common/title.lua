@@ -14,11 +14,9 @@ local prompt_set_title = function()
     end
 end
 
-local set_tab_title = function(pin)
+local set_tab_title = function(pin, cb)
     pin = pin or '^'
-    local set_lualine = function(name)
-        vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin .. name
-    end
+    local action = cb(pin)
     local prompt = function()
         local c = vim.v.count
         local p
@@ -43,23 +41,31 @@ local set_tab_title = function(pin)
         if vim.g.ui_prompt then
             vim.ui.input({ prompt = 'rename tab', default = p }, function(input)
                 if not input then return end
-                set_lualine(input)
+                action(input)
             end)
         else
             local input = vim.fn.input('rename tab: ', p)
-            set_lualine(input)
+            action(input)
         end
     end
 
-    return { set_lualine = set_lualine, prompt = prompt }
+    return { set = action, prompt = prompt }
 end
 
-local tab_title = set_tab_title('^')
+local set_lualine = function(pin)
+    return function(name)
+        vim.t[vim.api.nvim_get_current_tabpage()].tabname = name == '' and '' or pin .. name
+    end
+end
+
+local tab_title = set_tab_title('^', set_lualine)
 
 require('setup').keymap_table {
     { '<M-r>', prompt_set_title, mode = 'nit', desc = 'set title' },
     { '<M-t>', tab_title.prompt, mode = 'nit', desc = 'set tab title' },
 }
 
-vim.api.nvim_create_user_command('TabTitle', function(ctx) tab_title.set_lualine(ctx.args) end, { nargs = '?' })
+vim.api.nvim_create_user_command('TabTitle', function(ctx) tab_title.set(ctx.args) end, { nargs = '?' })
 vim.api.nvim_create_user_command('Title', function(ctx) set_title(ctx.args) end, { nargs = '?' })
+
+set_title '🏝️'
