@@ -21,8 +21,6 @@ require('setup').keymap_table {
     { '<leader>/',             ':nohls<CR>',                                  'ns' },
     -- command history
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
-    -- NOTE: not need
-    -- { '<leader>p', '<cmd>set paste!<CR>', 'ns', mode = 'n' }
     { '@',                     ':normal @',                                   'n',   mode = 'v' },
     { '<leader>q',             '<cmd>CloseExceptLast<CR>',                    'ns' },
     { '<M-q>',                 '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },

@@ -31,7 +31,9 @@ if vim.g.neovide or vim.g.server_mode then
         neovide_cursor_vfx_particle_speed = 10.0,
         neovide_cursor_vfx_particle_phase = 10.0,
     }
+end
 
+if vim.g.neovide then
     local function set_ime(args)
         if args.event:match("Enter$") then
             vim.g.neovide_input_ime = true
