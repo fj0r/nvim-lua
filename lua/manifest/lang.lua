@@ -16,6 +16,13 @@ return {
         enabled = vim.g.nvim_level >= 3,
     },
     {
+        "nvim-neorg/neorg",
+        --build = ":Neorg sync-parsers",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = h.plugins 'neorg',
+        enabled = vim.g.nvim_level >= 2,
+    },
+    {
         'nvim-orgmode/orgmode',
         keys = {
             { '<leader>oa', nil, desc = 'orgmode agenda' },
@@ -23,7 +30,7 @@ return {
         },
         ft = { 'org' },
         config = h.plugins 'orgmode',
-        enabled = vim.g.nvim_level >= 3,
+        enabled = false,
     },
     {
         'NTBBloodbath/rest.nvim',

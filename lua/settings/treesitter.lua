@@ -8,7 +8,7 @@ vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 local version = vim.version()
 local builtin_parser = {} -- c lua nvim
 if version.major == 0 and version.minor <= 9 then
-    builtin_parser = {"bash", "markdown", "python"}
+    builtin_parser = { "bash", "markdown", "python" }
 end
 
 vim.g.treesitter_lang = {
@@ -26,6 +26,7 @@ vim.g.treesitter_lang = {
     "json",
     "jsonc",
     "julia",
+    "norg",
     "php",
     "regex",
     "rust",
