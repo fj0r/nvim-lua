@@ -27,7 +27,6 @@ local json_origin = require('schemastore').json.schemas {
             'Chrome Extension',
             'composer.json',
             'component.json',
-            'config.json',
             'cspell',
             'dockerd.json',
             'Deno',
