@@ -6,10 +6,21 @@ end
 
 return {
     {
+        "luisiacc/gruvbox-baby",
+        name = "gruvbox-baby",
+        config = function (plugin)
+            --:HACK: for terminal theme
+            -- vim.cmd('colorscheme melange')
+
+            vim.g.gruvbox_baby_function_style = "NONE"
+            set_theme(plugin.name, "dark")
+        end
+    },
+    {
         "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
+        enabled = false,
         config = function(plugin)
-            --[[
             require 'gruvbox'.setup {
                 contrast = '',
                 palette_overrides = {
@@ -19,14 +30,15 @@ return {
                 }
             }
             set_theme(plugin.name, "dark")
-            --]]
         end
     },
     {
         "savq/melange-nvim",
         name = "melange",
         config = function(plugin)
+            --[[
             set_theme(plugin.name, "dark")
+            --]]
         end
     },
 }
