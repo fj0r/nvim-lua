@@ -9,6 +9,7 @@ return {
         "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
         config = function(plugin)
+            --[[
             require 'gruvbox'.setup {
                 contrast = '',
                 palette_overrides = {
@@ -18,15 +19,14 @@ return {
                 }
             }
             set_theme(plugin.name, "dark")
+            --]]
         end
     },
     {
         "savq/melange-nvim",
         name = "melange",
         config = function(plugin)
-            --[[
             set_theme(plugin.name, "dark")
-            --]]
         end
     },
 }

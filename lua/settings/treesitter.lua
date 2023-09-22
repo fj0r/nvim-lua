@@ -24,16 +24,15 @@ vim.g.treesitter_lang = {
     "javascript",
     "jsdoc",
     "json",
-    "jsonc",
-    "julia",
     "norg",
-    "php",
     "regex",
     "rust",
     "toml",
     "typescript",
     "vue",
     "yaml",
+    "lua",
+    "php",
     table.unpack(builtin_parser)
 }
 
