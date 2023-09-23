@@ -6,14 +6,23 @@ end
 
 return {
     {
-        "luisiacc/gruvbox-baby",
+        "fj0r/gruvbox-baby",
         name = "gruvbox-baby",
         config = function (plugin)
-            --:HACK: for terminal theme
-            -- vim.cmd('colorscheme melange')
-
             vim.g.gruvbox_baby_function_style = "NONE"
+            vim.g.gruvbox_baby_background_color = 'medium' -- 'medium' | 'dark'
+            vim.g.gruvbox_baby_telescope_theme = 0
             set_theme(plugin.name, "dark")
+
+            --[[
+            local terminal_colors = {
+                "#282828", "#cc241d", "#98971a", "#d79921", "#458588", "#b16286", "#689d6a", "#ebdbb2",
+                "#928374", "#fb4934", "#b8bb26", "#fabd2f", "#83a598", "#d3869b", "#8ec07c", "#a89984",
+            }
+            for k, v in ipairs(terminal_colors) do
+                vim.g['terminal_color_' .. (k - 1)] = v
+            end
+            --]]
         end
     },
     {
