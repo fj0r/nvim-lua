@@ -11,6 +11,11 @@ require 'flash'.setup {
             shade = 5
         }
     },
+    modes = {
+        search = {
+            enabled = false
+        }
+    },
 }
 
 local function format(opts)
