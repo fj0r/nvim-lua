@@ -17,6 +17,8 @@ require('setup').keymap_table {
     -- visual selection excluding newline & space
     { 'H',                     '^',                                           'ns',  mode = 'x' },
     { 'L',                     'g_',                                          'ns',  mode = 'x' },
+    -- join lines without space
+    { 'J',                     'gJ',                                          'ns',  mode = 'nv' },
     -- 去掉搜索高亮
     { '<leader>/',             ':nohls<CR>',                                  'ns' },
     -- command history
