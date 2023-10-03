@@ -33,6 +33,7 @@ vim.g.treesitter_lang = {
     "yaml",
     "lua",
     "php",
+    "nu",
     table.unpack(builtin_parser)
 }
 

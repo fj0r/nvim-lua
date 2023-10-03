@@ -8,7 +8,7 @@ return {
     {
         'LhKipp/nvim-nu',
         build = ':TSInstall nu',
-        enabled = vim.g.nvim_level >= 3,
+        enabled = vim.g.nvim_level >= 2,
     },
     {
         'kaarmu/typst.vim',
