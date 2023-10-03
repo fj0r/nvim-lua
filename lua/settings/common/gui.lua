@@ -56,3 +56,4 @@ if vim.g.neovide then
         callback = set_ime
     })
 end
+

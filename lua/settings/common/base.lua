@@ -97,3 +97,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufReadPost", {
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
 })
+
+-- auto w/wall
+--[=[
+vim.api.nvim_create_autocmd({'InsertLeave', 'BufLeave', 'FocusLost'}, {
+    command = [[silent! w]]
+})
+--]=]
+

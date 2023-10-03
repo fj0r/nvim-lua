@@ -43,4 +43,12 @@ return {
         enabled = vim.g.nvim_level >= 2,
         config = h.plugins 'possession'
     },
+    {
+        'pocco81/auto-save.nvim',
+        config = function ()
+            require('auto-save').setup {
+
+            }
+        end
+    },
 }
