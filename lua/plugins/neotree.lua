@@ -204,8 +204,10 @@ return {
         reveal = function ()
             local cwd = vim.fn.getcwd()
             local bn = vim.api.nvim_buf_get_name(0)
-            local sub = false
-            if string.sub(bn, 1, 7) == 'term://' then
+            local sub = true
+            if #vim.fn.glob(bn) == 0 then
+                sub = false
+            elseif string.sub(bn, 1, 7) == 'term://' then
                 sub = false
             else
                 for p in vim.fs.parents(bn) do
