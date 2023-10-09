@@ -205,7 +205,8 @@ return {
             local cwd = vim.fn.getcwd()
             local bn = vim.api.nvim_buf_get_name(0)
             local sub = true
-            if #vim.fn.glob(bn) == 0 then
+            -- file doesn't exist
+            if vim.fn.filereadable(bn) == 0 then
                 sub = false
             elseif string.sub(bn, 1, 7) == 'term://' then
                 sub = false
