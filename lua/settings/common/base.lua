@@ -12,7 +12,7 @@ require('setup').option_table {
 
     confirm        = true,
     foldlevel      = 9,
-    --virtualedit  = 'onemore'
+    -- virtualedit  = 'onemore'
 
     number         = true,
     relativenumber = true,
@@ -20,15 +20,15 @@ require('setup').option_table {
     showmatch      = true,
     showcmd        = false,
 
+    clipboard      = { 'unnamedplus' },
     display        = { 'lastline' }, -- Always try to show a paragraph’s last line.
     linebreak      = true,           -- Avoid wrapping a line in the middle of a word.
     scrolloff      = 1,              -- The number of screen lines to keep above and below the cursor.
     sidescrolloff  = 5,              -- The number of screen columns to keep to the left and right of the cursor.
     wrap           = true,           -- Enable line wrapping.
-    --ambiwidth    = 'double',       -- 设置为双字宽显示，否则无法完整显示如:☆ :FIXME:
-    backspace      = '2',            -- 解决 backspace 按键删除的问题 http://cenalulu.github.io/linux/why-my-backspace-not-work-in-vim/
-
+    -- ambiwidth    = 'double',       -- 设置为双字宽显示，否则无法完整显示如:☆ :FIXME:
     -- backspace   = 'indent,eol,start',
+
     encoding       = 'utf-8',
     fileencoding   = 'utf-8',
     fileformat     = 'unix',
@@ -36,7 +36,7 @@ require('setup').option_table {
 
     hlsearch       = true, -- 搜索时高亮显示被找到的文本
     ignorecase     = true, -- 搜索时忽略大小写
-    smartcase      = true, --有一个或以上大写字母时仍保持对大小写敏感
+    smartcase      = true, -- 有一个或以上大写字母时仍保持对大小写敏感
     incsearch      = true, -- 输入搜索内容时就显示搜索结果
 
     magic          = true,

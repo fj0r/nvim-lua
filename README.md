@@ -1,5 +1,9 @@
  # plugins
- - [ ] orgmode
+ - [x] neorg
+ - [x] convenient copy/paste
+    - set clipboard+=unnamedplus
+ - [x] kill buf
+    - bdelete
  - [x] https://github.com/empat94/nvim-rss
  - [-] https://github.com/chipsenkbeil/distant.nvim
  - [ ] tui-csiu
@@ -15,7 +19,7 @@
  - [x] packer ==> lazy
     - [x] packer lazy load by key, desc for which-key
        https://github.com/wbthomason/packer.nvim/issues/925
-    - [ ] clone --depth=1
+    - [x] clone --depth=1
  - [-] feed
  - [-] email
  - [x] neovide
