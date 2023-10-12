@@ -31,6 +31,17 @@ if vim.g.neovide or vim.g.server_mode then
         neovide_cursor_vfx_particle_speed = 10.0,
         neovide_cursor_vfx_particle_phase = 10.0,
     }
+
+    -- https://github.com/neovide/neovide/issues/1331
+    vim.api.nvim_create_autocmd({ "UIEnter" }, {
+        pattern = "*",
+        callback = function()
+            if vim.g.loaded_clipboard_provider then
+                vim.g.loaded_clipboard_provider = nil
+                vim.api.nvim_cmd({ cmd = 'runtime', args = { 'autoload/provider/clipboard.vim' } }, {})
+            end
+        end
+    })
 end
 
 if vim.g.neovide then
