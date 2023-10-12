@@ -1,5 +1,9 @@
 require('auto-save').setup {
     condition = function(buf)
+        if not vim.api.nvim_buf_is_valid(buf) then
+            return false
+        end
+
         local bn = vim.api.nvim_buf_get_name(buf)
         if string.sub(bn, 1, 5) == '/tmp/' then
             return false
