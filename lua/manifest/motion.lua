@@ -53,13 +53,13 @@ return {
                 '<leader>;',
                 mode = { 'n', 'v' },
                 'jump_to_line',
-                desc = 'hop hint_lines'
+                desc = 'flash hint_lines'
             },
             {
                 '<leader><leader>',
                 mode = { 'n', 'v' },
                 'two_char',
-                desc = 'hop hint_lines'
+                desc = 'flash hint_words'
             },
         },
     },

@@ -85,7 +85,7 @@ return {
     {
         'simnalamburt/vim-mundo',
         keys = { { '<leader>u', '<cmd>MundoToggle<CR>', desc = 'mundo' } },
-        enabled = vim.g.nvim_level >= 2
+        enabled = false,
     },
 
     {
