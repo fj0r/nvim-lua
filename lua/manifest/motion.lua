@@ -18,7 +18,8 @@ return {
             },
             {
                 "S",
-                mode = { "n", "o", "x" },
+                -- S for nvim-surround in "x"(visual)
+                mode = { "n", "o" },
                 function()
                     require("flash").treesitter()
                 end,
