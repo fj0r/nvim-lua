@@ -20,7 +20,8 @@ require("neo-tree").setup({
         },
     },
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
-    use_popups_for_input = true,
+    use_popups_for_input = false,
+    --popup_border_style = 'rounded', -- "double", "rounded", "single" or "solid"
     enable_git_status = vim.g.has_git,
     default_component_configs = {
         icon = {

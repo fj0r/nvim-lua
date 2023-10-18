@@ -1,1 +1,1 @@
-require 'lspconfig'.sqlls.setup {}
+require 'lspconfig'.sqls.setup {}

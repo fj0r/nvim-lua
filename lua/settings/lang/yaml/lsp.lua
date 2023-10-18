@@ -25,7 +25,6 @@ local json_origin = require('schemastore').json.schemas {
             'Cargo Manifest',
             'Cargo Make',
             'Chrome Extension',
-            'composer.json',
             'component.json',
             'cspell',
             'dockerd.json',
