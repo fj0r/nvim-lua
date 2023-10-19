@@ -35,7 +35,7 @@ if vim.g.neovide or vim.g.server_mode then
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
         pattern = "*",
         callback = function()
-            vim.g.neovide_scale_factor = 0.8
+            vim.g.neovide_scale_factor = 0.7
             if vim.g.loaded_clipboard_provider then
                 vim.g.loaded_clipboard_provider = nil
                 vim.api.nvim_cmd({ cmd = 'runtime', args = { 'autoload/provider/clipboard.vim' } }, {})
@@ -43,8 +43,12 @@ if vim.g.neovide or vim.g.server_mode then
         end
     })
 
-    vim.api.nvim_set_keymap("n", "<C-=>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", { silent = true })
-    vim.api.nvim_set_keymap("n", "<C-->", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.1)<CR>", { silent = true })
+    require('setup').keymap_table {
+        {"<C-=>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's'},
+        {"<C-->", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's'},
+        {"<C-+>", ":lua vim.g.neovide_transparency = math.min(vim.g.neovide_transparency + 0.05, 1.0)<CR>", 's'},
+        {"<C-_>", ":lua vim.g.neovide_transparency = math.max(vim.g.neovide_transparency - 0.05, 0.0)<CR>", 's'},
+    }
 end
 
 if vim.g.neovide then
