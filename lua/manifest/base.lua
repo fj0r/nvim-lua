@@ -9,7 +9,7 @@ return {
     },
     {
         "max397574/better-escape.nvim",
-        enabled = os.getenv('VIM_ENABLE_DUAL_ESC') == '1',
+        enabled = os.getenv('NVIM_ENABLE_DUAL_ESC') == '1',
         config = h.plugins 'better-escape'
     },
     {

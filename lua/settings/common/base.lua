@@ -69,7 +69,7 @@ if vim.o.cmdheight == 0 then
 end
 
 
-if os.getenv('VIM_INS_NOCURSORLINE') == '1' then
+if os.getenv('NVIM_INS_NOCURSORLINE') == '1' then
     local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
     vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
         pattern = "*",
