@@ -17,7 +17,6 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 if vim.g.neovide or vim.g.server_mode then
     vim.opt.guifont = os.getenv("NVIM_GUIFONT") or "JetBrains Mono ExtraLight:h12:#e-subpixelantialias"
     require('setup').global_table {
-        neovide_scale_factor = 1,
         neovide_fullscreen = false,
         neovide_remember_window_size = true,
         neovide_transparency = 1,
@@ -36,12 +35,16 @@ if vim.g.neovide or vim.g.server_mode then
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
         pattern = "*",
         callback = function()
+            vim.g.neovide_scale_factor = 0.8
             if vim.g.loaded_clipboard_provider then
                 vim.g.loaded_clipboard_provider = nil
                 vim.api.nvim_cmd({ cmd = 'runtime', args = { 'autoload/provider/clipboard.vim' } }, {})
             end
         end
     })
+
+    vim.api.nvim_set_keymap("n", "<C-=>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", { silent = true })
+    vim.api.nvim_set_keymap("n", "<C-->", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.1)<CR>", { silent = true })
 end
 
 if vim.g.neovide then
