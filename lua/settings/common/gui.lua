@@ -15,7 +15,7 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 --]]
 
 if vim.g.neovide or vim.g.server_mode then
-    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or "JetBrains Mono ExtraLight:h12:#e-subpixelantialias"
+    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or "JetBrains Mono ExtraLight:h12"
     require('setup').global_table {
         neovide_fullscreen = false,
         neovide_remember_window_size = true,
