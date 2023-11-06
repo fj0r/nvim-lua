@@ -35,7 +35,7 @@ if vim.g.neovide or vim.g.server_mode then
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
         pattern = "*",
         callback = function()
-            vim.g.neovide_scale_factor = 0.7
+            --vim.g.neovide_scale_factor = os.getenv("NEOVIDE_SCALE_FACTOR") or 0.7
             if vim.g.loaded_clipboard_provider then
                 vim.g.loaded_clipboard_provider = nil
                 vim.api.nvim_cmd({ cmd = 'runtime', args = { 'autoload/provider/clipboard.vim' } }, {})

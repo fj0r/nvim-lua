@@ -1,4 +1,7 @@
  # plugins
+ - [ ] flash.nvim
+    - [ ] two char jump to line
+    - [ ] target include punctuation `[]{}<>'",;#`
  - [x] neorg
  - [x] convenient copy/paste
     - set clipboard+=unnamedplus

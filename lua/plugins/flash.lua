@@ -40,6 +40,7 @@ return {
                 search = { mode = "search" },
                 label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
                 pattern = [[\<]],
+                --pattern = '\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$',
                 action = function(match, state)
                     state:hide()
                     Flash.jump({
