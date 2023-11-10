@@ -31,11 +31,11 @@ if vim.g.neovide or vim.g.server_mode then
         neovide_cursor_vfx_particle_phase = 10.0,
     }
 
+    vim.g.neovide_scale_factor = os.getenv("NEOVIDE_SCALE_FACTOR") or 0.7
     -- https://github.com/neovide/neovide/issues/1331
     vim.api.nvim_create_autocmd({ "UIEnter" }, {
         pattern = "*",
         callback = function()
-            --vim.g.neovide_scale_factor = os.getenv("NEOVIDE_SCALE_FACTOR") or 0.7
             if vim.g.loaded_clipboard_provider then
                 vim.g.loaded_clipboard_provider = nil
                 vim.api.nvim_cmd({ cmd = 'runtime', args = { 'autoload/provider/clipboard.vim' } }, {})
