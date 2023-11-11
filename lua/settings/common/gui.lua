@@ -13,9 +13,24 @@ Icon=nvim
 Categories=Utility;TextEditor;
 MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 --]]
+local function select_font(f)
+    local fonts = {
+        mn = "Monaspace Neon:h{}",
+        ma = "Monaspace Argon:h{}",
+        mx = "Monaspace Xenon:h{}",
+        mr = "Monaspace Radon:h{}",
+        mk = "Monaspace Krypton:h{}",
+        jm = "JetBrains Mono ExtraLight:h{}",
+    }
+    local opt = string.gmatch(f, '(%a+)(%d+)(%a*)')
+    local n, s, o = opt()
+    return string.gsub(fonts[n], '{}', s) .. o
+end
 
+--> test ligature
+local default_font = 'ma16'
 if vim.g.neovide or vim.g.server_mode then
-    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or "JetBrains Mono ExtraLight:h12"
+    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or select_font(os.getenv("NVIM_FONT") or default_font)
     require('setup').global_table {
         neovide_fullscreen = false,
         neovide_remember_window_size = true,
@@ -44,10 +59,12 @@ if vim.g.neovide or vim.g.server_mode then
     })
 
     require('setup').keymap_table {
-        {"<C-=>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's'},
-        {"<C-->", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's'},
-        {"<C-+>", ":lua vim.g.neovide_transparency = math.min(vim.g.neovide_transparency + 0.05, 1.0)<CR>", 's'},
-        {"<C-_>", ":lua vim.g.neovide_transparency = math.max(vim.g.neovide_transparency - 0.05, 0.0)<CR>", 's'},
+        { "<C-=>", ":lua vim.opt.linespace = math.min(vim.opt.linespace:get() + 1,  10)<CR>", 's' },
+        { "<C-->", ":lua vim.opt.linespace = math.max(vim.opt.linespace:get() - 1,  0)<CR>", 's' },
+        { "<C-+>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's' },
+        { "<C-_>", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's' },
+        { "<C-M-=>", ":lua vim.g.neovide_transparency = math.min(vim.g.neovide_transparency + 0.05, 1.0)<CR>", 's' },
+        { "<C-M-->", ":lua vim.g.neovide_transparency = math.max(vim.g.neovide_transparency - 0.05, 0.0)<CR>", 's' },
     }
 end
 
@@ -74,4 +91,3 @@ if vim.g.neovide then
         callback = set_ime
     })
 end
-
