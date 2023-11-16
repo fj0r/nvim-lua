@@ -68,4 +68,4 @@ require('setup').keymap_table {
 vim.api.nvim_create_user_command('TabTitle', function(ctx) tab_title.set(ctx.args) end, { nargs = '?' })
 vim.api.nvim_create_user_command('Title', function(ctx) set_title(ctx.args) end, { nargs = '?' })
 
-set_title '🏡'
+set_title(vim.fn.substitute(vim.fn.getcwd(), vim.fn.getenv('HOME'), '~', ''))
