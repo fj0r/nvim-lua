@@ -15,7 +15,7 @@ neogit.setup {
         hunk = { "", "" },
     },
     mappings = {
-        status = {
+        popup = {
             ['i'] = 'PullPopup',
             ['o'] = 'PushPopup',
         },
