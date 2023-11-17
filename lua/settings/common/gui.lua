@@ -14,6 +14,7 @@ Categories=Utility;TextEditor;
 MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 --]]
 
+vim.g.select_font_size = 12
 local fonts = {
     mn = "Monaspace Neon:h{}",
     ma = "Monaspace Argon:h{}",
@@ -25,9 +26,14 @@ local fonts = {
 }
 
 local function select_font(f)
-    local opt = string.gmatch(f, '(%a+)(%d+)(%a*)')
+    local size = vim.g.select_font_size
+    local opt = string.gmatch(f, '(%a+)(%d*)(%a*)')
     local n, s, o = opt()
-    return string.gsub(fonts[n], '{}', s) .. o
+    if s ~= '' then
+        vim.g.select_font_size = s
+        size = s
+    end
+    return string.gsub(fonts[n], '{}', size) .. o
 end
 
 vim.api.nvim_create_user_command('SelectFont',
