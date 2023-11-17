@@ -20,6 +20,7 @@ local function select_font(f)
         mx = "Monaspace Xenon:h{}",
         mr = "Monaspace Radon:h{}",
         mk = "Monaspace Krypton:h{}",
+        hs = "Hasklig:h{}",
         jm = "JetBrains Mono ExtraLight:h{}",
     }
     local opt = string.gmatch(f, '(%a+)(%d+)(%a*)')
