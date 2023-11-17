@@ -13,20 +13,38 @@ Icon=nvim
 Categories=Utility;TextEditor;
 MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
 --]]
+
+local fonts = {
+    mn = "Monaspace Neon:h{}",
+    ma = "Monaspace Argon:h{}",
+    mx = "Monaspace Xenon:h{}",
+    mr = "Monaspace Radon:h{}",
+    mk = "Monaspace Krypton:h{}",
+    hs = "Hasklig:h{}",
+    jm = "JetBrains Mono ExtraLight:h{}",
+}
+
 local function select_font(f)
-    local fonts = {
-        mn = "Monaspace Neon:h{}",
-        ma = "Monaspace Argon:h{}",
-        mx = "Monaspace Xenon:h{}",
-        mr = "Monaspace Radon:h{}",
-        mk = "Monaspace Krypton:h{}",
-        hs = "Hasklig:h{}",
-        jm = "JetBrains Mono ExtraLight:h{}",
-    }
     local opt = string.gmatch(f, '(%a+)(%d+)(%a*)')
     local n, s, o = opt()
     return string.gsub(fonts[n], '{}', s) .. o
 end
+
+vim.api.nvim_create_user_command('SelectFont',
+    function(ctx)
+        vim.opt.guifont = select_font(ctx.args)
+    end,
+    {
+        nargs = '?',
+        complete = function ()
+            local ks = {}
+            for k, _ in pairs(fonts) do
+                table.insert(ks, k)
+            end
+            return ks
+        end
+    }
+)
 
 --> test ligature
 local default_font = 'ma16'
