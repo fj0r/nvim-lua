@@ -16,11 +16,16 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 
 vim.g.select_font_size = 12
 local fonts = {
-    mn = "Monaspace Neon:h{}",
-    ma = "Monaspace Argon:h{}",
-    mx = "Monaspace Xenon:h{}",
-    mr = "Monaspace Radon:h{}",
-    mk = "Monaspace Krypton:h{}",
+    nar = "MonaspiceAr NFM:h{}",
+    nxe = "MonaspiceXe NFM:h{}",
+    nne = "MonaspiceNe NFM:h{}",
+    nkr = "MonaspiceKr NFM:h{}",
+    nrn = "MonaspiceRn NFM:h{}",
+    mne = "Monaspace Neon:h{}",
+    mar = "Monaspace Argon:h{}",
+    mxe = "Monaspace Xenon:h{}",
+    mrn = "Monaspace Radon:h{}",
+    mkr = "Monaspace Krypton:h{}",
     hs = "Hasklig:h{}",
     jm = "JetBrains Mono ExtraLight:h{}",
 }
@@ -53,7 +58,7 @@ vim.api.nvim_create_user_command('SelectFont',
 )
 
 --> test ligature
-local default_font = 'ma16'
+local default_font = 'nar16'
 if vim.g.neovide or vim.g.server_mode then
     vim.opt.guifont = os.getenv("NVIM_GUIFONT") or select_font(os.getenv("NVIM_FONT") or default_font)
     require('setup').global_table {
