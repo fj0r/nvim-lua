@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
         local cwd = vim.fn.getcwd()
         local vcs_dir = vcs_root(cwd)
-        local root_dir = vcs_dir and vim.fn.substitute(vcs_dir, vim.fn.getenv('HOME'), '~', '') or cwd
+        local root_dir = vcs_dir and vim.fn.substitute(vcs_dir, os.getenv('HOME'), '~', '') or cwd
 
         vim.g.session_root_dir = root_dir
         if root_dir then

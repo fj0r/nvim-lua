@@ -109,7 +109,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
         if vcs_root(ctx.file) then
             name = vim.fs.basename(ctx.file)
         else
-            name = vim.fn.substitute(ctx.file, vim.fn.getenv('HOME'), '~', '')
+            name = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
         end
         vim.t[curridx].tabname = name
     end
