@@ -18,6 +18,9 @@ return {
         'rcarriga/nvim-notify',
     },
     {
+        'MunifTanjim/nui.nvim',
+    },
+    {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
