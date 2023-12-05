@@ -24,7 +24,8 @@ require('lazy').setup('manifest', {
     root = lazyhome .. '/packages',
     readme = {
         root = lazyhome .. '/readme',
-    }
+    },
+    change_detection = { enabled = false }
 })
 
 local user_config = os.getenv("HOME") .. '/.nvim.lua'

@@ -7,7 +7,11 @@ return {
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
         enabled = vim.g.nvim_level >= 2,
     },
-
+    {
+        'folke/noice.nvim',
+        enabled = vim.g.nvim_level >= 2,
+        config = h.plugins 'noice',
+    },
     {
         'norcalli/nvim-colorizer.lua',
         config = h.plugins 'colorizer',
