@@ -1,3 +1,6 @@
+-- [Moving cursor forces user out of terminal mode](https://github.com/neovide/neovide/issues/1838)
+vim.keymap.set("t", "<MouseMove>", "<NOP>")
+
 return {
     {
         'chomosuke/term-edit.nvim',
