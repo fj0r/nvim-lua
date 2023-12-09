@@ -24,16 +24,18 @@ end
 local libretranslate = function (ctx)
     local curl = require('plenary').curl
     local host = ctx.host or 'http://localhost:5000'
-    local r = curl.post(host .. '/translate', {
+    curl.post(host .. '/translate', {
         body = {
             q = ctx.q,
             source = ctx.en and 'en' or 'zh',
             target = ctx.en and 'zh' or 'en',
             format = "text"
         },
-        header = {["Content-Type"] = "application/json"}
+        header = {["Content-Type"] = "application/json"},
+        callback = vim.schedule_wrap(function (r)
+            ctx.callback(vim.json.decode(r.body).translatedText)
+        end)
     })
-    return vim.json.decode(r.body).translatedText
 end
 
 
@@ -42,13 +44,16 @@ local translate = function(ctx)
     return function()
         local host = os.getenv('LIBRETRANSLATE_HOST')
         if host ~= nil then
-            local a = libretranslate {
+            libretranslate {
                 q = selection(),
                 en = ctx.en,
-                host = host
+                host = host,
+                callback = function (a)
+                    vim.fn.setreg('+', a)
+                    print(a)
+                    --require('notify')(a, 'info', { title = 'translate', render = 'simple' })
+                end
             }
-            vim.fn.setreg('+', a)
-            require('notify')(a, 'info', { title = 'translate', render = 'simple' })
         end
         vim.api.nvim_feedkeys(esc, 'x', false)
     end
