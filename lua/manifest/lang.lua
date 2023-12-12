@@ -20,7 +20,7 @@ return {
         --build = ":Neorg sync-parsers",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = h.plugins 'neorg',
-        enabled = vim.g.nvim_level >= 2,
+        enabled = vim.g.nvim_level >= 3,
     },
     {
         'nvim-orgmode/orgmode',

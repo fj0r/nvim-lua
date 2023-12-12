@@ -24,7 +24,7 @@ vim.g.treesitter_lang = {
     "javascript",
     "jsdoc",
     "json",
-    "norg",
+    --"norg",
     "regex",
     "rust",
     "toml",
