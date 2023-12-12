@@ -19,6 +19,7 @@ require('setup').keymap_table {
     { 'L',                     'g_',                                          'ns',  mode = 'x' },
     -- join lines without space
     { 'J',                     'gJ',                                          'ns',  mode = 'nv' },
+    { 'gJ',                    'J',                                           'ns',  mode = 'nv' },
     -- 去掉搜索高亮
     { '<leader>/',             ':nohls<CR>',                                  'ns' },
     -- command history
