@@ -98,9 +98,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- auto w/wall
---[=[
-vim.api.nvim_create_autocmd({'InsertLeave', 'BufLeave', 'FocusLost'}, {
-    command = [[silent! w]]
+-- 'InsertLeave', 'BufLeave', 'FocusLost'
+vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost'}, {
+    command = [[silent! update]]
 })
---]=]
 

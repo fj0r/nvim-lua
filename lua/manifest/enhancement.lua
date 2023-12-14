@@ -45,7 +45,7 @@ return {
     },
     {
         'pocco81/auto-save.nvim',
-        enabled = vim.g.nvim_level >= 2,
+        enabled = false,
         config = h.plugins 'auto-save'
     },
 }
