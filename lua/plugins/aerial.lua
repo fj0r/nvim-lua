@@ -1,5 +1,8 @@
 require('aerial').setup {
-    backends = { "lsp", "treesitter", "markdown", "man" },
+    backends = {
+        ['_'] = { "lsp", "treesitter", "markdown", "man" },
+        yaml = { "treesitter" }
+    },
     attach_mode = 'global',
     filter_kind = {
         'Array',
