@@ -92,14 +92,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = yankGrp,
 })
 
--- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
-    command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
-})
+-- return to last edit position when opening files
+if 'ressession' == 'setup' then
+    vim.api.nvim_create_autocmd("BufReadPost", {
+        command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
+    })
+end
 
 -- auto w/wall
 -- 'InsertLeave', 'BufLeave', 'FocusLost'
-vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost'}, {
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
     command = [[silent! update]]
 })
-
