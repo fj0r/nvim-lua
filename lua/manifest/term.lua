@@ -19,6 +19,11 @@ return {
         'fj0r/nvim-taberm',
         keys = {
             { '<C-x>', nil, desc = 'taberm' },
+            { '<leader>xx', nil, desc = 'tab' },
+            { '<leader>xv', nil, desc = 'vertical' },
+            { '<leader>xV', nil, desc = 'vertical_ext' },
+            { '<leader>xc', nil, desc = 'horizontal' },
+            { '<leader>xC', nil, desc = 'horizontal_ext' },
         },
         opts = {
             keymap = {

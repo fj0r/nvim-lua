@@ -38,9 +38,15 @@ return {
         config = h.plugins 'whitespace'
     },
     {
+        'stevearc/resession.nvim',
+        enabled = vim.g.nvim_level >= 2,
+        config = h.plugins 'ressession',
+        opts = {},
+    },
+    {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        enabled = vim.g.nvim_level >= 2,
+        enabled = false,
         config = h.plugins 'possession'
     },
     {
