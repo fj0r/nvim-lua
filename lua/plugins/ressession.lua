@@ -25,11 +25,24 @@ local load = function()
 
     if wd then
         local sn = vim.fn.substitute(wd, '/', '_', 'g')
-        resession.load(sn )
+        vim.g.resession_file = sn
+        local exist = false
+        for _, k in pairs(resession.list()) do
+            if k == sn then
+                exist = true
+                break
+            end
+        end
+        if exist then
+            resession.load(sn)
+        else
+            resession.save(sn)
+        end
     else
         tbm.n()
     end
 end
+
 
 local complete = function()
     local s = {}
@@ -46,7 +59,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = function()
-        resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
+        if vim.g.resession_file ~= nil then
+            resession.save(vim.g.resession_file)
+        end
     end,
 })
 -- Resession does NOTHING automagically, so we have to set up some keymaps
