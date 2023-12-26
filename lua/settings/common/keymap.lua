@@ -11,9 +11,11 @@ require('setup').keymap_table {
     { vim.g.arrow_keys.k,      "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
     { vim.g.arrow_keys.j,      "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
     { '<M-o>',                 '<C-f>',                                       'n',   mode = 'c' },
-    -- goto marker
+    --[[
+    -- goto marker (move to plugins/which-key.lua)
     { "`",                     "'",                                           'ns' },
     { "'",                     "`",                                           'ns' },
+    --]]
     -- Go to home and end using capitalized directions
     { 'H',                     '^',                                           'ns' },
     { 'L',                     '$',                                           'ns' },

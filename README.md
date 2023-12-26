@@ -1,4 +1,6 @@
  # plugins
+ - [ ] Trigger marks list with remapped jump keys (' and '`')
+    - https://github.com/folke/which-key.nvim/issues/166
  - [ ] flash.nvim
     - [ ] two char jump to line
     - [ ] target include punctuation `[]{}<>'",;#`
