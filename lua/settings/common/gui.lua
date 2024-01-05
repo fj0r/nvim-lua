@@ -15,17 +15,20 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 --]]
 
 vim.g.select_font_size = 12
+local features = {
+    monaspace = ':+ss01:+ss02:+ss03:+ss04:+ss05:+ss06:+ss07:+ss08:+calt:+dlig'
+}
 local fonts = {
-    nar = "MonaspiceAr NFM:h{}",
-    nxe = "MonaspiceXe NFM:h{}",
-    nne = "MonaspiceNe NFM:h{}",
-    nkr = "MonaspiceKr NFM:h{}",
-    nrn = "MonaspiceRn NFM:h{}",
-    mne = "Monaspace Neon:h{}",
-    mar = "Monaspace Argon:h{}",
-    mxe = "Monaspace Xenon:h{}",
-    mrn = "Monaspace Radon:h{}",
-    mkr = "Monaspace Krypton:h{}",
+    nar = "MonaspiceAr NFM:h{}" .. features.monaspace,
+    nxe = "MonaspiceXe NFM:h{}" .. features.monaspace,
+    nne = "MonaspiceNe NFM:h{}" .. features.monaspace,
+    nkr = "MonaspiceKr NFM:h{}" .. features.monaspace,
+    nrn = "MonaspiceRn NFM:h{}" .. features.monaspace,
+    mne = "Monaspace Neon:h{}" .. features.monaspace,
+    mar = "Monaspace Argon:h{}" .. features.monaspace,
+    mxe = "Monaspace Xenon:h{}" .. features.monaspace,
+    mrn = "Monaspace Radon:h{}" .. features.monaspace,
+    mkr = "Monaspace Krypton:h{}" .. features.monaspace,
     hs = "Hasklig:h{}",
     jm = "JetBrains Mono ExtraLight:h{}",
 }
@@ -69,11 +72,13 @@ if vim.g.neovide or vim.g.server_mode then
         neovide_floating_blur_amount_y = 2.0,
         neovide_hide_mouse_when_typing = true,
         neovide_underline_automatic_scaling = true,
-        neovide_cursor_vfx_mode = "", -- "sonicboom" -- "wireframe" -- "railgun"
-        neovide_cursor_vfx_particle_lifetime = 2,
-        neovide_cursor_vfx_particle_density = 12.0,
+        neovide_cursor_animate_command_line = true,
+        neovide_cursor_vfx_mode = "railgun", -- "sonicboom" -- "wireframe" -- "railgun"
+        neovide_cursor_vfx_particle_lifetime = 1.2,
+        neovide_cursor_vfx_particle_density = 7.0,
         neovide_cursor_vfx_particle_speed = 10.0,
-        neovide_cursor_vfx_particle_phase = 10.0,
+        neovide_cursor_vfx_particle_phase = 5,
+        neovide_cursor_vfx_particle_curl = 1.0,
     }
 
     vim.g.neovide_scale_factor = os.getenv("NEOVIDE_SCALE_FACTOR") or 0.7
