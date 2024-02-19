@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
     callback = function(ctx)
         local curridx = vim.api.nvim_get_current_tabpage()
         local currname = vim.t[curridx].tabname
-        if currname and string.sub(currname, 1, 1) == pin then return end
+        if currname and string.sub(currname, 1, 1) == vim.g.tab_title_pin then return end
 
         local name = nil
         if vcs_root(ctx.file) then
