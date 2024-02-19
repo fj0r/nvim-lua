@@ -122,7 +122,7 @@ local yaml_origin = require('schemastore').json.schemas {
         }
     }
 local yaml_schemas = {
-    -- https://github.com/yannh/kubernetes-json-schema/tree/master/v1.26.0-local
+    -- https://github.com/yannh/kubernetes-json-schema/tree/master/v1.29.2-local
     ['file://' .. (vim.g.local_schemas_store .. '/kubernetes/all.json' or 'kubernetes')] = { '/*.yaml' }
 }
 vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch end, yaml_origin)
