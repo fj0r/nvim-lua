@@ -19,6 +19,8 @@
       "title": "openrpc",
       "type": "string",
       "enum": [
+        "1.3.2",
+        "1.3.1",
         "1.3.0",
         "1.2.6",
         "1.2.5",
@@ -145,6 +147,7 @@
       }
     },
     "$schema": {
+      "title": "metaSchema",
       "description": "JSON Schema URI (used by some editors)",
       "type": "string",
       "default": "https://meta.open-rpc.org/"

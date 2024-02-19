@@ -6,8 +6,8 @@
       "description": "es6-global generate relative `require` paths instead of relying on NodeJS' module resolution. Default: commonjs."
     },
     "suffix-spec": {
-      "enum": [".js", ".mjs", ".cjs", ".bs.js", ".bs.mjs", ".bs.cjs"],
-      "description": "suffix of generated js files, default to [.js] "
+      "type": "string",
+      "description": "Suffix of generated js files. Default: .js. May contain letters, digits, \"-\", \"_\" and \".\" and must end with .js, .mjs or .cjs."
     },
     "module-format-object": {
       "type": "object",
@@ -295,26 +295,6 @@
       ],
       "description": "Example: `\"src\"` or `[\"src\", \"test\"]` or `[{\"dir\": \"src\", \"subdirs\": [...]}]`"
     },
-    "targetItems": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "enum": ["native", "bytecode", "js"],
-          "description": "The compiler to use for the target"
-        },
-        "main": {
-          "type": "string",
-          "description": "Name of the main module used as entry point for this target. 'entry-point' isn't used when this project is built as a dependency."
-        }
-      }
-    },
-    "entries": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/targetItems"
-      },
-      "description": "A list of buildable targets"
-    },
     "gentype-specs": {
       "type": "object",
       "properties": {
@@ -343,8 +323,7 @@
         },
         "module": {
           "type": "string",
-          "enum": ["react"],
-          "description": "JSX module, currently only support the React."
+          "description": "JSX module. Either \"react\" for React, or (since v11.1) any valid module name to apply a generic JSX transform."
         },
         "mode": {
           "type": "string",
@@ -356,8 +335,7 @@
           "description": "Build the given dependencies in JSX V3 compatibility mode."
         }
       },
-      "additionalProperties": false,
-      "required": ["version"]
+      "additionalProperties": false
     },
     "bsc-flags": {
       "oneOf": [
@@ -440,6 +418,10 @@
       "$ref": "#/definitions/jsx-specs",
       "description": "Configuration for the JSX transformation."
     },
+    "uncurried": {
+      "type": "boolean",
+      "description": "Configuration for the uncurried mode."
+    },
     "reason": {
       "$ref": "#/definitions/reason-specs",
       "description": "ReScript comes with [Reason](http://reasonml.github.io/) by default. Specific configurations here."
@@ -489,10 +471,6 @@
     "package-specs": {
       "$ref": "#/definitions/package-specs",
       "description": "ReScript can currently output to [Commonjs](https://en.wikipedia.org/wiki/CommonJS), and [ES6 modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)"
-    },
-    "entries": {
-      "$ref": "#/definitions/entries",
-      "description": "(internal) Used by bsb to build to different targets: native (ocamlopt), bytecode (ocamlc) or JS (bsc)"
     },
     "use-stdlib": {
       "type": "boolean",

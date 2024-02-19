@@ -38,6 +38,25 @@
       "title": "AlpinePlatformModel",
       "type": "object"
     },
+    "AmazonLinuxPlatformModel": {
+      "properties": {
+        "name": {
+          "const": "Amazon Linux",
+          "title": "Name",
+          "type": "string"
+        },
+        "versions": {
+          "default": "all",
+          "items": {
+            "enum": ["all", "1", "2", "2023"],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Amazon Linux 2PlatformModel",
+      "type": "object"
+    },
     "AmazonPlatformModel": {
       "properties": {
         "name": {
@@ -70,25 +89,6 @@
         }
       },
       "title": "AmazonPlatformModel",
-      "type": "object"
-    },
-    "Amazon_Linux_2PlatformModel": {
-      "properties": {
-        "name": {
-          "const": "Amazon Linux 2",
-          "title": "Name",
-          "type": "string"
-        },
-        "versions": {
-          "default": "all",
-          "items": {
-            "enum": ["all"],
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "title": "Amazon Linux 2PlatformModel",
       "type": "object"
     },
     "ArchLinuxPlatformModel": {
@@ -168,6 +168,7 @@
               "sid",
               "squeeze",
               "stretch",
+              "trixie",
               "wheezy",
               "all"
             ],
@@ -267,7 +268,14 @@
         "versions": {
           "default": "all",
           "items": {
-            "enum": ["ascii", "beowulf", "ceres", "jessie", "all"],
+            "enum": [
+              "ascii",
+              "beowulf",
+              "chimaera",
+              "daedalus",
+              "jessie",
+              "all"
+            ],
             "type": "string"
           },
           "type": "array"
@@ -286,7 +294,7 @@
         "versions": {
           "default": "all",
           "items": {
-            "enum": ["5.2", "5.4", "all"],
+            "enum": ["5.2", "5.4", "5.6", "5.8", "6.0", "6.2", "6.4", "all"],
             "type": "string"
           },
           "type": "array"
@@ -347,6 +355,8 @@
               "35",
               "36",
               "37",
+              "38",
+              "39",
               "all"
             ],
             "type": "string"
@@ -382,6 +392,9 @@
               "12.1",
               "12.2",
               "13.0",
+              "13.1",
+              "13.2",
+              "14.0",
               "8.0",
               "8.1",
               "8.2",
@@ -439,7 +452,8 @@
                 "min_ansible_version",
                 "namespace",
                 "platforms",
-                "role_name"
+                "role_name",
+                "video_links"
               ]
             },
             "required": ["description"]
@@ -454,6 +468,9 @@
         "author": {
           "title": "Author",
           "type": "string"
+        },
+        "cloud_platforms": {
+          "markdownDescription": "Only valid for old standalone roles."
         },
         "company": {
           "title": "Company",
@@ -495,7 +512,7 @@
         "namespace": {
           "markdownDescription": "Used by molecule and ansible-lint to compute FQRN for roles outside collections",
           "minLength": 2,
-          "pattern": "^[a-z][a-z0-9_]+$",
+          "pattern": "^[a-z][a-z0-9_-]+$",
           "title": "Namespace Name",
           "type": "string"
         },
@@ -512,6 +529,10 @@
           "description": "Set to true for old standalone roles, or false for new collection roles.",
           "title": "Standalone",
           "type": "boolean"
+        },
+        "video_links": {
+          "markdownDescription": "Only valid for old standalone roles.",
+          "type": "array"
         }
       },
       "title": "GalaxyInfoModel",
@@ -650,6 +671,36 @@
       "title": "JunosPlatformModel",
       "type": "object"
     },
+    "KaliPlatformModel": {
+      "properties": {
+        "name": {
+          "const": "Kali",
+          "title": "Name",
+          "type": "string"
+        },
+        "versions": {
+          "default": "all",
+          "items": {
+            "enum": [
+              "2.0",
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022",
+              "2023",
+              "all"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "KaliPlatformModel",
+      "type": "object"
+    },
     "MacOSXPlatformModel": {
       "properties": {
         "name": {
@@ -718,6 +769,35 @@
       "title": "NXOSPlatformModel",
       "type": "object"
     },
+    "NetBSDPlatformModel": {
+      "properties": {
+        "name": {
+          "const": "NetBSD",
+          "title": "Name",
+          "type": "string"
+        },
+        "versions": {
+          "default": "all",
+          "items": {
+            "enum": [
+              "8.0",
+              "8.1",
+              "8.2",
+              "9.0",
+              "9.1",
+              "9.2",
+              "9.3",
+              "10.0",
+              "all"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "NetBSDPlatformModel",
+      "type": "object"
+    },
     "OpenBSDPlatformModel": {
       "properties": {
         "name": {
@@ -744,6 +824,9 @@
               "6.8",
               "6.9",
               "7.0",
+              "7.1",
+              "7.2",
+              "7.3",
               "all"
             ],
             "type": "string"
@@ -784,6 +867,16 @@
           "default": "all",
           "items": {
             "enum": [
+              "7.0",
+              "7.1",
+              "7.2",
+              "7.3",
+              "7.4",
+              "7.5",
+              "7.6",
+              "7.7",
+              "7.8",
+              "7.9",
               "8.0",
               "8.1",
               "8.2",
@@ -792,8 +885,10 @@
               "8.5",
               "8.6",
               "8.7",
+              "8.8",
               "9.0",
               "9.1",
+              "9.2",
               "all"
             ],
             "type": "string"
@@ -821,6 +916,39 @@
         }
       },
       "title": "PAN-OSPlatformModel",
+      "type": "object"
+    },
+    "RockyLinuxPlatformModel": {
+      "properties": {
+        "name": {
+          "const": "Rocky",
+          "title": "Name",
+          "type": "string"
+        },
+        "versions": {
+          "default": "all",
+          "items": {
+            "enum": [
+              "8.0",
+              "8.1",
+              "8.2",
+              "8.3",
+              "8.4",
+              "8.5",
+              "8.6",
+              "8.7",
+              "8.8",
+              "9.0",
+              "9.1",
+              "9.2",
+              "all"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "RockyLinuxPlatformModel",
       "type": "object"
     },
     "SLESPlatformModel": {
@@ -852,6 +980,7 @@
               "15SP2",
               "15SP3",
               "15SP4",
+              "15SP5",
               "all"
             ],
             "type": "string"
@@ -952,7 +1081,6 @@
               "artful",
               "bionic",
               "cosmic",
-              "cuttlefish",
               "disco",
               "eoan",
               "focal",
@@ -960,7 +1088,10 @@
               "hirsute",
               "impish",
               "jammy",
+              "kinetic",
               "lucid",
+              "lunar",
+              "mantic",
               "maverick",
               "natty",
               "oneiric",
@@ -1113,6 +1244,8 @@
               "Mojave",
               "Monterey",
               "Sierra",
+              "Sonoma",
+              "Ventura",
               "all"
             ],
             "type": "string"
@@ -1190,7 +1323,7 @@
             "$ref": "#/$defs/AmazonPlatformModel"
           },
           {
-            "$ref": "#/$defs/Amazon_Linux_2PlatformModel"
+            "$ref": "#/$defs/AmazonLinuxPlatformModel"
           },
           {
             "$ref": "#/$defs/aosPlatformModel"
@@ -1203,6 +1336,9 @@
           },
           {
             "$ref": "#/$defs/CumulusPlatformModel"
+          },
+          {
+            "$ref": "#/$defs/NetBSDPlatformModel"
           },
           {
             "$ref": "#/$defs/DebianPlatformModel"
@@ -1250,6 +1386,9 @@
             "$ref": "#/$defs/JunosPlatformModel"
           },
           {
+            "$ref": "#/$defs/KaliPlatformModel"
+          },
+          {
             "$ref": "#/$defs/macOSPlatformModel"
           },
           {
@@ -1278,6 +1417,9 @@
           },
           {
             "$ref": "#/$defs/PAN-OSPlatformModel"
+          },
+          {
+            "$ref": "#/$defs/RockyLinuxPlatformModel"
           },
           {
             "$ref": "#/$defs/SLESPlatformModel"
@@ -1355,6 +1497,7 @@
   },
   "$id": "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/meta.json",
   "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html#using-role-dependencies",
   "examples": ["meta/main.yml"],
   "properties": {
     "additionalProperties": false,

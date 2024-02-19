@@ -111,6 +111,9 @@
         "bucket": {
           "$ref": "#/definitions/io.argoproj.common.S3Bucket"
         },
+        "caCertificate": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector"
+        },
         "endpoint": {
           "type": "string"
         },
@@ -287,6 +290,9 @@
         "jetstream": {
           "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.JetStreamConfig"
         },
+        "kafka": {
+          "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.KafkaBus"
+        },
         "nats": {
           "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.NATSConfig"
         }
@@ -377,6 +383,14 @@
         "jetstream": {
           "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.JetStreamBus"
         },
+        "jetstreamExotic": {
+          "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.JetStreamConfig",
+          "description": "Exotic JetStream"
+        },
+        "kafka": {
+          "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.KafkaBus",
+          "description": "Kafka eventbus"
+        },
         "nats": {
           "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.NATSBus",
           "description": "NATS eventbus"
@@ -459,7 +473,7 @@
           "description": "ReloaderContainerTemplate contains customized spec for config reloader container"
         },
         "replicas": {
-          "description": "Redis StatefulSet size",
+          "description": "JetStream StatefulSet size",
           "format": "int32",
           "type": "integer"
         },
@@ -512,6 +526,53 @@
         "url": {
           "description": "JetStream (Nats) URL",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "io.argoproj.eventbus.v1alpha1.KafkaBus": {
+      "description": "KafkaBus holds the KafkaBus EventBus information",
+      "properties": {
+        "consumerGroup": {
+          "$ref": "#/definitions/io.argoproj.eventbus.v1alpha1.KafkaConsumerGroup",
+          "description": "Consumer group for kafka client"
+        },
+        "sasl": {
+          "$ref": "#/definitions/io.argoproj.common.SASLConfig",
+          "description": "SASL configuration for the kafka client"
+        },
+        "tls": {
+          "$ref": "#/definitions/io.argoproj.common.TLSConfig",
+          "description": "TLS configuration for the kafka client."
+        },
+        "topic": {
+          "description": "Topic name, defaults to {namespace_name}-{eventbus_name}",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL to kafka cluster, multiple URLs separated by comma",
+          "type": "string"
+        },
+        "version": {
+          "description": "Kafka version, sarama defaults to the oldest supported stable version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "io.argoproj.eventbus.v1alpha1.KafkaConsumerGroup": {
+      "properties": {
+        "groupName": {
+          "description": "Consumer group name, defaults to {namespace_name}-{sensor_name}",
+          "type": "string"
+        },
+        "rebalanceStrategy": {
+          "description": "Rebalance strategy can be one of: sticky, roundrobin, range. Range is the default.",
+          "type": "string"
+        },
+        "startOldest": {
+          "description": "When starting up a new group do we want to start from the oldest event (true) or the newest event (false), defaults to false",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -880,16 +941,69 @@
       ],
       "type": "object"
     },
+    "io.argoproj.eventsource.v1alpha1.AzureQueueStorageEventSource": {
+      "description": "AzureQueueStorageEventSource describes the event source for azure queue storage more info at https://learn.microsoft.com/en-us/azure/storage/queues/",
+      "properties": {
+        "connectionString": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "ConnectionString is the connection string to access Azure Queue Storage. If this fields is not provided it will try to access via Azure AD with StorageAccountName."
+        },
+        "decodeMessage": {
+          "description": "DecodeMessage specifies if all the messages should be base64 decoded. If set to true the decoding is done before the evaluation of JSONBody",
+          "type": "boolean"
+        },
+        "dlq": {
+          "description": "DLQ specifies if a dead-letter queue is configured for messages that can't be processed successfully. If set to true, messages with invalid payload won't be acknowledged to allow to forward them farther to the dead-letter queue. The default value is false.",
+          "type": "boolean"
+        },
+        "filter": {
+          "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.EventSourceFilter",
+          "description": "Filter"
+        },
+        "jsonBody": {
+          "description": "JSONBody specifies that all event body payload coming from this source will be JSON",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata holds the user defined metadata which will passed along the event payload.",
+          "type": "object"
+        },
+        "queueName": {
+          "description": "QueueName is the name of the queue",
+          "type": "string"
+        },
+        "storageAccountName": {
+          "description": "StorageAccountName is the name of the storage account where the queue is. This field is necessary to access via Azure AD (managed identity) and it is ignored if ConnectionString is set.",
+          "type": "string"
+        },
+        "waitTimeInSeconds": {
+          "description": "WaitTimeInSeconds is the duration (in seconds) for which the event source waits between empty results from the queue. The default value is 3 seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "queueName"
+      ],
+      "type": "object"
+    },
     "io.argoproj.eventsource.v1alpha1.AzureServiceBusEventSource": {
       "description": "AzureServiceBusEventSource describes the event source for azure service bus More info at https://docs.microsoft.com/en-us/azure/service-bus-messaging/",
       "properties": {
         "connectionString": {
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
-          "description": "ConnectionString is the connection string for the Azure Service Bus"
+          "description": "ConnectionString is the connection string for the Azure Service Bus. If this fields is not provided it will try to access via Azure AD with DefaultAzureCredential and FullyQualifiedNamespace."
         },
         "filter": {
           "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.EventSourceFilter",
           "description": "Filter"
+        },
+        "fullyQualifiedNamespace": {
+          "description": "FullyQualifiedNamespace is the Service Bus namespace name (ex: myservicebus.servicebus.windows.net). This field is necessary to access via Azure AD (managed identity) and it is ignored if ConnectionString is set.",
+          "type": "string"
         },
         "jsonBody": {
           "description": "JSONBody specifies that all event body payload coming from this source will be JSON",
@@ -1082,6 +1196,10 @@
         "repositorySlug": {
           "description": "DeprecatedRepositorySlug is the slug of the repository for which integration needs to set up Deprecated: use Repositories instead. Will be unsupported in v1.8",
           "type": "string"
+        },
+        "tls": {
+          "$ref": "#/definitions/io.argoproj.common.TLSConfig",
+          "description": "TLS configuration for the bitbucketserver client."
         },
         "webhook": {
           "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.WebhookContext",
@@ -1336,6 +1454,13 @@
           "description": "AzureEventsHub event sources",
           "type": "object"
         },
+        "azureQueueStorage": {
+          "additionalProperties": {
+            "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.AzureQueueStorageEventSource"
+          },
+          "description": "AzureQueueStorage event source",
+          "type": "object"
+        },
         "azureServiceBus": {
           "additionalProperties": {
             "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.AzureServiceBusEventSource"
@@ -1387,6 +1512,13 @@
             "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.GenericEventSource"
           },
           "description": "Generic event source",
+          "type": "object"
+        },
+        "gerrit": {
+          "additionalProperties": {
+            "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.GerritEventSource"
+          },
+          "description": "Gerrit event source",
           "type": "object"
         },
         "github": {
@@ -1488,6 +1620,13 @@
         "service": {
           "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.Service",
           "description": "Service is the specifications of the service to expose the event source"
+        },
+        "sftp": {
+          "additionalProperties": {
+            "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.SFTPEventSource"
+          },
+          "description": "SFTP event sources",
+          "type": "object"
         },
         "slack": {
           "additionalProperties": {
@@ -1624,6 +1763,66 @@
       "required": [
         "url",
         "config"
+      ],
+      "type": "object"
+    },
+    "io.argoproj.eventsource.v1alpha1.GerritEventSource": {
+      "description": "GerritEventSource refers to event-source related to gerrit events",
+      "properties": {
+        "auth": {
+          "$ref": "#/definitions/io.argoproj.common.BasicAuth",
+          "description": "Auth hosts secret selectors for username and password"
+        },
+        "deleteHookOnFinish": {
+          "description": "DeleteHookOnFinish determines whether to delete the Gerrit hook for the project once the event source is stopped.",
+          "type": "boolean"
+        },
+        "events": {
+          "description": "Events are gerrit event to listen to. Refer https://gerrit-review.googlesource.com/Documentation/cmd-stream-events.html#events",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.EventSourceFilter",
+          "description": "Filter"
+        },
+        "gerritBaseURL": {
+          "description": "GerritBaseURL is the base URL for API requests to a custom endpoint",
+          "type": "string"
+        },
+        "hookName": {
+          "description": "HookName is the name of the webhook",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata holds the user defined metadata which will passed along the event payload.",
+          "type": "object"
+        },
+        "projects": {
+          "description": "List of project namespace paths like \"whynowy/test\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sslVerify": {
+          "description": "SslVerify to enable ssl verification",
+          "type": "boolean"
+        },
+        "webhook": {
+          "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.WebhookContext",
+          "description": "Webhook holds configuration to run a http server"
+        }
+      },
+      "required": [
+        "hookName",
+        "events",
+        "gerritBaseURL"
       ],
       "type": "object"
     },
@@ -1915,7 +2114,7 @@
       "description": "KafkaEventSource refers to event-source for Kafka related events",
       "properties": {
         "config": {
-          "description": "Yaml format Sarama config for Kafka connection. It follows the struct of sarama.Config. See https://github.com/Shopify/sarama/blob/main/config.go e.g.\n\nconsumer:\n  fetch:\n    min: 1\nnet:\n  MaxOpenRequests: 5",
+          "description": "Yaml format Sarama config for Kafka connection. It follows the struct of sarama.Config. See https://github.com/IBM/sarama/blob/main/config.go e.g.\n\nconsumer:\n  fetch:\n    min: 1\nnet:\n  MaxOpenRequests: 5",
           "type": "string"
         },
         "connectionBackoff": {
@@ -2204,9 +2403,20 @@
     "io.argoproj.eventsource.v1alpha1.PulsarEventSource": {
       "description": "PulsarEventSource describes the event source for Apache Pulsar",
       "properties": {
+        "authAthenzParams": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Authentication athenz parameters for the pulsar client. Refer https://github.com/apache/pulsar-client-go/blob/master/pulsar/auth/athenz.go Either token or athenz can be set to use auth.",
+          "type": "object"
+        },
+        "authAthenzSecret": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "Authentication athenz privateKey secret for the pulsar client. AuthAthenzSecret must be set if AuthAthenzParams is used."
+        },
         "authTokenSecret": {
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
-          "description": "Authentication token for the pulsar client."
+          "description": "Authentication token for the pulsar client. Either token or athenz can be set to use auth."
         },
         "connectionBackoff": {
           "$ref": "#/definitions/io.argoproj.common.Backoff",
@@ -2442,7 +2652,7 @@
           "type": "array"
         },
         "labels": {
-          "description": "Labels provide listing options to K8s API to watch resource/s. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/label-selectors/ for more info.",
+          "description": "Labels provide listing options to K8s API to watch resource/s. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/label-selectors/ for more info. Unlike K8s field selector, multiple values are passed as comma separated values instead of list of values. Eg: value: value1,value2. Same as K8s label selector, operator \"=\", \"==\", \"!=\", \"exists\", \"!\", \"notin\", \"in\", \"gt\" and \"lt\" are supported",
           "items": {
             "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.Selector"
           },
@@ -2453,6 +2663,55 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "io.argoproj.eventsource.v1alpha1.SFTPEventSource": {
+      "description": "SFTPEventSource describes an event-source for sftp related events.",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "Address sftp address."
+        },
+        "eventType": {
+          "description": "Type of file operations to watch Refer https://github.com/fsnotify/fsnotify/blob/master/fsnotify.go for more information",
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.EventSourceFilter",
+          "description": "Filter"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata holds the user defined metadata which will passed along the event payload.",
+          "type": "object"
+        },
+        "password": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "Password required for authentication if any."
+        },
+        "pollIntervalDuration": {
+          "description": "PollIntervalDuration the interval at which to poll the SFTP server defaults to 10 seconds",
+          "type": "string"
+        },
+        "sshKeySecret": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "SSHKeySecret refers to the secret that contains SSH key"
+        },
+        "username": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "Username required for authentication if any."
+        },
+        "watchPathConfig": {
+          "$ref": "#/definitions/io.argoproj.eventsource.v1alpha1.WatchPathConfig",
+          "description": "WatchPathConfig contains configuration about the file path to watch"
+        }
+      },
+      "required": [
+        "eventType",
+        "watchPathConfig"
+      ],
       "type": "object"
     },
     "io.argoproj.eventsource.v1alpha1.SNSEventSource": {
@@ -2583,7 +2842,7 @@
           "type": "string"
         },
         "operation": {
-          "description": "Supported operations like ==, !=, \u003c=, \u003e= etc. Defaults to ==. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors for more info.",
+          "description": "Supported operations like ==, != etc. Defaults to ==. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors for more info.",
           "type": "string"
         },
         "value": {
@@ -3248,6 +3507,55 @@
       ],
       "type": "object"
     },
+    "io.argoproj.sensor.v1alpha1.EmailTrigger": {
+      "description": "EmailTrigger refers to the specification of the email notification trigger.",
+      "properties": {
+        "body": {
+          "description": "Body refers to the body/content of the email send.",
+          "type": "string"
+        },
+        "from": {
+          "description": "From refers to the address from which the email is send from.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Host refers to the smtp host url to which email is send.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Parameters is the list of key-value extracted from event's payload that are applied to the trigger resource.",
+          "items": {
+            "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.TriggerParameter"
+          },
+          "type": "array"
+        },
+        "port": {
+          "description": "Port refers to the smtp server port to which email is send. Defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "smtpPassword": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "SMTPPassword refers to the Kubernetes secret that holds the smtp password used to connect to smtp server."
+        },
+        "subject": {
+          "description": "Subject refers to the subject line for the email send.",
+          "type": "string"
+        },
+        "to": {
+          "description": "To refers to the email addresses to which the emails are send.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "username": {
+          "description": "Username refers to the username used to connect to the smtp server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "io.argoproj.sensor.v1alpha1.Event": {
       "description": "Event represents the cloudevent received from an event source.",
       "properties": {
@@ -3775,9 +4083,20 @@
     "io.argoproj.sensor.v1alpha1.PulsarTrigger": {
       "description": "PulsarTrigger refers to the specification of the Pulsar trigger.",
       "properties": {
+        "authAthenzParams": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Authentication athenz parameters for the pulsar client. Refer https://github.com/apache/pulsar-client-go/blob/master/pulsar/auth/athenz.go Either token or athenz can be set to use auth.",
+          "type": "object"
+        },
+        "authAthenzSecret": {
+          "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
+          "description": "Authentication athenz privateKey secret for the pulsar client. AuthAthenzSecret must be set if AuthAthenzParams is used."
+        },
         "authTokenSecret": {
           "$ref": "#/definitions/io.k8s.api.core.v1.SecretKeySelector",
-          "description": "Authentication token for the pulsar client."
+          "description": "Authentication token for the pulsar client. Either token or athenz can be set to use auth."
         },
         "connectionBackoff": {
           "$ref": "#/definitions/io.argoproj.common.Backoff",
@@ -4308,6 +4627,10 @@
         "custom": {
           "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.CustomTrigger",
           "description": "CustomTrigger refers to the trigger designed to connect to a gRPC trigger server and execute a custom trigger."
+        },
+        "email": {
+          "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.EmailTrigger",
+          "description": "Email refers to the trigger designed to send an email notification"
         },
         "http": {
           "$ref": "#/definitions/io.argoproj.sensor.v1alpha1.HTTPTrigger",

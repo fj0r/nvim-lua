@@ -9,8 +9,13 @@
         "mph"
       ]
     },
-    "github:EHfive_v2ray-jsonschema_common:CustomNumber": {
-      "type": "integer"
+    "github:EHfive_v2ray-jsonschema_common:CustomFreedomDomainStrategy": {
+      "enum": [
+        "AsIs",
+        "UseIP",
+        "UseIPv4",
+        "UseIPv6"
+      ]
     },
     "github:EHfive_v2ray-jsonschema_common:CustomPortRange": {
       "oneOf": [
@@ -19,6 +24,35 @@
         },
         {
           "type": "string"
+        }
+      ]
+    },
+    "github:EHfive_v2ray-jsonschema_common:CustomRouterProtocolList": {
+      "oneOf": [
+        {
+          "enum": [
+            "tls",
+            "quic",
+            "dns",
+            "fakedns",
+            "fakedns+others",
+            "bittorrent",
+            "http1"
+          ]
+        },
+        {
+          "items": {
+            "enum": [
+              "tls",
+              "quic",
+              "dns",
+              "fakedns",
+              "fakedns+others",
+              "bittorrent",
+              "http1"
+            ]
+          },
+          "type": "array"
         }
       ]
     },
@@ -92,12 +126,14 @@
         }
       ]
     },
-    "github:EHfive_v2ray-jsonschema_v4config:CustomFreedomDomainStrategy": {
-      "enum": [
-        "AsIs",
-        "UseIP",
-        "UseIPv4",
-        "UseIPv6"
+    "github:EHfive_v2ray-jsonschema_v4config:CustomFallbackDest": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
       ]
     },
     "github:EHfive_v2ray-jsonschema_v4config:CustomHTTPRemoteConfigUser": {
@@ -624,7 +660,7 @@
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomStringList"
         },
         "protocol": {
-          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomStringList"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomRouterProtocolList"
         },
         "attrs": {
           "type": "string"
@@ -1055,7 +1091,7 @@
           },
           "type": "array"
         },
-        "expectIps": {
+        "expectIPs": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomStringList"
         },
         "fakeDns": {
@@ -1423,7 +1459,7 @@
     "github:v2fly_v2ray-core_v5_infra_conf_v4:FreedomConfig": {
       "properties": {
         "domainStrategy": {
-          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFreedomDomainStrategy"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomFreedomDomainStrategy"
         },
         "timeout": {
           "type": "integer"
@@ -1542,6 +1578,9 @@
     },
     "github:v2fly_v2ray-core_v5_infra_conf_v4:InboundDetourConfig": {
       "properties": {
+        "protocol": {
+          "type": "string"
+        },
         "port": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomPortRange"
         },
@@ -1644,6 +1683,9 @@
     },
     "github:v2fly_v2ray-core_v5_infra_conf_v4:OutboundDetourConfig": {
       "properties": {
+        "protocol": {
+          "type": "string"
+        },
         "sendThrough": {
           "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomString"
         },
@@ -1660,7 +1702,7 @@
           "$ref": "#/$defs/github:v2fly_v2ray-core_v5_infra_conf_cfgcommon_muxcfg:MuxConfig"
         },
         "domainStrategy": {
-          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFreedomDomainStrategy"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomFreedomDomainStrategy"
         }
       },
       "type": "object"
@@ -2012,7 +2054,7 @@
           "type": "string"
         },
         "dest": {
-          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomNumber"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFallbackDest"
         },
         "xver": {
           "type": "integer"
@@ -2109,7 +2151,7 @@
           "type": "string"
         },
         "dest": {
-          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_common:CustomNumber"
+          "$ref": "#/$defs/github:EHfive_v2ray-jsonschema_v4config:CustomFallbackDest"
         },
         "xver": {
           "type": "integer"

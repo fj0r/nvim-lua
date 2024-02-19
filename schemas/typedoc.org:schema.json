@@ -29,7 +29,8 @@
 			"enum": [
 				"resolve",
 				"expand",
-				"packages"
+				"packages",
+				"merge"
 			],
 			"default": "resolve"
 		},
@@ -93,6 +94,14 @@
 			"type": "boolean",
 			"default": false
 		},
+		"excludeCategories": {
+			"description": "Exclude symbols within this category from the documentation.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": []
+		},
 		"excludePrivate": {
 			"description": "Ignore private variables and methods.",
 			"type": "boolean",
@@ -100,6 +109,11 @@
 		},
 		"excludeProtected": {
 			"description": "Ignore protected variables and methods.",
+			"type": "boolean",
+			"default": false
+		},
+		"excludeReferences": {
+			"description": "If a symbol is exported multiple times, ignore all but the first export.",
 			"type": "boolean",
 			"default": false
 		},
@@ -120,7 +134,7 @@
 		"out": {
 			"description": "Specify the location the documentation should be written to.",
 			"type": "string",
-			"default": ""
+			"default": "./docs"
 		},
 		"json": {
 			"description": "Specify the location and filename a JSON file describing the project is written to.",
@@ -179,6 +193,26 @@
 			"type": "boolean",
 			"default": false
 		},
+		"sourceLinkTemplate": {
+			"description": "Specify a link template to be used when generating source urls. If not set, will be automatically created using the git remote. Supports {path}, {line}, {gitRevision} placeholders.",
+			"type": "string",
+			"default": ""
+		},
+		"gitRevision": {
+			"description": "Use specified revision instead of the last revision for linking to GitHub/Bitbucket source files. Has no effect if disableSources is set.",
+			"type": "string",
+			"default": ""
+		},
+		"gitRemote": {
+			"description": "Use the specified remote for linking to GitHub/Bitbucket source files. Has no effect if disableGit or disableSources is set.",
+			"type": "string",
+			"default": "origin"
+		},
+		"disableGit": {
+			"description": "Assume that all can be linked to with the sourceLinkTemplate, sourceLinkTemplate must be set if this is enabled. {path} will be rooted at basePath",
+			"type": "boolean",
+			"default": false
+		},
 		"basePath": {
 			"description": "Specifies the base path to be used when displaying file paths.",
 			"type": "string",
@@ -193,7 +227,9 @@
 			"default": [
 				"@override",
 				"@virtual",
-				"@privateRemarks"
+				"@privateRemarks",
+				"@satisfies",
+				"@overload"
 			]
 		},
 		"readme": {
@@ -201,30 +237,30 @@
 			"type": "string",
 			"default": ""
 		},
+		"stripYamlFrontmatter": {
+			"description": "Strip YAML frontmatter from markdown files.",
+			"type": "boolean",
+			"default": false
+		},
 		"cname": {
 			"description": "Set the CNAME file text, it's useful for custom domains on GitHub Pages.",
 			"type": "string",
 			"default": ""
 		},
-		"sourceLinkTemplate": {
-			"description": "Specify a link template to be used when generating source urls. If not set, will be automatically created using the git remote. Supports {path}, {line}, {gitRevision} placeholders.",
-			"type": "string",
-			"default": ""
-		},
-		"gitRevision": {
-			"description": "Use specified revision instead of the last revision for linking to GitHub/Bitbucket source files.",
-			"type": "string",
-			"default": ""
-		},
-		"gitRemote": {
-			"description": "Use the specified remote for linking to GitHub/Bitbucket source files.",
-			"type": "string",
-			"default": "origin"
+		"sourceLinkExternal": {
+			"description": "Specifies that source links should be treated as external links to be opened in a new tab.",
+			"type": "boolean",
+			"default": false
 		},
 		"githubPages": {
 			"description": "Generate a .nojekyll file to prevent 404 errors in GitHub Pages. Defaults to `true`.",
 			"type": "boolean",
 			"default": true
+		},
+		"sitemapBaseUrl": {
+			"description": "Specify a base URL to be used in generating a sitemap.xml in our output folder. If not specified, no sitemap will be generated.",
+			"type": "string",
+			"default": ""
 		},
 		"htmlLang": {
 			"description": "Sets the lang attribute in the generated html tag.",
@@ -238,6 +274,16 @@
 		},
 		"hideGenerator": {
 			"description": "Do not print the TypeDoc link at the end of the page.",
+			"type": "boolean",
+			"default": false
+		},
+		"hideParameterTypesInTitle": {
+			"description": "Hides parameter types in signature titles for easier scanning.",
+			"type": "boolean",
+			"default": true
+		},
+		"cacheBust": {
+			"description": "Include the generation time in links to static assets.",
 			"type": "boolean",
 			"default": false
 		},
@@ -264,130 +310,39 @@
 			"description": "Defines links to be included in the sidebar.",
 			"default": {}
 		},
-		"commentStyle": {
-			"description": "Determines how TypeDoc searches for comments.",
-			"enum": [
-				"jsdoc",
-				"block",
-				"line",
-				"all"
-			],
-			"default": "jsdoc"
-		},
-		"blockTags": {
-			"description": "Block tags which TypeDoc should recognize when parsing comments.",
-			"type": "array",
-			"items": {
-				"type": "string"
-			},
-			"default": [
-				"@deprecated",
-				"@param",
-				"@remarks",
-				"@returns",
-				"@throws",
-				"@privateRemarks",
-				"@defaultValue",
-				"@typeParam",
-				"@module",
-				"@inheritDoc",
-				"@group",
-				"@category",
-				"@template",
-				"@type",
-				"@typedef",
-				"@callback",
-				"@prop",
-				"@property"
-			]
-		},
-		"inlineTags": {
-			"description": "Inline tags which TypeDoc should recognize when parsing comments.",
-			"type": "array",
-			"items": {
-				"type": "string"
-			},
-			"default": [
-				"@link",
-				"@inheritDoc",
-				"@label",
-				"@linkcode",
-				"@linkplain"
-			]
-		},
-		"modifierTags": {
-			"description": "Modifier tags which TypeDoc should recognize when parsing comments.",
-			"type": "array",
-			"items": {
-				"type": "string"
-			},
-			"default": [
-				"@public",
-				"@private",
-				"@protected",
-				"@internal",
-				"@readonly",
-				"@packageDocumentation",
-				"@eventProperty",
-				"@alpha",
-				"@beta",
-				"@experimental",
-				"@sealed",
-				"@override",
-				"@virtual",
-				"@hidden",
-				"@ignore",
-				"@enum",
-				"@event"
-			]
-		},
-		"categorizeByGroup": {
-			"description": "Specify whether categorization will be done at the group level.",
-			"type": "boolean",
-			"default": true
-		},
-		"defaultCategory": {
-			"description": "Specify the default category for reflections without a category.",
-			"type": "string",
-			"default": "Other"
-		},
-		"categoryOrder": {
-			"description": "Specify the order in which categories appear. * indicates the relative order for categories not in the list.",
+		"navigationLeaves": {
+			"description": "Branches of the navigation tree which should not be expanded.",
 			"type": "array",
 			"items": {
 				"type": "string"
 			},
 			"default": []
 		},
-		"sort": {
-			"description": "Specify the sort strategy for documented values.",
-			"type": "array",
-			"items": {
-				"enum": [
-					"source-order",
-					"alphabetical",
-					"enum-value-ascending",
-					"enum-value-descending",
-					"static-first",
-					"instance-first",
-					"visibility",
-					"required-first",
-					"kind"
-				]
-			},
-			"default": [
-				"kind",
-				"instance-first",
-				"alphabetical"
+		"navigation": {
+			"description": "Determines how the navigation sidebar is organized.",
+			"anyOf": [
+				{
+					"type": "boolean"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"includeCategories": {
+							"type": "boolean"
+						},
+						"includeGroups": {
+							"type": "boolean"
+						},
+						"includeFolders": {
+							"type": "boolean"
+						},
+						"fullTree": {
+							"type": "boolean"
+						}
+					},
+					"additionalProperties": false
+				}
 			]
-		},
-		"kindSortOrder": {
-			"description": "Specify the sort order for reflections when 'kind' is specified.",
-			"type": "array",
-			"items": {
-				"type": "string"
-			},
-			"default": []
 		},
 		"visibilityFilters": {
 			"description": "Specify the default visibility for builtin filters and additional filters according to modifier tags.",
@@ -427,6 +382,208 @@
 			"description": "Configure search to give a relevance boost to selected kinds (eg \"class\")",
 			"default": {}
 		},
+		"jsDocCompatibility": {
+			"description": "Sets compatibility options for comment parsing that increase similarity with JSDoc comments.",
+			"anyOf": [
+				{
+					"type": "boolean"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"defaultTag": {
+							"type": "boolean"
+						},
+						"exampleTag": {
+							"type": "boolean"
+						},
+						"inheritDocTag": {
+							"type": "boolean"
+						},
+						"ignoreUnescapedBraces": {
+							"type": "boolean"
+						}
+					},
+					"additionalProperties": false
+				}
+			]
+		},
+		"commentStyle": {
+			"description": "Determines how TypeDoc searches for comments.",
+			"enum": [
+				"jsdoc",
+				"block",
+				"line",
+				"all"
+			],
+			"default": "jsdoc"
+		},
+		"useTsLinkResolution": {
+			"description": "Use TypeScript's link resolution when determining where @link tags point. This only applies to JSDoc style comments.",
+			"type": "boolean",
+			"default": true
+		},
+		"preserveLinkText": {
+			"description": "If set, @link tags without link text will use the text content as the link. If not set, will use the target reflection name.",
+			"type": "boolean",
+			"default": true
+		},
+		"blockTags": {
+			"description": "Block tags which TypeDoc should recognize when parsing comments.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"@deprecated",
+				"@param",
+				"@remarks",
+				"@returns",
+				"@throws",
+				"@privateRemarks",
+				"@defaultValue",
+				"@typeParam",
+				"@module",
+				"@inheritDoc",
+				"@group",
+				"@groupDescription",
+				"@category",
+				"@categoryDescription",
+				"@template",
+				"@type",
+				"@typedef",
+				"@callback",
+				"@prop",
+				"@property",
+				"@satisfies"
+			]
+		},
+		"inlineTags": {
+			"description": "Inline tags which TypeDoc should recognize when parsing comments.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"@link",
+				"@inheritDoc",
+				"@label",
+				"@linkcode",
+				"@linkplain"
+			]
+		},
+		"modifierTags": {
+			"description": "Modifier tags which TypeDoc should recognize when parsing comments.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"@public",
+				"@private",
+				"@protected",
+				"@internal",
+				"@readonly",
+				"@packageDocumentation",
+				"@eventProperty",
+				"@alpha",
+				"@beta",
+				"@experimental",
+				"@sealed",
+				"@override",
+				"@virtual",
+				"@hidden",
+				"@ignore",
+				"@class",
+				"@enum",
+				"@event",
+				"@overload",
+				"@namespace",
+				"@interface",
+				"@showCategories",
+				"@hideCategories",
+				"@showGroups",
+				"@hideGroups"
+			]
+		},
+		"categorizeByGroup": {
+			"description": "Specify whether categorization will be done at the group level.",
+			"type": "boolean",
+			"default": false
+		},
+		"defaultCategory": {
+			"description": "Specify the default category for reflections without a category.",
+			"type": "string",
+			"default": "Other"
+		},
+		"categoryOrder": {
+			"description": "Specify the order in which categories appear. * indicates the relative order for categories not in the list.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": []
+		},
+		"groupOrder": {
+			"description": "Specify the order in which groups appear. * indicates the relative order for groups not in the list.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"References",
+				"Modules",
+				"Namespaces",
+				"Enumerations",
+				"Enumeration Members",
+				"Classes",
+				"Interfaces",
+				"Type Aliases",
+				"Constructors",
+				"Properties",
+				"Variables",
+				"Functions",
+				"Accessors",
+				"Methods"
+			]
+		},
+		"sort": {
+			"description": "Specify the sort strategy for documented values.",
+			"type": "array",
+			"items": {
+				"enum": [
+					"source-order",
+					"alphabetical",
+					"enum-value-ascending",
+					"enum-value-descending",
+					"enum-member-source-order",
+					"static-first",
+					"instance-first",
+					"visibility",
+					"required-first",
+					"kind",
+					"external-last"
+				]
+			},
+			"default": [
+				"kind",
+				"instance-first",
+				"alphabetical"
+			]
+		},
+		"sortEntryPoints": {
+			"description": "If set, entry points will be subject to the same sorting rules as other reflections.",
+			"type": "boolean",
+			"default": true
+		},
+		"kindSortOrder": {
+			"description": "Specify the sort order for reflections when 'kind' is specified.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": []
+		},
 		"watch": {
 			"description": "Watch files for changes and rebuild docs on change.",
 			"type": "boolean",
@@ -448,20 +605,12 @@
 			"default": false
 		},
 		"plugin": {
-			"description": "Specify the npm plugins that should be loaded. Omit to load all installed plugins, set to 'none' to load no plugins.",
+			"description": "Specify the npm plugins that should be loaded. Omit to load all installed plugins.",
 			"type": "array",
 			"items": {
 				"type": "string"
 			},
 			"default": []
-		},
-		"logger": {
-			"description": "Specify the logger that should be used, 'none' or 'console'.",
-			"default": "console",
-			"enum": [
-				"console",
-				"none"
-			]
 		},
 		"logLevel": {
 			"description": "Specify what level of logging should be used.",
@@ -469,12 +618,18 @@
 				"Verbose",
 				"Info",
 				"Warn",
-				"Error"
+				"Error",
+				"None"
 			],
 			"default": "Info"
 		},
 		"treatWarningsAsErrors": {
-			"description": "If set, warnings will be treated as errors.",
+			"description": "If set, all warnings will be treated as errors.",
+			"type": "boolean",
+			"default": false
+		},
+		"treatValidationWarningsAsErrors": {
+			"description": "If set, warnings emitted during validation will be treated as errors. This option cannot be used to disable treatWarningsAsErrors for validation warnings.",
 			"type": "boolean",
 			"default": false
 		},
