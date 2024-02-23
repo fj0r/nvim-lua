@@ -39,7 +39,8 @@ local load = function()
     local wd = vcs_root(cwd) or cwd
 
     if wd then
-        local sn = vim.fn.substitute(wd, '/', '_', 'g')
+        local sn = vim.fn.substitute(wd, os.getenv('HOME'), '~', '')
+        sn = vim.fn.substitute(sn, '/', '::', 'g')
         vim.g.resession_file = sn
         local exist = false
         for _, k in pairs(resession.list()) do
