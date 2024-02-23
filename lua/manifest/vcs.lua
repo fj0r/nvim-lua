@@ -3,9 +3,7 @@ local h = require('lazy_helper')
 return {
     {
         'lewis6991/gitsigns.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim'
-        },
+        dependencies = { 'nvim-lua/plenary.nvim' },
         enabled = vim.g.has_git and vim.g.nvim_level >= 2,
         config = h.plugins 'gitsigns',
     },

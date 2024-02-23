@@ -122,14 +122,17 @@ return {
             { '<leader>gq', '<cmd>TroubleToggle quickfix<cr>', desc = 'TroubleToggle quickfix' },
             --{ '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
         },
-        dependencies = "kyazdani42/nvim-web-devicons",
+        dependencies = { "kyazdani42/nvim-web-devicons" },
         opts = {},
         enabled = vim.g.nvim_level >= 2,
     },
 
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim"
+        },
         keys = {
             { '<leader>ga', '<cmd>TodoTelescope<cr>', desc = 'TodoTelescope' },
             { '<leader>gt', '<cmd>TodoTrouble<cr>', desc = 'TodoTrouble' },

@@ -3,7 +3,10 @@ local h = require('lazy_helper')
 return {
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+        dependencies = {
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim'
+        },
         keys = {
             { '<leader>p', 'pickers', desc = 'telescope pickers' },
             { '<leader>y', 'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },

@@ -1,11 +1,17 @@
 local h = require('lazy_helper')
 
 return {
+    -- find and replace
+    {
+        'nvim-pack/nvim-spectre',
+        dependencies = { "nvim-lua/plenary.nvim" },
+        enabled = true,
+        config = h.plugins 'spectre',
+    },
     {
         'mg979/vim-visual-multi',
         enabled = vim.g.nvim_level >= 2,
     },
-
     {
         'junegunn/vim-easy-align',
         keys = {

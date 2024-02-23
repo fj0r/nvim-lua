@@ -12,11 +12,6 @@ return {
         opts = {}
     },
     {
-        'windwp/nvim-spectre',
-        enabled = false,
-        config = h.plugins 'spectre',
-    },
-    {
         'ojroques/nvim-osc52',
         enabled = false, -- by integration terminal
         config = h.plugins 'osc52',

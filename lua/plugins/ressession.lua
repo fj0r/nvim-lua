@@ -2,7 +2,22 @@ local resession = require('resession')
 local vcs_root = require('lspconfig.util').root_pattern('.git/')
 local tbm = require('taberm')
 
-resession.setup()
+resession.setup {
+    options = {
+        "binary",
+        --"bufhidden",
+        "buflisted",
+        "cmdheight",
+        "diff",
+        "filetype",
+        "modifiable",
+        "previewwindow",
+        "readonly",
+        "scrollbind",
+        "winfixheight",
+        "winfixwidth",
+    },
+}
 
 local default_load = function()
     -- Only load the session if nvim was started with no args
