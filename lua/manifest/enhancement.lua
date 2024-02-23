@@ -4,6 +4,9 @@ return {
     -- find and replace
     {
         'nvim-pack/nvim-spectre',
+        keys = {
+            { '<leader>S', function () require("spectre").open() end, desc = 'Toggle Spectre' }
+        },
         dependencies = { "nvim-lua/plenary.nvim" },
         enabled = true,
         config = h.plugins 'spectre',
@@ -48,6 +51,12 @@ return {
         enabled = vim.g.nvim_level >= 2,
         config = h.plugins 'ressession',
         opts = {},
+    },
+    {
+        "chrisgrieser/nvim-early-retirement",
+        enabled = vim.g.nvim_level >= 2,
+        config = true,
+        event = "VeryLazy",
     },
     {
         'jedrzejboczar/possession.nvim',
