@@ -15,20 +15,31 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 --]]
 
 vim.g.select_font_size = 12
-local features = {
-    monaspace = ':+ss01:+ss02:+ss03:+ss04:+ss05:+ss06:+ss07:+ss08:+calt:+dlig'
+
+local monaspace_features = {'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'}
+vim.g.neovide_font_features = {
+    ['Monaspace Neon'] = monaspace_features,
+    ['Monaspace Argon'] = monaspace_features,
+    ['Monaspace Xenon'] = monaspace_features,
+    ['Monaspace Radon'] = monaspace_features,
+    ['Monaspace Krypton'] = monaspace_features,
+    ['MonaspiceAr NFM'] = monaspace_features,
+    ['MonaspiceXe NFM'] = monaspace_features,
+    ['MonaspiceNe NFM'] = monaspace_features,
+    ['MonaspiceKr NFM'] = monaspace_features,
+    ['MonaspiceRn NFM'] = monaspace_features,
 }
 local fonts = {
-    nar = "MonaspiceAr NFM:h{}" .. features.monaspace,
-    nxe = "MonaspiceXe NFM:h{}" .. features.monaspace,
-    nne = "MonaspiceNe NFM:h{}" .. features.monaspace,
-    nkr = "MonaspiceKr NFM:h{}" .. features.monaspace,
-    nrn = "MonaspiceRn NFM:h{}" .. features.monaspace,
-    mne = "Monaspace Neon:h{}" .. features.monaspace,
-    mar = "Monaspace Argon:h{}" .. features.monaspace,
-    mxe = "Monaspace Xenon:h{}" .. features.monaspace,
-    mrn = "Monaspace Radon:h{}" .. features.monaspace,
-    mkr = "Monaspace Krypton:h{}" .. features.monaspace,
+    nar = "MonaspiceAr NFM:h{}",
+    nxe = "MonaspiceXe NFM:h{}",
+    nne = "MonaspiceNe NFM:h{}",
+    nkr = "MonaspiceKr NFM:h{}",
+    nrn = "MonaspiceRn NFM:h{}",
+    mne = "Monaspace Neon:h{}",
+    mar = "Monaspace Argon:h{}",
+    mxe = "Monaspace Xenon:h{}",
+    mrn = "Monaspace Radon:h{}",
+    mkr = "Monaspace Krypton:h{}",
     hs = "Hasklig:h{}",
     jm = "JetBrains Mono ExtraLight:h{}",
 }
@@ -50,7 +61,7 @@ vim.api.nvim_create_user_command('SelectFont',
     end,
     {
         nargs = '?',
-        complete = function ()
+        complete = function()
             local ks = {}
             for k, _ in pairs(fonts) do
                 table.insert(ks, k)
@@ -94,10 +105,10 @@ if vim.g.neovide or vim.g.server_mode then
     })
 
     require('setup').keymap_table {
-        { "<C-=>", ":lua vim.opt.linespace = math.min(vim.opt.linespace:get() + 1,  10)<CR>", 's' },
-        { "<C-->", ":lua vim.opt.linespace = math.max(vim.opt.linespace:get() - 1,  0)<CR>", 's' },
-        { "<C-+>", ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's' },
-        { "<C-_>", ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's' },
+        { "<C-=>",   ":lua vim.opt.linespace = math.min(vim.opt.linespace:get() + 1,  10)<CR>",                's' },
+        { "<C-->",   ":lua vim.opt.linespace = math.max(vim.opt.linespace:get() - 1,  0)<CR>",                 's' },
+        { "<C-+>",   ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's' },
+        { "<C-_>",   ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's' },
         { "<C-M-=>", ":lua vim.g.neovide_transparency = math.min(vim.g.neovide_transparency + 0.05, 1.0)<CR>", 's' },
         { "<C-M-->", ":lua vim.g.neovide_transparency = math.max(vim.g.neovide_transparency - 0.05, 0.0)<CR>", 's' },
     }
