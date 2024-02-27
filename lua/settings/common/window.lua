@@ -45,27 +45,27 @@ require('setup').keymap_table {
     { '<M-0>',     '<cmd>silent! tablast<cr>', 'n',  mode = 't' },
 
     ------ window switching
-    { '<C-j>',     '<C-W>j',                   'ns', mode = '' },
-    { '<C-k>',     '<C-W>k',                   'ns', mode = '' },
-    { '<C-h>',     '<C-W>h',                   'ns', mode = '' },
-    { '<C-l>',     '<C-W>l',                   'ns', mode = '' },
+    { '<M-j>',     '<C-W>j',                   'ns', mode = '' },
+    { '<M-k>',     '<C-W>k',                   'ns', mode = '' },
+    { '<M-h>',     '<C-W>h',                   'ns', mode = '' },
+    { '<M-l>',     '<C-W>l',                   'ns', mode = '' },
 
     -- '<cmd>wincmd j<cr>'
-    { '<C-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 'i' },
-    { '<C-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 'i' },
-    { '<C-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 'i' },
-    { '<C-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 'i' },
+    { '<M-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 'i' },
+    { '<M-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 'i' },
+    { '<M-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 'i' },
+    { '<M-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 'i' },
 
-    { '<C-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 't' },
-    { '<C-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 't' },
-    { '<C-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 't' },
-    { '<C-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 't' },
+    { '<M-j>',     "<C-\\><C-N><C-w>j",        'ns', mode = 't' },
+    { '<M-k>',     "<C-\\><C-N><C-w>k",        'ns', mode = 't' },
+    { '<M-h>',     "<C-\\><C-N><C-w>h",        'ns', mode = 't' },
+    { '<M-l>',     "<C-\\><C-N><C-w>l",        'ns', mode = 't' },
 
     ------ window motion
-    { '<M-j>',     '<C-W><S-j>',               'ns', mode = '' },
-    { '<M-k>',     '<C-W><S-k>',               'ns', mode = '' },
-    { '<M-h>',     '<C-W><S-h>',               'ns', mode = '' },
-    { '<M-l>',     '<C-W><S-l>',               'ns', mode = '' },
+    { '<C-j>',     '<C-W><S-j>',               'ns', mode = '' },
+    { '<C-k>',     '<C-W><S-k>',               'ns', mode = '' },
+    { '<C-h>',     '<C-W><S-h>',               'ns', mode = '' },
+    { '<C-l>',     '<C-W><S-l>',               'ns', mode = '' },
 }
 
 ------ window resize

@@ -20,6 +20,6 @@ return {
     --remote-wait
     {
         "samjwill/nvim-unception",
-        enabled = vim.g.nvim_level >= 2,
+        enabled = false,
     }
 }
