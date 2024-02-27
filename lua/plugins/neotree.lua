@@ -1,3 +1,5 @@
+local m = require('setup').mod
+
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -71,8 +73,8 @@ require("neo-tree").setup({
             -- ["v"] = "open_vsplit",
             ["s"] = "split_with_window_picker",
             ["v"] = "vsplit_with_window_picker",
-            ["<C-s>"] = "split_with_window_picker",
-            ["<C-v>"] = "vsplit_with_window_picker",
+            [m's'] = "split_with_window_picker",
+            [m'v'] = "vsplit_with_window_picker",
             ["t"] = "open_tabnew",
             [vim.g.arrow_keys.l] = "open_with_window_picker",
             --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
@@ -105,7 +107,7 @@ require("neo-tree").setup({
                 vim.fn.setreg('1', full_path)
                 vim.fn.setreg('+', full_path)
             end,
-            ["<C-y>"] = function(state)
+            [m'y'] = function(state)
                 local node = state.tree:get_node()
                 local relative_path = node.path:sub(#state.path + 2)
                 vim.fn.setreg('"', relative_path)

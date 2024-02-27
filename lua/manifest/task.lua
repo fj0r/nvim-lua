@@ -1,4 +1,5 @@
 local h = require('lazy_helper')
+local m = require('setup').mod
 
 return {
     {
@@ -6,8 +7,8 @@ return {
         lazy = true,
         keys = {
             { '<leader>t', '<cmd>OverseerRun<cr>' },
-            { '<C-t>', '<cmd>OverseerToggle<cr>' },
-            { '<C-t>', '<cmd>OverseerToggle<cr>', mode = 't' },
+            { m't', '<cmd>OverseerToggle<cr>' },
+            { m't', '<cmd>OverseerToggle<cr>', mode = 't' },
             { '<leader>or', '<cmd>OverseerRun<cr>' },
             { '<leader>oo', '<cmd>OverseerToggle<cr>' },
             { '<leader>ob', '<cmd>OverseerBuild<cr>' },

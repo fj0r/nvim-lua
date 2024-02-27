@@ -1,3 +1,4 @@
+local m = require('setup').mod
 local tele = require 'telescope.builtin'
 local tele_tabby = require 'telescope'.extensions.tele_tabby
 
@@ -12,10 +13,11 @@ telescope.setup {
         mappings = {
             i = {
                 ["<c-x>"] = false,
-                ["<C-s>"] = actions.select_horizontal,
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                [m"s"] = actions.select_horizontal,
+                [m"v"] = actions.select_vertical,
+                [m"j"] = actions.move_selection_next,
+                [m"k"] = actions.move_selection_previous,
+                [m"q"] = actions.smart_send_to_qflist + actions.open_qflist,
                 ["<esc>"] = actions.close,
                 [vim.g.mapesc or '<ESC>'] = actions.close,
                 ["<CR>"] = actions.select_default + actions.center
@@ -23,9 +25,9 @@ telescope.setup {
                 -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
             },
             n = {
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                [m"j"] = actions.move_selection_next,
+                [m"k"] = actions.move_selection_previous,
+                [m"q"] = actions.smart_send_to_qflist + actions.open_qflist,
             }
         },
     },

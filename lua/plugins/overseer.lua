@@ -1,4 +1,5 @@
 local overseer = require 'overseer'
+local m = require('setup').mod
 
 overseer.setup({
     -- Default task strategy
@@ -32,10 +33,10 @@ overseer.setup({
             ["<CR>"] = "RunAction",
             ["<C-e>"] = "Edit",
             ["o"] = "Open",
-            ["<C-v>"] = "OpenVsplit",
-            ["<C-s>"] = "OpenSplit",
-            ["<C-f>"] = "OpenFloat",
-            ["<C-q>"] = "OpenQuickFix",
+            [m"v"] = "OpenVsplit",
+            [m"s"] = "OpenSplit",
+            [m"f"] = "OpenFloat",
+            [m"q"] = "OpenQuickFix",
             ["p"] = "TogglePreview",
             ["<C-l>"] = "IncreaseDetail",
             ["<C-h>"] = "DecreaseDetail",

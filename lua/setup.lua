@@ -56,4 +56,20 @@ function M.global_table(tbl)
     end
 end
 
+function M.mod(key, revert)
+    local p
+
+    p = vim.g.prefer_alt
+
+    if revert then
+        p = not p
+    end
+
+    if p then
+        return "<M-" .. key .. ">"
+    else
+        return "<C-" .. key .. ">"
+    end
+end
+
 return M

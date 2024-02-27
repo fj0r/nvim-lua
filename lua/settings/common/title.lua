@@ -62,7 +62,7 @@ vim.g.tab_title_pin = '^'
 local tab_title = set_tab_title(vim.g.tab_title_pin, set_lualine)
 
 require('setup').keymap_table {
-    { '<M-t>', prompt_set_title, mode = 'nit', desc = 'set title' },
+    { '<M-R>', prompt_set_title, mode = 'nit', desc = 'set title' },
     { '<M-r>', tab_title.prompt, mode = 'nit', desc = 'rename tab title' },
 }
 

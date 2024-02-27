@@ -1,12 +1,15 @@
+local s = require('setup')
+local m = s.mod
+vim.g.prefer_alt = os.getenv('NVIM_PREFER_ALT') == '1' or os.getenv('PREFER_ALT') == '1'
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapesc = '<M-[>' -- nil | '<M-[>' | '<C-;>'
+vim.g.mapesc = m'[' -- nil | '<M-[>' | '<C-;>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
-require('setup').keymap_table {
-    { '<Esc>',                 '<C-\\><C-n>',                                 'ns',  mode = 't' },
+s.keymap_table {
+    { m'\\',                   '<C-\\><C-n>',                                 'ns',  mode = 't' },
     { vim.g.mapesc,            '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
     { vim.g.arrow_keys.k,      "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
     { vim.g.arrow_keys.j,      "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
@@ -16,6 +19,8 @@ require('setup').keymap_table {
     { "`",                     "'",                                           'ns' },
     { "'",                     "`",                                           'ns' },
     --]]
+    { m'f',                    '<C-f>',                                       'ns' },
+    { m'b',                    '<C-b>',                                       'ns' },
     -- Go to home and end using capitalized directions
     { 'H',                     '^',                                           'ns' },
     { 'L',                     '$',                                           'ns' },
@@ -31,7 +36,7 @@ require('setup').keymap_table {
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
     { '@',                     ':normal @',                                   'n',   mode = 'v' },
     { '<leader>q',             '<cmd>CloseExceptLast<CR>',                    'ns' },
-    { '<M-q>',                 '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
+    { m('q', true),            '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
     { '<',                     '<gv',                                         'ns',  mode = 'x' },
     { '>',                     '>gv',                                         'ns',  mode = 'x' },
