@@ -68,7 +68,11 @@ function M.mod(key, revert)
     if p then
         return "<M-" .. key .. ">"
     else
-        return "<C-" .. key .. ">"
+        if vim.g.prefer_alt > 1 then
+            return "<M-S-" .. key .. ">"
+        else
+            return "<C-" .. key .. ">"
+        end
     end
 end
 

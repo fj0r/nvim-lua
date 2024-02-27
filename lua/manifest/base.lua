@@ -6,6 +6,7 @@ return {
     },
     {
         'tpope/vim-rsi',
+        enabled = false
     },
     {
         "max397574/better-escape.nvim",

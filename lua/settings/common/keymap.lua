@@ -1,6 +1,6 @@
 local s = require('setup')
 local m = s.mod
-vim.g.prefer_alt = os.getenv('NVIM_PREFER_ALT') == '1' or os.getenv('PREFER_ALT') == '1'
+vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT'))
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapesc = m'[' -- nil | '<M-[>' | '<C-;>'
 vim.g.mapleader = " "
@@ -47,25 +47,23 @@ s.keymap_table {
     -- repeat substitution
     { '&',                     ':%&<CR>',                                     'ns' },
     -- go to end of parenthesis/brackets/quotes without switching insert mode
-    --[[ provided by vim-rsi
-    { '<C-l>', '<C-o>A',    'ns', mode = 'i' },
-    { '<C-a>', '<C-o>^',    'ns', mode = 'i' },
-    { '<C-e>', '<C-o>$',    'ns', mode = 'i' },
-    { '<C-f>', '<C-o>l',    'ns', mode = 'i' },
-    { '<C-b>', '<C-o>h',    'ns', mode = 'i' },
-    { '<M-f>', '<C-o>w',    'ns', mode = 'i' },
-    { '<M-b>', '<C-o>b',    'ns', mode = 'i' },
-    { '<C-w>', '<C-o>db',   'ns', mode = 'i' },
+    { m('a'), '<C-o>^',    'ns', mode = 'i' },
+    { m('e'), '<C-o>$',    'ns', mode = 'i' },
+    { m('f'), '<C-o>l',    'ns', mode = 'i' },
+    { m('b'), '<C-o>h',    'ns', mode = 'i' },
+    { m('w'), '<C-o>db',   'ns', mode = 'i' },
+    { m('l', true), '<C-o>A',    'ns', mode = 'i' },
+    { m('f', true), '<C-o>w',    'ns', mode = 'i' },
+    { m('b', true), '<C-o>b',    'ns', mode = 'i' },
 
-    { '<C-o>', '<C-f>',     'n',  mode = 'c' },
-    { '<C-a>', '<Home>',    'n',  mode = 'c' },
-    { '<C-e>', '<End>',     'n',  mode = 'c' },
-    { '<C-f>', '<Right>',   'n',  mode = 'c' },
-    { '<C-b>', '<Left>',    'n',  mode = 'c' },
-    { '<M-f>', '<S-Right>', 'n',  mode = 'c' },
-    { '<M-b>', '<S-Left>',  'n',  mode = 'c' },
-    { '<C-d>', '<Delete>',  'n',  mode = 'c' },
-    --]]
+    { m('o'), '<C-f>',     'n',  mode = 'c' },
+    { m('a'), '<Home>',    'n',  mode = 'c' },
+    { m('e'), '<End>',     'n',  mode = 'c' },
+    { m('f'), '<Right>',   'n',  mode = 'c' },
+    { m('b'), '<Left>',    'n',  mode = 'c' },
+    { m('d'), '<Delete>',  'n',  mode = 'c' },
+    { m('f', true), '<S-Right>', 'n',  mode = 'c' },
+    { m('b', true), '<S-Left>',  'n',  mode = 'c' },
 }
 
 
