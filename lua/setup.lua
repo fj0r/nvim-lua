@@ -56,24 +56,32 @@ function M.global_table(tbl)
     end
 end
 
-function M.mod(key, revert)
-    local p
+local key_series = function (suffix, keys)
+    local r = ""
+    for _, k in ipairs(vim.fn.split(keys, ',')) do
+        r = r .. "<" .. suffix .. k .. ">"
+    end
+    return r
+end
 
-    p = vim.g.prefer_alt
+function M.mod(key, revert)
+    local p = vim.g.prefer_alt > 0
 
     if revert then
         p = not p
     end
 
+    local s
     if p then
-        return "<M-" .. key .. ">"
+        s = "M-"
     else
         if vim.g.prefer_alt > 1 then
-            return "<M-S-" .. key .. ">"
+            s = "M-S-"
         else
-            return "<C-" .. key .. ">"
+            s = "C-"
         end
     end
+    return key_series(s, key)
 end
 
 return M

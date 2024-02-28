@@ -17,7 +17,7 @@ cmp.setup {
     mapping = cmp.mapping.preset.insert {
         [m'b'] = cmp.mapping.scroll_docs(-4),
         [m'f'] = cmp.mapping.scroll_docs(4),
-        [m'Space'] = cmp.mapping.complete(),
+        [m'space'] = cmp.mapping.complete(),
         [m'e'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
