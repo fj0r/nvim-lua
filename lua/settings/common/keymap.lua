@@ -28,7 +28,7 @@ s.keymap_table {
     -- join lines without space
     { 'J',                'gJ',                                          'ns',  mode = 'nv' },
     { 'gJ',               'J',                                           'ns',  mode = 'nv' },
-    -- 去掉搜索高亮
+    -- no highlight search
     { '<leader>/',        ':nohls<CR>',                                  'ns' },
     -- command history
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
