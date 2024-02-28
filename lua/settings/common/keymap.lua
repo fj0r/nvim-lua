@@ -57,6 +57,8 @@ s.keymap_table {
     { 'Y',                'y$',                                          'ns' },
     -- repeat substitution
     { '&',                ':%&<CR>',                                     'ns' },
+
+    { m('r'),             '<C-r>',                                       'ns',  mode = 'i' },
     -- go to end of parenthesis/brackets/quotes without switching insert mode
     { m('a'),             '<C-o>^',                                      'ns',  mode = 'i' },
     { m('e'),             pumkey('<end>', '<C-e>'),                      'ns',  mode = 'i' },
