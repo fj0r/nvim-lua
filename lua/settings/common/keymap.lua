@@ -8,19 +8,6 @@ vim.g.maplocalleader = " "
 
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
-local pumkey = function(p, o)
-    return function()
-        local f = vim.fn
-        local k
-        if f.col('.') > f.strlen(f.getline('.')) or f.pumvisible() then
-            k = p
-        else
-            k = o
-        end
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(k, true, false, true), 'm', true)
-    end
-end
-
 s.keymap_table {
     { m '\\',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     { vim.g.mapesc,       '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
@@ -57,25 +44,6 @@ s.keymap_table {
     { 'Y',                'y$',                                          'ns' },
     -- repeat substitution
     { '&',                ':%&<CR>',                                     'ns' },
-    -- go to end of parenthesis/brackets/quotes without switching insert mode
-    { m('a'),             '<C-o>^',                                      'ns',  mode = 'i' },
-    { m('e'),             pumkey('<end>', '<C-e>'),                      'ns',  mode = 'i' },
-    { m('f'),             '<C-o>w',                                      'ns',  mode = 'i' },
-    { m('b'),             '<C-o>b',                                      'ns',  mode = 'i' },
-    { m('f', true),       '<C-o>l',                                      'ns',  mode = 'i' },
-    { m('b', true),       '<C-o>h',                                      'ns',  mode = 'i' },
-    { m('w'),             '<C-o>db',                                     'ns',  mode = 'i' },
-
-    { m('o'),             '<C-f>',                                       'n',   mode = 'c' },
-    { m('a'),             '<Home>',                                      'n',   mode = 'c' },
-    { m('e'),             '<End>',                                       'n',   mode = 'c' },
-    { m('f'),             '<S-Right>',                                   'n',   mode = 'c' },
-    { m('b'),             '<S-Left>',                                    'n',   mode = 'c' },
-    { m('f', true),       '<Right>',                                     'n',   mode = 'c' },
-    { m('b', true),       '<Left>',                                      'n',   mode = 'c' },
-    { m('n'),             '<down>',                                      'n',   mode = 'c' },
-    { m('p'),             '<up>',                                        'n',   mode = 'c' },
-    { m('d'),             '<Delete>',                                    'n',   mode = 'c' },
 }
 
 if vim.g.prefer_alt > 0 then
@@ -89,8 +57,49 @@ if vim.g.prefer_alt > 0 then
     }
 end
 
-vim.api.nvim_command [[
-nnoremap <expr><silent><Esc> len(filter(range(1, winnr('$')), 'getwinvar(v:val, "&ft") == "qf"')) ? ":ccl<CR>" : "\<Esc>"
-"快速编辑自定义宏
-nnoremap <leader>xm  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-]]
+
+------------------------------
+-- Readline style insertion --
+------------------------------
+
+local fn = vim.fn
+local iln = function() return fn.col('.') > fn.strlen(fn.getline('.')) end
+local cln = function() return fn.getcmdpos() > fn.strlen(fn.getcmdline()) end
+local ipv = function() return iln() or fn.pumvisible() end
+
+local act = {
+    iend = { ipv, '<end>', '<C-e>' },
+    iforward = { iln, '<C-f>', '<Right>' },
+    idelete = { iln, '<C-d>', '<Del>' },
+    cdelete = { cln, '<C-d>', '<Del>' },
+}
+
+for k, v in pairs(act) do
+    act[k] = function()
+        local key = v[1]() and v[2] or v[3]
+        local code = vim.api.nvim_replace_termcodes(key, true, false, true)
+        vim.api.nvim_feedkeys(code, 'm', true)
+    end
+end
+
+s.keymap_table {
+    { m('a'),       '<C-o>^',     'ns', mode = 'i' },
+    { m('e'),       act.iend,     'ns', mode = 'i' },
+    { m('f'),       '<C-o>w',     'ns', mode = 'i' },
+    { m('b'),       '<C-o>b',     'ns', mode = 'i' },
+    { m('f', true), act.iforward, 'ns', mode = 'i' },
+    { m('b', true), '<C-o>h',     'ns', mode = 'i' },
+    { m('w'),       '<C-o>db',    'ns', mode = 'i' },
+    { m('d'),       act.idelete,  'ns', mode = 'i' },
+
+    { m('o'),       '<C-f>',      'n',  mode = 'c' },
+    { m('a'),       '<Home>',     'n',  mode = 'c' },
+    { m('e'),       '<End>',      'n',  mode = 'c' },
+    { m('f'),       '<S-Right>',  'n',  mode = 'c' },
+    { m('b'),       '<S-Left>',   'n',  mode = 'c' },
+    { m('f', true), '<Right>',    'n',  mode = 'c' },
+    { m('b', true), '<Left>',     'n',  mode = 'c' },
+    { m('n'),       '<down>',     'n',  mode = 'c' },
+    { m('p'),       '<up>',       'n',  mode = 'c' },
+    { m('d'),       act.cdelete,  'n',  mode = 'c' },
+}
