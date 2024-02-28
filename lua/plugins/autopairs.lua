@@ -1,10 +1,13 @@
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
 local has_plugin = require 'lazy_helper'.has_plugin
+local m = require('setup').mod
 
 local cfg = {
     disable_filetype = { "TelescopePrompt", "vim" },
-    fast_wrap = {},
+    fast_wrap = {
+        map = m('e', true)
+    },
 }
 
 if has_plugin 'cmp' then

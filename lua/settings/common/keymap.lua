@@ -8,16 +8,17 @@ vim.g.maplocalleader = " "
 
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
-
-local end_to_line = function ()
-    local f = vim.fn
-    local k
-    if f.col('.') > f.strlen(f.getline('.')) or f.pumvisible() then
-        k = '<end>'
-    else
-        k = '<C-e>'
+local pumkey = function(p, o)
+    return function()
+        local f = vim.fn
+        local k
+        if f.col('.') > f.strlen(f.getline('.')) or f.pumvisible() then
+            k = p
+        else
+            k = o
+        end
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(k, true, false, true), 'm', true)
     end
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(k, true, true, true), 'n', true)
 end
 
 s.keymap_table {
@@ -58,24 +59,23 @@ s.keymap_table {
     { '&',                ':%&<CR>',                                     'ns' },
     -- go to end of parenthesis/brackets/quotes without switching insert mode
     { m('a'),             '<C-o>^',                                      'ns',  mode = 'i' },
-    { m('x,a'),            '<C-a>',                                       'ns',  mode = 'i' },
-    { m('e'),             end_to_line,                                   'se',  mode = 'i' },
-    { m('f'),             '<C-o>l',                                      'ns',  mode = 'i' },
-    { m('b'),             '<C-o>h',                                      'ns',  mode = 'i' },
+    { m('e'),             pumkey('<end>', '<C-e>'),                      'ns',  mode = 'i' },
+    { m('f'),             '<C-o>w',                                      'ns',  mode = 'i' },
+    { m('b'),             '<C-o>b',                                      'ns',  mode = 'i' },
+    { m('f', true),       '<C-o>l',                                      'ns',  mode = 'i' },
+    { m('b', true),       '<C-o>h',                                      'ns',  mode = 'i' },
     { m('w'),             '<C-o>db',                                     'ns',  mode = 'i' },
-    { m('l', true),       '<C-o>A',                                      'ns',  mode = 'i' },
-    { m('f', true),       '<C-o>w',                                      'ns',  mode = 'i' },
-    { m('b', true),       '<C-o>b',                                      'ns',  mode = 'i' },
 
     { m('o'),             '<C-f>',                                       'n',   mode = 'c' },
     { m('a'),             '<Home>',                                      'n',   mode = 'c' },
-    { m('x,a'),            '<C-a>',                                       'n',   mode = 'c' },
     { m('e'),             '<End>',                                       'n',   mode = 'c' },
-    { m('f'),             '<Right>',                                     'n',   mode = 'c' },
-    { m('b'),             '<Left>',                                      'n',   mode = 'c' },
+    { m('f'),             '<S-Right>',                                   'n',   mode = 'c' },
+    { m('b'),             '<S-Left>',                                    'n',   mode = 'c' },
+    { m('f', true),       '<Right>',                                     'n',   mode = 'c' },
+    { m('b', true),       '<Left>',                                      'n',   mode = 'c' },
+    { m('n'),             '<down>',                                      'n',   mode = 'c' },
+    { m('p'),             '<up>',                                        'n',   mode = 'c' },
     { m('d'),             '<Delete>',                                    'n',   mode = 'c' },
-    { m('f', true),       '<S-Right>',                                   'n',   mode = 'c' },
-    { m('b', true),       '<S-Left>',                                    'n',   mode = 'c' },
 }
 
 if vim.g.prefer_alt > 0 then

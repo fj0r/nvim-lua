@@ -15,17 +15,17 @@ cmp.setup {
         end,
     },
     mapping = cmp.mapping.preset.insert {
-        [m'b'] = cmp.mapping.scroll_docs(-4),
-        [m'f'] = cmp.mapping.scroll_docs(4),
-        [m'space'] = cmp.mapping.complete(),
-        [m'e'] = cmp.mapping.abort(),
+        [m 'b'] = cmp.mapping.scroll_docs(-4),
+        [m 'f'] = cmp.mapping.scroll_docs(4),
+        [m 'space'] = cmp.mapping.complete(),
+        [m 'e'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
         -- [m'p'] = cmp.mapping.select_prev_item(),
         -- [m'n'] = cmp.mapping.select_next_item(),
-        [m"p"] = cmp.mapping(function(fallback)
+        [m "p"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.choice_active() then
@@ -34,7 +34,7 @@ cmp.setup {
                 fallback()
             end
         end, { "i", "s" }),
-        [m"n"] = cmp.mapping(function(fallback)
+        [m "n"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.choice_active() then

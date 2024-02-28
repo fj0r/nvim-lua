@@ -33,7 +33,7 @@ return {
     },
     {
         'windwp/nvim-autopairs',
-        config = h.plugins 'autopairs'
+        config = h.plugins 'autopairs',
     },
     {
         "kylechui/nvim-surround",
