@@ -5,7 +5,7 @@ return {
     {
         'nvim-pack/nvim-spectre',
         keys = {
-            { '<leader>S', function () require("spectre").open() end, desc = 'Toggle Spectre' }
+            { '<leader>S', function() require("spectre").open() end, desc = 'Toggle Spectre' }
         },
         dependencies = { "nvim-lua/plenary.nvim" },
         enabled = true,

@@ -26,7 +26,7 @@ if has_plugin 'nvim-treesitter' then
     cfg.ts_config = {
         lua = { 'string' }, -- it will not add pair on that treesitter node
         javascript = { 'template_string' },
-        java = false, -- don't check treesitter on java
+        java = false,       -- don't check treesitter on java
     }
     npairs.setup(cfg)
 
@@ -34,9 +34,9 @@ if has_plugin 'nvim-treesitter' then
     -- press % => %% only while inside a comment or string
     npairs.add_rules({
         Rule("%", "%", "lua")
-        :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
+            :with_pair(ts_conds.is_ts_node({ 'string', 'comment' })),
         Rule("$", "$", "lua")
-        :with_pair(ts_conds.is_not_ts_node({ 'function' }))
+            :with_pair(ts_conds.is_not_ts_node({ 'function' }))
     })
     require('nvim-treesitter.configs').setup {
         autotag = {

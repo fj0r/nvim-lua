@@ -21,7 +21,7 @@ require("neo-tree").setup({
             end
         },
     },
-    close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+    close_if_last_window = false,   -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = 'rounded', -- "double", "rounded", "single" or "solid"
     enable_git_status = vim.g.has_git,
     default_component_configs = {
@@ -73,8 +73,8 @@ require("neo-tree").setup({
             -- ["v"] = "open_vsplit",
             ["s"] = "split_with_window_picker",
             ["v"] = "vsplit_with_window_picker",
-            [m's'] = "split_with_window_picker",
-            [m'v'] = "vsplit_with_window_picker",
+            [m 's'] = "split_with_window_picker",
+            [m 'v'] = "vsplit_with_window_picker",
             ["t"] = "open_tabnew",
             [vim.g.arrow_keys.l] = "open_with_window_picker",
             --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
@@ -107,7 +107,7 @@ require("neo-tree").setup({
                 vim.fn.setreg('1', full_path)
                 vim.fn.setreg('+', full_path)
             end,
-            [m'y'] = function(state)
+            [m 'y'] = function(state)
                 local node = state.tree:get_node()
                 local relative_path = node.path:sub(#state.path + 2)
                 vim.fn.setreg('"', relative_path)
@@ -146,12 +146,12 @@ require("neo-tree").setup({
             },
         },
         follow_current_file = {
-            enabled = true, -- This will find and focus the file in the active buffer every time
+            enabled = true,          -- This will find and focus the file in the active buffer every time
             --              -- the current file is changed while the tree is open.
             leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
         -- time the current file is changed while the tree is open.
-        group_empty_dirs = false, -- when true, empty folders will be grouped together
+        group_empty_dirs = false,               -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -177,7 +177,7 @@ require("neo-tree").setup({
     },
     buffers = {
         follow_current_file = {
-            enabled = true, -- This will find and focus the file in the active buffer every time
+            enabled = true,          -- This will find and focus the file in the active buffer every time
             --              -- the current file is changed while the tree is open.
             leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
@@ -211,7 +211,7 @@ require("neo-tree").setup({
 local notify = function(x) require('notify').notify(vim.inspect(x)) end
 return {
     fns = {
-        reveal = function ()
+        reveal = function()
             local cwd = vim.fn.getcwd()
             local bn = vim.api.nvim_buf_get_name(0)
             local sub = true

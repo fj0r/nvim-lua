@@ -9,7 +9,7 @@ return {
         lazy = false, -- or ft = 'toggleterm' if you use toggleterm.nvim
         version = '1.*',
         enabled = false,
-        config = function ()
+        config = function()
             local nu = os.getenv('SHELL') == 'nu'
             require 'term-edit'.setup {
                 prompt_end = nu and '% ' or '%$ ',
@@ -20,7 +20,7 @@ return {
     {
         'fj0r/nvim-taberm',
         keys = {
-            { m'x', nil, desc = 'taberm' },
+            { m 'x',        nil, desc = 'taberm' },
             { '<leader>xx', nil, desc = 'tab' },
             { '<leader>xv', nil, desc = 'vertical' },
             { '<leader>xV', nil, desc = 'vertical_ext' },
@@ -29,7 +29,7 @@ return {
         },
         opts = {
             keymap = {
-                toggle = m'x'
+                toggle = m 'x'
             }
         },
         enabled = vim.g.nvim_level >= 2,

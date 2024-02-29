@@ -16,7 +16,7 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 
 vim.g.select_font_size = 12
 
-local monaspace_features = {'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'}
+local monaspace_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
 vim.g.neovide_font_features = {
     ['Monaspace Neon'] = monaspace_features,
     ['Monaspace Argon'] = monaspace_features,

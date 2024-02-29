@@ -1,7 +1,7 @@
 require("better_escape").setup {
-    mapping = { 'kl' }, -- ds: backends
+    mapping = { 'kl' },         -- ds: backends
     timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-    clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+    clear_empty_lines = false,  -- clear line after escaping if there is only whitespace
     -- keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
     keys = function()
         -- can't escape terminal mode

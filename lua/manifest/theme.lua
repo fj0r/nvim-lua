@@ -8,7 +8,7 @@ return {
     {
         "luisiacc/gruvbox-baby",
         name = "gruvbox-baby",
-        config = function (plugin)
+        config = function(plugin)
             vim.g.gruvbox_baby_function_style = "NONE"
             vim.g.gruvbox_baby_background_color = 'medium' -- 'medium' | 'dark'
             vim.g.gruvbox_baby_telescope_theme = 0
