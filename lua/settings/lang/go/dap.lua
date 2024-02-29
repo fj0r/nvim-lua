@@ -12,12 +12,12 @@ dap.adapters.go = function(callback, config)
         detached = true
     }
     handle, pid_or_err = vim.uv.spawn("dlv", opts, function(code)
-            stdout:close()
-            handle:close()
-            if code ~= 0 then
-                print('dlv exited with code', code)
-            end
-        end)
+        stdout:close()
+        handle:close()
+        if code ~= 0 then
+            print('dlv exited with code', code)
+        end
+    end)
     assert(handle, 'Error running dlv: ' .. tostring(pid_or_err))
     stdout:read_start(function(err, chunk)
         assert(not err, err)

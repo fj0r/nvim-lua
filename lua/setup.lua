@@ -56,7 +56,7 @@ function M.global_table(tbl)
     end
 end
 
-local key_series = function (suffix, keys)
+local key_series = function(suffix, keys)
     local r = ""
     for _, k in ipairs(vim.fn.split(keys, ',')) do
         r = r .. "<" .. suffix .. k .. ">"
