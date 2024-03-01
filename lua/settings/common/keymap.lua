@@ -90,10 +90,10 @@ s.keymap_table {
 local fn = vim.fn
 local iln = function() return fn.col('.') > fn.strlen(fn.getline('.')) end
 local cln = function() return fn.getcmdpos() > fn.strlen(fn.getcmdline()) end
-local ipv = function() return iln() or fn.pumvisible() end
+local ipv = function() return iln() or fn.pumvisible() ~= 0 end
 
 local act = {
-    iend = { ipv, '<end>', '<C-e>' },
+    iend = { ipv, '<C-e>', '<End>' },
     iforward = { iln, '<C-f>', '<Right>' },
     idelete = { iln, '<C-d>', '<Del>' },
     cdelete = { cln, '<C-d>', '<Del>' },
