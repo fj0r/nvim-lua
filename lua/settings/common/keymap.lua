@@ -6,6 +6,11 @@ vim.g.mapesc = m '[' -- nil | '<M-[>' | '<C-;>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+local feedkeys = function(key)
+    local code = vim.api.nvim_replace_termcodes(key, true, false, true)
+    vim.api.nvim_feedkeys(code, 'm', true)
+end
+
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
@@ -72,8 +77,7 @@ local run_normal = function(k)
         else
             key = k
         end
-        local code = vim.api.nvim_replace_termcodes(key, true, false, true)
-        vim.api.nvim_feedkeys(code, 'm', true)
+        feedkeys(key)
     end
 end
 
@@ -88,6 +92,45 @@ s.keymap_table {
 ------------------------------
 
 local fn = vim.fn
+
+local mkdict = function(s)
+    local r = {}
+    for i = 1, #s do
+        r[string.sub(s, i, i)] = true
+    end
+    return r
+end
+
+local mkskipchar = function(pattern, r)
+    return function()
+        local c = fn.getline('.')
+        local p = fn.col('.')
+        local n = 0
+        local b, e, s
+        if r then
+            b, e, s = p, #c, 1
+        else
+            b, e, s = p - 1, 1, -1
+        end
+        for i = b, e, s do
+            local cur = string.sub(c, i, i)
+            if pattern[cur] then
+                n = n + 1
+            else
+                break
+            end
+        end
+        local v = ""
+        for _ = 1, n do
+            v = v .. (r and '<Right>' or '<Left>')
+        end
+        return v
+    end
+end
+
+local skipleft = mkskipchar(mkdict("\\[{(\"'<"), false)
+local skipright = mkskipchar(mkdict("\\]})\"'>"), true)
+
 local iln = function() return fn.col('.') > fn.strlen(fn.getline('.')) end
 local cln = function() return fn.getcmdpos() > fn.strlen(fn.getcmdline()) end
 local ipv = function() return iln() or fn.pumvisible() ~= 0 end
@@ -101,16 +144,19 @@ local act = {
 
 for k, v in pairs(act) do
     act[k] = function()
-        local key = v[1]() and v[2] or v[3]
-        local code = vim.api.nvim_replace_termcodes(key, true, false, true)
-        vim.api.nvim_feedkeys(code, 'm', true)
+        feedkeys(v[1]() and v[2] or v[3])
     end
+end
+
+local wd_iforward = function()
+    local s = skipright()
+    feedkeys(s == "" and '<S-Right>' or s)
 end
 
 s.keymap_table {
     { m('a'),       '<C-o>^',     'ns', mode = 'i' },
     { m('e'),       act.iend,     'ns', mode = 'i' },
-    { m('f'),       '<S-Right>',  'ns', mode = 'i' },
+    { m('f'),       wd_iforward,  'ns', mode = 'i' },
     { m('b'),       '<S-Left>',   'ns', mode = 'i' },
     { m('f', true), act.iforward, 'ns', mode = 'i' },
     { m('b', true), '<Left>',     'ns', mode = 'i' },
