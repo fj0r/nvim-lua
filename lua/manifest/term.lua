@@ -21,7 +21,7 @@ return {
         'fj0r/nvim-taberm',
         keys = {
             { m 'x',        nil, desc = 'toggle taberm' },
-            { m 'y',        nil, desc = 'paste' },
+            { m 'y',        nil, desc = 'paste',         mode = 't' },
             { '<leader>xx', nil, desc = 'tab' },
             { '<leader>xv', nil, desc = 'vertical' },
             { '<leader>xV', nil, desc = 'vertical_ext' },
