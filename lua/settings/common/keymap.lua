@@ -46,6 +46,21 @@ s.keymap_table {
     { '&',                ':%&<CR>',                                     'ns' },
 }
 
+if vim.g.prefer_alt > 0 then
+    s.keymap_table {
+        { m 'f', '<C-f>', 'ns' },
+        { m 'b', '<C-b>', 'ns' },
+        { m 'u', '<C-u>', 'ns' },
+        { m 'd', '<C-d>', 'ns' },
+        { m 'e', '<C-e>', 'ns' },
+        { m 'y', '<C-y>', 'ns' },
+    }
+end
+
+-----------------
+-- Viewer mode --
+-----------------
+
 local run_normal = function(k)
     return function()
         local mode = vim.fn.mode()
@@ -62,19 +77,11 @@ local run_normal = function(k)
     end
 end
 
-if vim.g.prefer_alt > 0 then
-    s.keymap_table {
-        { m 'f', '<C-f>',             'ns' },
-        { m 'b', '<C-b>',             'ns' },
-        { m 'u', '<C-u>',             'ns' },
-        { m 'd', '<C-d>',             'ns' },
-        { m 'e', '<C-e>',             'ns' },
-        { m 'y', '<C-y>',             'ns' },
-        { m ',', run_normal('<C-b>'), 'ns', mode = 'nicvt' },
-        { m '.', run_normal('<C-f>'), 'ns', mode = 'nicvt' },
-    }
-end
-
+s.keymap_table {
+    { '<M-,>', run_normal('<C-b>'), 'ns', mode = 'nicvt' },
+    { '<M-.>', run_normal('<C-f>'), 'ns', mode = 'nicvt' },
+    { '<M-/>', run_normal('?'),     'ns', mode = 'nicvt' },
+}
 
 ------------------------------
 -- Readline style insertion --
