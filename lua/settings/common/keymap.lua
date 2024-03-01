@@ -110,10 +110,10 @@ end
 s.keymap_table {
     { m('a'),       '<C-o>^',     'ns', mode = 'i' },
     { m('e'),       act.iend,     'ns', mode = 'i' },
-    { m('f'),       '<C-o>w',     'ns', mode = 'i' },
-    { m('b'),       '<C-o>b',     'ns', mode = 'i' },
+    { m('f'),       '<S-Right>',  'ns', mode = 'i' },
+    { m('b'),       '<S-Left>',   'ns', mode = 'i' },
     { m('f', true), act.iforward, 'ns', mode = 'i' },
-    { m('b', true), '<C-o>h',     'ns', mode = 'i' },
+    { m('b', true), '<Left>',     'ns', mode = 'i' },
     { m('w'),       '<C-o>db',    'ns', mode = 'i' },
     { m('d'),       act.idelete,  'ns', mode = 'i' },
 
