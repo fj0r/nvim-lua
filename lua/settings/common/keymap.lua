@@ -6,11 +6,6 @@ vim.g.mapesc = m '[' -- nil | '<M-[>' | '<C-;>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local feedkeys = function(key)
-    local code = vim.api.nvim_replace_termcodes(key, true, false, true)
-    vim.api.nvim_feedkeys(code, 'm', true)
-end
-
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
@@ -77,7 +72,7 @@ local run_normal = function(k)
         else
             key = k
         end
-        feedkeys(key)
+        s.feedkeys(key)
     end
 end
 
@@ -93,26 +88,18 @@ s.keymap_table {
 
 local fn = vim.fn
 
-local mkdict = function(s)
-    local r = {}
-    for i = 1, #s do
-        r[string.sub(s, i, i)] = true
-    end
-    return r
-end
-
 local mkskipchar = function(pattern, r)
     return function()
         local c = fn.getline('.')
         local p = fn.col('.')
         local n = 0
-        local b, e, s
+        local b, e, l
         if r then
-            b, e, s = p, #c, 1
+            b, e, l = p, #c, 1
         else
-            b, e, s = p - 1, 1, -1
+            b, e, l = p - 1, 1, -1
         end
-        for i = b, e, s do
+        for i = b, e, l do
             local cur = string.sub(c, i, i)
             if pattern[cur] then
                 n = n + 1
@@ -128,11 +115,15 @@ local mkskipchar = function(pattern, r)
     end
 end
 
-local skipleft = mkskipchar(mkdict("\\[{(\"'<"), false)
-local skipright = mkskipchar(mkdict("\\]})\"'>"), true)
+local skipleft = mkskipchar(s.char_dict("\\[{(\"'<"), false)
+local skipright = mkskipchar(s.char_dict("\\]})\"'>"), true)
+local wd_iforward = function()
+    local i = skipright()
+    s.feedkeys(i == "" and '<S-Right>' or i)
+end
 
 local iln = function() return fn.col('.') > fn.strlen(fn.getline('.')) end
-local cln = function() return fn.getcmdpos() > fn.strlen(fn.getcmdline()) end
+local cln = function() return fn.getcmdpos() > fn.strlen(fn.getcmdline() or '') end
 local ipv = function() return iln() or fn.pumvisible() ~= 0 end
 
 local act = {
@@ -144,13 +135,8 @@ local act = {
 
 for k, v in pairs(act) do
     act[k] = function()
-        feedkeys(v[1]() and v[2] or v[3])
+        s.feedkeys(v[1]() and v[2] or v[3])
     end
-end
-
-local wd_iforward = function()
-    local s = skipright()
-    feedkeys(s == "" and '<S-Right>' or s)
 end
 
 s.keymap_table {

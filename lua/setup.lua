@@ -84,4 +84,17 @@ function M.mod(key, revert)
     return key_series(s, key)
 end
 
+function M.feedkeys(key)
+    local code = vim.api.nvim_replace_termcodes(key, true, false, true)
+    vim.api.nvim_feedkeys(code, 'm', true)
+end
+
+function M.char_dict(s)
+    local r = {}
+    for i = 1, #s do
+        r[string.sub(s, i, i)] = true
+    end
+    return r
+end
+
 return M
