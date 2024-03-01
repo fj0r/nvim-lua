@@ -20,7 +20,8 @@ return {
     {
         'fj0r/nvim-taberm',
         keys = {
-            { m 'x',        nil, desc = 'taberm' },
+            { m 'x',        nil, desc = 'toggle taberm' },
+            { m 'y',        nil, desc = 'paste' },
             { '<leader>xx', nil, desc = 'tab' },
             { '<leader>xv', nil, desc = 'vertical' },
             { '<leader>xV', nil, desc = 'vertical_ext' },
@@ -29,7 +30,10 @@ return {
         },
         opts = {
             keymap = {
-                toggle = m 'x'
+                toggle = m 'x',
+                paste = m 'y',
+                scrollup = m ',',
+                scrolldonw = m '.',
             }
         },
         enabled = vim.g.nvim_level >= 2,
