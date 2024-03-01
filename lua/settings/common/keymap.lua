@@ -46,14 +46,32 @@ s.keymap_table {
     { '&',                ':%&<CR>',                                     'ns' },
 }
 
+local run_normal = function(k)
+    return function()
+        local mode = vim.fn.mode()
+        local key
+        if mode == 't' then
+            key = "<C-\\><C-n>" .. k
+        elseif mode == 'i' then
+            key = "<Esc>" .. k
+        else
+            key = k
+        end
+        local code = vim.api.nvim_replace_termcodes(key, true, false, true)
+        vim.api.nvim_feedkeys(code, 'm', true)
+    end
+end
+
 if vim.g.prefer_alt > 0 then
     s.keymap_table {
-        { m 'f', '<C-f>', 'ns' },
-        { m 'b', '<C-b>', 'ns' },
-        { m 'u', '<C-u>', 'ns' },
-        { m 'd', '<C-d>', 'ns' },
-        { m 'e', '<C-e>', 'ns' },
-        { m 'y', '<C-y>', 'ns' },
+        { m 'f', '<C-f>',             'ns' },
+        { m 'b', '<C-b>',             'ns' },
+        { m 'u', '<C-u>',             'ns' },
+        { m 'd', '<C-d>',             'ns' },
+        { m 'e', '<C-e>',             'ns' },
+        { m 'y', '<C-y>',             'ns' },
+        { m ',', run_normal('<C-b>'), 'ns', mode = 'nicvt' },
+        { m '.', run_normal('<C-f>'), 'ns', mode = 'nicvt' },
     }
 end
 

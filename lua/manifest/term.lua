@@ -32,8 +32,6 @@ return {
             keymap = {
                 toggle = m 'x',
                 paste = m 'y',
-                scrollup = m ',',
-                scrolldonw = m '.',
             }
         },
         enabled = vim.g.nvim_level >= 2,
