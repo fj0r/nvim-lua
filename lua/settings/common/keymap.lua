@@ -88,37 +88,59 @@ s.keymap_table {
 
 local fn = vim.fn
 
-local mkskipchar = function(pattern, r)
-    return function()
-        local c = fn.getline('.')
-        local p = fn.col('.')
-        local n = 0
-        local b, e, l
-        if r then
-            b, e, l = p, #c, 1
-        else
-            b, e, l = p - 1, 1, -1
-        end
-        for i = b, e, l do
-            local cur = string.sub(c, i, i)
-            if pattern[cur] then
-                n = n + 1
+local mkskipchar = function(pattern, right, many)
+    if many then
+        return function()
+            local c = fn.getline('.')
+            local p = fn.col('.')
+            local n = 0
+            local b, e, l
+            if right then
+                b, e, l = p, #c, 1
             else
-                break
+                b, e, l = p - 1, 1, -1
+            end
+            for i = b, e, l do
+                local cur = string.sub(c, i, i)
+                if pattern[cur] then
+                    n = n + 1
+                else
+                    break
+                end
+            end
+            local v = ""
+            for _ = 1, n do
+                v = v .. (right and '<Right>' or '<Left>')
+            end
+            return v
+        end
+    else
+        return function()
+            local c = fn.getline('.')
+            local p = fn.col('.')
+            local x
+            if right then
+                x = p
+            else
+                x = p - 1
+            end
+            if pattern[string.sub(c, x, x)] then
+                if right then
+                    return '<Right>'
+                else
+                    return '<Left>'
+                end
+            else
+                return ""
             end
         end
-        local v = ""
-        for _ = 1, n do
-            v = v .. (r and '<Right>' or '<Left>')
-        end
-        return v
     end
 end
 
-local skipleft = mkskipchar(s.char_dict("\\[{(\"'<"), false)
-local skipright = mkskipchar(s.char_dict("\\]})\"'>"), true)
+local skipleftone = mkskipchar(s.char_dict("\\[{(\"'<"), false, false)
+local skiprightone = mkskipchar(s.char_dict("\\]})\"'>"), true, false)
 local wd_iforward = function()
-    local i = skipright()
+    local i = skiprightone()
     s.feedkeys(i == "" and '<S-Right>' or i)
 end
 
