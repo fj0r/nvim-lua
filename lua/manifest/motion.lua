@@ -11,18 +11,14 @@ return {
             {
                 "s",
                 mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump()
-                end,
+                function() require("flash").jump() end,
                 desc = "Flash",
             },
             {
                 "S",
                 -- S for nvim-surround in "x"(visual)
                 mode = { "n", "o" },
-                function()
-                    require("flash").treesitter()
-                end,
+                function() require("flash").treesitter() end,
                 desc = "Flash Treesitter",
             },
             {
@@ -58,7 +54,7 @@ return {
             {
                 '<leader><leader>',
                 mode = { 'n', 'v' },
-                'two_char',
+                'any_word',
                 desc = 'flash hint_words'
             },
         },
