@@ -24,4 +24,17 @@ function M.get_cursor_pos() return { vim.fn.line('.'), vim.fn.col('.') } end
 
 function M.glob_exists(path) return vim.fn.empty(vim.fn.glob(path)) == 0 end
 
+function M.append(path, txt)
+    local file = io.open(path, "a")
+    io.output(file)
+    io.write(txt)
+    io.close(file)
+end
+
+function M.log(path)
+    return function(obj)
+        M.append(path, vim.inspect(obj))
+    end
+end
+
 return M
