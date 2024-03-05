@@ -78,6 +78,11 @@ return {
         enabled = false,
     },
     {
+        'ggandor/leap.nvim',
+        config = h.plugins 'leap',
+        enabled = false,
+    },
+    {
         'smoka7/hop.nvim',
         keys = {
             { 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'v' } },
