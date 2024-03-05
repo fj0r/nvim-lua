@@ -3,6 +3,7 @@ local h = require('lazy_helper')
 return {
     {
         "folke/flash.nvim",
+        enabled = false,
         event = "VeryLazy",
         config = h.plugins 'flash',
         ---@type Flash.Config
@@ -77,19 +78,12 @@ return {
         enabled = false,
     },
     {
-        'phaazon/hop.nvim',
-        branch = 'v2',
+        'smoka7/hop.nvim',
         keys = {
-            --[[ standalone
-            {';', nil, desc = 'hop hint_words'},
-            {',', nil, desc = 'hop hint_char1'},
-            {'s', nil, desc = 'hop hint_char2'},
-            {'<leader>;', nil, desc = 'hop hint_lines'},
-            --]]
-            { '<leader><leader>', 'hint_somewhere', desc = 'hop hint_words', mode = { 'n', 'v' } },
-            { '<leader>;',        'hint_lines',     desc = 'hop hint_lines', mode = { 'n', 'v' } },
+            { 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'v' } },
+            { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'v' } },
+            { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'v' } },
         },
         config = h.plugins 'hop',
-        enabled = false,
     },
 }
