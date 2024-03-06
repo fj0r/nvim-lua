@@ -1,4 +1,5 @@
 local h = require('lazy_helper')
+local m = require('setup').mod
 
 return {
     -- find and replace
@@ -37,7 +38,11 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        opts = {},
+        opts = {
+            keymaps = {
+                visual = m('s', true)
+            }
+        },
     },
     {
         keys = {

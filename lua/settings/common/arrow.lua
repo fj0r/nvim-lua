@@ -35,7 +35,7 @@ if vim.fn.exists('$NVIM_ARROW') == 1 then
     vim.g.arrow_keys = keys[tonumber(os.getenv('NVIM_ARROW'))]
     for o, k in pairs(vim.g.arrow_keys) do
         vim.keymap.set('n', k, o, opt)
-        vim.keymap.set('v', k, o, opt)
+        vim.keymap.set('x', k, o, opt)
 
         vim.keymap.set('', m(k), '<C-W>' .. o, opt)
         vim.keymap.set('i', m(k), '<C-\\><C-N><C-w>' .. o, opt)

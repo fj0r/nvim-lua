@@ -60,5 +60,5 @@ local translate = function(ctx)
 end
 
 
-vim.keymap.set('v', '<leader>e', translate { en = true }, { noremap = true, silent = true, desc = 'english to chinese' })
-vim.keymap.set('v', '<leader>z', translate {}, { noremap = true, silent = true, desc = 'chinese to english' })
+vim.keymap.set('x', '<leader>e', translate { en = true }, { noremap = true, silent = true, desc = 'english to chinese' })
+vim.keymap.set('x', '<leader>z', translate {}, { noremap = true, silent = true, desc = 'chinese to english' })

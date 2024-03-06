@@ -17,7 +17,6 @@ return {
             },
             {
                 "S",
-                -- S for nvim-surround in "x"(visual)
                 mode = { "n", "o" },
                 function() require("flash").treesitter() end,
                 desc = "Flash Treesitter",
@@ -48,13 +47,13 @@ return {
             },
             {
                 '<leader>;',
-                mode = { 'n', 'v' },
+                mode = { 'n', 'x' },
                 'jump_to_line',
                 desc = 'flash hint_lines'
             },
             {
                 '<leader><leader>',
-                mode = { 'n', 'v' },
+                mode = { 'n', 'x' },
                 'any_word',
                 desc = 'flash hint_words'
             },
@@ -79,15 +78,18 @@ return {
     },
     {
         'ggandor/leap.nvim',
+        keys = {
+            --{ 'S', 'bi',  mode = { 'n', 'x', 'o' } },
+            { 's', 'all', mode = { 'n', 'x', 'o' } },
+        },
         config = h.plugins 'leap',
-        enabled = false,
     },
     {
         'smoka7/hop.nvim',
         keys = {
-            { 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'v' } },
-            { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'v' } },
-            { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'v' } },
+            --{ 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'x' } },
+            { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'x', 'o' } },
+            { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'x', 'o' } },
         },
         config = h.plugins 'hop',
     },
