@@ -1,4 +1,5 @@
 local h = require('lazy_helper')
+local m = require('setup').mod
 
 return {
     {
@@ -87,7 +88,7 @@ return {
     {
         'smoka7/hop.nvim',
         keys = {
-            --{ 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'x' } },
+            { m('s', true),       'char1',     desc = 'hop char1',      mode = { 'n', 'x' } },
             { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'x', 'o' } },
             { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'x', 'o' } },
         },
