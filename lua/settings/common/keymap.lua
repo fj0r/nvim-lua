@@ -9,7 +9,10 @@ vim.g.maplocalleader = " "
 local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
+    --[[
+    -- nvim-taberm: opts.keymap.normal
     { m '\\',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
+    --]]
     { vim.g.mapesc,       '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
     { vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
     { vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not jk_wrap },

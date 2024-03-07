@@ -80,15 +80,14 @@ return {
     {
         'ggandor/leap.nvim',
         keys = {
-            --{ 'S', 'bi',  mode = { 'n', 'x', 'o' } },
-            { 's', 'all', mode = { 'n', 'x', 'o' } },
+            { m('s', true), 'bi', mode = { 'n', 'x', 'o' } },
         },
         config = h.plugins 'leap',
     },
     {
         'smoka7/hop.nvim',
         keys = {
-            { m('s', true),       'char1',     desc = 'hop char1',      mode = { 'n', 'x' } },
+            { 's',                'char1',     desc = 'hop char1',      mode = { 'n', 'x' } },
             { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'x', 'o' } },
             { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'x', 'o' } },
         },
