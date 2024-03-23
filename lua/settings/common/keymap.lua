@@ -57,6 +57,8 @@ if vim.g.prefer_alt > 0 then
         { m 'd', '<C-d>', 'ns' },
         { m 'e', '<C-e>', 'ns' },
         { m 'y', '<C-y>', 'ns' },
+        { m 'i', '<C-i>', 'ns' },
+        { m 'o', '<C-o>', 'ns' },
     }
 end
 
