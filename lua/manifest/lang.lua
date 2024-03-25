@@ -65,20 +65,6 @@ return {
         end,
     },
     {
-        'NTBBloodbath/rest.nvim',
-        cmd = {
-            'RestNvim', 'RestNvimPreview'
-        },
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = {},
-        enabled = vim.g.nvim_level >= 2,
-    },
-    {
-        'rafcamlet/nvim-luapad',
-        cmd = { 'Luapad', 'LuaRun' },
-        enabled = vim.g.nvim_level >= 3,
-    },
-    {
         'towolf/vim-helm',
         enabled = vim.g.nvim_level >= 3,
     }
