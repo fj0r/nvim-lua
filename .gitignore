@@ -5,3 +5,5 @@ lazy/
 lazy-lock.json
 Luapad *
 tags
+
+/scratch_config.json
