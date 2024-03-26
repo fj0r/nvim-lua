@@ -18,7 +18,7 @@ return {
         },
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {},
-        enabled = vim.g.nvim_level >= 2,
+        enabled = false,
     },
     {
         'rafcamlet/nvim-luapad',
