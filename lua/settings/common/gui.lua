@@ -1,80 +1,12 @@
+local font = require('font')
 vim.opt.guicursor:append { 'a:blinkon0' }
-
---[[
-#/usr/share/applications/neovide.desktop
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Type=Application
-Terminal=false
-Exec=bash -c 'export NVIM_LEVEL=x SHELL=/usr/local/bin/nu; export PATH=/opt/node/bin:$HOME/.local/bin:$PATH; /usr/local/bin/neovide --multigrid --maximized'
-Name=Neovide
-Icon=nvim
-Categories=Utility;TextEditor;
-MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
---]]
-
-vim.g.select_font_size = 12
-
-local monaspace_features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
-vim.g.neovide_font_features = {
-    ['Monaspace Neon'] = monaspace_features,
-    ['Monaspace Argon'] = monaspace_features,
-    ['Monaspace Xenon'] = monaspace_features,
-    ['Monaspace Radon'] = monaspace_features,
-    ['Monaspace Krypton'] = monaspace_features,
-    ['MonaspiceAr NFM'] = monaspace_features,
-    ['MonaspiceXe NFM'] = monaspace_features,
-    ['MonaspiceNe NFM'] = monaspace_features,
-    ['MonaspiceKr NFM'] = monaspace_features,
-    ['MonaspiceRn NFM'] = monaspace_features,
-}
-local fonts = {
-    nar = "MonaspiceAr NFM:h{}",
-    nxe = "MonaspiceXe NFM:h{}",
-    nne = "MonaspiceNe NFM:h{}",
-    nkr = "MonaspiceKr NFM:h{}",
-    nrn = "MonaspiceRn NFM:h{}",
-    mne = "Monaspace Neon:h{}",
-    mar = "Monaspace Argon:h{}",
-    mxe = "Monaspace Xenon:h{}",
-    mrn = "Monaspace Radon:h{}",
-    mkr = "Monaspace Krypton:h{}",
-    hs = "Hasklig:h{}",
-    jm = "JetBrains Mono ExtraLight:h{}",
+require('setup').keymap_table {
+    { "<C-=>", ":lua vim.opt.linespace = math.min(vim.opt.linespace:get() + 1,  10)<CR>", 's' },
+    { "<C-->", ":lua vim.opt.linespace = math.max(vim.opt.linespace:get() - 1,  0)<CR>",  's' },
 }
 
-local function select_font(f)
-    local size = vim.g.select_font_size
-    local opt = string.gmatch(f, '(%a+)(%d*)(%a*)')
-    local n, s, o = opt()
-    if s ~= '' then
-        vim.g.select_font_size = s
-        size = s
-    end
-    return string.gsub(fonts[n], '{}', size) .. o
-end
-
-vim.api.nvim_create_user_command('SelectFont',
-    function(ctx)
-        vim.opt.guifont = select_font(ctx.args)
-    end,
-    {
-        nargs = '?',
-        complete = function()
-            local ks = {}
-            for k, _ in pairs(fonts) do
-                table.insert(ks, k)
-            end
-            return ks
-        end
-    }
-)
-
---> test ligature
-local default_font = 'nar16'
 if vim.g.neovide or vim.g.server_mode then
-    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or select_font(os.getenv("NVIM_FONT") or default_font)
+    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or font.from_env():guifont()
     require('setup').global_table {
         neovide_fullscreen = false,
         neovide_remember_window_size = true,
@@ -107,8 +39,6 @@ if vim.g.neovide or vim.g.server_mode then
     })
 
     require('setup').keymap_table {
-        { "<C-=>",   ":lua vim.opt.linespace = math.min(vim.opt.linespace:get() + 1,  10)<CR>",                's' },
-        { "<C-->",   ":lua vim.opt.linespace = math.max(vim.opt.linespace:get() - 1,  0)<CR>",                 's' },
         { "<C-+>",   ":lua vim.g.neovide_scale_factor = math.min(vim.g.neovide_scale_factor + 0.1,  1.0)<CR>", 's' },
         { "<C-_>",   ":lua vim.g.neovide_scale_factor = math.max(vim.g.neovide_scale_factor - 0.1,  0.5)<CR>", 's' },
         { "<C-M-=>", ":lua vim.g.neovide_transparency = math.min(vim.g.neovide_transparency + 0.05, 1.0)<CR>", 's' },
