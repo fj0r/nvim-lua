@@ -2,6 +2,13 @@ local h = require('lazy_helper')
 
 return {
     {
+        'tim-harding/neophyte',
+        tag = '0.2.5',
+        event = 'VeryLazy',
+        config = h.plugins 'neophyte',
+        enabled = false
+    },
+    {
         'nvim-lualine/lualine.nvim',
         config = h.plugins 'lualine',
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
