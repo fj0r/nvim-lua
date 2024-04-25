@@ -32,7 +32,7 @@ return {
             keymap = {
                 toggle = m 'x',
                 paste = m 'y',
-                normal = m '\\',
+                normal = m ']',
             }
         },
         enabled = vim.g.nvim_level >= 2,
