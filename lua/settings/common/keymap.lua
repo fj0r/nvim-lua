@@ -2,7 +2,7 @@ local s = require('setup')
 local m = s.mod
 vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapesc = m '[' -- nil | '<M-[>' | '<C-;>'
+vim.g.mapesc = m ';' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -11,7 +11,7 @@ local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 s.keymap_table {
     --[[
     -- nvim-taberm: opts.keymap.normal  @manifest/term.lua
-    { m ']',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
+    { m '[',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     --]]
     { vim.g.mapesc,       '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
     { vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
