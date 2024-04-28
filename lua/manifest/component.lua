@@ -44,6 +44,23 @@ return {
 
 
     {
+        -- TODO: Discrete/Shared Tree Windows #2255 https://github.com/nvim-tree/nvim-tree.lua/issues/2255
+        'nvim-tree/nvim-tree.lua',
+        dependencies = {
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            {
+                -- only needed if you want to use the commands with "_with_window_picker" suffix
+                's1n7ax/nvim-window-picker',
+                version = "v1.*",
+            }
+        },
+        keys = {
+            { '<leader>e', ':NvimTreeFindFileToggle<CR>', desc = 'tree' }
+        },
+        config = h.plugins 'nvim-tree',
+        enabled = false,
+    },
+    {
         'nvim-neo-tree/neo-tree.nvim',
         branch = "v3.x",
         dependencies = {
