@@ -77,8 +77,8 @@ local run_normal = function(k)
         else
             key = k
         end
-        --s.feedkeys(key)
-        vim.api.nvim_input(key)
+        local code = vim.api.nvim_replace_termcodes(key, true, false, true)
+        vim.api.nvim_feedkeys(code, 'n', true)
     end
 end
 
