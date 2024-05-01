@@ -33,7 +33,15 @@ return {
                 toggle = m 'x',
                 paste = m 'y',
                 normal = m '[',
-            }
+            },
+            direct_keys = {
+                '<Enter>',
+                '<M-w>', '<C-w>',
+                --'<C-d>', '<M-d>',
+                '<C-a>', '<C-e>', '<M-a>', '<M-e>',
+                '<C-f>', '<C-b>', '<M-f>', '<M-b>',
+                '<C-n>', '<C-p>', '<M-n>', '<M-p>',
+            },
         },
         enabled = vim.g.nvim_level >= 2,
     },
