@@ -32,12 +32,11 @@ return {
             keymap = {
                 toggle = m 'x',
                 paste = m 'y',
-                normal = m '[',
+                normal = m ';',
             },
             direct_keys = {
-                '<Enter>',
-                '<M-w>', '<C-w>',
-                --'<C-d>', '<M-d>',
+                '<Enter>', '<M-w>', '<C-w>',
+                '<C-c>', '<M-c>', '<C-d>', '<M-d>',
                 '<C-a>', '<C-e>', '<M-a>', '<M-e>',
                 '<C-f>', '<C-b>', '<M-f>', '<M-b>',
                 '<C-n>', '<C-p>', '<M-n>', '<M-p>',
