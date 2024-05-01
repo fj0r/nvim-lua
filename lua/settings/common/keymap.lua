@@ -77,7 +77,8 @@ local run_normal = function(k)
         else
             key = k
         end
-        s.feedkeys(key)
+        --s.feedkeys(key)
+        vim.api.nvim_input(key)
     end
 end
 
