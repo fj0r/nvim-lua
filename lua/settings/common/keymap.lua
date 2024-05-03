@@ -10,7 +10,7 @@ local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
     --[[
-    -- nvim-taberm: opts.keymap.normal  @manifest/term.lua
+    -- nvim-taberm: opts.keymap.escape @manifest/term.lua
     { m '[',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     --]]
     { vim.g.mapesc,       '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
