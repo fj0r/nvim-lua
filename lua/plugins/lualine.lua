@@ -1,9 +1,9 @@
-local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
-    terminal = {
-        a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
-        b = { bg = '#504945', fg = '#ebdbb2' },
-        c = { bg = '#7c6f64', fg = '#282828' },
-    },
+local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox-material'), {
+    --terminal = {
+    --    a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
+    --    b = { bg = '#504945', fg = '#ebdbb2' },
+    --    c = { bg = '#7c6f64', fg = '#282828' },
+    --},
 })
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
