@@ -2,10 +2,20 @@ local h = require('lazy_helper')
 
 return {
     {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = "sh -c '"
+        .. "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release"
+        .. " && cmake --build build --config Release"
+        .. " && cmake --install build --prefix build"
+        .. " && rm -rf build/CMakeFiles"
+        .. "'"
+    },
+    {
         'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim'
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-fzf-native.nvim',
         },
         keys = {
             { '<leader>p',  'pickers',              desc = 'telescope pickers' },

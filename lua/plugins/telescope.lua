@@ -13,11 +13,11 @@ telescope.setup {
         mappings = {
             i = {
                 ["<c-x>"] = false,
-                [m"s"] = actions.select_horizontal,
-                [m"v"] = actions.select_vertical,
-                [m"j"] = actions.move_selection_next,
-                [m"k"] = actions.move_selection_previous,
-                [m"q"] = actions.smart_send_to_qflist + actions.open_qflist,
+                [m "s"] = actions.select_horizontal,
+                [m "v"] = actions.select_vertical,
+                [m "j"] = actions.move_selection_next,
+                [m "k"] = actions.move_selection_previous,
+                [m "q"] = actions.smart_send_to_qflist + actions.open_qflist,
                 ["<esc>"] = actions.close,
                 [vim.g.mapesc or '<ESC>'] = actions.close,
                 ["<CR>"] = actions.select_default + actions.center
@@ -25,13 +25,20 @@ telescope.setup {
                 -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
             },
             n = {
-                [m"j"] = actions.move_selection_next,
-                [m"k"] = actions.move_selection_previous,
-                [m"q"] = actions.smart_send_to_qflist + actions.open_qflist,
+                [m "j"] = actions.move_selection_next,
+                [m "k"] = actions.move_selection_previous,
+                [m "q"] = actions.smart_send_to_qflist + actions.open_qflist,
             }
         },
     },
     extensions = {
+        fzf = {
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        },
         aerial = {
             -- Display symbols as <root>.<parent>.<symbol>
             show_nesting = {
@@ -44,8 +51,9 @@ telescope.setup {
 }
 
 telescope.load_extension('aerial')
-telescope.load_extension("emoji")
+telescope.load_extension('emoji')
 telescope.load_extension('env')
+telescope.load_extension('fzf')
 
 return {
     fns = {
@@ -71,7 +79,7 @@ return {
                                end,
         builtin              = tele.builtin,
         help_tags            = tele.help_tags,
-        notify               = function ()
+        notify               = function()
                                    telescope.extensions.notify.notify()
                                end,
     }
