@@ -50,7 +50,7 @@ function M:guifont()
 end
 
 function M.from_env()
-    local default_font = 'nar16'
+    local default_font = 'mar16'
     return M.parse(os.getenv("NVIM_FONT") or default_font)
 end
 
@@ -58,7 +58,9 @@ end
 vim.g.select_font_size = 12
 vim.api.nvim_create_user_command('SelectFont',
     function(ctx)
-        vim.opt.guifont = M.parse(ctx.args):guifont()
+        local font = M.parse(ctx.args):guifont()
+        print("select font: " .. font)
+        vim.opt.guifont = font
     end,
     {
         nargs = '?',
