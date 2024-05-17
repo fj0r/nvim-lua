@@ -22,3 +22,12 @@ $env.comma = {|_|{}}
     let tsl = open lua/lang/treesitter_lang.json | str join ' '
     pp ...[nvim --headless -c $"TSUpdateSync ($tsl)" -c "quit"]
 }
+
+"install"
+| comma fun {|a,s,_|
+    sudo tar zxvf $a.0 -C /usr/local/ --strip-components=1
+} {
+    cmp: {
+        ls ~/Downloads/nvim-linux64*.tar.gz | get name
+    }
+}
