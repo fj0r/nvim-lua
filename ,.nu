@@ -31,3 +31,9 @@ $env.comma = {|_|{}}
         ls ~/Downloads/nvim-linux64*.tar.gz | get name
     }
 }
+
+
+"clean session"
+| comma fun {|a,s,_|
+    rm -rf .local/share/nvim/session/*
+}
