@@ -105,7 +105,10 @@ return {
             { '[v', 'eval',                 desc = "dapui eval",              mode = { 'n', 'v' } },
         },
         config = h.settings 'dap',
-        dependencies = { 'mfussenegger/nvim-dap' },
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'nvim-neotest/nvim-nio',
+        },
         enabled = vim.g.nvim_level >= 2,
     },
     {
