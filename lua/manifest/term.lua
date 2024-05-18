@@ -21,11 +21,7 @@ return {
             { '<M-x>',      nil, desc = 'toggle taberm' },
             { '<M-c>',      nil, desc = 'toggle taberm horizontal' },
             { '<M-y>',      nil, desc = 'paste', mode = 't' },
-            { '<leader>xx', nil, desc = 'tab' },
-            { '<leader>xv', nil, desc = 'vertical' },
-            { '<leader>xV', nil, desc = 'vertical_ext' },
-            { '<leader>xc', nil, desc = 'horizontal' },
-            { '<leader>xC', nil, desc = 'horizontal_ext' },
+            { '<leader>x', nil, desc = 'tab' },
         },
         opts = {
             keymap = {
