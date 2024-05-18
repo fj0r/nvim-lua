@@ -21,6 +21,7 @@ return {
         'fj0r/nvim-taberm',
         keys = {
             { m 'x',        nil, desc = 'toggle taberm' },
+            { m 'c',        nil, desc = 'toggle taberm horizontal' },
             { m 'y',        nil, desc = 'paste',         mode = 't' },
             { '<leader>xx', nil, desc = 'tab' },
             { '<leader>xv', nil, desc = 'vertical' },
@@ -31,12 +32,13 @@ return {
         opts = {
             keymap = {
                 toggle = m 'x',
+                toggle_h = m 'c',
                 paste = m 'y',
                 escape = m ';',
             },
             direct_keys = {
                 '<Enter>', '<M-w>', '<C-w>',
-                '<C-c>', '<M-c>', '<C-d>', '<M-d>',
+                '<C-c>', '<C-d>', '<M-d>',
                 '<C-a>', '<C-e>', '<M-a>', '<M-e>',
                 '<C-f>', '<C-b>', '<M-f>', '<M-b>',
                 '<C-n>', '<C-p>', '<M-n>', '<M-p>',
