@@ -2,7 +2,7 @@ local s = require('setup')
 local m = s.mod
 vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapesc = m ';' -- nil | '<M-;>' | '<M-[>'
+vim.g.mapesc = '<m-;>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

@@ -1,8 +1,6 @@
 -- [Moving cursor forces user out of terminal mode](https://github.com/neovide/neovide/issues/1838)
 vim.keymap.set("t", "<MouseMove>", "<NOP>")
 
-local m = require('setup').mod
-
 return {
     {
         'chomosuke/term-edit.nvim',
@@ -20,9 +18,9 @@ return {
     {
         'fj0r/nvim-taberm',
         keys = {
-            { m 'x',        nil, desc = 'toggle taberm' },
-            { m 'c',        nil, desc = 'toggle taberm horizontal' },
-            { m 'y',        nil, desc = 'paste',         mode = 't' },
+            { '<M-x>',      nil, desc = 'toggle taberm' },
+            { '<M-c>',      nil, desc = 'toggle taberm horizontal' },
+            { '<M-y>',      nil, desc = 'paste', mode = 't' },
             { '<leader>xx', nil, desc = 'tab' },
             { '<leader>xv', nil, desc = 'vertical' },
             { '<leader>xV', nil, desc = 'vertical_ext' },
@@ -31,10 +29,10 @@ return {
         },
         opts = {
             keymap = {
-                toggle = m 'x',
-                toggle_h = m 'c',
-                paste = m 'y',
-                escape = m ';',
+                toggle = '<M-x>',
+                toggle_h = '<M-c>',
+                paste = '<M-y>',
+                escape = '<M-;>',
             },
             direct_keys = {
                 '<Enter>', '<M-w>', '<C-w>',
