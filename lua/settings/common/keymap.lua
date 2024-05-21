@@ -37,7 +37,7 @@ s.keymap_table {
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
     { '@',                ':normal @',                                   'n',   mode = 'x' },
     { '<leader>q',        '<cmd>CloseExceptLast<CR>',                    'ns' },
-    { m('q', true),       '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
+    { '<C-q>',            '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
     { '<',                '<gv',                                         'ns',  mode = 'x' },
     { '>',                '>gv',                                         'ns',  mode = 'x' },

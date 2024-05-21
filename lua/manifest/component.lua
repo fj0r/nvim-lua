@@ -94,7 +94,7 @@ return {
         's1n7ax/nvim-window-picker',
         keys = {
             { '<leader>ww', 'pick_win', desc = 'window picker' },
-            { '<M-g>',      'pick_win', desc = 'window picker', mode = { 'n', 'x', 'i', 't' } },
+            { '<M-q>',      'pick_win', desc = 'window picker', mode = { 'n', 'x', 'i', 't' } },
         },
         module = { 'neo-tree' },
         version = '2.*',

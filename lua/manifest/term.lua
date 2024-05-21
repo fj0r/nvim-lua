@@ -25,8 +25,8 @@ return {
         },
         opts = {
             keymap = {
-                toggle = '<M-x>',
-                toggle_h = '<M-c>',
+                toggle = '<M-[>',
+                toggle_h = '<M-]>',
                 paste = '<M-y>',
                 escape = '<M-;>',
             },
