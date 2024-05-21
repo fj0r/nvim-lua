@@ -36,6 +36,7 @@ return {
                 '<C-a>', '<C-e>', '<M-a>', '<M-e>',
                 '<C-f>', '<C-b>', '<M-f>', '<M-b>',
                 '<C-n>', '<C-p>', '<M-n>', '<M-p>',
+                '<M-o>', '<M-i>'
             },
         },
         enabled = vim.g.nvim_level >= 2,
