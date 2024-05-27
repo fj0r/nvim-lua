@@ -83,6 +83,7 @@ return {
             { m('s', true), 'bi', mode = { 'n', 'x', 'o' } },
         },
         config = h.plugins 'leap',
+        enabled = false,
     },
     {
         'smoka7/hop.nvim',

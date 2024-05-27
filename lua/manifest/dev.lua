@@ -56,7 +56,7 @@ return {
     {
         'stevearc/aerial.nvim',
         keys = {
-            { m 's',       '<cmd>AerialToggle!<CR>',                                       desc = 'AerialTelescope' },
+            { '<C-s>',     '<cmd>AerialToggle!<CR>',                                       desc = 'AerialTelescope' },
             { '<leader>s', function() require("telescope").extensions.aerial.aerial() end, desc = 'AerialToggle' }
         },
         config = h.plugins 'aerial',
