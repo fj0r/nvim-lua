@@ -3,7 +3,9 @@ vim.g.has_git = pcall(vim.fn.systemlist, { 'git', '--version' })
 
 local level = 2
 
-if vim.fn.exists('$NVIM_LEVEL') == 1 or vim.g.neovide then
+if vim.fn.exists('$NVIM_LEVEL') == 1 then
+    level = tonumber(vim.fn.getenv('NVIM_LEVEL')) or 3
+elseif vim.g.neovide then
     level = 3
 elseif vim.g.vscode or vim.g.started_by_firenvim then
     level = 1
