@@ -120,11 +120,11 @@ return {
     {
         "folke/trouble.nvim",
         keys = {
-            { '<leader>gw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'TroubleToggle workspace_diagnostics' },
-            { '<leader>ga', '<cmd>TroubleToggle document_diagnostics<cr>',  desc = 'TroubleToggle document_diagnostics' },
-            { '<leader>gl', '<cmd>TroubleToggle loclist<cr>',               desc = 'TroubleToggle loclist' },
-            { '<leader>gq', '<cmd>TroubleToggle quickfix<cr>',              desc = 'TroubleToggle quickfix' },
-            --{ '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'TroubleToggle lsp_references' },
+            { '<leader>gw', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
+            { '<leader>gs', '<cmd>Trouble symbols toggle focus=false<cr>',  desc = 'Symbols (Trouble)' },
+            { '<leader>gl', '<cmd>Trouble loclist toggle<cr>',               desc = 'Location List (Trouble)' },
+            { '<leader>gq', '<cmd>Trouble qflist toggle<cr>',              desc = 'Quickfix List (Trouble)' },
+            { '<leader>gr', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = 'LSP Definitions / references / ... (Trouble)' },
         },
         dependencies = { "kyazdani42/nvim-web-devicons" },
         opts = {},
