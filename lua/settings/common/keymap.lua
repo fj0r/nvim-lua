@@ -2,51 +2,50 @@ local s = require('setup')
 local m = s.mod
 vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapesc = '<m-;>' -- nil | '<M-;>' | '<M-[>'
+vim.g.mapesc = '<M-;>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
-local jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
+vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
     --[[
     -- nvim-taberm: opts.keymap.escape @manifest/term.lua
     { m '[',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     --]]
-    { vim.g.mapesc,       '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
-    { vim.g.arrow_keys.k, "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
-    { vim.g.arrow_keys.j, "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not jk_wrap },
-    { '<M-o>',            '<C-f>',                                       'n',   mode = 'c' },
+    { vim.g.mapesc, '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
+    { 'k',          "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
+    { 'j',          "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
+    { '<M-o>',      '<C-f>',                                       'n',   mode = 'c' },
     --[[
     -- goto marker (move to plugins/which-key.lua)
     { "`",                     "'",                                           'ns' },
     { "'",                     "`",                                           'ns' },
     --]]
     -- Go to home and end using capitalized directions
-    { 'H',                '^',                                           'ns' },
-    { 'L',                '$',                                           'ns' },
+    { 'H',          '^',                                           'ns' },
+    { 'L',          '$',                                           'ns' },
     -- visual selection excluding newline & space
-    { 'H',                '^',                                           'ns',  mode = 'x' },
-    { 'L',                'g_',                                          'ns',  mode = 'x' },
+    { 'H',          '^',                                           'ns',  mode = 'x' },
+    { 'L',          'g_',                                          'ns',  mode = 'x' },
     -- join lines without space
-    { 'J',                'gJ',                                          'ns',  mode = 'nv' },
-    { 'gJ',               'J',                                           'ns',  mode = 'nv' },
+    { 'J',          'gJ',                                          'ns',  mode = 'nv' },
+    { 'gJ',         'J',                                           'ns',  mode = 'nv' },
     -- no highlight search
-    { '<leader>/',        ':nohls<CR>',                                  'ns' },
+    { '<leader>/',  ':nohls<CR>',                                  'ns' },
     -- command history
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
-    { '@',                ':normal @',                                   'n',   mode = 'x' },
-    { '<leader>q',        '<cmd>CloseExceptLast<CR>',                    'ns' },
-    { '<C-q>',            '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
+    { '@',          ':normal @',                                   'n',   mode = 'x' },
+    { '<leader>q',  '<cmd>CloseExceptLast<CR>',                    'ns' },
+    { '<C-q>',      '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
-    { '<',                '<gv',                                         'ns',  mode = 'x' },
-    { '>',                '>gv',                                         'ns',  mode = 'x' },
+    { '<',          '<gv',                                         'ns',  mode = 'x' },
+    { '>',          '>gv',                                         'ns',  mode = 'x' },
     -- toggle number
-    { '<leader>n',        '<cmd>set relativenumber! | :set number!<CR>', 'ns' },
+    { '<leader>n',  '<cmd>set relativenumber! | :set number!<CR>', 'ns' },
     -- Y yank until the end of line
-    { 'Y',                'y$',                                          'ns' },
+    { 'Y',          'y$',                                          'ns' },
     -- repeat substitution
-    { '&',                ':%&<CR>',                                     'ns' },
+    { '&',          ':%&<CR>',                                     'ns' },
 }
 
 if vim.g.prefer_alt > 0 then
