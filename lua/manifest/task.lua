@@ -6,9 +6,9 @@ return {
         'stevearc/overseer.nvim',
         lazy = true,
         keys = {
-            { '<leader>t', '<cmd>OverseerRun<cr>' },
-            { m't', '<cmd>OverseerToggle<cr>' },
-            { m't', '<cmd>OverseerToggle<cr>', mode = 't' },
+            { '<leader>t',  '<cmd>OverseerRun<cr>' },
+            { m 't',        '<cmd>OverseerToggle<cr>' },
+            { m 't',        '<cmd>OverseerToggle<cr>',     mode = 't' },
             { '<leader>or', '<cmd>OverseerRun<cr>' },
             { '<leader>oo', '<cmd>OverseerToggle<cr>' },
             { '<leader>ob', '<cmd>OverseerBuild<cr>' },
