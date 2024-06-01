@@ -28,7 +28,7 @@ return {
                 toggle = '<M-[>',
                 toggle_h = '<M-]>',
                 paste = '<M-y>',
-                escape = '<M-;>',
+                escape = vim.g.mapesc,
             },
             direct_keys = {
                 '<Enter>', '<M-w>', '<C-w>',
