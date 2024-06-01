@@ -42,6 +42,6 @@ local wrap_config = function(dir)
 end
 
 M.settings = wrap_config('settings')
-M.plugins = wrap_config('plugins')
+M.plugins = wrap_config('settings')
 
 return M

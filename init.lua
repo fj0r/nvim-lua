@@ -4,7 +4,7 @@ vim.opt.runtimepath:prepend(vim.g.config_root)
 
 require 'env'
 require 'shim'
-require 'settings.common'
+require 'common'
 
 local lazyhome = vim.g.config_root .. '/lazy'
 local lazypath = lazyhome .. '/lazy.nvim'
