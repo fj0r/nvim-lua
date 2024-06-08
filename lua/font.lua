@@ -17,11 +17,11 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 local features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
 
 local fonts_abbr = {
-    nar = "MonaspiceAr NFM",
-    nxe = "MonaspiceXe NFM",
-    nne = "MonaspiceNe NFM",
-    nkr = "MonaspiceKr NFM",
-    nrn = "MonaspiceRn NFM",
+    nar = "MonaspiceAr Nerd Font Mono",
+    nxe = "MonaspiceXe Nerd Font Mono",
+    nne = "MonaspiceNe Nerd Font Mono",
+    nkr = "MonaspiceKr Nerd Font Mono",
+    nrn = "MonaspiceRn Nerd Font Mono",
     mne = "Monaspace Neon",
     mar = "Monaspace Argon",
     mxe = "Monaspace Xenon",
