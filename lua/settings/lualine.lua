@@ -1,9 +1,14 @@
 local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox-material'), {
-    --terminal = {
-    --    a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
-    --    b = { bg = '#504945', fg = '#ebdbb2' },
-    --    c = { bg = '#7c6f64', fg = '#282828' },
-    --},
+    --[[
+    terminal = {
+        a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
+        b = { bg = '#504945', fg = '#ebdbb2' },
+        c = { bg = '#7c6f64', fg = '#282828' },
+    },
+    --]]
+    inactive = {
+        c = { bg = '#504945' }
+    }
 })
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
@@ -48,7 +53,7 @@ require('lualine').setup {
         lualine_z = { 'location' }
     },
     inactive_sections = {
-        lualine_a = {},
+        lualine_a = { },
         lualine_b = vim.g.has_git and { 'diff', diag } or { diag },
         lualine_c = {
             {
