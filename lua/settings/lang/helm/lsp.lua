@@ -1,5 +1,4 @@
 local configs = require('lspconfig.configs')
-local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 
 if not configs.helm_ls then
@@ -14,7 +13,7 @@ if not configs.helm_ls then
     }
 end
 
-lspconfig.helm_ls.setup {
+require('lspconfig').helm_ls.setup {
     filetypes = { "helm" },
     cmd = { "helm_ls", "serve" },
 }

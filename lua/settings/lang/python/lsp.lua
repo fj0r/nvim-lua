@@ -5,4 +5,4 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- require('lspconfig').ruff_lsp.setup { on_attach = on_attach }
+require('lspconfig').ruff_lsp.setup { on_attach = on_attach }
