@@ -4,11 +4,11 @@ return {
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = "sh -c '"
-        .. "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release"
-        .. " && cmake --build build --config Release"
-        .. " && cmake --install build --prefix build"
-        .. " && rm -rf build/CMakeFiles"
-        .. "'"
+            .. "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release"
+            .. " && cmake --build build --config Release"
+            .. " && cmake --install build --prefix build"
+            .. " && rm -rf build/CMakeFiles"
+            .. "'"
     },
     {
         'nvim-telescope/telescope.nvim',
@@ -29,7 +29,7 @@ return {
             { '<leader>F',  'git_files',            desc = 'telescope git_files' },
             { '<leader>gc', 'git_commits',          desc = 'telescope git_commits' },
             { '<leader>gB', 'git_branches',         desc = 'telescope git_branches' },
-            --{ '<leader>gS', 'git_status', desc = 'telescope git_status' },
+            { '<leader>gS', 'git_status',           desc = 'telescope git_status' },
             { '<leader>go', 'git_bcommits',         desc = 'telescope git_bcommits' },
             { '<leader>b',  'buffers',              desc = 'telescope buffers' },
             { '<leader>[',  'builtin',              desc = 'telescope builtin' },
