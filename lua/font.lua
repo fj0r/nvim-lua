@@ -50,7 +50,7 @@ function M:guifont()
 end
 
 function M.from_env()
-    local default_font = 'mar16'
+    local default_font = 'nar16'
     return M.parse(os.getenv("NVIM_FONT") or default_font)
 end
 
