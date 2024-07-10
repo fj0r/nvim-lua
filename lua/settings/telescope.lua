@@ -32,6 +32,7 @@ telescope.setup {
         },
     },
     extensions = {
+        --[[
         fzf = {
             fuzzy = true,                  -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
@@ -39,6 +40,7 @@ telescope.setup {
             case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
         },
+        --]]
         aerial = {
             -- Display symbols as <root>.<parent>.<symbol>
             show_nesting = {
@@ -53,7 +55,9 @@ telescope.setup {
 telescope.load_extension('aerial')
 telescope.load_extension('emoji')
 telescope.load_extension('env')
+--[[
 telescope.load_extension('fzf')
+--]]
 
 return {
     fns = {
