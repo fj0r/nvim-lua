@@ -9,17 +9,22 @@ wk.setup {
             suggestions = 20, -- how many suggestions should be shown in the list?
         },
     },
-    window = {
+    win = {
         padding = { 0, 0, 0, 0 },
     },
     disable = {
-        buftypes = {},
-        filetypes = { "TelescopePrompt" },
+        ft = {},
+        bt = { "TelescopePrompt" },
     },
+    triggers = {
+      { "<auto>", mode = "nxsot" },
+      { "<leader>", mode = { "n", "v" } },
+    },
+    -- preset = "modern",
 }
 
-wk.register {
-    ["'"] = { "`", 'marks', mode = { "n", "v" }, remap = true },
+wk.add {
+    { "'", "`", desc = "marks", mode = { "n", "v" }, remap = true },
     -- recursive!
-    --["`"] = { "'", 'marks', mode = { "n", "v" }, remap = true },
+    --{ "`", "'", desc = 'marks', mode = { "n", "v" }, remap = true },
 }
