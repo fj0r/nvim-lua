@@ -15,6 +15,7 @@ return {
     },
     {
         "folke/which-key.nvim",
+        enabled = false,
         config = h.plugins 'whichkey',
     },
 }
