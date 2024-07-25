@@ -21,8 +21,8 @@ return {
         keys = {
             { '<leader>p',  'pickers',              desc = 'telescope pickers' },
             { '<leader>y',  'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
-            { '<leader>m',  'marks',                desc = 'telescope marks' },
-            { '<leader>c',  'registers',            desc = 'telescope registers' },
+            { '<leader>a',  'marks',                desc = 'telescope marks' },
+            { '<leader>z',  'registers',            desc = 'telescope registers' },
             { '<leader>d',  'oldfiles',             desc = 'telescope oldfiles' },
             { '<leader>f',  'find_files',           desc = 'telescope find_files' },
             { '<leader>r',  'live_grep',            desc = 'telescope live_grep' },
@@ -121,7 +121,23 @@ return {
 
     {
         'tversteeg/registers.nvim',
+        enabled = true,
+        opts = {},
+    },
+    {
+        'gennaro-tedesco/nvim-peekup',
         enabled = false,
+        config = function ()
+            require('nvim-peekup.config').on_keystroke["delay"] = '300ms'
+            require('nvim-peekup.config').on_keystroke["autoclose"] = false
+            require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
+            require('nvim-peekup.config').geometry["wrap"] = false
+        end,
+        opts = {},
+    },
+    {
+        'chentoast/marks.nvim',
+        enabled = true,
         opts = {},
     },
     {
