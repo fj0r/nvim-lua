@@ -75,7 +75,11 @@ local replace_url = function(schema)
 end
 vim.tbl_map(replace_url, json_origin)
 vim.g.json_schemas = json_schemas
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 require 'lspconfig'.jsonls.setup {
+    capabilities = capabilities,
     settings = {
         json = {
             schemas = vim.g.json_schemas,
