@@ -8,7 +8,7 @@ ipairs {
     "nushell",
     "julials",
     "metals",
-    "tsserver",
+    "ts_ls",
     "gopls",
     "jdtls"
 } do config[lsp].setup {} end
