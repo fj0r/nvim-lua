@@ -24,6 +24,7 @@ return {
     },
     {
         "willothy/flatten.nvim",
+        enabled = false,
         opts = {
             window = {
             }
