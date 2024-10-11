@@ -14,14 +14,15 @@ s.keymap_table {
     { m '[',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     --]]
     { vim.g.mapesc, '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
-    { ':',          ';',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
-    { ';',          ':',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
     { 'k',          "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { 'j',          "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { '<M-o>',      '<C-f>',                                       'n',   mode = 'c' },
-    -- goto marker (move to plugins/which-key.lua)
-    { "`",                     "'",                                           'ns' },
-    { "'",                     "`",                                           'ns' },
+    -- swap ; :
+    { ':',          ';',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
+    { ';',          ':',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
+    -- swap ` ' -- goto marker
+    { "`",                     "'",                                'ns' },
+    { "'",                     "`",                                'ns' },
     -- Go to home and end using capitalized directions
     { 'H',          '^',                                           'ns' },
     { 'L',          '$',                                           'ns' },
