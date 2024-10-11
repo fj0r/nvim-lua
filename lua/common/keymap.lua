@@ -1,11 +1,12 @@
 local s = require('setup')
 local m = s.mod
 vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
-vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.semicolon = tonumber(os.getenv('NVIM_SEMICOLON') or 0) > 0
+vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 vim.g.mapesc = '<M-;>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
+vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 s.keymap_table {
     --[[
@@ -13,6 +14,8 @@ s.keymap_table {
     { m '[',             '<C-\\><C-n>',                                 'ns',  mode = 't' },
     --]]
     { vim.g.mapesc, '<ESC>',                                       'ns',  mode = 'nicv', disabled = not vim.g.mapesc },
+    { ':',          ';',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
+    { ';',          ':',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
     { 'k',          "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { 'j',          "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { '<M-o>',      '<C-f>',                                       'n',   mode = 'c' },
