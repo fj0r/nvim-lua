@@ -1,0 +1,7 @@
+.netrwhist
+plugin/
+pack/
+lazy/
+lazy-lock.json
+Luapad *
+tags
