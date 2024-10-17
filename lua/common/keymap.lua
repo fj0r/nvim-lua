@@ -52,11 +52,12 @@ s.keymap_table {
 
 if vim.g.prefer_alt > 0 then
     s.keymap_table {
+        { m 'a', '<C-a>', 'ns' },
+        { m 'e', '<C-e>', 'ns' },
         { m 'f', '<C-f>', 'ns' },
         { m 'b', '<C-b>', 'ns' },
         { m 'u', '<C-u>', 'ns' },
         { m 'd', '<C-d>', 'ns' },
-        { m 'e', '<C-e>', 'ns' },
         { m 'y', '<C-y>', 'ns' },
         { m 'i', '<C-i>', 'ns' },
         { m 'o', '<C-o>', 'ns' },
