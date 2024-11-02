@@ -62,11 +62,10 @@ vim.g.tab_title_pin = '^'
 local tab_title = set_tab_title(vim.g.tab_title_pin, set_lualine)
 
 require('setup').keymap_table {
-    { '<leader>wt', prompt_set_title, 'ns', mode = '', desc = 'set title' },
-    { '<leader>wr', tab_title.prompt, 'ns', mode = '', desc = 'rename tab title' },
+    { '<leader>t', tab_title.prompt, 'ns', mode = '', desc = 'rename tab title' },
 }
-
 vim.api.nvim_create_user_command('TabTitle', function(ctx) tab_title.set(ctx.args) end, { nargs = '?' })
+
 vim.api.nvim_create_user_command('Title', function(ctx) set_title(ctx.args) end, { nargs = '?' })
 
 set_title(vim.fn.substitute(vim.fn.getcwd(), os.getenv('HOME'), '~', ''))
