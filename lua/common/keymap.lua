@@ -1,7 +1,6 @@
 local s = require('setup')
 local m = s.mod
 vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
-vim.g.semicolon = tonumber(os.getenv('NVIM_SEMICOLON') or 0) > 0
 vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 vim.g.mapesc = '<M-;>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
@@ -17,9 +16,6 @@ s.keymap_table {
     { 'k',          "v:count == 0 ? 'gk' : 'k'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { 'j',          "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { '<M-o>',      '<C-f>',                                       'n',   mode = 'c' },
-    -- swap ; :
-    { ':',          ';',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
-    { ';',          ':',                                           'n',   mode = 'nv',   disabled = not vim.g.semicolon },
     -- swap ` ' -- goto marker
     { "`",                     "'",                                'ns' },
     { "'",                     "`",                                'ns' },
@@ -37,8 +33,6 @@ s.keymap_table {
     -- command history
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
     { '@',          ':normal @',                                   'n',   mode = 'x' },
-    { '<leader>q',  '<cmd>CloseExceptLast<CR>',                    'ns' },
-    { '<C-q>',      '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
     -- 防止水平滑动的时候失去选择
     { '<',          '<gv',                                         'ns',  mode = 'x' },
     { '>',          '>gv',                                         'ns',  mode = 'x' },
@@ -48,6 +42,13 @@ s.keymap_table {
     { 'Y',          'y$',                                          'ns' },
     -- repeat substitution
     { '&',          ':%&<CR>',                                     'ns' },
+    -- shortcuts
+    { ';e',          ':e<CR>',                                     'ns' },
+    { ';w',          ':w<CR>',                                     'ns' },
+    { ';q',          ':wq<CR>',                                    'ns' },
+    { ';Q',          ':!q<CR>',                                    'ns' },
+    { '<leader>q',  '<cmd>CloseExceptLast<CR>',                    'ns' },
+    { '<C-q>',      '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
 }
 
 if vim.g.prefer_alt > 0 then
