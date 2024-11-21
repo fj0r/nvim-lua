@@ -26,8 +26,10 @@ require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = gruvbox,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        component_separators = '',
+        section_separators = '',
         disabled_filetypes = {},
         always_divide_middle = true,
     },
@@ -71,8 +73,8 @@ require('lualine').setup {
         lualine_a = {
             { 'tabs', mode = 2, max_length = function() return math.floor(vim.o.columns / 1.5) end }
         },
-        lualine_b = { 'aerial' },
-        lualine_c = {},
+        lualine_b = {},
+        lualine_c = { 'aerial' },
         lualine_x = {}, -- macro_recording
         lualine_y = { 'overseer' },
         lualine_z = {
