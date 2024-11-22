@@ -45,7 +45,7 @@ function M.option_table(tbl)
         if type(v) == 'table' then
             vim.opt[k]:append(v)
         else
-            vim.o[k] = v
+            vim.opt[k] = v
         end
     end
 end

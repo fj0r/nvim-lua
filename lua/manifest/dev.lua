@@ -37,12 +37,6 @@ return {
     'nvim-lua/lsp-status.nvim',
     'nvim-lua/lsp_extensions.nvim',
     --]=]
-
-    {
-        "folke/neodev.nvim",
-        dependencies = { 'neovim/nvim-lspconfig' },
-        enabled = vim.g.nvim_level >= 3,
-    },
     --[[
     {
         'simrat39/symbols-outline.nvim',

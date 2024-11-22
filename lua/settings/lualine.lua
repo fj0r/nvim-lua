@@ -31,7 +31,8 @@ require('lualine').setup {
         component_separators = '',
         section_separators = '',
         disabled_filetypes = {},
-        always_divide_middle = true,
+        always_divide_middle = false,
+        always_show_tabline = false,
     },
     sections = {
         lualine_a = { 'mode' },
