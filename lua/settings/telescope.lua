@@ -4,9 +4,10 @@ local tele_tabby = require 'telescope'.extensions.tele_tabby
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
---local themes = require('telescope.themes')
+local themes = require('telescope.themes')
 telescope.setup {
     defaults = {
+        borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
         cache_picker = {
             num_pickers = 100,
         },

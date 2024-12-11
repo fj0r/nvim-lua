@@ -56,7 +56,7 @@ require('lualine').setup {
         lualine_z = { 'location' }
     },
     inactive_sections = {
-        lualine_a = { },
+        lualine_a = {},
         lualine_b = vim.g.has_git and { 'diff', diag } or { diag },
         lualine_c = {
             {
@@ -72,7 +72,12 @@ require('lualine').setup {
     },
     tabline = {
         lualine_a = {
-            { 'tabs', mode = 2, max_length = function() return math.floor(vim.o.columns / 1.5) end }
+            {
+                'tabs',
+                mode = 2,
+                max_length = function() return math.floor(vim.o.columns / 1.5) end,
+                use_mode_color = true,
+            }
         },
         lualine_b = {},
         lualine_c = { 'aerial' },
