@@ -1,11 +1,11 @@
 local s = require('setup')
 local m = s.mod
-vim.g.prefer_alt = tonumber(os.getenv('NVIM_PREFER_ALT') or os.getenv('PREFER_ALT') or 0)
-vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
-vim.g.mapesc = '<M-;>' -- nil | '<M-;>' | '<M-[>'
+local comma = vim.g.arrow_keys[';']
+vim.g.mapesc = '<M-'..comma..'>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
 s.keymap_table {
     --[[
@@ -43,10 +43,10 @@ s.keymap_table {
     -- repeat substitution
     { '&',          ':%&<CR>',                                     'ns' },
     -- shortcuts
-    { ';e',          ':e<CR>',                                     'ns' },
-    { ';w',          ':w<CR>',                                     'ns' },
-    { ';q',          ':wq<CR>',                                    'ns' },
-    { ';Q',          ':!q<CR>',                                    'ns' },
+    { comma..'e',   ':e<CR>',                                      'ns' },
+    { comma..'w',   ':w<CR>',                                      'ns' },
+    { comma..'q',   ':wq<CR>',                                     'ns' },
+    { comma..'Q',   ':!q<CR>',                                     'ns' },
     { '<leader>q',  '<cmd>CloseExceptLast<CR>',                    'ns' },
     { '<C-q>',      '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
 }

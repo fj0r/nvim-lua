@@ -64,6 +64,7 @@ local key_series = function(suffix, keys)
     return r
 end
 
+require('_global')
 function M.mod(key, revert)
     local p = vim.g.prefer_alt > 0
 
