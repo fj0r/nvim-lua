@@ -22,13 +22,13 @@ require("neo-tree").setup({
         },
     },
     close_if_last_window = false,   -- Close Neo-tree if it is the last window left in the tab
-    popup_border_style = 'rounded', -- "double", "rounded", "single" or "solid"
+    popup_border_style = 'single', -- "double", "rounded", "single" or "solid"
     enable_git_status = vim.g.has_git,
     default_component_configs = {
         icon = {
-            folder_closed = "",
-            folder_open = "",
-            folder_empty = "ﰊ",
+            folder_closed = "+",
+            folder_open = "-",
+            folder_empty = "-",
             -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
             -- then these will never be used.
             default = "*",
