@@ -19,7 +19,7 @@ end
 require 'hop'.setup {
     -- keys = 'asdghklqwertyuiopzxcvbnmfj',
     -- keys = 'asdfjklqweruiopzxcv',
-    keys = 'ajskdlf;quwieorpzxcv',
+    keys = 'asdf;lkjqwerpoiuzxcv/.,m',
     -- perm_method = require'hop.perm'.TrieBacktrackFilling,
     multi_windows = true,
     term_seq_bias = 0.7
