@@ -22,14 +22,24 @@ local macro_recording = function()
     end
 end
 
+local separators = {
+    component = "",
+    section = ""
+}
+
+if not os.getenv('NVIM_LUALINE_PLAIN') then
+    separators = {
+        component = { left = '', right = '' },
+        section = { left = '', right = '' }
+    }
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = gruvbox,
-        -- component_separators = { left = '', right = '' },
-        -- section_separators = { left = '', right = '' },
-        component_separators = '',
-        section_separators = '',
+        component_separators = separators.component,
+        section_separators = separators.section,
         disabled_filetypes = {},
         always_divide_middle = false,
         always_show_tabline = false,
