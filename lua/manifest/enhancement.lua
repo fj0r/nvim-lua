@@ -70,8 +70,13 @@ return {
         config = h.plugins 'possession'
     },
     {
-        'pocco81/auto-save.nvim',
-        enabled = false,
-        config = h.plugins 'auto-save'
-    },
+        "okuuva/auto-save.nvim",
+        cmd = "ASToggle",
+        event = { "InsertLeave", "TextChanged" },
+        config = h.plugins 'auto-save',
+        opts = {
+            -- your config goes here
+            -- or just leave it empty :)
+        },
+    }
 }

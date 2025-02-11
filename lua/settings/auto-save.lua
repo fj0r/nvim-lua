@@ -1,5 +1,9 @@
 require('auto-save').setup {
     condition = function(buf)
+        if vim.fn.getbufvar(buf, "&buftype") ~= '' then
+          return false
+        end
+
         if vim.fn.getbufvar(buf, "&modifiable") ~= 1 then
             return false
         end
@@ -18,7 +22,8 @@ require('auto-save').setup {
             return false
         end
 
-        local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+        local ft = vim.api.nvim_get_option_value('filetype', {buf=buf})
+
         if 'gitcommit' == ft then
             return false
         end
