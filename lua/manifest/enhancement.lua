@@ -74,9 +74,7 @@ return {
         cmd = "ASToggle",
         event = { "InsertLeave", "TextChanged" },
         config = h.plugins 'auto-save',
-        opts = {
-            -- your config goes here
-            -- or just leave it empty :)
-        },
+        -- opts = {
+        -- },
     }
 }

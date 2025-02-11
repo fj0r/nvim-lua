@@ -22,13 +22,13 @@ require('auto-save').setup {
             return false
         end
 
-        local ft = vim.api.nvim_get_option_value('filetype', {buf=buf})
+        local ft = vim.api.nvim_get_option_value('filetype', {buf = buf})
 
         if 'gitcommit' == ft then
             return false
         end
 
-        if not vim.api.nvim_buf_get_option(buf, 'modifiable') then
+        if not vim.api.nvim_get_option_value('modifiable', {buf = buf}) then
             return false
         end
 

@@ -7,7 +7,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts 'diagnostic goto_next')
 vim.keymap.set('n', '[q', vim.diagnostic.setloclist, opts 'diagnostic setloclist')
 
 local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', {buf = bufnr})
 
     -- Mappings.
     local bufopts = function(desc)
