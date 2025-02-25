@@ -7,7 +7,7 @@ local lldb_version = io.popen("lldb -v 2>/dev/null | rg 'lldb version ([0-9]+)\\
 if lldb_version ~= nil then
     local version = lldb_version:read()
     if version then
-        lldb_vscode_bin = 'lldb-vscode-' .. version
+        lldb_vscode_bin = 'lldb-dap-' .. version
     end
     lldb_version:close()
 end
@@ -17,6 +17,14 @@ dap.adapters.lldb = {
     command = lldb_vscode_bin,
     name = "lldb"
 }
+
+local cmd = function(s)
+    local handle = io.popen(s)
+    if handle == nil then return end
+    local r = handle:read("*l")
+    handle:close()
+    return r
+end
 
 dap.configurations.rust = {
     {
@@ -30,12 +38,9 @@ dap.configurations.rust = {
             local _ = r:read("*a")
             r:close()
             --local cwd = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
-            local cwd = lspconfig.util.root_pattern('Cargo.toml')(vim.fn.getcwd())
-            local handle = io.popen("cargo metadata --format-version=1 | jq -r '.packages[0].name'")
-            if handle == nil then return end
-            local name = handle:read("*l")
-            handle:close()
-            return cwd .. "/target/debug/" .. name
+            local name = cmd("cargo metadata --format-version=1 | jq -r '.packages[0].name'")
+            local cwd = cmd("cargo metadata --format-version=1 | jq -r '.target_directory'")
+            return cwd .. '/debug/' .. name
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
