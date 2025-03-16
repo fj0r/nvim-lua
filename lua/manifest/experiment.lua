@@ -11,7 +11,7 @@ return {
     {
         "michaelb/sniprun",
         config = h.plugins 'sniprun',
-        enabled = vim.g.nvim_level >= 3,
+        enabled = false,
     },
     {
         'NTBBloodbath/rest.nvim',
