@@ -16,13 +16,13 @@ vim.g.treesitter_lang = {
     "diff",
     "dockerfile",
     "go",
-    "gomod",
-    "graphql",
+    --"gomod",
+    --"graphql",
     "haskell",
     "html",
-    "java",
+    --"java",
     "javascript",
-    "jsdoc",
+    --"jsdoc",
     "json",
     --"norg",
     "regex",
@@ -32,7 +32,7 @@ vim.g.treesitter_lang = {
     "vue",
     "yaml",
     "lua",
-    "php",
+    --"php",
     table.unpack(builtin_parser)
 }
 
