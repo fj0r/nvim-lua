@@ -6,11 +6,6 @@ return {
         enabled = vim.g.nvim_level >= 2,
     },
     {
-        'LhKipp/nvim-nu',
-        build = ':TSInstall nu',
-        enabled = vim.g.nvim_level >= 3,
-    },
-    {
         'kaarmu/typst.vim',
         ft = 'typst',
         enabled = vim.g.nvim_level >= 3,
