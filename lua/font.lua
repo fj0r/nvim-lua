@@ -22,13 +22,7 @@ local fonts_abbr = {
     nne = "MonaspiceNe Nerd Font Mono",
     nkr = "MonaspiceKr Nerd Font Mono",
     nrn = "MonaspiceRn Nerd Font Mono",
-    mne = "Monaspace Neon",
-    mar = "Monaspace Argon",
-    mxe = "Monaspace Xenon",
-    mrn = "Monaspace Radon",
-    mkr = "Monaspace Krypton",
-    hs = "Hasklig",
-    jm = "JetBrains Mono ExtraLight",
+    njm = "JetBrainsMono Nerd Font Mono",
 }
 
 
