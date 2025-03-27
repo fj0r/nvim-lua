@@ -43,6 +43,6 @@ vim.diagnostic.config({
 
     virtual_lines = false,
     virtual_text = {
-        current_line = true
+        current_line = false
     },
 })
