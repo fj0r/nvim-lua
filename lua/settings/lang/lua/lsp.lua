@@ -1,9 +1,11 @@
-require "lspconfig".lua_ls.setup {
+vim.lsp.config['luals'] = {
+--require "lspconfig".lua_ls.setup {
     cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
+    root_markers = { '.luarc.json', '.luarc.jsonc' },
     settings = {
         Lua = {
             runtime = {
-                -- Tell the language server which version of Lua you're using (LuaJIT in the case of Neovim)
                 version = 'LuaJIT',
             },
             completion = {
@@ -20,6 +22,8 @@ require "lspconfig".lua_ls.setup {
             telemetry = {
                 enable = false,
             },
-        },
-    },
+        }
+    }
 }
+
+vim.lsp.enable('luals')

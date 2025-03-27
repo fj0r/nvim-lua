@@ -25,7 +25,7 @@ return {
             }
             set_theme(plugin.name, "dark")
         end,
-        enabled = vim.g.nvim_level >= 3,
+        enabled = false,
     },
     {
         "savq/melange-nvim",
