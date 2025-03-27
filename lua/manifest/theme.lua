@@ -1,7 +1,9 @@
 local function set_theme(name, background)
     local theme = vim.fn.exists('$NVIM_THEME') and os.getenv('NVIM_THEME') or name
     local bg = background or 'dark'
-    vim.cmd('set background=' .. bg .. '|colorscheme ' .. theme)
+    vim.opt.termguicolors = true
+    vim.cmd('set background=' .. bg)
+    vim.cmd.colorscheme(theme)
 end
 
 return {
@@ -22,15 +24,14 @@ return {
                 }
             }
             set_theme(plugin.name, "dark")
-        end
+        end,
+        enabled = vim.g.nvim_level >= 3,
     },
     {
         "savq/melange-nvim",
         name = "melange",
         config = function(plugin)
-            --[[
             set_theme(plugin.name, "dark")
-            --]]
         end
     },
 }

@@ -1,14 +1,14 @@
-local gruvbox = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox-material'), {
+local theme = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
     --[[
     terminal = {
         a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
         b = { bg = '#504945', fg = '#ebdbb2' },
         c = { bg = '#7c6f64', fg = '#282828' },
     },
-    --]]
     inactive = {
         c = { bg = '#504945' }
     }
+    --]]
 })
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
@@ -37,7 +37,7 @@ end
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = gruvbox,
+        theme = theme,
         component_separators = separators.component,
         section_separators = separators.section,
         disabled_filetypes = {},
