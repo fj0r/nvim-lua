@@ -40,6 +40,9 @@ vim.diagnostic.config({
     float = {
         -- source = 'always'
     },
+
+    virtual_lines = false,
     virtual_text = {
+        current_line = true
     },
 })
