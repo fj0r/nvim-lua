@@ -1,11 +1,7 @@
--- require 'lspconfig'.sqlls.setup {}
-
-require('lspconfig.configs').postgres_lsp = {
-  default_config = {
-    name = 'postgres_lsp',
-    cmd = {'postgres_lsp'},
-    filetypes = {'sql'},
+vim.lsp.config['postgres_lsp'] = {
+    cmd = { "postgrestools", "lsp-proxy" },
+    filetypes = { "sql" },
     single_file_support = true,
-    root_dir = require('lspconfig.util').root_pattern 'root-file.txt'
-  }
 }
+
+vim.lsp.enable('postgres_lsp')
