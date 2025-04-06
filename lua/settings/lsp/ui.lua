@@ -46,3 +46,20 @@ vim.diagnostic.config({
         current_line = false
     },
 })
+
+vim.api.nvim_create_user_command('ToggleDiagnosticVirtual',
+    function(ctx)
+        local o = vim.diagnostic.config().virtual_lines
+        local t
+        if o then
+            t = { current_line = false }
+        else
+            t = false
+        end
+        vim.diagnostic.config {
+            virtual_lines = not o,
+            virtual_text = t
+        }
+    end,
+    { nargs = '?' }
+)
