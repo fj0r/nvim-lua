@@ -6,3 +6,9 @@ local on_attach = function(client, bufnr)
 end
 
 vim.lsp.config('ruff_lsp', { on_attach = on_attach })
+
+vim.lsp.config('pyright', {
+    cmd = { "bun", "x", "pyright-langserver", "--stdio" }
+})
+
+vim.lsp.enable('pyright', {})

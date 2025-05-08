@@ -4,7 +4,7 @@ if vim.g.nvim_level >= 2 then
 
     require 'settings.lsp.base'
 
-    --require 'settings.lang.python.lsp'
+    require 'settings.lang.python.lsp'
     require 'settings.lang.lua.lsp'
     require 'settings.lang.yaml.lsp'
     require 'settings.lang.js.lsp'

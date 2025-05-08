@@ -2,7 +2,6 @@ for _, lsp in
 ipairs {
     "hls",
     "rust_analyzer",
-    "pyright",
     "nushell",
     "julials",
     "metals",
