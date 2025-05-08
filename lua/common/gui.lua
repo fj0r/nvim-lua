@@ -10,7 +10,7 @@ if vim.g.neovide or vim.g.server_mode then
     require('setup').global_table {
         neovide_fullscreen = false,
         neovide_remember_window_size = true,
-        neovide_transparency = 1,
+        neovide_opacity = 1,
         neovide_floating_blur_amount_x = 2.0,
         neovide_floating_blur_amount_y = 2.0,
         neovide_hide_mouse_when_typing = true,
