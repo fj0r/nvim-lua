@@ -1,5 +1,4 @@
-for _, lsp in
-ipairs {
+vim.lsp.enable {
     "hls",
     "rust_analyzer",
     "pyright",
@@ -9,6 +8,4 @@ ipairs {
     "ts_ls",
     "gopls",
     "jdtls"
-} do
-    vim.lsp.enable(lsp, {})
-end
+}

@@ -14,6 +14,7 @@ local on_attach = function(client, bufnr)
         return { noremap = true, silent = true, buffer = bufnr, desc = desc }
     end
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts 'lsp declaration')
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts 'lsp references')
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts 'lsp definition')
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts 'lsp hover')
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts 'lsp implementation')
@@ -25,7 +26,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '[D', vim.lsp.buf.type_definition, bufopts 'lsp type_definition')
     vim.keymap.set('n', '[r', vim.lsp.buf.rename, bufopts 'lsp rename')
     vim.keymap.set('n', '[a', vim.lsp.buf.code_action, bufopts 'lsp code_action')
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts 'lsp references')
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
@@ -78,6 +78,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 vim.lsp.config('*', {
+    -- root_markers = { '.git', '.hg' },
     capabilities = capabilities,
     flags = {
         debounce_text_changes = 150
