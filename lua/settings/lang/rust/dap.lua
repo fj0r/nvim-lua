@@ -1,7 +1,6 @@
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 
 local dap = require 'dap'
-local lspconfig = require 'lspconfig'
 local lldb_vscode_bin
 local lldb_version = io.popen("lldb -v 2>/dev/null | rg 'lldb version ([0-9]+)\\..*' -or '$1'")
 if lldb_version ~= nil then
@@ -37,7 +36,7 @@ dap.configurations.rust = {
             if r == nil then return end
             local _ = r:read("*a")
             r:close()
-            --local cwd = lspconfig.util.find_git_ancestor(vim.fn.getcwd())
+            --local cwd = vim.fs.root(vim.fn.getcwd(), {'.git'})
             local name = cmd("cargo metadata --format-version=1 | jq -r '.packages[0].name'")
             local cwd = cmd("cargo metadata --format-version=1 | jq -r '.target_directory'")
             return cwd .. '/debug/' .. name

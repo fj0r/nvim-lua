@@ -1,5 +1,4 @@
 local resession = require('resession')
-local vcs_root = require('lspconfig.util').root_pattern('.git/')
 local tbm = require('taberm')
 
 resession.setup {
@@ -36,7 +35,7 @@ local load = function()
     -- if session_excluded() then return end
 
     local cwd = vim.fn.getcwd()
-    local wd = vcs_root(cwd) or cwd
+    local wd = vim.fs.root(cwd, { '.git' }) or cwd
 
     if wd then
         local sn = vim.fn.substitute(wd, os.getenv('HOME'), '~', '')

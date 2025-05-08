@@ -1,10 +1,8 @@
-local util = require('lspconfig.util')
-
 vim.lsp.config('helm_ls', {
     cmd = { "helm_ls", "serve" },
     filetypes = { "helm" },
     root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
+        return vim.fs.root(fname, { 'Chart.yaml' })
     end,
 })
 

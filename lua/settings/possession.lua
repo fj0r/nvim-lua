@@ -1,5 +1,4 @@
 local tbm = require('taberm')
-local vcs_root = require('lspconfig.util').root_pattern('.git/')
 local has_plugin = require 'lazy_helper'.has_plugin
 
 require('possession').setup {
@@ -86,7 +85,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         -- if session_excluded() then return end
 
         local cwd = vim.fn.getcwd()
-        local vcs_dir = vcs_root(cwd)
+        local vcs_dir = vim.fs.root(cwd, { '.git' })
         local root_dir = vcs_dir and vim.fn.substitute(vcs_dir, os.getenv('HOME'), '~', '') or cwd
 
         vim.g.session_root_dir = root_dir

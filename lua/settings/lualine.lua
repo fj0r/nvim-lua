@@ -118,7 +118,6 @@ vim.api.nvim_create_autocmd("RecordingEnter", { callback = refresh_tabline })
 vim.api.nvim_create_autocmd("RecordingLeave", { callback = refresh_tabline })
 
 
-local vcs_root = require('lspconfig.util').root_pattern('.git/')
 vim.api.nvim_create_autocmd("DirChanged", {
     pattern = 'tabpage',
     callback = function(ctx)
@@ -127,7 +126,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
         if currname and string.sub(currname, 1, 1) == vim.g.tab_title_pin then return end
 
         local name = nil
-        if vcs_root(ctx.file) then
+        if vim.fs.root(ctx.file, { '.git' }) then
             name = vim.fs.basename(ctx.file)
         else
             name = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
