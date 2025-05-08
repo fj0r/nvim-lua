@@ -1,5 +1,4 @@
-vim.lsp.config['luals'] = {
---require "lspconfig".lua_ls.setup {
+vim.lsp.config('luals', {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
     root_markers = { '.luarc.json', '.luarc.jsonc' },
@@ -24,6 +23,6 @@ vim.lsp.config['luals'] = {
             },
         }
     }
-}
+})
 
 vim.lsp.enable('luals')

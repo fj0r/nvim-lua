@@ -5,4 +5,4 @@ local on_attach = function(client, bufnr)
   end
 end
 
-require('lspconfig').ruff_lsp.setup { on_attach = on_attach }
+vim.lsp.config('ruff_lsp', { on_attach = on_attach })

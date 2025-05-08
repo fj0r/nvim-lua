@@ -7,7 +7,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts 'diagnostic goto_next')
 vim.keymap.set('n', '[q', vim.diagnostic.setloclist, opts 'diagnostic setloclist')
 
 local on_attach = function(client, bufnr)
-    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', {buf = bufnr})
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
     -- Mappings.
     local bufopts = function(desc)
@@ -77,14 +77,18 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 --]]
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local lspconfig = require 'lspconfig'
-lspconfig.util.default_config = vim.tbl_extend("force",
-    lspconfig.util.default_config,
-    {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        flags = {
-            debounce_text_changes = 150
-        }
+vim.lsp.config('*', {
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 150
     }
-)
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        local bufnr = args.buf
+        on_attach(client, bufnr)
+    end,
+})

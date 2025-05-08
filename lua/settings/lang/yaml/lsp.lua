@@ -78,7 +78,7 @@ vim.g.json_schemas = json_schemas
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-require 'lspconfig'.jsonls.setup {
+vim.lsp.config('jsonls', {
     capabilities = capabilities,
     settings = {
         json = {
@@ -90,7 +90,7 @@ require 'lspconfig'.jsonls.setup {
             trace = { server = 'verbose' },
         },
     }
-}
+})
 
 local yaml_origin = require('schemastore').json.schemas {
     select = {
@@ -133,7 +133,7 @@ vim.tbl_map(function(schema) yaml_schemas[sync(schema.url)] = schema.fileMatch e
 -- # yaml-language-server: $schema=<urlToTheSchema|relativeFilePath|absoluteFilePath}>
 
 vim.g.yaml_schemas = yaml_schemas
-require 'lspconfig'.yamlls.setup {
+vim.lsp.config('yamlls', {
     settings = {
         yaml = {
             completion = true,
@@ -145,4 +145,4 @@ require 'lspconfig'.yamlls.setup {
             schemas = vim.g.yaml_schemas
         }
     }
-}
+})

@@ -1,5 +1,3 @@
-local config = require 'lspconfig'
-
 for _, lsp in
 ipairs {
     "hls",
@@ -11,4 +9,6 @@ ipairs {
     "ts_ls",
     "gopls",
     "jdtls"
-} do config[lsp].setup {} end
+} do
+    vim.lsp.enable(lsp, {})
+end
