@@ -91,6 +91,7 @@ vim.lsp.config('jsonls', {
         },
     }
 })
+vim.lsp.enable('jsonls')
 
 local yaml_origin = require('schemastore').json.schemas {
     select = {
@@ -146,3 +147,4 @@ vim.lsp.config('yamlls', {
         }
     }
 })
+vim.lsp.enable('yamlls')

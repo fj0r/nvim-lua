@@ -78,6 +78,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 vim.lsp.config('*', {
+    -- root_markers = { '.git', '.hg' },
     capabilities = capabilities,
     flags = {
         debounce_text_changes = 150
