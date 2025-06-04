@@ -1,5 +1,7 @@
+local M
+
 if vim.g.nvim_level >= 2 then
-    require 'settings.lsp.common'
+    M = require 'settings.lsp.common'
     require 'settings.lsp.ui'
 
     require 'settings.lsp.base'
@@ -16,3 +18,5 @@ if vim.g.nvim_level >= 3 then
     --require 'settings.lang.helm.lsp'
     --require 'settings.lang.typst.lsp'
 end
+
+return M

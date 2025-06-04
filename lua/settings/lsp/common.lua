@@ -6,26 +6,25 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts 'diagnostic goto_prev')
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts 'diagnostic goto_next')
 vim.keymap.set('n', '[q', vim.diagnostic.setloclist, opts 'diagnostic setloclist')
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr, plugin, ctx)
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
-    -- Mappings.
-    local bufopts = function(desc)
-        return { noremap = true, silent = true, buffer = bufnr, desc = desc }
-    end
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts 'lsp declaration')
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts 'lsp references')
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts 'lsp definition')
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts 'lsp hover')
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts 'lsp implementation')
-    vim.keymap.set('n', '[k', vim.lsp.buf.signature_help, bufopts 'lsp signature_help')
-    vim.keymap.set('n', '[wa', vim.lsp.buf.add_workspace_folder, bufopts 'lsp add_workspace_folder')
-    vim.keymap.set('n', '[wr', vim.lsp.buf.remove_workspace_folder, bufopts 'lsp remove_workspace_folder')
-    vim.keymap.set('n', '[wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        bufopts 'lsp list_workspace_folders')
-    vim.keymap.set('n', '[D', vim.lsp.buf.type_definition, bufopts 'lsp type_definition')
-    vim.keymap.set('n', '[r', vim.lsp.buf.rename, bufopts 'lsp rename')
-    vim.keymap.set('n', '[a', vim.lsp.buf.code_action, bufopts 'lsp code_action')
+    local km = {
+        declaration = vim.lsp.buf.declaration,
+        references = vim.lsp.buf.references,
+        definition = vim.lsp.buf.definition,
+        hover = vim.lsp.buf.hover,
+        implementation = vim.lsp.buf.implementation,
+        signature_help = vim.lsp.buf.signature_help,
+        add_workspace_folder = vim.lsp.buf.add_workspace_folder,
+        remove_workspace_folder = vim.lsp.buf.remove_workspace_folder,
+        list_workspace_folders = function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        type_definition = vim.lsp.buf.type_definition,
+        rename = vim.lsp.buf.rename,
+        code_action = vim.lsp.buf.code_action,
+    }
+
+    ctx.apply_keymap(plugin, km)
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
@@ -85,11 +84,16 @@ vim.lsp.config('*', {
     }
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('my.lsp', {}),
-    callback = function(args)
-        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        local bufnr = args.buf
-        on_attach(client, bufnr)
-    end,
-})
+
+return {
+    setup = function(plugin, ctx)
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('my.lsp', {}),
+            callback = function(args)
+                local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+                local bufnr = args.buf
+                on_attach(client, bufnr, plugin, ctx)
+            end,
+        })
+    end
+}
