@@ -7,7 +7,7 @@ local actions = require('telescope.actions')
 local themes = require('telescope.themes')
 telescope.setup {
     defaults = {
-        borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         cache_picker = {
             num_pickers = 100,
         },
@@ -60,32 +60,36 @@ telescope.load_extension('env')
 telescope.load_extension('fzf')
 --]]
 
+local km = {
+    pickers              = tele.pickers,
+    lsp_document_symbols = tele.lsp_document_symbols,
+    marks                = tele.marks,
+    registers            = tele.registers,
+    oldfiles             = tele.oldfiles,
+    find_files           = tele.find_files,
+    live_grep            = tele.live_grep,
+    tabs                 = tele_tabby.list,
+    git_files            = tele.git_files,
+    git_commits          = tele.git_commits,
+    git_branches         = tele.git_branches,
+    git_status           = tele.git_status,
+    git_bcommits         = tele.git_bcommits,
+    buffers              = function()
+        tele.buffers({
+            show_all_buffers = false,
+            ignore_current_buffer = true,
+            sort_mru = true
+        })
+    end,
+    builtin              = tele.builtin,
+    help_tags            = tele.help_tags,
+    notify               = function()
+        telescope.extensions.notify.notify()
+    end,
+}
+
 return {
-    fns = {
-        pickers              = tele.pickers,
-        lsp_document_symbols = tele.lsp_document_symbols,
-        marks                = tele.marks,
-        registers            = tele.registers,
-        oldfiles             = tele.oldfiles,
-        find_files           = tele.find_files,
-        live_grep            = tele.live_grep,
-        tabs                 = tele_tabby.list,
-        git_files            = tele.git_files,
-        git_commits          = tele.git_commits,
-        git_branches         = tele.git_branches,
-        git_status           = tele.git_status,
-        git_bcommits         = tele.git_bcommits,
-        buffers              = function()
-                                   tele.buffers({
-                                       show_all_buffers = false,
-                                       ignore_current_buffer = true,
-                                       sort_mru = true
-                                   })
-                               end,
-        builtin              = tele.builtin,
-        help_tags            = tele.help_tags,
-        notify               = function()
-                                   telescope.extensions.notify.notify()
-                               end,
-    }
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, km)
+    end
 }

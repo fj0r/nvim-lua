@@ -19,15 +19,23 @@ function M.apply_keymap(plugin, opt)
         return
     end
 
-    opt = type(opt) == 'table' and opt or { fns = {} }
+    if not type(opt) == 'table' then
+        return
+    end
+
     for _, k in ipairs(plugin.keys) do
         local desc = k.desc
         local lo = desc and { silent = true, noremap = true, desc = desc } or o
         local mode = type(k.mode) == 'table' and k.mode or { k.mode or 'n' }
         for _, m in ipairs(mode) do
-            vim.keymap.set(m, k[1], opt.fns[k[2]] or k[2], lo)
+            vim.keymap.set(m, k[1], opt[k[2]] or k[2], lo)
         end
     end
+end
+
+function M.setup(plugin, opt)
+    if not (type(opt) == 'table' and opt.setup) then return end
+    opt.setup(plugin, { apply_keymap = M.apply_keymap })
 end
 
 local wrap_config = function(dir)
@@ -36,7 +44,7 @@ local wrap_config = function(dir)
             -- vim.opt.rtp:append(plugin.dir)
             -- debug: print(vim.inspect(plugin[1]))
             local opt = require(dir .. '.' .. file)
-            M.apply_keymap(plugin, opt)
+            M.setup(plugin, opt)
         end
     end
 end

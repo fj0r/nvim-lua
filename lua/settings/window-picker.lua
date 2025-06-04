@@ -67,4 +67,9 @@ local pick_win = function()
     vim.api.nvim_set_current_win(picked_window_id)
 end
 
-return { fns = { pick_win = pick_win } }
+return {
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, { pick_win = pick_win })
+    end
+
+}

@@ -26,10 +26,12 @@ require 'hop'.setup {
 }
 
 return {
-    fns = {
-        somewhere = hint_somewhere,
-        lines = hop.hint_lines,
-        words = hop.hint_words,
-        char1 = hop.hint_char1,
-    }
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, {
+            somewhere = hint_somewhere,
+            lines = hop.hint_lines,
+            words = hop.hint_words,
+            char1 = hop.hint_char1,
+        })
+    end
 }

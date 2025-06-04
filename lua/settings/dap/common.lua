@@ -48,25 +48,29 @@ require("dapui").setup({
     },
 })
 
+local km = {
+    toggle_breakpoint = require 'dap'.toggle_breakpoint,
+    list_breakpoints = require 'dap'.list_breakpoints,
+    condition_breakpoint = function()
+        require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    end,
+    log_breakpoint = function()
+        require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+    end,
+    continue = dap_continue,
+    step_over = require 'dap'.step_over,
+    goto_ = require 'dap'.goto_,
+    step_into = require 'dap'.step_into,
+    out = require 'dap'.step_out,
+    run_to_cursor = require 'dap'.run_to_cursor,
+    repl_open = require 'dap'.repl.open,
+    run_last = require 'dap'.run_last,
+    stop = dap_stop,
+    eval = require 'dapui'.eval,
+}
+
 return {
-    fns = {
-        toggle_breakpoint = require 'dap'.toggle_breakpoint,
-        list_breakpoints = require 'dap'.list_breakpoints,
-        condition_breakpoint = function()
-            require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-        end,
-        log_breakpoint = function()
-            require 'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
-        end,
-        continue = dap_continue,
-        step_over = require 'dap'.step_over,
-        goto_ = require 'dap'.goto_,
-        step_into = require 'dap'.step_into,
-        out = require 'dap'.step_out,
-        run_to_cursor = require 'dap'.run_to_cursor,
-        repl_open = require 'dap'.repl.open,
-        run_last = require 'dap'.run_last,
-        stop = dap_stop,
-        eval = require 'dapui'.eval,
-    }
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, km)
+    end,
 }

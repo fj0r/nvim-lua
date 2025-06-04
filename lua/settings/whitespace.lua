@@ -11,8 +11,10 @@ require('whitespace-nvim').setup({
 })
 
 return {
-    fns = {
-        -- remove trailing whitespace with a keybinding
-        remove = require('whitespace-nvim').trim
-    }
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, {
+            -- remove trailing whitespace with a keybinding
+            remove = require('whitespace-nvim').trim
+        })
+    end
 }

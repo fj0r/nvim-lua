@@ -21,7 +21,7 @@ require("neo-tree").setup({
             end
         },
     },
-    close_if_last_window = false,   -- Close Neo-tree if it is the last window left in the tab
+    close_if_last_window = false,  -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = 'single', -- "double", "rounded", "single" or "solid"
     enable_git_status = vim.g.has_git,
     default_component_configs = {
@@ -211,35 +211,38 @@ require("neo-tree").setup({
 })
 
 local notify = function(x) require('notify').notify(vim.inspect(x)) end
-return {
-    fns = {
-        reveal = function()
-            local cwd = vim.fn.getcwd()
-            local bn = vim.api.nvim_buf_get_name(0)
-            local sub = true
-            -- file doesn't exist
-            if vim.fn.filereadable(bn) == 0 then
-                sub = false
-            elseif string.sub(bn, 1, 7) == 'term://' then
-                sub = false
-            else
-                for p in vim.fs.parents(bn) do
-                    if p == cwd then
-                        sub = true
-                        break
-                    end
+local km = {
+    reveal = function()
+        local cwd = vim.fn.getcwd()
+        local bn = vim.api.nvim_buf_get_name(0)
+        local sub = true
+        -- file doesn't exist
+        if vim.fn.filereadable(bn) == 0 then
+            sub = false
+        elseif string.sub(bn, 1, 7) == 'term://' then
+            sub = false
+        else
+            for p in vim.fs.parents(bn) do
+                if p == cwd then
+                    sub = true
+                    break
                 end
             end
-
-            -- local cmd = 'Neotree float dir=' .. cwd .. ' '
-            local cmd = 'Neotree dir=' .. cwd .. ' '
-            if sub then
-                cmd = cmd .. 'reveal_file=' .. bn
-            else
-                cmd = cmd .. 'reveal=false'
-            end
-            --notify(cmd)
-            vim.api.nvim_command(cmd)
         end
-    }
+
+        -- local cmd = 'Neotree float dir=' .. cwd .. ' '
+        local cmd = 'Neotree dir=' .. cwd .. ' '
+        if sub then
+            cmd = cmd .. 'reveal_file=' .. bn
+        else
+            cmd = cmd .. 'reveal=false'
+        end
+        --notify(cmd)
+        vim.api.nvim_command(cmd)
+    end
+}
+return {
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, km)
+    end
 }

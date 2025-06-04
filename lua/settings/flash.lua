@@ -52,7 +52,7 @@ local mk2label = function(pattern)
                     end,
                     labeler = function(matches)
                         for _, m in ipairs(matches) do
-                            m.label = m.label2     -- use the second label
+                            m.label = m.label2 -- use the second label
                         end
                     end,
                 })
@@ -62,32 +62,36 @@ local mk2label = function(pattern)
 end
 
 
+local km = {
+    jump_to_line = function()
+        Flash.jump({
+            search = { mode = "search", max_length = 0, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = [[^]]
+        })
+    end,
+    -- any_word = mk2label('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$'),
+    any_word = mk2label([[\<]]),
+    aw = function()
+        require("flash").jump({
+            pattern = ".",     -- initialize pattern with any char
+            search = {
+                mode = function(pattern)
+                    -- remove leading dot
+                    if pattern:sub(1, 1) == "." then
+                        pattern = pattern:sub(2)
+                    end
+                    return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
+                end,
+            },
+            -- select the range
+            jump = { pos = "range" },
+        })
+    end
+}
+
 return {
-    fns = {
-        jump_to_line = function()
-            Flash.jump({
-                search = { mode = "search", max_length = 0, multi_window = false },
-                label = { after = { 0, 0 } },
-                pattern = [[^]]
-            })
-        end,
-        -- any_word = mk2label('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$'),
-        any_word = mk2label([[\<]]),
-        aw = function()
-            require("flash").jump({
-                pattern = ".", -- initialize pattern with any char
-                search = {
-                    mode = function(pattern)
-                        -- remove leading dot
-                        if pattern:sub(1, 1) == "." then
-                            pattern = pattern:sub(2)
-                        end
-                        return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
-                    end,
-                },
-                -- select the range
-                jump = { pos = "range" },
-            })
-        end
-    }
+    setup = function(plugin, ctx)
+        ctx.apply_keymap(plugin, km)
+    end
 }
