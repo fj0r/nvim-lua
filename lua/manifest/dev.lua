@@ -26,8 +26,8 @@ return {
         'neovim/nvim-lspconfig',
         keys = {
             { 'gd',  'declaration',             remap = true },
-            { '[q',  'references',              remap = true },
-            { '[d',  'definition',              remap = true },
+            { ';r',  'references',              remap = true },
+            { ';d',  'definition',              remap = true },
             { 'K',   'hover',                   remap = true },
             { 'gi',  'implementation',          remap = true },
             { '[k',  'signature_help',          remap = true },

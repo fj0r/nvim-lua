@@ -63,6 +63,11 @@ end
 
 
 local km = {
+    search = function() require("flash").jump() end,
+    treesitter = function() require("flash").treesitter() end,
+    remote = function() require("flash").remote() end,
+    treesitter_search = function() require("flash").treesitter_search() end,
+    toggle = function() require("flash").toggle() end,
     jump_to_line = function()
         Flash.jump({
             search = { mode = "search", max_length = 0, multi_window = false },
@@ -74,7 +79,7 @@ local km = {
     any_word = mk2label([[\<]]),
     aw = function()
         require("flash").jump({
-            pattern = ".",     -- initialize pattern with any char
+            pattern = ".", -- initialize pattern with any char
             search = {
                 mode = function(pattern)
                     -- remove leading dot
