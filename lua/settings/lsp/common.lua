@@ -1,4 +1,4 @@
-local on_attach = function(client, bufnr, plugin, ctx)
+local on_attach = function(client, bufnr, bufkeys, ctx)
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
     local km = {
@@ -14,16 +14,17 @@ local on_attach = function(client, bufnr, plugin, ctx)
         type_definition = vim.lsp.buf.type_definition,
         rename = vim.lsp.buf.rename,
         code_action = vim.lsp.buf.code_action,
+        format = function() vim.lsp.buf.format { async = true } end,
     }
     local prefixer = function(fn, desc) return 'lsp ' .. fn end
 
-    ctx.apply_keymap(plugin, km, { buf = bufnr, desc = prefixer })
+    ctx.apply_keymap(bufkeys, km, { buf = bufnr, desc = prefixer })
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
         ctx.apply_keymap(
-            plugin,
-            { format = function() vim.lsp.buf.format { async = true } end },
+            bufkeys,
+            km,
             { buf = bufnr, desc = prefixer }
         )
     end
@@ -90,14 +91,26 @@ return {
             goto_next = vim.diagnostic.goto_next,
             setloclist = vim.diagnostic.setloclist,
         }
-        ctx.apply_keymap(plugin, km, { prefix = 'diagnostic ' })
+        local keys = {}
+        local bufkeys = {}
+        for _, k in ipairs(plugin.keys) do
+            if k.remap then
+                k.remap = nil
+                table.insert(bufkeys, k)
+            else
+                table.insert(keys, k)
+            end
+        end
+
+        local prefixer = function(fn, desc) return 'diagnostic ' .. fn end
+        ctx.apply_keymap(keys, km, { desc = prefixer })
 
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('my.lsp', {}),
             callback = function(args)
                 local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
                 local bufnr = args.buf
-                on_attach(client, bufnr, plugin, ctx)
+                on_attach(client, bufnr, bufkeys, ctx)
             end,
         })
     end

@@ -13,18 +13,18 @@ function M.all_plugin()
     return plugins
 end
 
-function M.apply_keymap(plugin, km, opt)
-    if not plugin.keys then
+function M.apply_keymap(kdecl, kdef, opt)
+    if not kdecl then
         return
     end
 
-    if not type(km) == 'table' then
+    if not type(kdef) == 'table' then
         return
     end
 
     local opt = type(opt) == 'table' and opt or {}
 
-    for _, k in ipairs(plugin.keys) do
+    for _, k in ipairs(kdecl) do
         local key = k[1]
         local fn = k[2]
         local o = { silent = true, noremap = true }
@@ -39,7 +39,8 @@ function M.apply_keymap(plugin, km, opt)
             end
         end
         local mode = type(k.mode) == 'table' and k.mode or 'n'
-        vim.keymap.set(mode, key, km[fn] or fn, o)
+        local d = kdef[fn] or fn
+        vim.keymap.set(mode, key, d, o)
     end
 end
 

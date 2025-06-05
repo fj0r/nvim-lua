@@ -69,7 +69,7 @@ end
 
 return {
     setup = function(plugin, ctx)
-        ctx.apply_keymap(plugin, { pick_win = pick_win })
+        ctx.apply_keymap(plugin.keys, { pick_win = pick_win })
     end
 
 }

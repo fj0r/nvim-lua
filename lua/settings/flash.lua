@@ -92,6 +92,6 @@ local km = {
 
 return {
     setup = function(plugin, ctx)
-        ctx.apply_keymap(plugin, km)
+        ctx.apply_keymap(plugin.keys, km)
     end
 }

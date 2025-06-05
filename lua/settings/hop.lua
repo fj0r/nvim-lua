@@ -27,7 +27,7 @@ require 'hop'.setup {
 
 return {
     setup = function(plugin, ctx)
-        ctx.apply_keymap(plugin, {
+        ctx.apply_keymap(plugin.keys, {
             somewhere = hint_somewhere,
             lines = hop.hint_lines,
             words = hop.hint_words,
