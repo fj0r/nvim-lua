@@ -1,11 +1,3 @@
-local opts = function(desc)
-    return { noremap = true, silent = true, desc = desc }
-end
-vim.keymap.set('n', '[e', vim.diagnostic.open_float, opts 'diagnostic open_float')
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts 'diagnostic goto_prev')
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts 'diagnostic goto_next')
-vim.keymap.set('n', '[q', vim.diagnostic.setloclist, opts 'diagnostic setloclist')
-
 local on_attach = function(client, bufnr, plugin, ctx)
     vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
@@ -23,12 +15,17 @@ local on_attach = function(client, bufnr, plugin, ctx)
         rename = vim.lsp.buf.rename,
         code_action = vim.lsp.buf.code_action,
     }
+    local prefixer = function(fn, desc) return 'lsp ' .. fn end
 
-    ctx.apply_keymap(plugin, km)
+    ctx.apply_keymap(plugin, km, { buf = bufnr, desc = prefixer })
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set("n", "[f", function() vim.lsp.buf.format { async = true } end, bufopts 'lsp format')
+        ctx.apply_keymap(
+            plugin,
+            { format = function() vim.lsp.buf.format { async = true } end },
+            { buf = bufnr, desc = prefixer }
+        )
     end
     -- if client.server_capabilities.documentRangeFormattingProvider then
     --     vim.keymap.set("v", "[f", vim.lsp.buf.range_formatting, bufopts 'lsp range_format')
@@ -87,6 +84,14 @@ vim.lsp.config('*', {
 
 return {
     setup = function(plugin, ctx)
+        local km = {
+            open_float = vim.diagnostic.open_float,
+            goto_prev = vim.diagnostic.goto_prev,
+            goto_next = vim.diagnostic.goto_next,
+            setloclist = vim.diagnostic.setloclist,
+        }
+        ctx.apply_keymap(plugin, km, { prefix = 'diagnostic ' })
+
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('my.lsp', {}),
             callback = function(args)

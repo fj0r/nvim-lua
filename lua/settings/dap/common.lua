@@ -71,6 +71,11 @@ local km = {
 
 return {
     setup = function(plugin, ctx)
-        ctx.apply_keymap(plugin, km)
+        ctx.apply_keymap(plugin, km, {
+            desc = function(fn, desc)
+                print(fn)
+                return 'dap ' .. fn
+            end
+        })
     end,
 }

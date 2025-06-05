@@ -10,7 +10,7 @@ return {
         },
         dependencies = { "nvim-lua/plenary.nvim" },
         enabled = true,
-        config = h.plugins 'spectre',
+        config = h.settings 'spectre',
     },
     {
         'mg979/vim-visual-multi',
@@ -26,7 +26,7 @@ return {
     {
         'junegunn/rainbow_parentheses.vim',
         enabled = vim.g.nvim_level >= 2,
-        config = h.plugins 'rainbow'
+        config = h.settings 'rainbow'
     },
     {
         'numToStr/Comment.nvim',
@@ -34,7 +34,7 @@ return {
     },
     {
         'windwp/nvim-autopairs',
-        config = h.plugins 'autopairs',
+        config = h.settings 'autopairs',
     },
     {
         "kylechui/nvim-surround",
@@ -49,12 +49,12 @@ return {
             { 'gw', 'remove', desc = 'remove tailing whitespace' },
         },
         'johnfrankmorgan/whitespace.nvim',
-        config = h.plugins 'whitespace'
+        config = h.settings 'whitespace'
     },
     {
         'stevearc/resession.nvim',
         enabled = vim.g.nvim_level >= 2,
-        config = h.plugins 'ressession',
+        config = h.settings 'ressession',
         opts = {},
     },
     {
@@ -67,13 +67,13 @@ return {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         enabled = false,
-        config = h.plugins 'possession'
+        config = h.settings 'possession'
     },
     {
         "okuuva/auto-save.nvim",
         cmd = "ASToggle",
         event = { "InsertLeave", "TextChanged" },
-        config = h.plugins 'auto-save',
+        config = h.settings 'auto-save',
         -- opts = {
         -- },
     }

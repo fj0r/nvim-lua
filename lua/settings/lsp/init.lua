@@ -1,17 +1,13 @@
-local M
+local c = require 'settings.lsp.common'
+require 'settings.lsp.ui'
 
-if vim.g.nvim_level >= 2 then
-    M = require 'settings.lsp.common'
-    require 'settings.lsp.ui'
+require 'settings.lsp.base'
 
-    require 'settings.lsp.base'
-
-    --require 'settings.lang.python.lsp'
-    require 'settings.lang.lua.lsp'
-    require 'settings.lang.yaml.lsp'
-    require 'settings.lang.js.lsp'
-    require 'settings.lang.php.lsp'
-end
+--require 'settings.lang.python.lsp'
+require 'settings.lang.lua.lsp'
+require 'settings.lang.yaml.lsp'
+require 'settings.lang.js.lsp'
+require 'settings.lang.php.lsp'
 
 if vim.g.nvim_level >= 3 then
     require 'settings.lang.sql.lsp'
@@ -19,4 +15,4 @@ if vim.g.nvim_level >= 3 then
     --require 'settings.lang.typst.lsp'
 end
 
-return M
+return c

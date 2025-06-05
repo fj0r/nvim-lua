@@ -37,7 +37,7 @@ return {
             { '<leader>]',  'help_tags',            desc = 'telescope help_tags' },
             { '<leader>N',  'notify',               desc = 'telescope notify' },
         },
-        config = h.plugins 'telescope',
+        config = h.settings 'telescope',
         enabled = vim.g.nvim_level >= 2
     },
     {
@@ -68,7 +68,7 @@ return {
         keys = {
             { '<leader>e', ':NvimTreeFindFileToggle<CR>', desc = 'tree' }
         },
-        config = h.plugins 'nvim-tree',
+        config = h.settings 'nvim-tree',
         enabled = false,
     },
     {
@@ -87,7 +87,7 @@ return {
         keys = {
             { '<leader>e', 'reveal', desc = 'Neotree' }
         },
-        config = h.plugins 'neotree',
+        config = h.settings 'neotree',
         enabled = vim.g.nvim_level >= 2
     },
 
@@ -99,7 +99,7 @@ return {
         },
         module = { 'neo-tree' },
         version = '2.*',
-        config = h.plugins 'window-picker',
+        config = h.settings 'window-picker',
         enabled = vim.g.nvim_level >= 2
     },
 
@@ -109,7 +109,7 @@ return {
             { '<leader>ws', '<cmd>WinShift swap<cr>', desc = 'winshift' },
             { '<leader>wx', '<cmd>WinShift<cr>',      desc = 'winswap' },
         },
-        config = h.plugins 'winshift',
+        config = h.settings 'winshift',
         enabled = vim.g.nvim_level >= 2
     },
 

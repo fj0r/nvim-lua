@@ -14,7 +14,7 @@ return {
         "nvim-neorg/neorg",
         --build = ":Neorg sync-parsers",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = h.plugins 'neorg',
+        config = h.settings 'neorg',
         enabled = false
     },
     {
@@ -24,7 +24,7 @@ return {
             { '<leader>oc', nil, desc = 'orgmode capture' },
         },
         ft = { 'org' },
-        config = h.plugins 'orgmode',
+        config = h.settings 'orgmode',
         enabled = false,
     },
     {

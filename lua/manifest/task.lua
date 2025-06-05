@@ -26,7 +26,7 @@ return {
         dependencies = {
             'nvim-telescope/telescope.nvim',
         },
-        config = h.plugins 'overseer',
+        config = h.settings 'overseer',
         enabled = vim.g.nvim_level >= 2,
     },
 }

@@ -6,7 +6,7 @@ return {
         "folke/flash.nvim",
         enabled = false,
         event = "VeryLazy",
-        config = h.plugins 'flash',
+        config = h.settings 'flash',
         ---@type Flash.Config
         opts = {},
         keys = {
@@ -74,7 +74,7 @@ return {
             { 's', '<Plug>Lightspeed_omni_s',  desc = 'Lightspeed_omni_s' },
             { 'S', '<Plug>Lightspeed_omni_gs', desc = 'Lightspeed_omni_gs' },
         },
-        config = h.plugins 'lightspeed',
+        config = h.settings 'lightspeed',
         enabled = false,
     },
     {
@@ -82,7 +82,7 @@ return {
         keys = {
             { m('s', true), 'bi', mode = { 'n', 'x', 'o' } },
         },
-        config = h.plugins 'leap',
+        config = h.settings 'leap',
         enabled = false,
     },
     {
@@ -92,6 +92,6 @@ return {
             { '<leader><leader>', 'somewhere', desc = 'hop hint_words', mode = { 'n', 'x', 'o' } },
             { '<leader>;',        'lines',     desc = 'hop hint_lines', mode = { 'n', 'x', 'o' } },
         },
-        config = h.plugins 'hop',
+        config = h.settings 'hop',
     },
 }

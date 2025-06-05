@@ -10,7 +10,7 @@ return {
     },
     {
         "michaelb/sniprun",
-        config = h.plugins 'sniprun',
+        config = h.settings 'sniprun',
         enabled = false,
     },
     {

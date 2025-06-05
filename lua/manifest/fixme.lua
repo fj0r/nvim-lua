@@ -14,7 +14,7 @@ return {
     {
         'ojroques/nvim-osc52',
         enabled = false, -- by integration terminal
-        config = h.plugins 'osc52',
+        config = h.settings 'osc52',
     },
 
     --remote-wait

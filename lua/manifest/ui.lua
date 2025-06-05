@@ -5,23 +5,23 @@ return {
         'tim-harding/neophyte',
         tag = '0.2.5',
         event = 'VeryLazy',
-        config = h.plugins 'neophyte',
+        config = h.settings 'neophyte',
         enabled = false
     },
     {
         'nvim-lualine/lualine.nvim',
-        config = h.plugins 'lualine',
+        config = h.settings 'lualine',
         --dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
         enabled = vim.g.nvim_level >= 2,
     },
     {
         'folke/noice.nvim',
         enabled = vim.g.nvim_level >= 2,
-        config = h.plugins 'noice',
+        config = h.settings 'noice',
     },
     {
         'norcalli/nvim-colorizer.lua',
-        config = h.plugins 'colorizer',
+        config = h.settings 'colorizer',
         enabled = vim.g.nvim_level >= 2,
     },
 
@@ -45,12 +45,12 @@ return {
             --   If not available, we use `mini` as the fallback
             "rcarriga/nvim-notify",
         },
-        config = h.plugins 'noice',
+        config = h.settings 'noice',
         enabled = false,
     },
     {
         'stevearc/dressing.nvim',
-        config = h.plugins 'dressing',
+        config = h.settings 'dressing',
         enabled = vim.g.nvim_level >= 2,
     },
 

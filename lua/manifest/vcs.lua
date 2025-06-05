@@ -5,7 +5,7 @@ return {
         'lewis6991/gitsigns.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         enabled = vim.g.has_git and vim.g.nvim_level >= 2,
-        config = h.plugins 'gitsigns',
+        config = h.settings 'gitsigns',
     },
     {
         'sindrets/diffview.nvim',
@@ -23,7 +23,7 @@ return {
         keys = {
             { '<leader>gg', function() require 'neogit'.open({ kind = 'split' }) end, desc = 'neogit' },
         },
-        config = h.plugins 'neogit',
+        config = h.settings 'neogit',
         dependencies = { 'nvim-lua/plenary.nvim' },
         enabled = vim.g.nvim_level >= 2,
     },
