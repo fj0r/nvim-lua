@@ -38,7 +38,7 @@ function M.apply_keymap(kdecl, kdef, opt)
                 o.desc = k.desc
             end
         end
-        local mode = type(k.mode) == 'table' and k.mode or 'n'
+        local mode = type(k.mode) == 'table' and k.mode or { 'n' }
         local d = kdef[fn] or fn
         vim.keymap.set(mode, key, d, o)
     end

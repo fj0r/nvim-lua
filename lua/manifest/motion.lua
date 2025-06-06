@@ -12,7 +12,7 @@ return {
         keys = {
             { "s",                mode = { "n", "x", "o" }, 'search' },
             { "S",                mode = { "n", "o" },      'treesitter' },
-            { "r",                mode = "o",               'remote' },
+            { "r",                mode = { "o" },           'remote' },
             { "R",                mode = { "o", "x" },      'treesitter_search' },
             { "<c-s>",            mode = { "c" },           'toggle' },
             { '<leader>;',        mode = { 'n', 'x' },      'jump_to_line' },
