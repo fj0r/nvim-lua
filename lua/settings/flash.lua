@@ -1,6 +1,6 @@
 local Flash = require('flash')
 Flash.setup {
-    labels = "asdfghjklqwertyuiopzxcvbnm",
+    labels = "asdfghjklqwertyuiopzxcvbnm[;",
     jump = {
         autojump = true
     },
@@ -72,19 +72,20 @@ local mk2label = function(pattern)
                         local bw = b.win == state.win and 0 or b.win
                         return aw < bw
                     end
-                    local da = math.abs(a.pos[1] - cur[1]) + math.abs(a.pos[2] - cur[2])
-                    local db = math.abs(b.pos[1] - cur[1]) + math.abs(b.pos[2] - cur[2])
+                    local da = (a.pos[1] - cur[1])^2 * 8 + (a.pos[2] - cur[2])^2
+                    local db = (b.pos[1] - cur[1])^2 * 8 + (b.pos[2] - cur[2])^2
                     return da < db
                 end)
                 local cycle = math.ceil(#matches / #labels)
                 local init = #labels - cycle
                 for m, match in ipairs(matches) do
-                    if m < init then
+                    if m <= init then
                         match.label1 = labels[m]
                         match.label = match.label1
                     else
-                        match.label1 = labels[init + math.floor((m - init - 1) / init) + 1]
-                        match.label2 = labels[(m - init - 1) % init + 1]
+                        local ix = m - init - 1
+                        match.label1 = labels[#labels - math.floor(ix / #labels)]
+                        match.label2 = labels[ix % #labels + 1]
                         match.label = match.label1
                     end
                 end
