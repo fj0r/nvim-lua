@@ -72,8 +72,8 @@ local mk2label = function(pattern)
                         local bw = b.win == state.win and 0 or b.win
                         return aw < bw
                     end
-                    local da = (a.pos[1] - cur[1])^2 * 8 + (a.pos[2] - cur[2])^2
-                    local db = (b.pos[1] - cur[1])^2 * 8 + (b.pos[2] - cur[2])^2
+                    local da = math.abs(a.pos[1] - cur[1]) * 8 + math.abs(a.pos[2] - cur[2])
+                    local db = math.abs(b.pos[1] - cur[1]) * 8 + math.abs(b.pos[2] - cur[2])
                     return da < db
                 end)
                 local cycle = math.ceil(#matches / #labels)
