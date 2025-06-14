@@ -23,8 +23,8 @@ require('setup').option_table {
     clipboard      = { 'unnamedplus' },
     display        = { 'lastline' }, -- Always try to show a paragraph’s last line.
     linebreak      = true,           -- Avoid wrapping a line in the middle of a word.
-    scrolloff      = 0,              -- The number of screen lines to keep above and below the cursor.
-    sidescrolloff  = 0,              -- The number of screen columns to keep to the left and right of the cursor.
+    scrolloff      = 5,              -- The number of screen lines to keep above and below the cursor.
+    sidescrolloff  = 8,              -- The number of screen columns to keep to the left and right of the cursor.
     wrap           = true,           -- Enable line wrapping.
     -- ambiwidth    = 'double',       -- 设置为双字宽显示，否则无法完整显示如:☆ :FIXME:
     -- backspace   = 'indent,eol,start',
