@@ -34,6 +34,14 @@ local close_except_last = function()
 end
 vim.api.nvim_create_user_command('CloseExceptLast', close_except_last, { desc = 'close window except last one' })
 
+local terminal_cd = function ()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local dir = vim.loop.cwd()
+    local chan = vim.api.nvim_buf_get_var(current_buf, 'terminal_job_id')
+    vim.api.nvim_chan_send(chan, 'cd ' .. dir .. '\n')
+end
+vim.api.nvim_create_user_command('TerminalCd', terminal_cd, { desc = 'send cd into terminal' })
+
 
 if vim.g.server_mode then
     vim.api.nvim_command('command! -nargs=0  WQ :wall|Detach')

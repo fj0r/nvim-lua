@@ -1,7 +1,7 @@
 local s = require('setup')
 local m = s.mod
 local comma = vim.g.arrow_keys[';']
-vim.g.mapesc = '<M-'..comma..'>' -- nil | '<M-;>' | '<M-[>'
+vim.g.mapesc = '<M-' .. comma .. '>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
@@ -17,8 +17,8 @@ s.keymap_table {
     { 'j',          "v:count == 0 ? 'gj' : 'j'",                   'nse', mode = 'nv',   disabled = not vim.g.jk_wrap },
     { '<M-o>',      '<C-f>',                                       'n',   mode = 'c' },
     -- swap ` ' -- goto marker
-    { "`",                     "'",                                'ns' },
-    { "'",                     "`",                                'ns' },
+    { "`",          "'",                                           'ns' },
+    { "'",          "`",                                           'ns' },
     -- Go to home and end using capitalized directions
     { 'H',          '^',                                           'ns' },
     { 'L',          '$',                                           'ns' },
@@ -43,12 +43,13 @@ s.keymap_table {
     -- repeat substitution
     { '&',          ':%&<CR>',                                     'ns' },
     -- shortcuts
-    { comma..'e',   ':e<CR>',                                      'ns' },
-    { comma..'w',   ':w<CR>',                                      'ns' },
-    { comma..'q',   ':wq<CR>',                                     'ns' },
-    { comma..'Q',   ':!q<CR>',                                     'ns' },
+    { comma .. 'e', ':e<CR>',                                      'ns' },
+    { comma .. 'w', ':w<CR>',                                      'ns' },
+    { comma .. 'q', ':wq<CR>',                                     'ns' },
+    { comma .. 'Q', ':!q<CR>',                                     'ns' },
     { '<leader>q',  '<cmd>CloseExceptLast<CR>',                    'ns' },
     { '<C-q>',      '<cmd>TabpageQuit<CR>',                        'ns',  mode = 'nit' },
+    { '<C-\\>',     '<cmd>TerminalCd<CR>',                         'ns',  mode = 'nt' },
 }
 
 if vim.g.prefer_alt > 0 then
