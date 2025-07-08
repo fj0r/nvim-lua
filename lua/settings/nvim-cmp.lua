@@ -20,7 +20,7 @@ cmp.setup {
         [m 'space'] = cmp.mapping.complete(),
         [m 'e'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
+            -- behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         },
         -- [m'p'] = cmp.mapping.select_prev_item(),
@@ -70,7 +70,21 @@ cmp.setup {
         { name = 'buffer' },
         { name = 'path' },
         -- { name = 'neorg' },
-    }
+    },
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.scopes,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
+    },
 }
 
 -- Set configuration for specific filetype.
@@ -92,7 +106,7 @@ cmp.setup.filetype('NeogitCommitMessage', {
 
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = 'buffer' }
