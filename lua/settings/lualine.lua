@@ -1,4 +1,15 @@
-local theme = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
+local tabline_color = os.getenv('NVIM_FLAG_COLOR')
+--local tabline_color = '#C5E99B'
+local tabline_overlay
+if tabline_color ~= nil then
+    tabline_overlay = {
+        normal = { a = { bg = tabline_color } },
+        terminal= { a = { bg = tabline_color } }
+    }
+else
+    tabline_overlay = {}
+end
+local terminal_overlay = {
     terminal = {
         a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
         b = { bg = '#504945', fg = '#ebdbb2' },
@@ -7,18 +18,10 @@ local theme = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), {
     inactive = {
         c = { bg = '#504945' }
     }
-})
+}
+local theme = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), terminal_overlay, tabline_overlay)
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
-
-local macro_recording = function()
-    local t = vim.fn.reg_recording()
-    if t ~= '' then
-        return 'recording @' .. t
-    else
-        return ''
-    end
-end
 
 local separators = {
     component = "",
