@@ -16,7 +16,7 @@ Flash.setup {
             enabled = false
         },
         search = {
-            enabled = true
+            enabled = false
         }
     },
 }
