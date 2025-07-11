@@ -1,0 +1,1693 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://json.schemastore.org/traefik-v2.json",
+  "$defs": {
+    "acmeConfiguration": {
+      "additionalProperties": false,
+      "properties": {
+        "caServer": {
+          "type": "string"
+        },
+        "certificatesDuration": {
+          "type": "integer"
+        },
+        "dnsChallenge": {
+          "$ref": "#/$defs/acmeDNSChallenge"
+        },
+        "eab": {
+          "$ref": "#/$defs/acmeEAB"
+        },
+        "email": {
+          "type": "string"
+        },
+        "httpChallenge": {
+          "$ref": "#/$defs/acmeHTTPChallenge"
+        },
+        "keyType": {
+          "type": "string"
+        },
+        "preferredChain": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "tlsChallenge": {
+          "$ref": "#/$defs/acmeTLSChallenge"
+        }
+      },
+      "type": "object"
+    },
+    "acmeDNSChallenge": {
+      "additionalProperties": false,
+      "properties": {
+        "delayBeforeCheck": {
+          "type": "string"
+        },
+        "disablePropagationCheck": {
+          "type": "boolean"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "resolvers": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "acmeEAB": {
+      "additionalProperties": false,
+      "properties": {
+        "hmacEncoded": {
+          "type": "string"
+        },
+        "kid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "acmeHTTPChallenge": {
+      "additionalProperties": false,
+      "properties": {
+        "entryPoint": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "acmeTLSChallenge": {
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "consulProviderBuilder": {
+      "additionalProperties": false,
+      "properties": {
+        "endpoints": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "rootKey": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "consulcatalogEndpointConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "endpointWaitTime": {
+          "type": "string"
+        },
+        "httpAuth": {
+          "$ref": "#/$defs/consulcatalogEndpointHTTPAuthConfig"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "consulcatalogEndpointHTTPAuthConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "consulcatalogProviderBuilder": {
+      "additionalProperties": false,
+      "properties": {
+        "cache": {
+          "type": "boolean"
+        },
+        "connectAware": {
+          "type": "boolean"
+        },
+        "connectByDefault": {
+          "type": "boolean"
+        },
+        "constraints": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "endpoint": {
+          "$ref": "#/$defs/consulcatalogEndpointConfig"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "refreshInterval": {
+          "type": "string"
+        },
+        "requireConsistent": {
+          "type": "boolean"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "watch": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "crdProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "allowCrossNamespace": {
+          "type": "boolean"
+        },
+        "allowEmptyServices": {
+          "type": "boolean"
+        },
+        "allowExternalNameServices": {
+          "type": "boolean"
+        },
+        "certAuthFilePath": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "ingressClass": {
+          "type": "string"
+        },
+        "labelSelector": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "throttleDuration": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "datadogConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "bagagePrefixHeaderName": {
+          "type": "string"
+        },
+        "debug": {
+          "type": "boolean"
+        },
+        "globalTag": {
+          "type": "string"
+        },
+        "globalTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "localAgentHostPort": {
+          "type": "string"
+        },
+        "localAgentSocket": {
+          "type": "string"
+        },
+        "parentIDHeaderName": {
+          "type": "string"
+        },
+        "prioritySampling": {
+          "type": "boolean"
+        },
+        "samplingPriorityHeaderName": {
+          "type": "string"
+        },
+        "traceIDHeaderName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "dockerProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "allowEmptyServices": {
+          "type": "boolean"
+        },
+        "constraints": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "httpClientTimeout": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        },
+        "swarmMode": {
+          "type": "boolean"
+        },
+        "swarmModeRefreshSeconds": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "useBindPortIP": {
+          "type": "boolean"
+        },
+        "watch": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ecsProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "accessKeyID": {
+          "type": "string"
+        },
+        "autoDiscoverClusters": {
+          "type": "boolean"
+        },
+        "clusters": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "constraints": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "ecsAnywhere": {
+          "type": "boolean"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "refreshSeconds": {
+          "type": "integer"
+        },
+        "region": {
+          "type": "string"
+        },
+        "secretAccessKey": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "elasticConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "secretToken": {
+          "type": "string"
+        },
+        "serverURL": {
+          "type": "string"
+        },
+        "serviceEnvironment": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "etcdProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "endpoints": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "password": {
+          "type": "string"
+        },
+        "rootKey": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fileProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "debugLogGeneratedTemplate": {
+          "type": "boolean"
+        },
+        "directory": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "watch": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "gatewayProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "certAuthFilePath": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "labelSelector": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "throttleDuration": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "haystackConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "baggagePrefixHeaderName": {
+          "type": "string"
+        },
+        "globalTag": {
+          "type": "string"
+        },
+        "localAgentHost": {
+          "type": "string"
+        },
+        "localAgentPort": {
+          "type": "integer"
+        },
+        "parentIDHeaderName": {
+          "type": "string"
+        },
+        "spanIDHeaderName": {
+          "type": "string"
+        },
+        "traceIDHeaderName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "httpProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "pollInterval": {
+          "type": "string"
+        },
+        "pollTimeout": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        }
+      },
+      "required": ["endpoint"],
+      "type": "object"
+    },
+    "ingressEndpointIngress": {
+      "additionalProperties": false,
+      "properties": {
+        "hostname": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "publishedService": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ingressProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "allowEmptyServices": {
+          "type": "boolean"
+        },
+        "allowExternalNameServices": {
+          "type": "boolean"
+        },
+        "certAuthFilePath": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "ingressClass": {
+          "type": "string"
+        },
+        "ingressEndpoint": {
+          "$ref": "#/$defs/ingressEndpointIngress"
+        },
+        "labelSelector": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "throttleDuration": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "instanaConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enableAutoProfile": {
+          "type": "boolean"
+        },
+        "localAgentHost": {
+          "type": "string"
+        },
+        "localAgentPort": {
+          "type": "integer"
+        },
+        "logLevel": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jaegerCollector": {
+      "additionalProperties": false,
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jaegerConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "collector": {
+          "$ref": "#/$defs/jaegerCollector"
+        },
+        "disableAttemptReconnecting": {
+          "type": "boolean"
+        },
+        "gen128Bit": {
+          "type": "boolean"
+        },
+        "localAgentHostPort": {
+          "type": "string"
+        },
+        "propagation": {
+          "type": "string"
+        },
+        "samplingParam": {
+          "type": "number"
+        },
+        "samplingServerURL": {
+          "type": "string"
+        },
+        "samplingType": {
+          "type": "string"
+        },
+        "traceContextHeaderName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "marathonBasic": {
+      "additionalProperties": false,
+      "properties": {
+        "httpBasicAuthUser": {
+          "type": "string"
+        },
+        "httpBasicPassword": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "marathonProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "basic": {
+          "$ref": "#/$defs/marathonBasic"
+        },
+        "constraints": {
+          "type": "string"
+        },
+        "dcosToken": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "dialerTimeout": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "forceTaskHostname": {
+          "type": "boolean"
+        },
+        "keepAlive": {
+          "type": "string"
+        },
+        "respectReadinessChecks": {
+          "type": "boolean"
+        },
+        "responseHeaderTimeout": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "tlsHandshakeTimeout": {
+          "type": "string"
+        },
+        "trace": {
+          "type": "boolean"
+        },
+        "watch": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "nomadEndpointConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "endpointWaitTime": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "nomadProviderBuilder": {
+      "additionalProperties": false,
+      "properties": {
+        "constraints": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "endpoint": {
+          "$ref": "#/$defs/nomadEndpointConfig"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "namespaces": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "refreshInterval": {
+          "type": "string"
+        },
+        "stale": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "pingHandler": {
+      "additionalProperties": false,
+      "properties": {
+        "entryPoint": {
+          "type": "string"
+        },
+        "manualRouting": {
+          "type": "boolean"
+        },
+        "terminatingStatusCode": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "pluginsDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "moduleName": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pluginsLocalDescriptor": {
+      "additionalProperties": false,
+      "properties": {
+        "moduleName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "rancherProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "constraints": {
+          "type": "string"
+        },
+        "defaultRule": {
+          "type": "string"
+        },
+        "enableServiceHealthFilter": {
+          "type": "boolean"
+        },
+        "exposedByDefault": {
+          "type": "boolean"
+        },
+        "intervalPoll": {
+          "type": "boolean"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "refreshSeconds": {
+          "type": "integer"
+        },
+        "watch": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "redisProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "db": {
+          "type": "integer"
+        },
+        "endpoints": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "password": {
+          "type": "string"
+        },
+        "rootKey": {
+          "type": "string"
+        },
+        "sentinel": {
+          "$ref": "#/$defs/redisSentinel"
+        },
+        "tls": {
+          "$ref": "#/$defs/typesClientTLS"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "redisSentinel": {
+      "additionalProperties": false,
+      "properties": {
+        "latencyStrategy": {
+          "type": "boolean"
+        },
+        "masterName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "randomStrategy": {
+          "type": "boolean"
+        },
+        "replicaStrategy": {
+          "type": "boolean"
+        },
+        "useDisconnectedReplicas": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "restProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "insecure": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "staticAPI": {
+      "additionalProperties": false,
+      "properties": {
+        "dashboard": {
+          "type": "boolean"
+        },
+        "debug": {
+          "type": "boolean"
+        },
+        "disableDashboardAd": {
+          "type": "boolean"
+        },
+        "insecure": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "staticCertificateResolver": {
+      "additionalProperties": false,
+      "properties": {
+        "acme": {
+          "$ref": "#/$defs/acmeConfiguration"
+        }
+      },
+      "type": "object"
+    },
+    "staticEntryPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "allowACMEByPass": {
+          "type": "boolean"
+        },
+        "forwardedHeaders": {
+          "$ref": "#/$defs/staticForwardedHeaders"
+        },
+        "http": {
+          "$ref": "#/$defs/staticHTTPConfig"
+        },
+        "http2": {
+          "$ref": "#/$defs/staticHTTP2Config"
+        },
+        "http3": {
+          "$ref": "#/$defs/staticHTTP3Config"
+        },
+        "proxyProtocol": {
+          "$ref": "#/$defs/staticProxyProtocol"
+        },
+        "transport": {
+          "$ref": "#/$defs/staticEntryPointsTransport"
+        },
+        "udp": {
+          "$ref": "#/$defs/staticUDPConfig"
+        }
+      },
+      "type": "object"
+    },
+    "staticEntryPointsTransport": {
+      "additionalProperties": false,
+      "properties": {
+        "keepAliveMaxRequests": {
+          "type": "integer"
+        },
+        "keepAliveMaxTime": {
+          "type": "string"
+        },
+        "lifeCycle": {
+          "$ref": "#/$defs/staticLifeCycle"
+        },
+        "respondingTimeouts": {
+          "$ref": "#/$defs/staticRespondingTimeouts"
+        }
+      },
+      "type": "object"
+    },
+    "staticExperimental": {
+      "additionalProperties": false,
+      "properties": {
+        "http3": {
+          "type": "boolean"
+        },
+        "kubernetesGateway": {
+          "type": "boolean"
+        },
+        "localPlugins": {
+          "additionalProperties": {
+            "$ref": "#/$defs/pluginsLocalDescriptor"
+          },
+          "type": "object"
+        },
+        "plugins": {
+          "additionalProperties": {
+            "$ref": "#/$defs/pluginsDescriptor"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "staticForwardedHeaders": {
+      "additionalProperties": false,
+      "properties": {
+        "connection": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "insecure": {
+          "type": "boolean"
+        },
+        "trustedIPs": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "staticForwardingTimeouts": {
+      "additionalProperties": false,
+      "properties": {
+        "dialTimeout": {
+          "type": "string"
+        },
+        "idleConnTimeout": {
+          "type": "string"
+        },
+        "responseHeaderTimeout": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticGlobal": {
+      "additionalProperties": false,
+      "properties": {
+        "checkNewVersion": {
+          "type": "boolean"
+        },
+        "sendAnonymousUsage": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "staticHTTP2Config": {
+      "additionalProperties": false,
+      "properties": {
+        "maxConcurrentStreams": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "staticHTTP3Config": {
+      "additionalProperties": false,
+      "properties": {
+        "advertisedPort": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "staticHTTPConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "encodeQuerySemicolons": {
+          "type": "boolean"
+        },
+        "middlewares": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "redirections": {
+          "$ref": "#/$defs/staticRedirections"
+        },
+        "tls": {
+          "$ref": "#/$defs/staticTLSConfig"
+        }
+      },
+      "type": "object"
+    },
+    "staticLifeCycle": {
+      "additionalProperties": false,
+      "properties": {
+        "graceTimeOut": {
+          "type": "string"
+        },
+        "requestAcceptGraceTimeout": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticPilot": {
+      "additionalProperties": false,
+      "properties": {
+        "dashboard": {
+          "type": "boolean"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticProviders": {
+      "additionalProperties": false,
+      "properties": {
+        "consul": {
+          "$ref": "#/$defs/consulProviderBuilder"
+        },
+        "consulCatalog": {
+          "$ref": "#/$defs/consulcatalogProviderBuilder"
+        },
+        "docker": {
+          "$ref": "#/$defs/dockerProvider"
+        },
+        "ecs": {
+          "$ref": "#/$defs/ecsProvider"
+        },
+        "etcd": {
+          "$ref": "#/$defs/etcdProvider"
+        },
+        "file": {
+          "$ref": "#/$defs/fileProvider"
+        },
+        "http": {
+          "$ref": "#/$defs/httpProvider"
+        },
+        "kubernetesCRD": {
+          "$ref": "#/$defs/crdProvider"
+        },
+        "kubernetesGateway": {
+          "$ref": "#/$defs/gatewayProvider"
+        },
+        "kubernetesIngress": {
+          "$ref": "#/$defs/ingressProvider"
+        },
+        "marathon": {
+          "$ref": "#/$defs/marathonProvider"
+        },
+        "nomad": {
+          "$ref": "#/$defs/nomadProviderBuilder"
+        },
+        "plugin": {
+          "additionalProperties": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "providersThrottleDuration": {
+          "type": "string"
+        },
+        "rancher": {
+          "$ref": "#/$defs/rancherProvider"
+        },
+        "redis": {
+          "$ref": "#/$defs/redisProvider"
+        },
+        "rest": {
+          "$ref": "#/$defs/restProvider"
+        },
+        "zooKeeper": {
+          "$ref": "#/$defs/zkProvider"
+        }
+      },
+      "type": "object"
+    },
+    "staticProxyProtocol": {
+      "additionalProperties": false,
+      "properties": {
+        "insecure": {
+          "type": "boolean"
+        },
+        "trustedIPs": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "staticRedirectEntryPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "permanent": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticRedirections": {
+      "additionalProperties": false,
+      "properties": {
+        "entryPoint": {
+          "$ref": "#/$defs/staticRedirectEntryPoint"
+        }
+      },
+      "type": "object"
+    },
+    "staticRespondingTimeouts": {
+      "additionalProperties": false,
+      "properties": {
+        "idleTimeout": {
+          "type": "string"
+        },
+        "readTimeout": {
+          "type": "string"
+        },
+        "writeTimeout": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticServersTransport": {
+      "additionalProperties": false,
+      "properties": {
+        "forwardingTimeouts": {
+          "$ref": "#/$defs/staticForwardingTimeouts"
+        },
+        "insecureSkipVerify": {
+          "type": "boolean"
+        },
+        "maxIdleConnsPerHost": {
+          "type": "integer"
+        },
+        "rootCAs": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "staticTLSConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "certResolver": {
+          "type": "string"
+        },
+        "domains": {
+          "items": {
+            "$ref": "#/$defs/typesDomain"
+          },
+          "type": ["array", "null"]
+        },
+        "options": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "staticTracing": {
+      "additionalProperties": false,
+      "properties": {
+        "datadog": {
+          "$ref": "#/$defs/datadogConfig"
+        },
+        "elastic": {
+          "$ref": "#/$defs/elasticConfig"
+        },
+        "haystack": {
+          "$ref": "#/$defs/haystackConfig"
+        },
+        "instana": {
+          "$ref": "#/$defs/instanaConfig"
+        },
+        "jaeger": {
+          "$ref": "#/$defs/jaegerConfig"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "spanNameLimit": {
+          "type": "integer"
+        },
+        "zipkin": {
+          "$ref": "#/$defs/zipkinConfig"
+        }
+      },
+      "type": "object"
+    },
+    "staticUDPConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "timeout": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesAccessLog": {
+      "additionalProperties": false,
+      "properties": {
+        "bufferingSize": {
+          "type": "integer"
+        },
+        "fields": {
+          "$ref": "#/$defs/typesAccessLogFields"
+        },
+        "filePath": {
+          "type": "string"
+        },
+        "filters": {
+          "$ref": "#/$defs/typesAccessLogFilters"
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesAccessLogFields": {
+      "additionalProperties": false,
+      "properties": {
+        "defaultMode": {
+          "type": "string"
+        },
+        "headers": {
+          "$ref": "#/$defs/typesFieldHeaders"
+        },
+        "names": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "typesAccessLogFilters": {
+      "additionalProperties": false,
+      "properties": {
+        "minDuration": {
+          "type": "string"
+        },
+        "retryAttempts": {
+          "type": "boolean"
+        },
+        "statusCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "typesClientTLS": {
+      "additionalProperties": false,
+      "properties": {
+        "ca": {
+          "type": "string"
+        },
+        "caOptional": {
+          "type": "boolean"
+        },
+        "cert": {
+          "type": "string"
+        },
+        "insecureSkipVerify": {
+          "type": "boolean"
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesDatadog": {
+      "additionalProperties": false,
+      "properties": {
+        "addEntryPointsLabels": {
+          "type": "boolean"
+        },
+        "addRoutersLabels": {
+          "type": "boolean"
+        },
+        "addServicesLabels": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "pushInterval": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesDomain": {
+      "additionalProperties": false,
+      "properties": {
+        "main": {
+          "type": "string"
+        },
+        "sans": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        }
+      },
+      "type": "object"
+    },
+    "typesFieldHeaders": {
+      "additionalProperties": false,
+      "properties": {
+        "defaultMode": {
+          "type": "string"
+        },
+        "names": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "typesHostResolverConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "cnameFlattening": {
+          "type": "boolean"
+        },
+        "resolvConfig": {
+          "type": "string"
+        },
+        "resolvDepth": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "typesInfluxDB": {
+      "additionalProperties": false,
+      "properties": {
+        "addEntryPointsLabels": {
+          "type": "boolean"
+        },
+        "addRoutersLabels": {
+          "type": "boolean"
+        },
+        "addServicesLabels": {
+          "type": "boolean"
+        },
+        "additionalLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "address": {
+          "type": "string"
+        },
+        "database": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "pushInterval": {
+          "type": "string"
+        },
+        "retentionPolicy": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesInfluxDB2": {
+      "additionalProperties": false,
+      "properties": {
+        "addEntryPointsLabels": {
+          "type": "boolean"
+        },
+        "addRoutersLabels": {
+          "type": "boolean"
+        },
+        "addServicesLabels": {
+          "type": "boolean"
+        },
+        "additionalLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "address": {
+          "type": "string"
+        },
+        "bucket": {
+          "type": "string"
+        },
+        "org": {
+          "type": "string"
+        },
+        "pushInterval": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "datadog": {
+          "$ref": "#/$defs/typesDatadog"
+        },
+        "influxDB": {
+          "$ref": "#/$defs/typesInfluxDB"
+        },
+        "influxDB2": {
+          "$ref": "#/$defs/typesInfluxDB2"
+        },
+        "prometheus": {
+          "$ref": "#/$defs/typesPrometheus"
+        },
+        "statsD": {
+          "$ref": "#/$defs/typesStatsd"
+        }
+      },
+      "type": "object"
+    },
+    "typesPrometheus": {
+      "additionalProperties": false,
+      "properties": {
+        "addEntryPointsLabels": {
+          "type": "boolean"
+        },
+        "addRoutersLabels": {
+          "type": "boolean"
+        },
+        "addServicesLabels": {
+          "type": "boolean"
+        },
+        "buckets": {
+          "items": {
+            "type": "number"
+          },
+          "type": ["array", "null"]
+        },
+        "entryPoint": {
+          "type": "string"
+        },
+        "headerLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "manualRouting": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "typesStatsd": {
+      "additionalProperties": false,
+      "properties": {
+        "addEntryPointsLabels": {
+          "type": "boolean"
+        },
+        "addRoutersLabels": {
+          "type": "boolean"
+        },
+        "addServicesLabels": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "pushInterval": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "typesTraefikLog": {
+      "additionalProperties": false,
+      "properties": {
+        "filePath": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "zipkinConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "httpEndpoint": {
+          "type": "string"
+        },
+        "id128Bit": {
+          "type": "boolean"
+        },
+        "sameSpan": {
+          "type": "boolean"
+        },
+        "sampleRate": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "zkProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "endpoints": {
+          "items": {
+            "type": "string"
+          },
+          "type": ["array", "null"]
+        },
+        "password": {
+          "type": "string"
+        },
+        "rootKey": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "Traefik v2 Static Configuration",
+  "properties": {
+    "accessLog": {
+      "$ref": "#/$defs/typesAccessLog"
+    },
+    "api": {
+      "$ref": "#/$defs/staticAPI"
+    },
+    "certificatesResolvers": {
+      "additionalProperties": {
+        "$ref": "#/$defs/staticCertificateResolver"
+      },
+      "type": "object"
+    },
+    "entryPoints": {
+      "additionalProperties": {
+        "$ref": "#/$defs/staticEntryPoint"
+      },
+      "type": "object"
+    },
+    "experimental": {
+      "$ref": "#/$defs/staticExperimental"
+    },
+    "global": {
+      "$ref": "#/$defs/staticGlobal"
+    },
+    "hostResolver": {
+      "$ref": "#/$defs/typesHostResolverConfig"
+    },
+    "log": {
+      "$ref": "#/$defs/typesTraefikLog"
+    },
+    "metrics": {
+      "$ref": "#/$defs/typesMetrics"
+    },
+    "pilot": {
+      "$ref": "#/$defs/staticPilot"
+    },
+    "ping": {
+      "$ref": "#/$defs/pingHandler"
+    },
+    "providers": {
+      "$ref": "#/$defs/staticProviders"
+    },
+    "serversTransport": {
+      "$ref": "#/$defs/staticServersTransport"
+    },
+    "tracing": {
+      "$ref": "#/$defs/staticTracing"
+    }
+  },
+  "type": "object"
+}

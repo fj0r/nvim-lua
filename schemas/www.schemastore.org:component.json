@@ -1,0 +1,353 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://json.schemastore.org/component.json",
+  "additionalProperties": true,
+  "properties": {
+    "private": {
+      "description": "Indicates whether the component should be treated as private and not published to public registries.",
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "description": "The name of the component. Must be lowercase, can contain hyphens and underscores.",
+      "type": "string",
+      "pattern": "^[0-9a-z-_]+$"
+    },
+    "type": {
+      "description": "Type of the component (e.g., 'component', 'block', 'template').",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL to the component.",
+      "type": "string"
+    },
+    "repo": {
+      "description": "The repository location in the format 'username/repository'.",
+      "type": "string"
+    },
+    "description": {
+      "description": "A brief description of the component's purpose and functionality.",
+      "type": "string"
+    },
+    "version": {
+      "description": "The semantic version number of the component (e.g., '1.0.0').",
+      "type": "string"
+    },
+    "framework": {
+      "description": "Framework compatibility  (e.g., 'react', 'vue', 'angular', 'svelte', 'alpinejs', 'laravel', 'web-components').",
+      "type": "string"
+    },
+    "keywords": {
+      "description": "An array of keywords that describe the component, used for search and categorization.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "main": {
+      "description": "The primary entry point file of the component.",
+      "type": "string"
+    },
+    "scripts": {
+      "description": "Scripts that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "styles": {
+      "description": "Styles that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "json": {
+      "description": "Json data that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "images": {
+      "description": "Image assets that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "fonts": {
+      "description": "Fonts that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "files": {
+      "description": "Additional files that are part of the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "dependencies": {
+      "description": "Dependencies that are required by the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "locals": {
+      "description": "Local dependencies that are required by the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "remotes": {
+      "description": "Remote dependencies that are required by the component. Can be specified as an array of files or an object with named entries.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "paths": {
+      "description": "Custom file paths configuration for the component.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "templates": {
+      "description": "Templates that can be imported to be used within the component.",
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "demo": {
+      "type": "string",
+      "description": "Path to or URL of a demonstration of the component."
+    },
+    "development": {
+      "$ref": "#",
+      "description": "Development-specific configuration that extends the main configuration."
+    },
+    "license": {
+      "description": "The license identifier under which the component is distributed (e.g., 'MIT', 'Apache-2.0').",
+      "type": "string"
+    }
+  },
+  "title": "JSON schema for component.json files",
+  "type": "object"
+}
