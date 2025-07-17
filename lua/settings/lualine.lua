@@ -1,15 +1,4 @@
-local tabline_color = os.getenv('NVIM_FLAG_COLOR')
---local tabline_color = '#C5E99B'
-local tabline_overlay
-if tabline_color ~= nil then
-    tabline_overlay = {
-        normal = { a = { bg = tabline_color } },
-        terminal= { a = { bg = tabline_color } }
-    }
-else
-    tabline_overlay = {}
-end
-local terminal_overlay = {
+local term_theme = {
     terminal = {
         a = { bg = '#d79921', fg = '#282828', gui = 'bold' },
         b = { bg = '#504945', fg = '#ebdbb2' },
@@ -19,7 +8,11 @@ local terminal_overlay = {
         c = { bg = '#504945' }
     }
 }
-local theme = vim.tbl_deep_extend('force', require('lualine.themes.gruvbox'), terminal_overlay, tabline_overlay)
+
+local theme = vim.tbl_deep_extend('force',
+    vim.go.background == 'light'
+    and require 'lualine.themes.gruvbox_light'
+    or require 'lualine.themes.gruvbox-material', {})
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
