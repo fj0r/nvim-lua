@@ -1,8 +1,8 @@
 vim.lsp.enable {
-    "hls",
     "rust_analyzer",
-    "pyright",
     "nushell",
+    "pyright",
+    "hls",
     "julials",
     "metals",
     "ts_ls",
