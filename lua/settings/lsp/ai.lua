@@ -1,13 +1,39 @@
 local lsp_ai_init_options = {
     memory = {
-        file_store = {}
+        file_store = vim.empty_dict()
     },
     models = {
         model1 = {
             type = "open_ai",
-            chat_endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-            model = "qwen3-32b",
-            auth_token_env_var_name = "QWEN_TOKEN"
+            chat_endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+            model = "qwen-coder-turbo-latest",
+            auth_token_env_var_name = "OPENAI_API_KEY",
+            --max_requests_per_second = 1,
+        }
+    },
+    completion = {
+        model = "model1",
+        parameters = {
+            max_context = 2048,
+            max_new_tokens = 128,
+            messages = {
+                {
+                    role = "system",
+                    content =
+                    "You are a chat completion system like GitHub Copilot. You will be given a context and a code snippet. You should generate a response that is a continuation of the context and code snippet."
+                },
+                {
+                    role = "user",
+                    content = "Context: {CONTEXT} - Code: {CODE}"
+                }
+            },
+            --[[
+            fim = {
+                start = "<fim_prefix>",
+                middle = "<fim_middle>",
+                ["end"] = "<fim_suffix>"
+            }
+            --]]
         }
     },
     actions = {
@@ -34,24 +60,28 @@ local lsp_ai_init_options = {
     }
 }
 
-local lsp_ai_config = {
-    cmd = { 'lsp-ai' },
-    root_dir = vim.loop.cwd(),
-    init_options = lsp_ai_init_options,
-}
+local lsp_ai_config = function()
+    return {
+        cmd = { 'lsp-ai' },
+        root_dir = vim.loop.cwd(),
+        init_options = lsp_ai_init_options,
+    }
+end
 
 -- Start lsp-ai when opening a buffer
-vim.api.nvim_create_autocmd("BufEnter", {
-    callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_active_clients({ bufnr = bufnr, name = "lsp-ai" })
-        if #client == 0 then
-            vim.lsp.start(lsp_ai_config, { bufnr = bufnr })
-        end
-    end,
-})
+if os.getenv("OPENAI_API_KEY") ~= nil then
+    vim.api.nvim_create_autocmd("BufEnter", {
+        callback = function(args)
+            local bufnr = args.buf
+            local client = vim.lsp.get_clients({ bufnr = bufnr, name = "lsp-ai" })
+            if #client == 0 then
+                vim.lsp.start(lsp_ai_config(), { bufnr = bufnr })
+            end
+        end,
+    })
+end
 
 -- Key mapping for code actions
-vim.api.nvim_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 
 -- vim.lsp.enable('lsp-ai')
