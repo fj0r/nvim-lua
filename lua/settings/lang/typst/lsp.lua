@@ -1,4 +1,4 @@
-vim.lsp.config('typst_lsp', {
+vim.lsp.config('tinymist', {
     root_dir = util.find_git_ancestor,
     settings = {
         exportPdf = "never" -- Choose onType, onSave or never.

@@ -3,9 +3,10 @@ vim.lsp.enable {
     "nushell",
     "pyright",
     "hls",
-    "julials",
-    "metals",
+    --"julials",
+    --"metals",
     "ts_ls",
     "gopls",
-    "jdtls"
+    "tinymist",
+    --"jdtls"
 }
