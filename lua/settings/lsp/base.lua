@@ -7,6 +7,6 @@ vim.lsp.enable {
     --"metals",
     "ts_ls",
     "gopls",
-    "tinymist",
+    "tinymist", -- typst
     --"jdtls"
 }

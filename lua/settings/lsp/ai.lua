@@ -73,6 +73,9 @@ if os.getenv("OPENAI_API_KEY") ~= nil then
     vim.api.nvim_create_autocmd("BufEnter", {
         callback = function(args)
             local bufnr = args.buf
+            if string.sub(vim.api.nvim_buf_get_name(args.buf), 1, 7) == 'term://' then
+                return
+            end
             local client = vim.lsp.get_clients({ bufnr = bufnr, name = "lsp-ai" })
             if #client == 0 then
                 vim.lsp.start(lsp_ai_config(), { bufnr = bufnr })
