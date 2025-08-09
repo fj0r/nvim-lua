@@ -16,30 +16,26 @@ resession.setup {
         "winfixheight",
         "winfixwidth",
     },
+    extensions = {
+        quickfix = {},
+        colorscheme = {},
+    }
 }
 
-local default_load = function()
-    -- Only load the session if nvim was started with no args
-    if vim.fn.argc(-1) == 0 then
-        -- Save these to a different directory, so our manual sessions don't get polluted
-        resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-    end
-end
+local nfy = function(x) require('notify').notify(vim.inspect(x)) end
 
 local load = function()
     -- ignore: file gitcommit vimdiff ...
-    -- local notify = function(x) require('notify').notify(vim.inspect(x)) end
-    if vim.api.nvim_buf_get_name(0) ~= '' then
+    if vim.fn.argc(-1) > 0 or vim.g.using_stdin then
         return
     end
-    -- if session_excluded() then return end
 
     local cwd = vim.fn.getcwd()
     local wd = vim.fs.root(cwd, { '.git' }) or cwd
 
     if wd then
-        local sn = vim.fn.substitute(wd, os.getenv('HOME'), '~', '')
-        sn = vim.fn.substitute(sn, '/', '::', 'g')
+        local sn = vim.fn.substitute(wd, os.getenv('HOME'), '_', '')
+        sn = vim.fn.substitute(sn, '/', '%', 'g')
         vim.g.resession_file = sn
         local exist = false
         for _, k in pairs(resession.list()) do
@@ -79,6 +75,13 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
         end
     end,
 })
+vim.api.nvim_create_autocmd('StdinReadPre', {
+  callback = function()
+    -- Store this for later
+    vim.g.using_stdin = true
+  end,
+})
+
 -- Resession does NOTHING automagically, so we have to set up some keymaps
 vim.keymap.set('n', '<leader>SS', resession.save)
 vim.keymap.set('n', '<leader>SL', resession.load)
