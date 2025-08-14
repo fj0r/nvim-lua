@@ -16,7 +16,10 @@ if vim.g.neovide or vim.g.server_mode then
         neovide_hide_mouse_when_typing = true,
         neovide_underline_automatic_scaling = true,
         neovide_cursor_animate_command_line = true,
-        neovide_cursor_vfx_mode = {"railgun", "sonicboom"}, -- "sonicboom" -- "wireframe" -- "railgun"
+        neovide_cursor_animation_length = 0.15,
+        neovide_cursor_smooth_blink = true,
+        neovide_cursor_trail_size = 2.0,
+        neovide_cursor_vfx_mode = {}, -- "sonicboom" -- "wireframe" -- "railgun"
         neovide_cursor_vfx_particle_lifetime = 1.2,
         neovide_cursor_vfx_particle_density = 1.0,
         neovide_cursor_vfx_particle_speed = 10.0,
