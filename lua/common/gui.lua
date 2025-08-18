@@ -6,7 +6,7 @@ require('setup').keymap_table {
 }
 
 if vim.g.neovide or vim.g.server_mode then
-    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or font.from_env():guifont()
+    vim.opt.guifont = os.getenv("NVIM_GUIFONT") or font.from_env()
     require('setup').global_table {
         neovide_fullscreen = false,
         neovide_remember_window_size = true,

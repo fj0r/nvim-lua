@@ -17,12 +17,13 @@ MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;tex
 local features = { 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig' }
 
 local fonts_abbr = {
-    nar = "MonaspiceAr Nerd Font Mono",
-    nxe = "MonaspiceXe Nerd Font Mono",
-    nne = "MonaspiceNe Nerd Font Mono",
-    nkr = "MonaspiceKr Nerd Font Mono",
-    nrn = "MonaspiceRn Nerd Font Mono",
-    njm = "JetBrainsMono Nerd Font Mono",
+    Lilex = "Lilex",
+    JetBrainsMono = "JetBrainsMono Nerd Font Mono",
+    Argon = "Monaspace Argon Light",
+    Xenon = "Monaspace Xenon Light",
+    Neon = "Monaspace Neon Light",
+    Krypton = "Monaspace Krypton Light",
+    Radon = "Monaspace Radon Light",
 }
 
 
@@ -32,7 +33,7 @@ function M.parse(f)
     if s ~= '' then
         vim.g.select_font_size = s
     end
-    M.name = fonts_abbr[n]
+    M.name = fonts_abbr[n] or n
     M.size = vim.g.select_font_size
     M.opt = o
     M.features = features
@@ -43,9 +44,13 @@ function M:guifont()
     return self.name .. ":h" .. self.size .. self.opt
 end
 
-function M.from_env()
-    local default_font = 'nar16'
+function M.parse_env()
+    local default_font = 'Lilex11'
     return M.parse(os.getenv("NVIM_FONT") or default_font)
+end
+
+function M.from_env()
+    return M.parse_env():guifont()
 end
 
 

@@ -1,5 +1,5 @@
 local neophyte = require('neophyte')
-local font = require('font').from_env()
+local font = require('font').parse_env()
 neophyte.setup({
   fonts = {
     {
