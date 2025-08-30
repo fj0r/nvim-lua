@@ -2,7 +2,7 @@ local c = require 'settings.lsp.common'
 require 'settings.lsp.ui'
 
 require 'settings.lsp.base'
-require 'settings.lsp.ai'
+--require 'settings.lsp.ai'
 
 --require 'settings.lang.python.lsp'
 require 'settings.lang.lua.lsp'

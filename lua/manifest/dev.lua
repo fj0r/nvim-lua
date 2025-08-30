@@ -117,7 +117,15 @@ return {
         'b0o/schemastore.nvim',
         enabled = vim.g.nvim_level >= 2,
     },
-
+    {
+        "olimorris/codecompanion.nvim",
+        enabled = vim.g.nvim_level >= 2,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = h.settings 'codecompanion',
+    },
     --[=[
     'kabouzeid/nvim-lspinstall',
     'nvim-lua/lsp-status.nvim',
