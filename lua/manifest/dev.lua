@@ -20,6 +20,14 @@ return {
             'L3MON4D3/LuaSnip',         -- Snippets plugin
         },
         config = h.settings 'nvim-cmp',
+        -- enabled = vim.g.nvim_level >= 2,
+        enabled = false
+    },
+    {
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
+        config = h.settings 'blink_cmp',
         enabled = vim.g.nvim_level >= 2,
     },
     {
