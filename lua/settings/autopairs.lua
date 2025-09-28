@@ -29,6 +29,7 @@ if has_plugin 'nvim-treesitter' then
         java = false,       -- don't check treesitter on java
     }
     npairs.setup(cfg)
+    npairs.get_rules("'")[1].not_filetypes = { "rust", "nix", "scheme", "lisp" }
 
     local ts_conds = require('nvim-autopairs.ts-conds')
     -- press % => %% only while inside a comment or string

@@ -33,8 +33,14 @@ return {
         opts = {}
     },
     {
+        'altermo/ultimate-autopair.nvim',
+        event={'InsertEnter','CmdlineEnter'},
+        config = h.settings 'ultimate-autopair',
+    },
+    {
         'windwp/nvim-autopairs',
         config = h.settings 'autopairs',
+        enabled = false,
     },
     {
         "kylechui/nvim-surround",

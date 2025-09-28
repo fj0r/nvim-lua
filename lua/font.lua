@@ -54,7 +54,7 @@ function M.from_env()
 end
 
 
-vim.g.select_font_size = 12
+vim.g.select_font_size = 11
 vim.api.nvim_create_user_command('SelectFont',
     function(ctx)
         local font = M.parse(ctx.args):guifont()
