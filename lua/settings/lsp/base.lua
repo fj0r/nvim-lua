@@ -1,5 +1,4 @@
 vim.lsp.enable {
-    "rust_analyzer",
     "nushell",
     "pyright",
     --"pyrefly",

@@ -39,7 +39,7 @@ require("codecompanion").setup {
     },
     strategies = {
         chat = {
-            adapter = "glm45",
+            adapter = "qwen3",
         },
         inline = {
             adapter = "qwen3",
