@@ -1,7 +1,7 @@
 vim.lsp.enable {
     "nushell",
-    "pyright",
-    --"pyrefly",
+    --"pyright",
+    "pyrefly",
     "hls",
     --"julials",
     --"metals",

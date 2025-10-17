@@ -5,7 +5,7 @@ require 'settings.lsp.base'
 --require 'settings.lsp.ai'
 
 require 'settings.lang.rust.lsp'
---require 'settings.lang.python.lsp'
+require 'settings.lang.python.lsp'
 require 'settings.lang.lua.lsp'
 require 'settings.lang.yaml.lsp'
 require 'settings.lang.js.lsp'
