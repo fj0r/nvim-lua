@@ -1,19 +1,11 @@
 --run docker with `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` or `--privileged`
 
 local dap = require 'dap'
-local lldb_vscode_bin
-local lldb_version = io.popen("lldb -v 2>/dev/null | rg 'lldb version ([0-9]+)\\..*' -or '$1'")
-if lldb_version ~= nil then
-    local version = lldb_version:read()
-    if version then
-        lldb_vscode_bin = 'lldb-dap-' .. version
-    end
-    lldb_version:close()
-end
+local lldb_dap_bin = '/usr/bin/lldb-dap'
 
 dap.adapters.lldb = {
     type = 'executable',
-    command = lldb_vscode_bin,
+    command = lldb_dap_bin,
     name = "lldb"
 }
 
