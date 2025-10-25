@@ -12,10 +12,15 @@ dap.adapters.lldb = {
 local cmd = function(s)
     local handle = io.popen(s)
     if handle == nil then return end
-    local r = handle:read("*l")
+    local r = handle:read("*a")
+    local v = {}
+    for l in string.gmatch(r, "[^\n]+") do
+        table.insert(v, l)
+    end
     handle:close()
-    return r
+    return v
 end
+
 
 dap.configurations.rust = {
     {
@@ -29,9 +34,17 @@ dap.configurations.rust = {
             local _ = r:read("*a")
             r:close()
             --local cwd = vim.fs.root(vim.fn.getcwd(), {'.git'})
-            local name = cmd("cargo metadata --format-version=1 | jq -r '.packages[0].name'")
-            local cwd = cmd("cargo metadata --format-version=1 | jq -r '.target_directory'")
-            return cwd .. '/debug/' .. name
+            local names = cmd("cargo metadata --format-version=1 --no-deps | jq -r '.packages[].name'")
+            local name
+            if #names == 1 then
+                name = names[1]
+            else
+                name = vim.fn.input("select bin ".. vim.inspect(names)..": ")
+            end
+            local cwd = cmd("cargo metadata --format-version=1 --no-deps | jq -r '.target_directory'")[1]
+            cwd = cwd .. '/debug/' .. name
+            print(cwd)
+            return cwd
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
