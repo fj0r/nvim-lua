@@ -4,7 +4,8 @@ local m = require('setup').mod
 return {
     {
         "olimorris/codecompanion.nvim",
-        enabled = vim.g.nvim_level >= 2,
+        -- enabled = vim.g.nvim_level >= 2,
+        enabled = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
