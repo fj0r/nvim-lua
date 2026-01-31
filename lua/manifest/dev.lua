@@ -112,6 +112,7 @@ return {
 
     {
         'nvim-treesitter/nvim-treesitter',
+        branch = 'master',
         --build = ':TSUpdate',
         config = h.settings 'treesitter',
         enabled = vim.g.nvim_level >= 2,
