@@ -3,6 +3,7 @@ plugin/
 pack/
 lazy/
 lazy-lock.json
+plugins/
 Luapad *
 tags
 
