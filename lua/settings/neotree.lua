@@ -127,6 +127,8 @@ require("neo-tree").setup({
     },
     nesting_rules = {},
     filesystem = {
+        -- 配置 Neo-tree 实例完全隔离并归属于特定的 Tab 作用域
+        cwd_target = { sidebar = "tab" },
         filtered_items = {
             visible = false, -- when true, they will just be displayed differently than normal items
             hide_dotfiles = true,

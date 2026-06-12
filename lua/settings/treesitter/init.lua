@@ -44,8 +44,18 @@ if os.getenv('NVIM_MUSL') == '1' then
     require 'nvim-treesitter.parsers'.command_extra_args = { ["musl-gcc"] = { "-I/usr/include", "-static" } }
 end
 
+-- 检测 C 编译器：无编译器时跳过 ensure_installed，避免启动报错
+local compilers = { "cc", "gcc", "clang", "cl", "zig" }
+local has_cc = false
+for _, cc in ipairs(compilers) do
+    if vim.fn.executable(cc) == 1 then
+        has_cc = true
+        break
+    end
+end
+
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = vim.g.treesitter_lang,
+    ensure_installed = has_cc and vim.g.treesitter_lang or {},
     sync_install = true,
     auto_install = false,
     indent = {
