@@ -20,10 +20,6 @@ return {
         },
     },
     {
-        'jose-elias-alvarez/null-ls.nvim',
-        enabled = vim.g.nvim_level >= 2,
-    },
-    {
         'kaarmu/typst.vim',
         ft = 'typst',
         enabled = vim.g.nvim_level >= 3,

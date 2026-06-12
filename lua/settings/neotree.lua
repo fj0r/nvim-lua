@@ -76,11 +76,11 @@ require("neo-tree").setup({
             [m 's'] = "split_with_window_picker",
             [m 'v'] = "vsplit_with_window_picker",
             ["t"] = "open_tabnew",
-            [vim.g.arrow_keys.l] = "open_with_window_picker",
+            ["l"] = "open_with_window_picker",
             --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
-            [vim.g.arrow_keys.h] = "close_node",
-            [vim.g.arrow_keys.j] = "move_down",
-            [vim.g.arrow_keys.k] = "move_up",
+            ["h"] = "close_node",
+            ["j"] = "move_down",
+            ["k"] = "move_up",
             ["z"] = "close_all_nodes",
             --["Z"] = "expand_all_nodes",
             ["a"] = {

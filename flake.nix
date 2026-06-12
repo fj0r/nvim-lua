@@ -1,0 +1,6 @@
+{
+  description = "My Neovim Flake";
+  outputs = { self }: {
+    packages.x86_64-linux.default = null;
+  };
+}

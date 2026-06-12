@@ -9,5 +9,3 @@ require 'common.colors'
 require 'common.window'
 require 'common.title'
 require 'common.gui'
-
-require 'common.arrow'

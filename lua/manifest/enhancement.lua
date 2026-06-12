@@ -38,17 +38,10 @@ return {
         config = h.settings 'ultimate-autopair',
     },
     {
-        'windwp/nvim-autopairs',
-        config = h.settings 'autopairs',
-        enabled = false,
-    },
-    {
         "kylechui/nvim-surround",
-        opts = {
-            keymaps = {
-                --visual = m('s', true)
-            }
-        },
+        version = "*",
+        event = "VeryLazy",
+        opts = {},
     },
     {
         keys = {
@@ -68,12 +61,6 @@ return {
         enabled = vim.g.nvim_level >= 2,
         config = true,
         event = "VeryLazy",
-    },
-    {
-        'jedrzejboczar/possession.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        enabled = false,
-        config = h.settings 'possession'
     },
     {
         "okuuva/auto-save.nvim",

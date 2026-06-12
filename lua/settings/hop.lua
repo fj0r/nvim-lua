@@ -12,7 +12,7 @@ local regex = vim.regex('\\v[a-zA-Z0-9]+|[,=#]+|[:;\\[\\]<>{}()]\\s*$|\\s+$')
 local hint_somewhere = function(opts)
     hop.hint_with_regex({
         oneshot = false,
-        match = function(s) return regex:match_str(s) end,
+        match = function(s) return regex:match_str(s) end
     }, override_opts(opts))
 end
 

@@ -9,20 +9,7 @@ return {
         },
         config = h.settings 'luasnip',
     },
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-            'L3MON4D3/LuaSnip',         -- Snippets plugin
-        },
-        config = h.settings 'nvim-cmp',
-        -- enabled = vim.g.nvim_level >= 2,
-        enabled = false
-    },
+
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
@@ -157,7 +144,6 @@ return {
             { '<leader>gq', '<cmd>Trouble qflist toggle<cr>',                             desc = 'Quickfix List (Trouble)' },
             { '<leader>gr', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = 'LSP Definitions / references / ... (Trouble)' },
         },
-        dependencies = { "kyazdani42/nvim-web-devicons" },
         opts = {},
         enabled = vim.g.nvim_level >= 2,
     },

@@ -1,6 +1,6 @@
 local s = require('setup')
 local m = s.mod
-local comma = vim.g.arrow_keys[';']
+local comma = ';'
 vim.g.mapesc = '<M-' .. comma .. '>' -- nil | '<M-;>' | '<M-[>'
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

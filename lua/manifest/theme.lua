@@ -22,10 +22,6 @@ return {
         config = h.settings 'lualine',
         dependencies = {
             "sainnhe/gruvbox-material",
-            {
-                'kyazdani42/nvim-web-devicons',
-                lazy = true
-            }
         },
         enabled = vim.g.nvim_level >= 2,
     },
