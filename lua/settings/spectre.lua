@@ -10,5 +10,10 @@ require 'spectre'.setup {
             cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
             desc = "replace current line"
         },
+        ['close'] = {
+            map = "q",
+            cmd = "<cmd>lua require('spectre').close()<CR>",
+            desc = "close spectre"
+        },
     }
 }
