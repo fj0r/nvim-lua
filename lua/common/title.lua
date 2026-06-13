@@ -36,7 +36,7 @@ local set_tab_title = function(pin, cb)
             end
             p = vim.fn.substitute(cwd, parents[c] .. '/', '', nil)
         end
-        --local p = vim.fn.substitute(vim.fn.getcwd(), os.getenv('HOME'), '~', '')
+        --local p = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
         --local p = vim.fs.basename(vim.fn.getcwd())
         if vim.g.ui_prompt then
             vim.ui.input({ prompt = 'rename tab', default = p }, function(input)
@@ -68,4 +68,4 @@ vim.api.nvim_create_user_command('TabTitle', function(ctx) tab_title.set(ctx.arg
 
 vim.api.nvim_create_user_command('Title', function(ctx) set_title(ctx.args) end, { nargs = '?' })
 
-set_title(vim.fn.substitute(vim.fn.getcwd(), os.getenv('HOME'), '~', ''))
+set_title(vim.fn.fnamemodify(vim.fn.getcwd(), ':~'))

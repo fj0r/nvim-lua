@@ -7,6 +7,41 @@ vim.g.maplocalleader = " "
 vim.keymap.set('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.jk_wrap = os.getenv('NVIM_JK_WRAP') == '1'
 
+------------------------------
+-- Copy file location to clipboard
+-- count 位掩码：bit0=相对路径, bit1=带列号
+-- 0: 绝对路径(~缩写)无列号, 1: 相对路径无列号, 2: 绝对路径(~缩写)带列号, 3: 相对路径带列号
+------------------------------
+
+local copy_location = function()
+    local count = vim.v.count
+    local is_relative = (count % 2) == 1
+    local has_col = (math.floor(count / 2) % 2) == 1
+
+    local path = is_relative and vim.fn.expand('%') or vim.fn.fnamemodify(vim.fn.expand('%:p'), ':~')
+    local is_visual = vim.fn.mode():match('[vV]')
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+
+    local result
+    if is_visual then
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+        result = path .. ':' .. start_line .. '-' .. end_line
+        if has_col then
+            result = result .. ':' .. vim.fn.col("'<") .. '-' .. vim.fn.col("'>")
+        end
+    else
+        result = path .. ':' .. line
+        if has_col then
+            result = result .. ':' .. col
+        end
+    end
+
+    vim.fn.setreg('+', result)
+    vim.notify(result, vim.log.levels.INFO)
+end
+
 s.keymap_table {
     --[[
     -- nvim-taberm: opts.keymap.escape @manifest/term.lua
@@ -28,8 +63,6 @@ s.keymap_table {
     -- join lines without space
     { 'J',          'gJ',                                          'ns',  mode = 'nv' },
     { 'gJ',         'J',                                           'ns',  mode = 'nv' },
-    -- no highlight search
-    { '<leader>/',  ':nohls<CR>',                                  'ns' },
     -- command history
     -- { '<leader>;', ':<C-f>', 'ns', mode = 'n' }
     { '@',          ':normal @',                                   'n',   mode = 'x' },
@@ -38,6 +71,8 @@ s.keymap_table {
     { '>',          '>gv',                                         'ns',  mode = 'x' },
     -- toggle number
     { '<leader>n',  '<cmd>set relativenumber! | :set number!<CR>', 'ns' },
+    -- no highlight search
+    { '<leader>/',  '<cmd>Spectre<CR>',                            'ns' },
     -- Y yank until the end of line
     { 'Y',          'y$',                                          'ns' },
     -- U for redo (like Helix)
@@ -47,6 +82,8 @@ s.keymap_table {
     { '<leader>Y',  '"+Y',                                         'ns',  mode = 'nv' },
     { '<leader>p',  '"+p',                                         'ns',  mode = 'nv' },
     { '<leader>P',  '"+P',                                         'ns',  mode = 'nv' },
+    -- copy file location to clipboard (count: 0=绝对, 1=相对, 2=带列号, 3=相对+列号)
+    { '<leader>l',  copy_location,                                 'ns',  mode = 'nv', desc = 'copy file location' },
     -- repeat substitution
     { '&',          ':%&<CR>',                                     'ns' },
     -- shortcuts

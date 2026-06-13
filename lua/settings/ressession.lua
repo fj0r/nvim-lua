@@ -34,8 +34,7 @@ local load = function()
     local wd = vim.fs.root(cwd, { '.git' }) or cwd
 
     if wd then
-        local sn = vim.fn.substitute(wd, os.getenv('HOME'), '_', '')
-        sn = vim.fn.substitute(sn, '/', '%', 'g')
+        local sn = vim.fn.fnamemodify(wd, ':~'):gsub('^~', '_'):gsub('/', '%%')
         vim.g.resession_file = sn
         local exist = false
         for _, k in pairs(resession.list()) do

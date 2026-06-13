@@ -125,7 +125,7 @@ vim.api.nvim_create_autocmd("DirChanged", {
         if vim.fs.root(ctx.file, { '.git' }) then
             name = vim.fs.basename(ctx.file)
         else
-            name = vim.fn.substitute(ctx.file, os.getenv('HOME'), '~', '')
+            name = vim.fn.fnamemodify(ctx.file, ':~')
         end
         vim.t[curridx].tabname = name
     end
