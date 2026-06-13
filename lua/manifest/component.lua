@@ -19,8 +19,8 @@ return {
             --'nvim-telescope/telescope-fzf-native.nvim',
         },
         keys = {
-            { '<leader>p',  'pickers',              desc = 'telescope pickers' },
-            { '<leader>y',  'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
+            { '<leader>\\',  'pickers',              desc = 'telescope pickers' },
+            { '<leader>D',  'lsp_document_symbols', desc = 'telescope lsp_document_symbols' },
             { '<leader>a',  'marks',                desc = 'telescope marks' },
             { '<leader>z',  'registers',            desc = 'telescope registers' },
             { '<leader>d',  'oldfiles',             desc = 'telescope oldfiles' },

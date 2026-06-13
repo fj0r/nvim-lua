@@ -32,7 +32,7 @@ if vim.g.neovide or vim.g.server_mode then
         pattern = "*",
         callback = function()
             vim.opt.linespace = tonumber(os.getenv("NEOVIM_LINE_SPACE") or '0')
-            vim.g.neovide_scale_factor = tonumber(os.getenv("NEOVIDE_SCALE_FACTOR") or '0.5')
+            vim.g.neovide_scale_factor = tonumber(os.getenv("NEOVIDE_SCALE_FACTOR") or '1.0')
             -- https://github.com/neovide/neovide/issues/1331
             if vim.g.loaded_clipboard_provider then
                 vim.g.loaded_clipboard_provider = nil

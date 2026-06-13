@@ -40,6 +40,13 @@ s.keymap_table {
     { '<leader>n',  '<cmd>set relativenumber! | :set number!<CR>', 'ns' },
     -- Y yank until the end of line
     { 'Y',          'y$',                                          'ns' },
+    -- U for redo (like Helix)
+    { 'U',          '<C-r>',                                       'ns' },
+    -- yank to clipboard
+    { '<leader>y',  '"+y',                                         'ns',  mode = 'nv' },
+    { '<leader>Y',  '"+Y',                                         'ns',  mode = 'nv' },
+    { '<leader>p',  '"+p',                                         'ns',  mode = 'nv' },
+    { '<leader>P',  '"+P',                                         'ns',  mode = 'nv' },
     -- repeat substitution
     { '&',          ':%&<CR>',                                     'ns' },
     -- shortcuts

@@ -6,7 +6,7 @@ return {
     {
         'nvim-pack/nvim-spectre',
         keys = {
-            { ';s', function() require("spectre").open() end, desc = 'Toggle Spectre' }
+            { '<leader>/', function() require("spectre").open() end, desc = 'Toggle Spectre' }
         },
         dependencies = { "nvim-lua/plenary.nvim" },
         enabled = true,
@@ -30,7 +30,10 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        opts = {}
+        keys = {
+            { '<leader>c', mode = { 'n', 'x' }, desc = 'toggle comment' },
+        },
+        opts = {},
     },
     {
         'altermo/ultimate-autopair.nvim',
