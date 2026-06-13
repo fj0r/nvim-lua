@@ -23,17 +23,24 @@ require('blink.cmp').setup {
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
         preset = 'enter',
-        -- If completion hasn't been triggered yet, insert the first suggestion; if it has, cycle to the next suggestion.
+        -- Select next item, or jump snippet forward if in snippet
         ['<Tab>'] = {
             function(cmp)
+                if cmp.snippet_active() then return cmp.snippet_forward() end
                 if has_words_before() then
                     return cmp.insert_next()
                 end
             end,
             'fallback',
         },
-        -- Navigate to the previous suggestion or cancel completion if currently on the first one.
-        ['<S-Tab>'] = { 'insert_prev' },
+        -- Select previous item, or jump snippet backward if in snippet
+        ['<S-Tab>'] = {
+            function(cmp)
+                if cmp.snippet_active() then return cmp.snippet_backward() end
+                return cmp.select_prev()
+            end,
+            'fallback',
+        },
         ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
         ['<A-2>'] = { function(cmp) cmp.accept({ index = 2 }) end },
         ['<A-3>'] = { function(cmp) cmp.accept({ index = 3 }) end },

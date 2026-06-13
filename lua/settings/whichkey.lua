@@ -17,8 +17,13 @@ wk.setup {
         bt = { "TelescopePrompt" },
     },
     triggers = {
-      { "<auto>", mode = "nxsot" },
       { "<leader>", mode = { "n", "v" } },
+      { "g", mode = "n" },
+      { ";", mode = "n" },
+      { "[", mode = "n" },
+      { "]", mode = "n" },
+      { "z", mode = "n" },
+      { "c", mode = "n" },
     },
     -- preset = "modern",
 }
