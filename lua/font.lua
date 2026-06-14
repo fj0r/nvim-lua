@@ -41,7 +41,15 @@ function M.parse(f)
 end
 
 function M:guifont()
-    return self.name .. ":h" .. self.size .. self.opt
+    local en
+    if vim.g.neovide then
+        en = self.name
+    else
+        en = self.name .. ":h" .. self.size .. self.opt
+    end
+
+    local zh = "Noto Sans Mono CJK SC" .. ":h" .. self.size
+    return en .. ',' .. zh
 end
 
 function M.parse_env()
