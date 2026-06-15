@@ -29,13 +29,6 @@ return {
         config = h.settings 'rainbow'
     },
     {
-        'numToStr/Comment.nvim',
-        keys = {
-            { '<leader>c', mode = { 'n', 'x' }, desc = 'toggle comment' },
-        },
-        opts = {},
-    },
-    {
         'altermo/ultimate-autopair.nvim',
         event={'InsertEnter','CmdlineEnter'},
         config = h.settings 'ultimate-autopair',
