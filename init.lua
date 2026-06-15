@@ -6,7 +6,10 @@ require 'env'
 require 'shim'
 require 'common'
 
-local lazyhome = vim.g.config_root .. '/lazy'
+-- Check if config_root is writable (non-dev mode points to nix store, read-only)
+local lazyhome = vim.uv.fs_access(vim.g.config_root, 'W')
+    and (vim.g.config_root .. '/lazy')
+    or (vim.g.data_root .. '/lazy')
 local lazypath = lazyhome .. '/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
