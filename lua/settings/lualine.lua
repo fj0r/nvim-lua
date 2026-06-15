@@ -9,10 +9,12 @@ local term_theme = {
     }
 }
 
-local theme = vim.tbl_deep_extend('force',
-    vim.go.background == 'light'
-    and require 'lualine.themes.gruvbox_light'
-    or require 'lualine.themes.gruvbox-material', {})
+local theme
+if vim.g.background == 'light' then
+    theme = require 'lualine.themes.gruvbox_light'
+else
+    theme = require 'lualine.themes.gruvbox-material'
+end
 
 local diag = { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' } }
 
