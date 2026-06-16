@@ -56,30 +56,32 @@ require('nvim-treesitter').setup {
     install_dir = vim.fn.stdpath('data') .. '/site',
 }
 
--- 安装 parsers（有编译器时）
+-- 安装 parsers（有编译器时，异步执行避免阻塞启动）
 if has_cc then
-    require('nvim-treesitter').install(langs)
+    vim.schedule(function()
+        require('nvim-treesitter.install').ensure_installed(langs)
+    end)
 end
 
 -- ── FileType autocmd：启用 highlight / fold / indent ──
 vim.api.nvim_create_autocmd('FileType', {
     pattern = '*',
     callback = function(args)
-        local lang = vim.treesitter.language.get_lang(args.match)
-        if not lang then return end
+        local ok, lang = pcall(vim.treesitter.language.get_lang, args.match)
+        if not ok or not lang then return end
 
-        -- 检查 parser 是否存在
-        local ok, _ = pcall(vim.treesitter.language.inspect, lang)
-        if not ok then return end
+        -- Check if parser exists
+        local parser_ok, _ = pcall(vim.treesitter.language.inspect, lang)
+        if not parser_ok then return end
 
-        -- syntax highlighting
-        vim.treesitter.start(args.buf, lang)
+        -- Try to start treesitter, ignore errors
+        pcall(vim.treesitter.start, args.buf, lang)
 
-        -- folds
+        -- Enable fold
         vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         vim.wo.foldmethod = 'expr'
 
-        -- indentation
+        -- Enable indent
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
 })
