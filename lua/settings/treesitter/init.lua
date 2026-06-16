@@ -2,14 +2,8 @@ if not vim.g.has_git then
     return
 end
 
--- ── Parser 列表 ──────────────────────────────────────
-local version = vim.version()
-local builtin_parser = {} -- c lua nvim
-if version.major == 0 and version.minor <= 9 then
-    builtin_parser = { "bash", "markdown", "python" }
-end
-
 local langs = {
+    "bash",
     "css",
     "diff",
     "dockerfile",
@@ -22,6 +16,7 @@ local langs = {
     "javascript",
     "jsdoc",
     "json",
+    -- lua, markdown, markdown_inline: Neovim 0.12+ 内置
     "nu",
     "python",
     "regex",
@@ -30,8 +25,6 @@ local langs = {
     "typescript",
     "vue",
     "yaml",
-    "lua",
-    table.unpack(builtin_parser)
 }
 
 vim.g.treesitter_lang = langs
