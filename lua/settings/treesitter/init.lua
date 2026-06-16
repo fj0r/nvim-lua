@@ -1,18 +1,14 @@
 if not vim.g.has_git then
     return
 end
-
 local langs = {
-    "bash",
     "css",
     "diff",
     "dockerfile",
     "go",
     "gomod",
-    "graphql",
     "haskell",
     "html",
-    "java",
     "javascript",
     "jsdoc",
     "json",
@@ -21,6 +17,7 @@ local langs = {
     "python",
     "regex",
     "rust",
+    "sql",
     "toml",
     "typescript",
     "vue",

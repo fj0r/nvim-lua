@@ -22,8 +22,6 @@ resession.setup {
     }
 }
 
-local nfy = function(x) require('notify').notify(vim.inspect(x)) end
-
 local load = function()
     -- ignore: file gitcommit vimdiff ...
     if vim.fn.argc(-1) > 0 or vim.g.using_stdin then
