@@ -28,6 +28,7 @@ require('lazy').setup('manifest', {
     readme = {
         root = lazyhome .. '/readme',
     },
+    lockfile = lazyhome .. '/lazy-lock.json',
     change_detection = { enabled = false }
 })
 
