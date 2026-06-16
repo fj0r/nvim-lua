@@ -23,7 +23,7 @@ local separators = {
     section = ""
 }
 
-if not os.getenv('NVIM_LUALINE_PLAIN') then
+if os.getenv('NVIM_LUALINE_POWER') then
     separators = {
         component = { left = '', right = '' },
         section = { left = '', right = '' }
