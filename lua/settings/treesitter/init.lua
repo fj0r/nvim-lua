@@ -54,9 +54,12 @@ if has_cc then
 end
 
 -- ── FileType autocmd：启用 highlight / fold / indent ──
+-- (markdown is handled by after/ftplugin/markdown.lua to avoid markdown_inline parser bug)
 vim.api.nvim_create_autocmd('FileType', {
     pattern = '*',
     callback = function(args)
+        if args.match == 'markdown' then return end
+
         local ok, lang = pcall(vim.treesitter.language.get_lang, args.match)
         if not ok or not lang then return end
 
