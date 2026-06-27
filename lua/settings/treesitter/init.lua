@@ -24,12 +24,10 @@ local langs = {
     "yaml",
 }
 
-vim.g.treesitter_lang = langs
-
 -- ── 编译器检测 ──────────────────────────────────────
+-- main 分支用 tree-sitter build，通过 CC 环境变量指定编译器
 if os.getenv('NVIM_MUSL') == '1' then
-    require 'nvim-treesitter.install'.compilers = { "musl-gcc" }
-    require 'nvim-treesitter.parsers'.command_extra_args = { ["musl-gcc"] = { "-I/usr/include", "-static" } }
+    vim.env.CC = "musl-gcc"
 end
 
 local compilers = { "cc", "gcc", "clang", "cl", "zig" }
@@ -41,7 +39,7 @@ for _, cc in ipairs(compilers) do
     end
 end
 
--- ── nvim-treesitter setup（新版 API）──────────────────
+-- ── nvim-treesitter setup（main 分支 API）────────────
 require('nvim-treesitter').setup {
     install_dir = vim.fn.stdpath('data') .. '/site',
 }
@@ -49,35 +47,9 @@ require('nvim-treesitter').setup {
 -- 安装 parsers（有编译器时，异步执行避免阻塞启动）
 if has_cc then
     vim.schedule(function()
-        require('nvim-treesitter.install').ensure_installed(langs)
+        require('nvim-treesitter').install(langs)
     end)
 end
-
--- ── FileType autocmd：启用 highlight / fold / indent ──
--- (markdown is handled by after/ftplugin/markdown.lua to avoid markdown_inline parser bug)
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = '*',
-    callback = function(args)
-        if args.match == 'markdown' then return end
-
-        local ok, lang = pcall(vim.treesitter.language.get_lang, args.match)
-        if not ok or not lang then return end
-
-        -- Check if parser exists
-        local parser_ok, _ = pcall(vim.treesitter.language.inspect, lang)
-        if not parser_ok then return end
-
-        -- Try to start treesitter, ignore errors
-        pcall(vim.treesitter.start, args.buf, lang)
-
-        -- Enable fold
-        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-        vim.wo.foldmethod = 'expr'
-
-        -- Enable indent
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-    end,
-})
 
 -- ── textobjects ──────────────────────────────────────
 require('nvim-treesitter-textobjects').setup {
