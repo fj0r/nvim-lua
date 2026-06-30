@@ -104,7 +104,7 @@ require("neo-tree").setup({
             --  }
             ["Y"] = function(state)
                 local node = state.tree:get_node()
-                local full_path = node.path
+                local full_path = vim.fn.fnamemodify(node.path, ':~')
                 vim.fn.setreg('"', full_path)
                 vim.fn.setreg('1', full_path)
                 vim.fn.setreg('+', full_path)
